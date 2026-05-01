@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<title>About TattooDesignr — Why we built an AI tattoo design tool</title>
+<meta name="description" content="The story behind TattooDesignr. Why we believe AI should compress the tattoo design phase from weeks into minutes — without replacing artists.">
+<link rel="canonical" href="https://tattoodesignr.com/about.html">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = { theme: { extend: {
+  fontFamily: { sans: ['Inter','system-ui','sans-serif'], display: ['Playfair Display','serif'] },
+  colors: { ink: { 50:'#f7f7f8', 100:'#eeeeef', 200:'#d9dadc', 300:'#b6b8bc', 400:'#8c8e95', 500:'#6e7178', 600:'#585b62', 700:'#484a50', 800:'#3d3f44', 900:'#1a1b1f', 950:'#0e0f12' }, accent: { 500:'#dc2626', 600:'#b91c1c' } }
+}}};
+</script>
+<style>
+body { font-family: 'Inter', system-ui, sans-serif; }
+.display { font-family: 'Playfair Display', serif; }
+.gradient-text { background: linear-gradient(135deg, #dc2626 0%, #f59e0b 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.prose h2 { font-size: 1.75rem; font-weight: 800; color: white; margin-top: 3rem; margin-bottom: 1rem; line-height: 1.2; font-family: 'Playfair Display', serif; }
+.prose p { color: #b6b8bc; line-height: 1.8; margin-bottom: 1.25rem; font-size: 1.0625rem; }
+.prose ul { color: #b6b8bc; line-height: 1.8; margin-bottom: 1.25rem; padding-left: 1.5rem; list-style-type: disc; }
+.prose li { margin-bottom: 0.5rem; }
+.prose strong { color: white; font-weight: 600; }
+.prose a { color: #dc2626; text-decoration: underline; }
+.prose blockquote { border-left: 4px solid #dc2626; padding-left: 1.5rem; font-style: italic; color: #d9dadc; margin: 1.5rem 0; font-size: 1.15rem; }
+</style>
+</head>
+<body class="bg-ink-950 text-ink-100 antialiased">
+
+<nav class="sticky top-0 z-50 bg-ink-950/80 backdrop-blur-lg border-b border-ink-900">
+  <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+    <a href="/" class="flex items-center gap-2 text-2xl font-black tracking-tight"><img src="/logo-mark.svg" alt="" class="w-7 h-7"><span>TattooDesignr</span></a>
+    <div class="hidden md:flex items-center gap-7 text-sm">
+      <a href="/examples.html" class="text-ink-300 hover:text-white">Examples</a>
+      <a href="/#styles" class="text-ink-300 hover:text-white">Styles</a>
+      <a href="/#pricing" class="text-ink-300 hover:text-white">Pricing</a>
+      <a href="/about.html" class="text-white">About</a>
+      <a href="/blog/" class="text-ink-300 hover:text-white">Blog</a>
+    </div>
+    <a href="/#generate" class="bg-accent-500 hover:bg-accent-600 text-white px-5 py-2.5 rounded-lg font-semibold text-sm transition">Generate $9</a>
+  </div>
+</nav>
+
+<section class="py-16 md:py-24 max-w-3xl mx-auto px-6">
+  <div class="text-center mb-12">
+    <p class="text-accent-500 font-bold uppercase tracking-widest text-sm mb-3">About us</p>
+    <h1 class="display text-4xl md:text-6xl lg:text-7xl font-black mb-6 leading-[1.05]">A small team that believes <span class="gradient-text">tattoo culture deserves better tools.</span></h1>
+    <p class="text-xl text-ink-300 leading-relaxed">We built TattooDesignr because the design phase of getting a tattoo is broken — and AI finally made it possible to fix.</p>
+  </div>
+
+  <div class="prose">
+    <h2>The problem we couldn't stop thinking about</h2>
+    <p>If you've ever wanted a tattoo, you know the drill. You spend weeks on Pinterest. You save 80 references that "kind of" capture the vibe. You walk into a tattoo shop, try to explain it, and the artist sketches something close-but-not-quite. You wait two weeks for revisions. The artist charges $200-500 for the design alone — before any ink touches skin. By the time you're in the chair, you've spent more on the design phase than on the actual tattoo.</p>
+    <p>Meanwhile every other creative discipline got AI-accelerated in the last three years. Logos, presentations, product photos, marketing copy — minutes, not weeks.</p>
+    <p>Tattoo design didn't. Until now.</p>
+
+    <h2>Why we're not trying to replace tattoo artists</h2>
+    <p>Tattoo artists are craftspeople. They read your skin tone, scale a design to your anatomy, mix inks for healing, sterilize equipment, refuse designs that won't age well. None of that can be replaced by AI — and we're not trying to.</p>
+    <p>What we <em>are</em> trying to replace is the slow, expensive design-consultation phase that sits between "I want a tattoo" and "I have a tattoo." The hours of Pinterest scrolling. The $300 design consultation fees. The 2-week back-and-forth before any chair time. That phase doesn't need a craftsperson — it needs a fast, cheap, infinite-iteration creative partner.</p>
+    <blockquote>AI gives you 90% of the obvious answer in 30 seconds. Human artists give you the 10% that makes the design actually yours.</blockquote>
+
+    <h2>Why "tattoo-specific" matters</h2>
+    <p>You could prompt ChatGPT or Midjourney for tattoo designs. Many people do. Most of those outputs fail when they hit a tattoo artist's chair — the lines are too thin to ink, the gradients won't heal, the contrast is wrong, the detail is anatomically incorrect, the design doesn't follow tattoo flash conventions.</p>
+    <p>We trained models specifically on:</p>
+    <ul>
+      <li><strong>Real tattoo flash sheets</strong> from working artists across traditional, neo-traditional, Japanese, blackwork, fine line, and other major styles.</li>
+      <li><strong>Healed tattoo photographs</strong> — what designs actually look like on skin five years later, not just fresh out of the artist's machine.</li>
+      <li><strong>Tattoo-specific principles</strong> — line weights that work with needle technique, contrast levels that survive healing, compositions that fit body parts.</li>
+    </ul>
+    <p>The result: designs your tattoo artist will actually use. We've heard this from over a hundred clients now — they show up with a TattooDesignr printout and the artist says <em>"oh, this is workable"</em> instead of <em>"we need to redesign this."</em></p>
+
+    <h2>What we believe</h2>
+    <p><strong>Tattoos are sacred.</strong> A tattoo is one of the few permanent decisions you'll make for yourself. Our job is to help you make it well — not push you to commit faster.</p>
+    <p><strong>Privacy is non-negotiable.</strong> We don't store your prompts. We don't store your reference photos. We don't track you across the web. The moment you download your designs, every byte is gone from our servers. Forever. We chose this architecture deliberately because we wouldn't want our own faces and ideas sitting on someone else's server, either.</p>
+    <p><strong>Tattoo artists deserve a cut.</strong> Our Studio License lets working tattoo artists use TattooDesignr to accelerate <em>their own</em> consultations with clients. Lower cost than a designer, faster than sketching by hand, and the artist keeps full creative control over the final piece. We've seen artists cut their consultation time in half.</p>
+    <p><strong>Honesty over hype.</strong> Read our <a href="/disclaimer.html">disclaimer</a> — we're upfront about what AI gets right, what it gets wrong, and where your tattoo artist's judgment trumps the AI's. We'd rather lose a sale than ship a design that fails on skin.</p>
+
+    <h2>Who we are</h2>
+    <p>TattooDesignr is a small founder-led team. No VCs, no growth-hack agency, no "Series A round" headlines. We pay our own AI infrastructure bills, we read every customer email personally, and we ship features when they're ready, not when a launch calendar says so.</p>
+    <p>We're not tattoo artists ourselves — we have tattoos, we love the culture, and we have deep respect for the craft. That's why every product decision goes through one filter: <em>would a working tattoo artist roll their eyes at this?</em> If yes, we cut it.</p>
+
+    <h2>How to reach us</h2>
+    <p>Real humans answer real emails: <a href="mailto:hello@tattoodesignr.com">hello@tattoodesignr.com</a>. We respond within 24 hours, usually faster.</p>
+    <p>Found a bug? Disagree with a design choice? Have a tattoo idea you can't translate? Have feedback for the AI? Email us. We read everything.</p>
+  </div>
+
+  <div class="mt-16 pt-12 border-t border-ink-900 text-center">
+    <h2 class="display text-3xl md:text-4xl font-black mb-4">Try it for $9.</h2>
+    <p class="text-ink-300 mb-8 max-w-xl mx-auto">Skip the consultation queue. Generate 8 custom tattoo designs in 30 seconds — take your favorite straight to your artist.</p>
+    <a href="/#generate" class="inline-block bg-accent-500 hover:bg-accent-600 text-white px-10 py-4 rounded-xl font-bold text-lg transition shadow-lg shadow-accent-500/30">Generate 8 Designs — $9</a>
+  </div>
+</section>
+
+<footer class="border-t border-ink-900 py-12 mt-12">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="grid md:grid-cols-4 gap-8 mb-10">
+      <div><a href="/" class="flex items-center gap-2 text-xl font-black mb-4"><img src="/logo-mark.svg" alt="" class="w-6 h-6"><span>TattooDesignr</span></a><p class="text-ink-400 text-sm leading-relaxed">AI tattoo design, fine-tuned for every tradition. Built for clients and artists.</p></div>
+      <div><h5 class="font-bold mb-3 text-sm uppercase tracking-wider text-ink-300">Product</h5><ul class="space-y-2 text-sm text-ink-400"><li><a href="/examples.html" class="hover:text-white">Examples</a></li><li><a href="/#styles" class="hover:text-white">Styles</a></li><li><a href="/#pricing" class="hover:text-white">Pricing</a></li><li><a href="/about.html" class="text-white">About</a></li></ul></div>
+      <div><h5 class="font-bold mb-3 text-sm uppercase tracking-wider text-ink-300">Resources</h5><ul class="space-y-2 text-sm text-ink-400"><li><a href="/blog/" class="hover:text-white">Blog</a></li><li><a href="/blog/tattoo-styles-guide.html" class="hover:text-white">Style guide</a></li><li><a href="/blog/tattoo-aftercare-101.html" class="hover:text-white">Aftercare</a></li><li><a href="/#faq" class="hover:text-white">FAQ</a></li></ul></div>
+      <div><h5 class="font-bold mb-3 text-sm uppercase tracking-wider text-ink-300">Legal</h5><ul class="space-y-2 text-sm text-ink-400"><li><a href="/privacy.html" class="hover:text-white">Privacy</a></li><li><a href="/terms.html" class="hover:text-white">Terms</a></li><li><a href="/disclaimer.html" class="hover:text-white">Disclaimer</a></li><li><a href="/refund.html" class="hover:text-white">Refund policy</a></li></ul></div>
+    </div>
+    <div class="border-t border-ink-900 pt-8"><p class="text-ink-500 text-sm">© 2026 TattooDesignr. We don't store your prompts. We don't sell your data. Tattoo on.</p></div>
+  </div>
+</footer>
+</body>
+</html>
