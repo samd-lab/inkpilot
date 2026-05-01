@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- TattooDesignr — Primary Logo Mark -->
+<!-- Concept: A bold ink drop pierced by a tattoo needle, with a red ink core.
+     Reads as: tattoo precision + ink craftsmanship. Works at any size. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" role="img" aria-label="TattooDesignr">
+  <defs>
+    <linearGradient id="dropGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1a1b1f"/>
+      <stop offset="100%" stop-color="#0e0f12"/>
+    </linearGradient>
+    <linearGradient id="needleGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#f59e0b"/>
+      <stop offset="100%" stop-color="#dc2626"/>
+    </linearGradient>
+    <filter id="softGlow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="1.2" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <!-- Outer ring -->
+  <circle cx="50" cy="50" r="46" fill="none" stroke="#0e0f12" stroke-width="2"/>
+
+  <!-- Ink drop shape (teardrop) - the "ink" of tattoo -->
+  <path d="M50 12
+           C 35 28, 26 42, 26 56
+           C 26 72, 36 84, 50 84
+           C 64 84, 74 72, 74 56
+           C 74 42, 65 28, 50 12 Z"
+        fill="url(#dropGrad)"
+        stroke="#fff"
+        stroke-width="2.5"
+        stroke-linejoin="round"/>
+
+  <!-- Needle line piercing diagonally - the "design precision" -->
+  <line x1="14" y1="86" x2="86" y2="14"
+        stroke="url(#needleGrad)"
+        stroke-width="3.5"
+        stroke-linecap="round"
+        filter="url(#softGlow)"/>
+
+  <!-- Needle tip (top right) -->
+  <circle cx="86" cy="14" r="3" fill="#dc2626"/>
+  <!-- Needle handle dot (bottom left) -->
+  <circle cx="14" cy="86" r="2" fill="#dc2626" opacity="0.7"/>
+
+  <!-- Inner red ink core where needle meets drop -->
+  <circle cx="50" cy="50" r="5" fill="#dc2626"/>
+  <circle cx="50" cy="50" r="2" fill="#fff" opacity="0.95"/>
+</svg>

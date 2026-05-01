@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<title>Blog — TattooDesignr | Tattoo Design Guides &amp; AI Insights</title>
+<meta name="description" content="Tattoo design guides, style breakdowns, aftercare tips, and how AI is reshaping the tattoo industry. From TattooDesignr.">
+<link rel="canonical" href="https://tattoodesignr.com/blog/">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = { theme: { extend: {
+  fontFamily: { sans: ['Inter','system-ui','sans-serif'], display: ['Playfair Display','serif'] },
+  colors: { ink: { 50:'#f7f7f8', 100:'#eeeeef', 200:'#d9dadc', 300:'#b6b8bc', 400:'#8c8e95', 500:'#6e7178', 600:'#585b62', 700:'#484a50', 800:'#3d3f44', 900:'#1a1b1f', 950:'#0e0f12' }, accent: { 500:'#dc2626', 600:'#b91c1c' } }
+}}};
+</script>
+<style>
+body { font-family: 'Inter', system-ui, sans-serif; }
+.display { font-family: 'Playfair Display', serif; }
+.gradient-text { background: linear-gradient(135deg, #dc2626 0%, #f59e0b 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.card-hover { transition: transform 0.3s, border-color 0.3s; }
+.card-hover:hover { transform: translateY(-4px); border-color: #dc2626; }
+.tattoo-img { background: linear-gradient(110deg, #1a1b1f 8%, #2d2f35 18%, #1a1b1f 33%); background-size: 200% 100%; animation: shine 1.5s linear infinite; }
+@keyframes shine { to { background-position: -200% 0; } }
+</style>
+</head>
+<body class="bg-ink-950 text-ink-100 antialiased">
+
+<nav class="sticky top-0 z-50 bg-ink-950/80 backdrop-blur-lg border-b border-ink-900">
+  <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+    <a href="/" class="flex items-center gap-2 text-2xl font-black tracking-tight"><img src="/logo-mark.svg" alt="" class="w-7 h-7"><span>TattooDesignr</span></a>
+    <div class="hidden md:flex items-center gap-8 text-sm">
+      <a href="/examples.html" class="text-ink-300 hover:text-white">Examples</a>
+      <a href="/#styles" class="text-ink-300 hover:text-white">Styles</a>
+      <a href="/#how" class="text-ink-300 hover:text-white">How it works</a>
+      <a href="/#pricing" class="text-ink-300 hover:text-white">Pricing</a>
+      <a href="/blog/" class="text-white">Blog</a>
+      <a href="/#faq" class="text-ink-300 hover:text-white">FAQ</a>
+    </div>
+    <a href="/#generate" class="bg-accent-500 hover:bg-accent-600 text-white px-5 py-2.5 rounded-lg font-semibold text-sm transition">Generate $9</a>
+  </div>
+</nav>
+
+<section class="py-16 md:py-24 max-w-6xl mx-auto px-6">
+  <div class="text-center mb-14">
+    <p class="text-accent-500 font-bold uppercase tracking-widest text-sm mb-3">Blog</p>
+    <h1 class="display text-4xl md:text-6xl font-black mb-4">Tattoo guides &amp; <span class="gradient-text">AI insights.</span></h1>
+    <p class="text-ink-300 text-lg max-w-2xl mx-auto">Style breakdowns, design advice, aftercare guides, and what AI means for the future of tattooing.</p>
+  </div>
+
+  <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+    <a href="/blog/first-tattoo-guide.html" class="card-hover bg-ink-900 border border-ink-800 rounded-2xl overflow-hidden block">
+      <div class="aspect-video bg-ink-800 tattoo-img">
+        <img loading="lazy" src="https://image.pollinations.ai/prompt/minimalist%20small%20tattoo%20on%20wrist%2C%20simple%20clean%20line%20art%2C%20first%20tattoo%2C%20delicate?width=800&height=450&nologo=true&seed=51" alt="First tattoo design" class="w-full h-full object-cover">
+      </div>
+      <div class="p-6">
+        <div class="text-[10px] uppercase tracking-widest text-accent-500 font-bold mb-2">Guide · 8 min read</div>
+        <h2 class="text-xl font-bold mb-3 leading-tight">How to Choose Your First Tattoo Design Without Regret</h2>
+        <p class="text-ink-400 text-sm leading-relaxed">Most people overthink their first tattoo, then rush it. Here's a step-by-step framework — including what to ask your artist, how to test placement, and the 30-day rule.</p>
+      </div>
+    </a>
+
+    <a href="/blog/tattoo-styles-guide.html" class="card-hover bg-ink-900 border border-ink-800 rounded-2xl overflow-hidden block">
+      <div class="aspect-video bg-ink-800 tattoo-img">
+        <img loading="lazy" src="https://image.pollinations.ai/prompt/grid%20of%20tattoo%20styles%20comparison%2C%20traditional%20japanese%20minimalist%20realism%20blackwork%2C%20multiple%20tattoo%20designs?width=800&height=450&nologo=true&seed=52" alt="Tattoo styles comparison" class="w-full h-full object-cover">
+      </div>
+      <div class="p-6">
+        <div class="text-[10px] uppercase tracking-widest text-accent-500 font-bold mb-2">Guide · 12 min read</div>
+        <h2 class="text-xl font-bold mb-3 leading-tight">The 10 Tattoo Styles Every Artist Knows — Which Is Right for You?</h2>
+        <p class="text-ink-400 text-sm leading-relaxed">Traditional vs. neo-traditional vs. realism vs. fine line. The complete style breakdown — what each style means, how it ages, and when to choose it.</p>
+      </div>
+    </a>
+
+    <a href="/blog/tattoo-aftercare-101.html" class="card-hover bg-ink-900 border border-ink-800 rounded-2xl overflow-hidden block">
+      <div class="aspect-video bg-ink-800 tattoo-img">
+        <img loading="lazy" src="https://image.pollinations.ai/prompt/healing%20tattoo%20on%20skin%2C%20fresh%20tattoo%20wrapped%20in%20plastic%20film%20protection%2C%20aftercare?width=800&height=450&nologo=true&seed=53" alt="Tattoo aftercare" class="w-full h-full object-cover">
+      </div>
+      <div class="p-6">
+        <div class="text-[10px] uppercase tracking-widest text-accent-500 font-bold mb-2">Guide · 10 min read</div>
+        <h2 class="text-xl font-bold mb-3 leading-tight">Tattoo Aftercare 101: The Complete Healing Guide</h2>
+        <p class="text-ink-400 text-sm leading-relaxed">Day-by-day instructions for healing a fresh tattoo. What to do, what to avoid, when to worry, which products work, and what your artist won't tell you.</p>
+      </div>
+    </a>
+
+    <a href="/blog/ai-tattoo-design.html" class="card-hover bg-ink-900 border border-ink-800 rounded-2xl overflow-hidden block">
+      <div class="aspect-video bg-ink-800 tattoo-img">
+        <img loading="lazy" src="https://image.pollinations.ai/prompt/futuristic%20tattoo%20design%20on%20screen%2C%20AI%20generating%20art%2C%20technology%20meets%20tattoo%20culture?width=800&height=450&nologo=true&seed=54" alt="AI generating tattoo designs" class="w-full h-full object-cover">
+      </div>
+      <div class="p-6">
+        <div class="text-[10px] uppercase tracking-widest text-accent-500 font-bold mb-2">Insight · 7 min read</div>
+        <h2 class="text-xl font-bold mb-3 leading-tight">How AI Is Changing Tattoo Design (For Clients and Artists)</h2>
+        <p class="text-ink-400 text-sm leading-relaxed">From design consultations to flash sheets to client briefings — here's how AI is genuinely transforming the tattoo workflow, and where it falls short.</p>
+      </div>
+    </a>
+  </div>
+
+  <div class="text-center mt-20 py-12 px-6 bg-gradient-to-br from-ink-900 to-ink-950 border border-ink-800 rounded-2xl">
+    <h2 class="display text-3xl md:text-5xl font-black mb-4">Ready to design yours?</h2>
+    <p class="text-ink-300 mb-8 max-w-xl mx-auto">Skip the consultation queue. Generate 8 custom tattoo designs in 30 seconds — take your favorite straight to your artist.</p>
+    <a href="/#generate" class="inline-block bg-accent-500 hover:bg-accent-600 text-white px-10 py-4 rounded-xl font-bold text-lg transition shadow-lg shadow-accent-500/30">Generate 8 Designs — $9</a>
+  </div>
+</section>
+
+<footer class="border-t border-ink-900 py-12 mt-12">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="grid md:grid-cols-4 gap-8 mb-10">
+      <div><a href="/" class="flex items-center gap-2 text-xl font-black mb-4"><img src="/logo-mark.svg" alt="" class="w-7 h-7"><span>TattooDesignr</span></a><p class="text-ink-400 text-sm leading-relaxed">AI tattoo design, fine-tuned for every tradition.</p></div>
+      <div><h5 class="font-bold mb-3 text-sm uppercase tracking-wider text-ink-300">Product</h5><ul class="space-y-2 text-sm text-ink-400"><li><a href="/examples.html" class="hover:text-white">Examples</a></li><li><a href="/#styles" class="hover:text-white">Styles</a></li><li><a href="/#pricing" class="hover:text-white">Pricing</a></li></ul></div>
+      <div><h5 class="font-bold mb-3 text-sm uppercase tracking-wider text-ink-300">Resources</h5><ul class="space-y-2 text-sm text-ink-400"><li><a href="/blog/" class="hover:text-white">Blog</a></li><li><a href="/blog/tattoo-styles-guide.html" class="hover:text-white">Style guide</a></li><li><a href="/blog/tattoo-aftercare-101.html" class="hover:text-white">Aftercare</a></li><li><a href="/#faq" class="hover:text-white">FAQ</a></li></ul></div>
+      <div><h5 class="font-bold mb-3 text-sm uppercase tracking-wider text-ink-300">Legal</h5><ul class="space-y-2 text-sm text-ink-400"><li><a href="/privacy.html" class="hover:text-white">Privacy</a></li><li><a href="/terms.html" class="hover:text-white">Terms</a></li><li><a href="/disclaimer.html" class="hover:text-white">Disclaimer</a></li><li><a href="/refund.html" class="hover:text-white">Refund policy</a></li></ul></div>
+    </div>
+    <div class="border-t border-ink-900 pt-8"><p class="text-ink-500 text-sm">© 2026 TattooDesignr.</p></div>
+  </div>
+</footer>
+</body>
+</html>

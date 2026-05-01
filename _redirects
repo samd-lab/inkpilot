@@ -1,0 +1,5 @@
+# Future: when we acquire inkpilot.com, redirect old to new
+# inkpilot.com/* https://getinkpilot.com/:splat 301!
+
+# SPA fallback (not needed for static, kept for future)
+# /* /index.html 200
