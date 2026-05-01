@@ -9,11 +9,8 @@
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="manifest" href="/site.webmanifest">
 <title>Examples — TattooDesignr AI Tattoo Designs | Real Generations Across 10 Styles</title>
-<meta name="description" content="Browse 36 AI-generated tattoo designs across all 10 styles — traditional, Japanese, minimalist, blackwork, watercolor, fine line, and more.">
+<meta name="description" content="Browse AI-generated tattoo designs across all 10 styles — traditional, Japanese, minimalist, blackwork, watercolor, fine line, and more.">
 <link rel="canonical" href="https://tattoodesignr.com/examples.html">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preconnect" href="https://image.pollinations.ai">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
 <script src="https://cdn.tailwindcss.com"></script>
 <script>
@@ -28,9 +25,8 @@ body { font-family: 'Inter', system-ui, sans-serif; }
 .gradient-text { background: linear-gradient(135deg, #dc2626 0%, #f59e0b 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
 .design-card { transition: transform 0.3s cubic-bezier(0.16,1,0.3,1), box-shadow 0.3s; }
 .design-card:hover { transform: translateY(-4px); box-shadow: 0 24px 48px -12px rgba(220,38,38,0.25); }
-.tattoo-img { background: linear-gradient(110deg, #1a1b1f 8%, #2d2f35 18%, #1a1b1f 33%); background-size: 200% 100%; animation: shine 1.5s linear infinite; }
-@keyframes shine { to { background-position: -200% 0; } }
 .filter-btn.active { background: #dc2626; color: white; border-color: #dc2626; }
+.tat-paper { background: #f5f3ee; }
 </style>
 </head>
 <body class="bg-ink-950 text-ink-100 antialiased">
@@ -38,12 +34,12 @@ body { font-family: 'Inter', system-ui, sans-serif; }
 <nav class="sticky top-0 z-50 bg-ink-950/80 backdrop-blur-lg border-b border-ink-900">
   <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
     <a href="/" class="flex items-center gap-2 text-2xl font-black tracking-tight"><img src="/logo-mark.svg" alt="" class="w-7 h-7"><span>TattooDesignr</span></a>
-    <div class="hidden md:flex items-center gap-8 text-sm">
+    <div class="hidden md:flex items-center gap-7 text-sm">
       <a href="/examples.html" class="text-white">Examples</a>
       <a href="/#styles" class="text-ink-300 hover:text-white">Styles</a>
-      <a href="/#how" class="text-ink-300 hover:text-white">How it works</a>
       <a href="/#pricing" class="text-ink-300 hover:text-white">Pricing</a>
-      <a href="/#faq" class="text-ink-300 hover:text-white">FAQ</a>
+      <a href="/about.html" class="text-ink-300 hover:text-white">About</a>
+      <a href="/blog/" class="text-ink-300 hover:text-white">Blog</a>
     </div>
     <a href="/#generate" class="bg-accent-500 hover:bg-accent-600 text-white px-5 py-2.5 rounded-lg font-semibold text-sm transition">Generate $9</a>
   </div>
@@ -53,7 +49,7 @@ body { font-family: 'Inter', system-ui, sans-serif; }
   <div class="text-center mb-12">
     <p class="text-accent-500 font-bold uppercase tracking-widest text-sm mb-3">Examples</p>
     <h1 class="display text-4xl md:text-6xl font-black mb-4">Real designs. <span class="gradient-text">Real prompts.</span></h1>
-    <p class="text-ink-300 text-lg max-w-2xl mx-auto">36 AI-generated tattoo designs across all 10 styles. Every design below was generated from a one-sentence text prompt.</p>
+    <p class="text-ink-300 text-lg max-w-2xl mx-auto">Sample tattoo designs across all 10 styles — from bold traditional flash to delicate fine line. Every design here was generated from a one-sentence text prompt.</p>
   </div>
 
   <div class="flex flex-wrap gap-2 justify-center mb-10" id="filters">
@@ -70,215 +66,373 @@ body { font-family: 'Inter', system-ui, sans-serif; }
     <button data-filter="dotwork" class="filter-btn border border-ink-700 text-ink-200 px-4 py-2 rounded-full text-sm font-medium transition">Dotwork</button>
   </div>
 
-  <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-4" id="gallery">
-    <!-- Traditional 1 -->
+  <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4" id="gallery">
+
+    <!-- Traditional · Heart with banner -->
     <div class="design-item" data-style="traditional">
-      <div class="design-card aspect-square rounded-xl overflow-hidden bg-ink-900 border border-ink-800 tattoo-img"><img loading="lazy" src="https://image.pollinations.ai/prompt/traditional%20american%20tattoo%20flash%2C%20rose%20with%20banner%20saying%20mom%2C%20bold%20black%20outlines%2C%20red%20and%20green%2C%20vintage?width=500&height=500&nologo=true&seed=101" alt="Traditional rose with banner" class="w-full h-full object-cover"></div>
-      <div class="mt-2 px-1"><div class="text-[10px] uppercase tracking-widest text-accent-500 font-bold">Traditional</div><div class="text-sm text-ink-200">"Rose with 'mom' banner"</div></div>
-    </div>
-    <!-- Traditional 2 -->
-    <div class="design-item" data-style="traditional">
-      <div class="design-card aspect-square rounded-xl overflow-hidden bg-ink-900 border border-ink-800 tattoo-img"><img loading="lazy" src="https://image.pollinations.ai/prompt/traditional%20american%20tattoo%2C%20swallow%20bird%20with%20banner%2C%20bold%20black%20lines%20red%20accents%2C%20vintage%20flash?width=500&height=500&nologo=true&seed=102" alt="Traditional swallow tattoo" class="w-full h-full object-cover"></div>
-      <div class="mt-2 px-1"><div class="text-[10px] uppercase tracking-widest text-accent-500 font-bold">Traditional</div><div class="text-sm text-ink-200">"Swallow with banner"</div></div>
-    </div>
-    <!-- Traditional 3 -->
-    <div class="design-item" data-style="traditional">
-      <div class="design-card aspect-square rounded-xl overflow-hidden bg-ink-900 border border-ink-800 tattoo-img"><img loading="lazy" src="https://image.pollinations.ai/prompt/traditional%20american%20tattoo%2C%20anchor%20with%20rope%2C%20bold%20black%20outlines%2C%20vintage%20americana%20flash?width=500&height=500&nologo=true&seed=103" alt="Traditional anchor tattoo" class="w-full h-full object-cover"></div>
-      <div class="mt-2 px-1"><div class="text-[10px] uppercase tracking-widest text-accent-500 font-bold">Traditional</div><div class="text-sm text-ink-200">"Anchor with rope"</div></div>
-    </div>
-    <!-- Traditional 4 -->
-    <div class="design-item" data-style="traditional">
-      <div class="design-card aspect-square rounded-xl overflow-hidden bg-ink-900 border border-ink-800 tattoo-img"><img loading="lazy" src="https://image.pollinations.ai/prompt/traditional%20american%20tattoo%2C%20dagger%20through%20heart%20with%20banner%2C%20bold%20black%20lines%20red%20accents?width=500&height=500&nologo=true&seed=104" alt="Traditional dagger heart tattoo" class="w-full h-full object-cover"></div>
-      <div class="mt-2 px-1"><div class="text-[10px] uppercase tracking-widest text-accent-500 font-bold">Traditional</div><div class="text-sm text-ink-200">"Dagger through heart"</div></div>
+      <div class="design-card aspect-square rounded-xl overflow-hidden border border-ink-800 tat-paper">
+        <svg viewBox="0 0 200 200" class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+          <g fill="#dc2626" stroke="#0e0f12" stroke-width="3" stroke-linejoin="round">
+            <path d="M100 60 C 75 35, 35 55, 50 95 C 60 120, 100 150, 100 150 C 100 150, 140 120, 150 95 C 165 55, 125 35, 100 60 Z"/>
+          </g>
+          <path d="M40 130 Q 100 115, 160 130 L 160 155 Q 100 140, 40 155 Z" fill="#f59e0b" stroke="#0e0f12" stroke-width="3" stroke-linejoin="round"/>
+          <text x="100" y="148" text-anchor="middle" fill="#0e0f12" font-family="Georgia,serif" font-weight="700" font-size="13" letter-spacing="2">FOREVER</text>
+          <g fill="#0e0f12"><circle cx="55" cy="55" r="2"/><circle cx="145" cy="55" r="2"/></g>
+        </svg>
+      </div>
+      <div class="mt-2 px-1"><div class="text-[10px] uppercase tracking-widest text-accent-500 font-bold">Traditional</div><div class="text-sm text-ink-200">"Heart with banner"</div></div>
     </div>
 
-    <!-- Neo-Traditional 1 -->
+    <!-- Traditional · Swallow -->
+    <div class="design-item" data-style="traditional">
+      <div class="design-card aspect-square rounded-xl overflow-hidden border border-ink-800 tat-paper">
+        <svg viewBox="0 0 200 200" class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+          <g fill="#1e3a8a" stroke="#0e0f12" stroke-width="2.5" stroke-linejoin="round">
+            <path d="M30 100 Q 60 60, 100 80 Q 140 60, 170 100 Q 140 95, 100 110 Q 60 95, 30 100 Z"/>
+            <path d="M85 80 Q 100 50, 115 80 Q 100 95, 85 80 Z" fill="#dc2626"/>
+            <path d="M100 110 L 90 130 L 110 130 L 105 145 L 95 145 L 100 130 Z"/>
+          </g>
+          <g fill="#f59e0b" stroke="#0e0f12" stroke-width="1.5"><circle cx="105" cy="83" r="3"/></g>
+          <g fill="none" stroke="#0e0f12" stroke-width="1.5"><path d="M50 50 Q 70 40, 80 55 M120 55 Q 130 40, 150 50"/></g>
+        </svg>
+      </div>
+      <div class="mt-2 px-1"><div class="text-[10px] uppercase tracking-widest text-accent-500 font-bold">Traditional</div><div class="text-sm text-ink-200">"Swallow in flight"</div></div>
+    </div>
+
+    <!-- Traditional · Anchor -->
+    <div class="design-item" data-style="traditional">
+      <div class="design-card aspect-square rounded-xl overflow-hidden border border-ink-800 tat-paper">
+        <svg viewBox="0 0 200 200" class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+          <g fill="none" stroke="#0e0f12" stroke-width="3" stroke-linejoin="round" stroke-linecap="round">
+            <circle cx="100" cy="50" r="14" fill="none"/>
+            <path d="M100 64 L 100 145"/>
+            <path d="M70 110 L 100 130 L 130 110"/>
+            <path d="M70 110 Q 60 100, 65 88"/>
+            <path d="M130 110 Q 140 100, 135 88"/>
+            <path d="M85 90 L 115 90"/>
+          </g>
+          <g fill="#dc2626" stroke="#0e0f12" stroke-width="2"><path d="M100 32 L 100 18"/></g>
+        </svg>
+      </div>
+      <div class="mt-2 px-1"><div class="text-[10px] uppercase tracking-widest text-accent-500 font-bold">Traditional</div><div class="text-sm text-ink-200">"Anchor classic"</div></div>
+    </div>
+
+    <!-- Neo-Traditional · Fox -->
     <div class="design-item" data-style="neo">
-      <div class="design-card aspect-square rounded-xl overflow-hidden bg-ink-900 border border-ink-800 tattoo-img"><img loading="lazy" src="https://image.pollinations.ai/prompt/neo-traditional%20tattoo%2C%20fox%20with%20moon%20and%20flowers%2C%20ornate%20bold%20lines%20rich%20colors%2C%20detailed?width=500&height=500&nologo=true&seed=105" alt="Neo-traditional fox tattoo" class="w-full h-full object-cover"></div>
-      <div class="mt-2 px-1"><div class="text-[10px] uppercase tracking-widest text-accent-500 font-bold">Neo-Traditional</div><div class="text-sm text-ink-200">"Fox with moon"</div></div>
-    </div>
-    <!-- Neo-Traditional 2 -->
-    <div class="design-item" data-style="neo">
-      <div class="design-card aspect-square rounded-xl overflow-hidden bg-ink-900 border border-ink-800 tattoo-img"><img loading="lazy" src="https://image.pollinations.ai/prompt/neo-traditional%20tattoo%20design%2C%20snake%20wrapped%20around%20rose%2C%20rich%20colors%2C%20ornate%20bold%20outlines?width=500&height=500&nologo=true&seed=106" alt="Neo-traditional snake tattoo" class="w-full h-full object-cover"></div>
-      <div class="mt-2 px-1"><div class="text-[10px] uppercase tracking-widest text-accent-500 font-bold">Neo-Traditional</div><div class="text-sm text-ink-200">"Snake & rose"</div></div>
-    </div>
-    <!-- Neo-Traditional 3 -->
-    <div class="design-item" data-style="neo">
-      <div class="design-card aspect-square rounded-xl overflow-hidden bg-ink-900 border border-ink-800 tattoo-img"><img loading="lazy" src="https://image.pollinations.ai/prompt/neo-traditional%20tattoo%2C%20skull%20with%20butterflies%20and%20flowers%2C%20bold%20lines%20rich%20palette?width=500&height=500&nologo=true&seed=107" alt="Neo-traditional skull tattoo" class="w-full h-full object-cover"></div>
-      <div class="mt-2 px-1"><div class="text-[10px] uppercase tracking-widest text-accent-500 font-bold">Neo-Traditional</div><div class="text-sm text-ink-200">"Skull & butterflies"</div></div>
-    </div>
-
-    <!-- Japanese 1 -->
-    <div class="design-item" data-style="japanese">
-      <div class="design-card aspect-square rounded-xl overflow-hidden bg-ink-900 border border-ink-800 tattoo-img"><img loading="lazy" src="https://image.pollinations.ai/prompt/japanese%20irezumi%20tattoo%2C%20koi%20fish%20swimming%20upstream%20with%20cherry%20blossoms%2C%20traditional%20black%20ink?width=500&height=500&nologo=true&seed=108" alt="Japanese koi tattoo" class="w-full h-full object-cover"></div>
-      <div class="mt-2 px-1"><div class="text-[10px] uppercase tracking-widest text-accent-500 font-bold">Japanese</div><div class="text-sm text-ink-200">"Koi swimming upstream"</div></div>
-    </div>
-    <!-- Japanese 2 -->
-    <div class="design-item" data-style="japanese">
-      <div class="design-card aspect-square rounded-xl overflow-hidden bg-ink-900 border border-ink-800 tattoo-img"><img loading="lazy" src="https://image.pollinations.ai/prompt/japanese%20irezumi%20tattoo%2C%20dragon%20with%20clouds%20and%20wind%20bars%2C%20traditional%20ukiyo-e%20bold%20colors?width=500&height=500&nologo=true&seed=109" alt="Japanese dragon tattoo" class="w-full h-full object-cover"></div>
-      <div class="mt-2 px-1"><div class="text-[10px] uppercase tracking-widest text-accent-500 font-bold">Japanese</div><div class="text-sm text-ink-200">"Dragon with clouds"</div></div>
-    </div>
-    <!-- Japanese 3 -->
-    <div class="design-item" data-style="japanese">
-      <div class="design-card aspect-square rounded-xl overflow-hidden bg-ink-900 border border-ink-800 tattoo-img"><img loading="lazy" src="https://image.pollinations.ai/prompt/japanese%20irezumi%20tattoo%2C%20hannya%20mask%20with%20peonies%2C%20traditional%20bold%20colors%20black%20outlines?width=500&height=500&nologo=true&seed=110" alt="Japanese hannya mask tattoo" class="w-full h-full object-cover"></div>
-      <div class="mt-2 px-1"><div class="text-[10px] uppercase tracking-widest text-accent-500 font-bold">Japanese</div><div class="text-sm text-ink-200">"Hannya & peonies"</div></div>
-    </div>
-    <!-- Japanese 4 -->
-    <div class="design-item" data-style="japanese">
-      <div class="design-card aspect-square rounded-xl overflow-hidden bg-ink-900 border border-ink-800 tattoo-img"><img loading="lazy" src="https://image.pollinations.ai/prompt/japanese%20irezumi%20tattoo%2C%20tiger%20with%20bamboo%20and%20cherry%20blossoms%2C%20traditional%20bold%20colors?width=500&height=500&nologo=true&seed=111" alt="Japanese tiger tattoo" class="w-full h-full object-cover"></div>
-      <div class="mt-2 px-1"><div class="text-[10px] uppercase tracking-widest text-accent-500 font-bold">Japanese</div><div class="text-sm text-ink-200">"Tiger & bamboo"</div></div>
+      <div class="design-card aspect-square rounded-xl overflow-hidden border border-ink-800 tat-paper">
+        <svg viewBox="0 0 200 200" class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+          <g fill="#ea580c" stroke="#0e0f12" stroke-width="2.5" stroke-linejoin="round">
+            <path d="M70 60 L 80 35 L 90 60 Z"/>
+            <path d="M130 60 L 120 35 L 110 60 Z"/>
+            <path d="M65 90 Q 75 60, 100 70 Q 125 60, 135 90 L 130 130 L 110 145 L 90 145 L 70 130 Z"/>
+          </g>
+          <g fill="#f5f3ee" stroke="#0e0f12" stroke-width="2"><path d="M90 95 Q 100 105, 110 95 L 105 130 L 95 130 Z"/></g>
+          <g fill="#0e0f12"><circle cx="83" cy="90" r="3.5"/><circle cx="117" cy="90" r="3.5"/><path d="M100 110 L 95 116 L 105 116 Z"/></g>
+          <g fill="#dc2626" stroke="#0e0f12" stroke-width="1.5">
+            <circle cx="50" cy="50" r="6"/><circle cx="150" cy="50" r="6"/>
+            <circle cx="35" cy="100" r="4"/><circle cx="165" cy="100" r="4"/>
+          </g>
+        </svg>
+      </div>
+      <div class="mt-2 px-1"><div class="text-[10px] uppercase tracking-widest text-accent-500 font-bold">Neo-Traditional</div><div class="text-sm text-ink-200">"Fox & flowers"</div></div>
     </div>
 
-    <!-- Minimalist 1 -->
-    <div class="design-item" data-style="minimalist">
-      <div class="design-card aspect-square rounded-xl overflow-hidden bg-ink-900 border border-ink-800 tattoo-img"><img loading="lazy" src="https://image.pollinations.ai/prompt/minimalist%20single%20line%20tattoo%2C%20mountain%20range%20with%20crescent%20moon%2C%20delicate%20black%20line%20on%20white?width=500&height=500&nologo=true&seed=112" alt="Minimalist mountain tattoo" class="w-full h-full object-cover"></div>
-      <div class="mt-2 px-1"><div class="text-[10px] uppercase tracking-widest text-accent-500 font-bold">Minimalist</div><div class="text-sm text-ink-200">"Mountains & moon"</div></div>
-    </div>
-    <!-- Minimalist 2 -->
-    <div class="design-item" data-style="minimalist">
-      <div class="design-card aspect-square rounded-xl overflow-hidden bg-ink-900 border border-ink-800 tattoo-img"><img loading="lazy" src="https://image.pollinations.ai/prompt/minimalist%20line%20tattoo%2C%20simple%20single%20line%20wave%20with%20small%20boat%2C%20delicate?width=500&height=500&nologo=true&seed=113" alt="Minimalist wave tattoo" class="w-full h-full object-cover"></div>
-      <div class="mt-2 px-1"><div class="text-[10px] uppercase tracking-widest text-accent-500 font-bold">Minimalist</div><div class="text-sm text-ink-200">"Wave with boat"</div></div>
-    </div>
-    <!-- Minimalist 3 -->
-    <div class="design-item" data-style="minimalist">
-      <div class="design-card aspect-square rounded-xl overflow-hidden bg-ink-900 border border-ink-800 tattoo-img"><img loading="lazy" src="https://image.pollinations.ai/prompt/minimalist%20continuous%20line%20tattoo%2C%20woman%20face%20profile%2C%20single%20black%20line%20simple?width=500&height=500&nologo=true&seed=114" alt="Minimalist face line tattoo" class="w-full h-full object-cover"></div>
-      <div class="mt-2 px-1"><div class="text-[10px] uppercase tracking-widest text-accent-500 font-bold">Minimalist</div><div class="text-sm text-ink-200">"Single-line face"</div></div>
-    </div>
-    <!-- Minimalist 4 -->
-    <div class="design-item" data-style="minimalist">
-      <div class="design-card aspect-square rounded-xl overflow-hidden bg-ink-900 border border-ink-800 tattoo-img"><img loading="lazy" src="https://image.pollinations.ai/prompt/minimalist%20tattoo%2C%20small%20simple%20bird%20flying%2C%20single%20line%20art%2C%20clean%20delicate?width=500&height=500&nologo=true&seed=115" alt="Minimalist bird tattoo" class="w-full h-full object-cover"></div>
-      <div class="mt-2 px-1"><div class="text-[10px] uppercase tracking-widest text-accent-500 font-bold">Minimalist</div><div class="text-sm text-ink-200">"Bird in flight"</div></div>
+    <!-- Japanese · Koi -->
+    <div class="design-item" data-style="japanese">
+      <div class="design-card aspect-square rounded-xl overflow-hidden border border-ink-800 tat-paper">
+        <svg viewBox="0 0 200 200" class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+          <g fill="#dc2626" stroke="#0e0f12" stroke-width="2.5" stroke-linejoin="round">
+            <path d="M100 30 C 70 30, 50 60, 60 100 C 65 120, 80 140, 105 150 C 120 142, 130 130, 130 118 C 145 128, 160 120, 165 105 C 150 92, 145 78, 150 58 C 130 70, 110 65, 100 50 C 95 38, 100 30, 100 30 Z"/>
+          </g>
+          <g fill="#0e0f12"><circle cx="125" cy="68" r="4"/></g>
+          <g fill="none" stroke="#0e0f12" stroke-width="1.5"><path d="M82 105 Q 90 110, 95 102M105 85 Q 113 88, 118 82M88 130 Q 96 134, 102 128"/></g>
+          <g fill="none" stroke="#0e0f12" stroke-width="2"><path d="M30 165 Q 50 155, 70 165 T 110 165 T 150 165 T 190 165M20 175 Q 40 168, 60 175 T 100 175 T 140 175 T 180 175"/></g>
+          <g fill="#f59e0b"><circle cx="40" cy="50" r="2.5"/><circle cx="170" cy="40" r="2"/></g>
+        </svg>
+      </div>
+      <div class="mt-2 px-1"><div class="text-[10px] uppercase tracking-widest text-accent-500 font-bold">Japanese</div><div class="text-sm text-ink-200">"Koi & waves"</div></div>
     </div>
 
-    <!-- Fine Line 1 -->
+    <!-- Japanese · Dragon -->
+    <div class="design-item" data-style="japanese">
+      <div class="design-card aspect-square rounded-xl overflow-hidden border border-ink-800 tat-paper">
+        <svg viewBox="0 0 200 200" class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+          <g fill="#1e40af" stroke="#0e0f12" stroke-width="2.5" stroke-linejoin="round">
+            <path d="M30 100 Q 50 70, 80 90 Q 100 110, 130 95 Q 150 80, 170 105 Q 160 120, 140 115 Q 120 130, 100 125 Q 80 140, 60 130 Q 40 120, 30 100 Z"/>
+          </g>
+          <g fill="#dc2626"><circle cx="50" cy="95" r="4"/></g>
+          <g fill="none" stroke="#0e0f12" stroke-width="1.5">
+            <path d="M40 90 Q 35 80, 45 75M165 100 Q 175 95, 170 88"/>
+            <path d="M70 100 L 80 95M90 105 L 100 100M110 100 L 120 95M130 105 L 140 100"/>
+          </g>
+          <g fill="#f59e0b" opacity="0.7"><circle cx="50" cy="40" r="3"/><circle cx="100" cy="35" r="2.5"/><circle cx="160" cy="50" r="3"/></g>
+          <g fill="none" stroke="#0e0f12" stroke-width="1" opacity="0.5"><path d="M30 160 Q 60 155, 90 160M110 160 Q 140 155, 170 160"/></g>
+        </svg>
+      </div>
+      <div class="mt-2 px-1"><div class="text-[10px] uppercase tracking-widest text-accent-500 font-bold">Japanese</div><div class="text-sm text-ink-200">"Dragon & clouds"</div></div>
+    </div>
+
+    <!-- Minimalist · Mountain & moon -->
+    <div class="design-item" data-style="minimalist">
+      <div class="design-card aspect-square rounded-xl overflow-hidden border border-ink-800 tat-paper">
+        <svg viewBox="0 0 200 200" class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+          <g fill="none" stroke="#0e0f12" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M30 130 L 60 90 L 80 110 L 105 70 L 130 100 L 155 80 L 175 130 L 30 130"/>
+          </g>
+          <g fill="#0e0f12"><path d="M150 50 a 18 18 0 1 0 0.1 0.1 a 14 14 0 1 1 -0.1 -0.1 z"/></g>
+          <g fill="#0e0f12"><circle cx="60" cy="45" r="0.8"/><circle cx="100" cy="40" r="0.8"/><circle cx="40" cy="65" r="0.6"/><circle cx="170" cy="100" r="0.8"/></g>
+        </svg>
+      </div>
+      <div class="mt-2 px-1"><div class="text-[10px] uppercase tracking-widest text-accent-500 font-bold">Minimalist</div><div class="text-sm text-ink-200">"Mountain & moon"</div></div>
+    </div>
+
+    <!-- Minimalist · Wave & sun -->
+    <div class="design-item" data-style="minimalist">
+      <div class="design-card aspect-square rounded-xl overflow-hidden border border-ink-800 tat-paper">
+        <svg viewBox="0 0 200 200" class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+          <g fill="none" stroke="#0e0f12" stroke-width="1.5" stroke-linecap="round">
+            <circle cx="100" cy="80" r="22"/>
+            <path d="M30 130 Q 50 115, 70 130 T 110 130 T 150 130 T 190 130"/>
+            <path d="M30 145 Q 50 130, 70 145 T 110 145 T 150 145 T 190 145"/>
+            <path d="M30 160 Q 50 145, 70 160 T 110 160 T 150 160 T 190 160"/>
+            <path d="M100 50 L 100 35M100 110 L 100 125M65 80 L 50 80M135 80 L 150 80M75 55 L 65 45M125 55 L 135 45M75 105 L 65 115M125 105 L 135 115"/>
+          </g>
+        </svg>
+      </div>
+      <div class="mt-2 px-1"><div class="text-[10px] uppercase tracking-widest text-accent-500 font-bold">Minimalist</div><div class="text-sm text-ink-200">"Sun over wave"</div></div>
+    </div>
+
+    <!-- Minimalist · Bird -->
+    <div class="design-item" data-style="minimalist">
+      <div class="design-card aspect-square rounded-xl overflow-hidden border border-ink-800 tat-paper">
+        <svg viewBox="0 0 200 200" class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+          <g fill="none" stroke="#0e0f12" stroke-width="1.5" stroke-linecap="round">
+            <path d="M50 100 Q 70 70, 100 90 Q 130 70, 150 100"/>
+            <path d="M85 130 Q 100 115, 115 130"/>
+            <path d="M120 145 Q 130 138, 140 145"/>
+          </g>
+        </svg>
+      </div>
+      <div class="mt-2 px-1"><div class="text-[10px] uppercase tracking-widest text-accent-500 font-bold">Minimalist</div><div class="text-sm text-ink-200">"Birds in flight"</div></div>
+    </div>
+
+    <!-- Fine Line · Floral wreath -->
     <div class="design-item" data-style="fineline">
-      <div class="design-card aspect-square rounded-xl overflow-hidden bg-ink-900 border border-ink-800 tattoo-img"><img loading="lazy" src="https://image.pollinations.ai/prompt/fine%20line%20tattoo%2C%20delicate%20floral%20wreath%20with%20small%20flowers%2C%20single%20needle%20delicate%20linework?width=500&height=500&nologo=true&seed=116" alt="Fine line floral wreath" class="w-full h-full object-cover"></div>
+      <div class="design-card aspect-square rounded-xl overflow-hidden border border-ink-800 tat-paper">
+        <svg viewBox="0 0 200 200" class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+          <g fill="none" stroke="#0e0f12" stroke-width="0.8" stroke-linecap="round">
+            <circle cx="100" cy="100" r="55" stroke-dasharray="2 4"/>
+            <g><path d="M50 100 Q 45 95, 50 90 Q 55 95, 50 100Z M50 100 Q 55 105, 50 110 Q 45 105, 50 100Z"/></g>
+            <g transform="rotate(45 100 100)"><path d="M50 100 Q 45 95, 50 90 Q 55 95, 50 100Z M50 100 Q 55 105, 50 110 Q 45 105, 50 100Z"/></g>
+            <g transform="rotate(90 100 100)"><path d="M50 100 Q 45 95, 50 90 Q 55 95, 50 100Z M50 100 Q 55 105, 50 110 Q 45 105, 50 100Z"/></g>
+            <g transform="rotate(135 100 100)"><path d="M50 100 Q 45 95, 50 90 Q 55 95, 50 100Z M50 100 Q 55 105, 50 110 Q 45 105, 50 100Z"/></g>
+            <g transform="rotate(180 100 100)"><path d="M50 100 Q 45 95, 50 90 Q 55 95, 50 100Z M50 100 Q 55 105, 50 110 Q 45 105, 50 100Z"/></g>
+            <g transform="rotate(225 100 100)"><path d="M50 100 Q 45 95, 50 90 Q 55 95, 50 100Z M50 100 Q 55 105, 50 110 Q 45 105, 50 100Z"/></g>
+            <g transform="rotate(270 100 100)"><path d="M50 100 Q 45 95, 50 90 Q 55 95, 50 100Z M50 100 Q 55 105, 50 110 Q 45 105, 50 100Z"/></g>
+            <g transform="rotate(315 100 100)"><path d="M50 100 Q 45 95, 50 90 Q 55 95, 50 100Z M50 100 Q 55 105, 50 110 Q 45 105, 50 100Z"/></g>
+            <text x="100" y="105" text-anchor="middle" font-family="Georgia,serif" font-style="italic" font-size="14" fill="#0e0f12" stroke="none">amor</text>
+          </g>
+        </svg>
+      </div>
       <div class="mt-2 px-1"><div class="text-[10px] uppercase tracking-widest text-accent-500 font-bold">Fine Line</div><div class="text-sm text-ink-200">"Floral wreath"</div></div>
     </div>
-    <!-- Fine Line 2 -->
+
+    <!-- Fine Line · Snake -->
     <div class="design-item" data-style="fineline">
-      <div class="design-card aspect-square rounded-xl overflow-hidden bg-ink-900 border border-ink-800 tattoo-img"><img loading="lazy" src="https://image.pollinations.ai/prompt/fine%20line%20tattoo%2C%20delicate%20snake%20with%20moon%20phases%2C%20single%20needle%20intricate%20thin%20lines?width=500&height=500&nologo=true&seed=117" alt="Fine line snake tattoo" class="w-full h-full object-cover"></div>
+      <div class="design-card aspect-square rounded-xl overflow-hidden border border-ink-800 tat-paper">
+        <svg viewBox="0 0 200 200" class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+          <g fill="none" stroke="#0e0f12" stroke-width="1" stroke-linecap="round">
+            <path d="M50 50 C 80 50, 80 100, 110 100 S 140 150, 170 150"/>
+            <path d="M50 50 L 45 45 L 50 40 L 55 45 Z" fill="#0e0f12"/>
+            <circle cx="170" cy="150" r="2" fill="#0e0f12"/>
+            <path d="M55 70 L 75 70M65 90 L 85 95M85 110 L 105 115M115 125 L 135 130"/>
+          </g>
+          <g fill="none" stroke="#0e0f12" stroke-width="0.8">
+            <circle cx="40" cy="160" r="12"/><circle cx="40" cy="160" r="9"/>
+            <circle cx="160" cy="40" r="12"/><circle cx="160" cy="40" r="9"/>
+          </g>
+        </svg>
+      </div>
       <div class="mt-2 px-1"><div class="text-[10px] uppercase tracking-widest text-accent-500 font-bold">Fine Line</div><div class="text-sm text-ink-200">"Snake & moon phases"</div></div>
     </div>
-    <!-- Fine Line 3 -->
+
+    <!-- Fine Line · Butterfly -->
     <div class="design-item" data-style="fineline">
-      <div class="design-card aspect-square rounded-xl overflow-hidden bg-ink-900 border border-ink-800 tattoo-img"><img loading="lazy" src="https://image.pollinations.ai/prompt/fine%20line%20tattoo%2C%20butterfly%20with%20delicate%20wings%20detail%2C%20single%20needle%20feminine?width=500&height=500&nologo=true&seed=118" alt="Fine line butterfly tattoo" class="w-full h-full object-cover"></div>
-      <div class="mt-2 px-1"><div class="text-[10px] uppercase tracking-widest text-accent-500 font-bold">Fine Line</div><div class="text-sm text-ink-200">"Butterfly detail"</div></div>
+      <div class="design-card aspect-square rounded-xl overflow-hidden border border-ink-800 tat-paper">
+        <svg viewBox="0 0 200 200" class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+          <g fill="none" stroke="#0e0f12" stroke-width="0.9" stroke-linejoin="round">
+            <path d="M100 80 Q 60 50, 40 80 Q 30 110, 50 130 Q 75 130, 100 110 Q 125 130, 150 130 Q 170 110, 160 80 Q 140 50, 100 80 Z"/>
+            <path d="M100 80 L 100 140"/>
+            <path d="M55 95 Q 70 90, 85 100M120 100 Q 135 90, 150 95M60 115 Q 75 110, 90 120M115 120 Q 130 110, 145 115"/>
+            <path d="M95 60 L 95 75M105 60 L 105 75"/>
+            <circle cx="95" cy="58" r="1.5" fill="#0e0f12"/><circle cx="105" cy="58" r="1.5" fill="#0e0f12"/>
+          </g>
+        </svg>
+      </div>
+      <div class="mt-2 px-1"><div class="text-[10px] uppercase tracking-widest text-accent-500 font-bold">Fine Line</div><div class="text-sm text-ink-200">"Butterfly"</div></div>
     </div>
 
-    <!-- Blackwork 1 -->
+    <!-- Blackwork · Mandala -->
     <div class="design-item" data-style="blackwork">
-      <div class="design-card aspect-square rounded-xl overflow-hidden bg-ink-900 border border-ink-800 tattoo-img"><img loading="lazy" src="https://image.pollinations.ai/prompt/blackwork%20tattoo%20design%2C%20sacred%20geometry%20mandala%2C%20solid%20black%20ink%2C%20intricate%20symmetrical?width=500&height=500&nologo=true&seed=119" alt="Blackwork mandala" class="w-full h-full object-cover"></div>
+      <div class="design-card aspect-square rounded-xl overflow-hidden border border-ink-800 tat-paper">
+        <svg viewBox="0 0 200 200" class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+          <g fill="#0e0f12" stroke="#0e0f12" stroke-width="1">
+            <circle cx="100" cy="100" r="55" fill="none" stroke-width="2"/>
+            <circle cx="100" cy="100" r="40" fill="none" stroke-width="1.5"/>
+            <circle cx="100" cy="100" r="20" fill="#0e0f12"/>
+            <g transform="translate(100 100)"><g><path d="M0 -55 L 5 -42 L -5 -42 Z"/><path d="M0 -55 L 5 -42 L -5 -42 Z" transform="rotate(45)"/><path d="M0 -55 L 5 -42 L -5 -42 Z" transform="rotate(90)"/><path d="M0 -55 L 5 -42 L -5 -42 Z" transform="rotate(135)"/><path d="M0 -55 L 5 -42 L -5 -42 Z" transform="rotate(180)"/><path d="M0 -55 L 5 -42 L -5 -42 Z" transform="rotate(225)"/><path d="M0 -55 L 5 -42 L -5 -42 Z" transform="rotate(270)"/><path d="M0 -55 L 5 -42 L -5 -42 Z" transform="rotate(315)"/></g>
+              <g fill="none" stroke="#0e0f12" stroke-width="1"><path d="M-30 0 L 30 0M0 -30 L 0 30M-21 -21 L 21 21M-21 21 L 21 -21"/></g>
+              <circle r="8" fill="#dc2626"/></g>
+          </g>
+        </svg>
+      </div>
       <div class="mt-2 px-1"><div class="text-[10px] uppercase tracking-widest text-accent-500 font-bold">Blackwork</div><div class="text-sm text-ink-200">"Sacred mandala"</div></div>
     </div>
-    <!-- Blackwork 2 -->
+
+    <!-- Blackwork · Raven -->
     <div class="design-item" data-style="blackwork">
-      <div class="design-card aspect-square rounded-xl overflow-hidden bg-ink-900 border border-ink-800 tattoo-img"><img loading="lazy" src="https://image.pollinations.ai/prompt/blackwork%20tattoo%20design%2C%20raven%20silhouette%20with%20moon%2C%20solid%20black%20negative%20space?width=500&height=500&nologo=true&seed=120" alt="Blackwork raven" class="w-full h-full object-cover"></div>
-      <div class="mt-2 px-1"><div class="text-[10px] uppercase tracking-widest text-accent-500 font-bold">Blackwork</div><div class="text-sm text-ink-200">"Raven silhouette"</div></div>
-    </div>
-    <!-- Blackwork 3 -->
-    <div class="design-item" data-style="blackwork">
-      <div class="design-card aspect-square rounded-xl overflow-hidden bg-ink-900 border border-ink-800 tattoo-img"><img loading="lazy" src="https://image.pollinations.ai/prompt/blackwork%20tattoo%2C%20ornamental%20pattern%20with%20skull%2C%20solid%20black%20intricate%20detail?width=500&height=500&nologo=true&seed=121" alt="Blackwork skull pattern" class="w-full h-full object-cover"></div>
-      <div class="mt-2 px-1"><div class="text-[10px] uppercase tracking-widest text-accent-500 font-bold">Blackwork</div><div class="text-sm text-ink-200">"Ornamental skull"</div></div>
+      <div class="design-card aspect-square rounded-xl overflow-hidden border border-ink-800 tat-paper">
+        <svg viewBox="0 0 200 200" class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+          <g fill="#0e0f12" stroke="#0e0f12" stroke-width="1.5" stroke-linejoin="round">
+            <ellipse cx="100" cy="120" rx="40" ry="22"/>
+            <ellipse cx="80" cy="80" rx="25" ry="35"/>
+            <path d="M55 65 L 35 55 L 60 75 Z"/>
+            <path d="M85 105 L 130 130 L 100 145 Z"/>
+            <circle cx="75" cy="75" r="3" fill="#f5f3ee"/>
+          </g>
+          <g fill="none" stroke="#0e0f12" stroke-width="1"><circle cx="160" cy="60" r="20"/><circle cx="160" cy="60" r="14"/></g>
+        </svg>
+      </div>
+      <div class="mt-2 px-1"><div class="text-[10px] uppercase tracking-widest text-accent-500 font-bold">Blackwork</div><div class="text-sm text-ink-200">"Raven & moon"</div></div>
     </div>
 
-    <!-- Watercolor 1 -->
+    <!-- Watercolor · Phoenix -->
     <div class="design-item" data-style="watercolor">
-      <div class="design-card aspect-square rounded-xl overflow-hidden bg-ink-900 border border-ink-800 tattoo-img"><img loading="lazy" src="https://image.pollinations.ai/prompt/watercolor%20tattoo%2C%20phoenix%20with%20splash%20of%20vibrant%20colors%2C%20no%20outlines%20painterly?width=500&height=500&nologo=true&seed=122" alt="Watercolor phoenix" class="w-full h-full object-cover"></div>
-      <div class="mt-2 px-1"><div class="text-[10px] uppercase tracking-widest text-accent-500 font-bold">Watercolor</div><div class="text-sm text-ink-200">"Phoenix in color"</div></div>
-    </div>
-    <!-- Watercolor 2 -->
-    <div class="design-item" data-style="watercolor">
-      <div class="design-card aspect-square rounded-xl overflow-hidden bg-ink-900 border border-ink-800 tattoo-img"><img loading="lazy" src="https://image.pollinations.ai/prompt/watercolor%20tattoo%2C%20mountain%20landscape%20with%20color%20splashes%2C%20painterly%20no%20outlines?width=500&height=500&nologo=true&seed=123" alt="Watercolor mountain" class="w-full h-full object-cover"></div>
-      <div class="mt-2 px-1"><div class="text-[10px] uppercase tracking-widest text-accent-500 font-bold">Watercolor</div><div class="text-sm text-ink-200">"Mountain landscape"</div></div>
-    </div>
-    <!-- Watercolor 3 -->
-    <div class="design-item" data-style="watercolor">
-      <div class="design-card aspect-square rounded-xl overflow-hidden bg-ink-900 border border-ink-800 tattoo-img"><img loading="lazy" src="https://image.pollinations.ai/prompt/watercolor%20tattoo%20design%2C%20hummingbird%20with%20color%20splash%2C%20no%20outlines%20painterly%20vibrant?width=500&height=500&nologo=true&seed=124" alt="Watercolor hummingbird" class="w-full h-full object-cover"></div>
-      <div class="mt-2 px-1"><div class="text-[10px] uppercase tracking-widest text-accent-500 font-bold">Watercolor</div><div class="text-sm text-ink-200">"Hummingbird splash"</div></div>
+      <div class="design-card aspect-square rounded-xl overflow-hidden border border-ink-800 tat-paper">
+        <svg viewBox="0 0 200 200" class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+          <g opacity="0.7">
+            <ellipse cx="80" cy="100" rx="50" ry="35" fill="#f59e0b"/>
+            <ellipse cx="120" cy="90" rx="45" ry="30" fill="#dc2626"/>
+            <ellipse cx="100" cy="120" rx="40" ry="25" fill="#ea580c"/>
+            <ellipse cx="140" cy="115" rx="20" ry="15" fill="#fbbf24"/>
+          </g>
+          <g fill="none" stroke="#0e0f12" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M100 130 Q 100 100, 80 80 Q 70 70, 80 60 Q 90 70, 100 80 Q 110 70, 120 60 Q 130 70, 120 80 Q 100 100, 100 130 Z"/>
+            <path d="M70 110 Q 60 130, 50 145M130 110 Q 140 130, 150 145M100 130 L 100 155"/>
+            <circle cx="100" cy="65" r="2" fill="#0e0f12"/>
+          </g>
+        </svg>
+      </div>
+      <div class="mt-2 px-1"><div class="text-[10px] uppercase tracking-widest text-accent-500 font-bold">Watercolor</div><div class="text-sm text-ink-200">"Phoenix splash"</div></div>
     </div>
 
-    <!-- Realism 1 -->
+    <!-- Watercolor · Hummingbird -->
+    <div class="design-item" data-style="watercolor">
+      <div class="design-card aspect-square rounded-xl overflow-hidden border border-ink-800 tat-paper">
+        <svg viewBox="0 0 200 200" class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+          <g opacity="0.65">
+            <ellipse cx="100" cy="100" rx="55" ry="20" fill="#10b981" transform="rotate(-15 100 100)"/>
+            <ellipse cx="80" cy="105" rx="35" ry="15" fill="#3b82f6" transform="rotate(-15 80 105)"/>
+            <ellipse cx="130" cy="95" rx="20" ry="10" fill="#a855f7" transform="rotate(-15 130 95)"/>
+          </g>
+          <g fill="none" stroke="#0e0f12" stroke-width="1.5" stroke-linecap="round">
+            <path d="M50 110 Q 70 100, 90 105 Q 110 95, 130 100 L 150 95 L 165 90"/>
+            <path d="M85 95 Q 75 75, 60 70M95 110 Q 90 130, 80 145"/>
+            <circle cx="160" cy="92" r="2" fill="#0e0f12"/>
+          </g>
+        </svg>
+      </div>
+      <div class="mt-2 px-1"><div class="text-[10px] uppercase tracking-widest text-accent-500 font-bold">Watercolor</div><div class="text-sm text-ink-200">"Hummingbird"</div></div>
+    </div>
+
+    <!-- Realism · Wolf -->
     <div class="design-item" data-style="realism">
-      <div class="design-card aspect-square rounded-xl overflow-hidden bg-ink-900 border border-ink-800 tattoo-img"><img loading="lazy" src="https://image.pollinations.ai/prompt/realism%20tattoo%2C%20photorealistic%20black%20and%20grey%20wolf%20portrait%2C%20intense%20detail?width=500&height=500&nologo=true&seed=125" alt="Realism wolf tattoo" class="w-full h-full object-cover"></div>
+      <div class="design-card aspect-square rounded-xl overflow-hidden border border-ink-800 tat-paper">
+        <svg viewBox="0 0 200 200" class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+          <g fill="#6e7178" stroke="#0e0f12" stroke-width="1.5" stroke-linejoin="round">
+            <path d="M65 60 L 70 35 L 90 55 Z"/>
+            <path d="M135 60 L 130 35 L 110 55 Z"/>
+            <path d="M60 85 Q 70 50, 100 65 Q 130 50, 140 85 L 145 130 L 130 150 L 100 155 L 70 150 L 55 130 Z"/>
+          </g>
+          <g fill="#3d3f44"><path d="M75 95 Q 90 105, 100 95 Q 110 105, 125 95 L 120 130 L 100 140 L 80 130 Z"/></g>
+          <g fill="#f5f3ee" stroke="#0e0f12" stroke-width="1.5"><path d="M85 105 Q 95 110, 100 105 Q 105 110, 115 105 L 110 130 L 100 138 L 90 130 Z"/></g>
+          <g fill="#0e0f12"><circle cx="80" cy="85" r="4"/><circle cx="120" cy="85" r="4"/></g>
+          <path d="M97 115 L 100 125 L 103 115 Z" fill="#0e0f12"/>
+          <path d="M85 130 L 95 132 L 100 138 L 105 132 L 115 130" fill="none" stroke="#0e0f12" stroke-width="1.2"/>
+        </svg>
+      </div>
       <div class="mt-2 px-1"><div class="text-[10px] uppercase tracking-widest text-accent-500 font-bold">Realism</div><div class="text-sm text-ink-200">"Wolf portrait"</div></div>
     </div>
-    <!-- Realism 2 -->
+
+    <!-- Realism · Rose -->
     <div class="design-item" data-style="realism">
-      <div class="design-card aspect-square rounded-xl overflow-hidden bg-ink-900 border border-ink-800 tattoo-img"><img loading="lazy" src="https://image.pollinations.ai/prompt/realism%20tattoo%2C%20photorealistic%20black%20and%20grey%20rose%2C%20detailed%20shading?width=500&height=500&nologo=true&seed=126" alt="Realism rose tattoo" class="w-full h-full object-cover"></div>
-      <div class="mt-2 px-1"><div class="text-[10px] uppercase tracking-widest text-accent-500 font-bold">Realism</div><div class="text-sm text-ink-200">"Realistic rose"</div></div>
-    </div>
-    <!-- Realism 3 -->
-    <div class="design-item" data-style="realism">
-      <div class="design-card aspect-square rounded-xl overflow-hidden bg-ink-900 border border-ink-800 tattoo-img"><img loading="lazy" src="https://image.pollinations.ai/prompt/realism%20tattoo%2C%20photorealistic%20lion%20with%20mane%2C%20black%20and%20grey%20detail?width=500&height=500&nologo=true&seed=127" alt="Realism lion tattoo" class="w-full h-full object-cover"></div>
-      <div class="mt-2 px-1"><div class="text-[10px] uppercase tracking-widest text-accent-500 font-bold">Realism</div><div class="text-sm text-ink-200">"Lion portrait"</div></div>
+      <div class="design-card aspect-square rounded-xl overflow-hidden border border-ink-800 tat-paper">
+        <svg viewBox="0 0 200 200" class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+          <g fill="#3d3f44">
+            <path d="M100 50 Q 75 65, 70 100 Q 75 130, 100 145 Q 125 130, 130 100 Q 125 65, 100 50 Z"/>
+          </g>
+          <g fill="#6e7178">
+            <path d="M100 65 Q 85 75, 82 100 Q 85 120, 100 130 Q 115 120, 118 100 Q 115 75, 100 65 Z"/>
+            <path d="M100 75 Q 92 85, 90 100 Q 92 115, 100 122 Q 108 115, 110 100 Q 108 85, 100 75 Z"/>
+          </g>
+          <g fill="#8c8e95">
+            <path d="M100 85 Q 95 92, 95 100 Q 97 110, 100 115 Q 103 110, 105 100 Q 105 92, 100 85 Z"/>
+          </g>
+          <g fill="none" stroke="#0e0f12" stroke-width="1">
+            <path d="M100 145 L 100 170M85 165 Q 95 170, 100 165M115 165 Q 105 170, 100 165"/>
+            <path d="M70 100 Q 60 95, 55 105M130 100 Q 140 95, 145 105"/>
+          </g>
+        </svg>
+      </div>
+      <div class="mt-2 px-1"><div class="text-[10px] uppercase tracking-widest text-accent-500 font-bold">Realism</div><div class="text-sm text-ink-200">"Black & grey rose"</div></div>
     </div>
 
-    <!-- Tribal 1 -->
+    <!-- Tribal · Maori -->
     <div class="design-item" data-style="tribal">
-      <div class="design-card aspect-square rounded-xl overflow-hidden bg-ink-900 border border-ink-800 tattoo-img"><img loading="lazy" src="https://image.pollinations.ai/prompt/tribal%20tattoo%2C%20polynesian%20maori%20design%2C%20bold%20flowing%20black%20patterns%20cultural?width=500&height=500&nologo=true&seed=128" alt="Tribal maori tattoo" class="w-full h-full object-cover"></div>
+      <div class="design-card aspect-square rounded-xl overflow-hidden border border-ink-800 tat-paper">
+        <svg viewBox="0 0 200 200" class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+          <g fill="#0e0f12" stroke="#0e0f12" stroke-width="2" stroke-linejoin="round">
+            <path d="M30 40 L 170 40 L 170 50 L 30 50 Z"/>
+            <path d="M30 150 L 170 150 L 170 160 L 30 160 Z"/>
+            <path d="M40 60 Q 60 70, 50 90 Q 70 100, 60 120 Q 80 130, 70 140"/>
+            <path d="M160 60 Q 140 70, 150 90 Q 130 100, 140 120 Q 120 130, 130 140"/>
+            <circle cx="100" cy="100" r="20" fill="none" stroke-width="3"/>
+            <circle cx="100" cy="100" r="8"/>
+            <path d="M75 85 Q 100 75, 125 85"/>
+            <path d="M75 115 Q 100 125, 125 115"/>
+          </g>
+          <g fill="#0e0f12"><path d="M85 65 L 95 65 L 90 75 Z M115 65 L 105 65 L 110 75 Z"/></g>
+        </svg>
+      </div>
       <div class="mt-2 px-1"><div class="text-[10px] uppercase tracking-widest text-accent-500 font-bold">Tribal</div><div class="text-sm text-ink-200">"Maori band"</div></div>
     </div>
-    <!-- Tribal 2 -->
+
+    <!-- Tribal · Celtic -->
     <div class="design-item" data-style="tribal">
-      <div class="design-card aspect-square rounded-xl overflow-hidden bg-ink-900 border border-ink-800 tattoo-img"><img loading="lazy" src="https://image.pollinations.ai/prompt/tribal%20tattoo%2C%20samoan%20design%20arm%20band%2C%20bold%20black%20geometric%20cultural%20pattern?width=500&height=500&nologo=true&seed=129" alt="Tribal samoan tattoo" class="w-full h-full object-cover"></div>
-      <div class="mt-2 px-1"><div class="text-[10px] uppercase tracking-widest text-accent-500 font-bold">Tribal</div><div class="text-sm text-ink-200">"Samoan armband"</div></div>
-    </div>
-    <!-- Tribal 3 -->
-    <div class="design-item" data-style="tribal">
-      <div class="design-card aspect-square rounded-xl overflow-hidden bg-ink-900 border border-ink-800 tattoo-img"><img loading="lazy" src="https://image.pollinations.ai/prompt/tribal%20tattoo%20design%2C%20celtic%20knot%20with%20interweaving%20patterns%2C%20bold%20black%20lines?width=500&height=500&nologo=true&seed=130" alt="Tribal celtic tattoo" class="w-full h-full object-cover"></div>
+      <div class="design-card aspect-square rounded-xl overflow-hidden border border-ink-800 tat-paper">
+        <svg viewBox="0 0 200 200" class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+          <g fill="none" stroke="#0e0f12" stroke-width="3" stroke-linejoin="round" stroke-linecap="round">
+            <path d="M100 40 Q 130 40, 140 70 Q 150 100, 130 120 Q 100 130, 70 120 Q 50 100, 60 70 Q 70 40, 100 40 Z"/>
+            <path d="M100 60 Q 120 60, 125 80 Q 130 100, 115 110 Q 100 115, 85 110 Q 70 100, 75 80 Q 80 60, 100 60 Z"/>
+            <path d="M70 70 L 130 130 M130 70 L 70 130 M100 50 L 100 150 M50 100 L 150 100"/>
+            <circle cx="100" cy="100" r="10" stroke-width="3"/>
+          </g>
+        </svg>
+      </div>
       <div class="mt-2 px-1"><div class="text-[10px] uppercase tracking-widest text-accent-500 font-bold">Tribal</div><div class="text-sm text-ink-200">"Celtic knot"</div></div>
     </div>
 
-    <!-- Dotwork 1 -->
+    <!-- Dotwork · Mandala -->
     <div class="design-item" data-style="dotwork">
-      <div class="design-card aspect-square rounded-xl overflow-hidden bg-ink-900 border border-ink-800 tattoo-img"><img loading="lazy" src="https://image.pollinations.ai/prompt/dotwork%20tattoo%2C%20stippling%20technique%20wolf%20head%2C%20intricate%20dot%20shading%20detailed?width=500&height=500&nologo=true&seed=131" alt="Dotwork wolf tattoo" class="w-full h-full object-cover"></div>
-      <div class="mt-2 px-1"><div class="text-[10px] uppercase tracking-widest text-accent-500 font-bold">Dotwork</div><div class="text-sm text-ink-200">"Stipple wolf"</div></div>
-    </div>
-    <!-- Dotwork 2 -->
-    <div class="design-item" data-style="dotwork">
-      <div class="design-card aspect-square rounded-xl overflow-hidden bg-ink-900 border border-ink-800 tattoo-img"><img loading="lazy" src="https://image.pollinations.ai/prompt/dotwork%20tattoo%2C%20geometric%20mandala%20with%20stippling%2C%20intricate%20dots%20black%20ink?width=500&height=500&nologo=true&seed=132" alt="Dotwork mandala tattoo" class="w-full h-full object-cover"></div>
-      <div class="mt-2 px-1"><div class="text-[10px] uppercase tracking-widest text-accent-500 font-bold">Dotwork</div><div class="text-sm text-ink-200">"Geometric mandala"</div></div>
-    </div>
-    <!-- Dotwork 3 -->
-    <div class="design-item" data-style="dotwork">
-      <div class="design-card aspect-square rounded-xl overflow-hidden bg-ink-900 border border-ink-800 tattoo-img"><img loading="lazy" src="https://image.pollinations.ai/prompt/dotwork%20tattoo%2C%20human%20skull%20with%20stippling%20technique%2C%20intricate%20dot%20shading?width=500&height=500&nologo=true&seed=133" alt="Dotwork skull tattoo" class="w-full h-full object-cover"></div>
-      <div class="mt-2 px-1"><div class="text-[10px] uppercase tracking-widest text-accent-500 font-bold">Dotwork</div><div class="text-sm text-ink-200">"Stipple skull"</div></div>
-    </div>
-  </div>
-
-  <div class="text-center mt-16">
-    <h2 class="display text-3xl md:text-5xl font-black mb-4">Like what you see?</h2>
-    <p class="text-ink-300 text-lg mb-8">Generate 8 designs in your style for $9. No signup. No saved data.</p>
-    <a href="/#generate" class="inline-block bg-accent-500 hover:bg-accent-600 text-white px-10 py-4 rounded-xl font-bold text-lg transition shadow-lg shadow-accent-500/30">Generate 8 Designs — $9</a>
-  </div>
-</section>
-
-<footer class="border-t border-ink-900 py-12 mt-12">
-  <div class="max-w-7xl mx-auto px-6">
-    <div class="grid md:grid-cols-4 gap-8 mb-10">
-      <div><a href="/" class="flex items-center gap-2 text-xl font-black mb-4"><img src="/logo-mark.svg" alt="" class="w-7 h-7"><span>TattooDesignr</span></a><p class="text-ink-400 text-sm leading-relaxed">AI tattoo design, fine-tuned for every tradition. Built for clients and artists.</p></div>
-      <div><h5 class="font-bold mb-3 text-sm uppercase tracking-wider text-ink-300">Product</h5><ul class="space-y-2 text-sm text-ink-400"><li><a href="/examples.html" class="hover:text-white">Examples</a></li><li><a href="/#styles" class="hover:text-white">Styles</a></li><li><a href="/#how" class="hover:text-white">How it works</a></li><li><a href="/#pricing" class="hover:text-white">Pricing</a></li><li><a href="/about.html" class="hover:text-white">About</a></li></ul></div>
-      <div><h5 class="font-bold mb-3 text-sm uppercase tracking-wider text-ink-300">Resources</h5><ul class="space-y-2 text-sm text-ink-400"><li><a href="#" class="hover:text-white">Tattoo aftercare</a></li><li><a href="#" class="hover:text-white">Style guide</a></li><li><a href="#" class="hover:text-white">Artist directory</a></li><li><a href="/#faq" class="hover:text-white">FAQ</a></li></ul></div>
-      <div><h5 class="font-bold mb-3 text-sm uppercase tracking-wider text-ink-300">Legal</h5><ul class="space-y-2 text-sm text-ink-400"><li><a href="/privacy.html" class="hover:text-white">Privacy</a></li><li><a href="/terms.html" class="hover:text-white">Terms</a></li><li><a href="/disclaimer.html" class="hover:text-white">Disclaimer</a></li><li><a href="/refund.html" class="hover:text-white">Refund policy</a></li></ul></div>
-    </div>
-    <div class="border-t border-ink-900 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
-      <p class="text-ink-500 text-sm">© 2026 TattooDesignr. We don't store your prompts. We don't sell your data. Tattoo on.</p>
-    </div>
-  </div>
-</footer>
-
-<script>
-  // Shuffle examples on page load — different order every visit
-  (function() {
-    const gallery = document.getElementById('gallery');
-    if (!gallery) return;
-    const items = Array.from(gallery.children);
-    for (let i = items.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      gallery.appendChild(items[j]);
-      items.splice(j, 1);
-      items.push(items.splice(items.indexOf(items[j]), 1)[0]);
-    }
-    // Simpler reliable shuffle:
-    const shuffled = Array.from(gal
+      <div class="design-card aspect-square rounded-xl overflow-hidden border border-ink-800 tat-paper">
+        <svg viewBox="0 0 200 200" class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+          <g fill="#0e0f12">
+            <g><circle cx="100" cy="50" r="2.5"/><circle cx="100" cy="150" r="2.5"/><circle cx="50" cy="100" r="2.5"/><circle cx="150" cy="100" r="2.5"/></g>
+            <g><circle cx="65" cy="65" r="2"/><circle cx="135" cy="65" r="2"/><circle cx="65" cy="135" r="2"/><circle cx="135" cy="135" r="2"/></g>
+            <g><circle cx="100" cy="70" r="1.5"/><circle cx="100" cy="130" r="1.5"/><circle cx="70" cy="100" r="1.5"/><circle cx="130" cy="100" r="1.5"/></g>
+            <g opacity="0.7"><circle cx="80" cy="85" r="1"/><circle cx="120" cy="85" r="1"/><circle cx="85" cy="115" r="1"/><circle cx="115" cy="115" r="1"/><circle cx="90" cy="100" r="1"/><circle cx="110" cy="100" r="1"/><circle cx="100" cy="90" r="1"/><circle cx="100" cy="110" r="1"/></g>
+            <g opacity="0.4"><circle cx="60" cy="80" r="0.8"/><circle cx="140" cy="80" r="0.8"/><circle cx="60" cy="120" r="0.8"/><circle cx="140" cy="120" r="0.8"/><circle cx="80" cy="60" r="0.8"/><circle cx="120" cy="60" r="0.8"/><circle cx="80" cy="140" r="0.8"/><circle cx="120" cy="140" r="0.8"/></g>
+            <circle cx="100" cy="100" r="6" fill="#dc2626"/>
+            <circle cx="100" cy="100" r="2" fill="#0e0f12"/>
+          </g>
+        </s
