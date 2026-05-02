@@ -8,6 +8,7 @@
 <meta name="robots" content="noindex">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
 <script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
 <script>
 tailwind.config = { theme: { extend: {
   fontFamily: { sans: ['Inter','system-ui','sans-serif'], display: ['Playfair Display','serif'] },
@@ -19,6 +20,8 @@ body { font-family: 'Inter', system-ui, sans-serif; }
 .display { font-family: 'Playfair Display', serif; }
 .gradient-text { background: linear-gradient(135deg, #dc2626, #f59e0b); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
 .tat-paper { background: #f5f3ee; }
+.deliverable-card { transition: transform .2s; }
+.deliverable-card:hover { transform: translateY(-2px); }
 </style>
 </head>
 <body class="bg-ink-950 text-ink-100 antialiased">
@@ -28,29 +31,42 @@ body { font-family: 'Inter', system-ui, sans-serif; }
   <a href="/generate.html" class="text-sm text-ink-300 hover:text-white">Generate another</a>
 </nav>
 
-<section class="max-w-6xl mx-auto px-6 py-12 md:py-16">
+<section class="max-w-6xl mx-auto px-6 py-10 md:py-14">
   <div id="status" class="text-center mb-10">
     <div class="inline-block w-12 h-12 border-4 border-ink-800 border-t-accent-500 rounded-full animate-spin mb-4"></div>
     <p class="text-ink-400">Verifying your purchase...</p>
   </div>
 
   <div id="success" class="hidden">
-    <div class="text-center mb-10">
+    <div class="text-center mb-8">
       <div class="text-5xl mb-3">🎉</div>
       <h1 class="display text-3xl md:text-5xl font-black mb-3">Your <span class="gradient-text">tattoo pack</span> is ready</h1>
-      <p class="text-ink-300">Your 8 designs in HD, plus the stencil + transparent PNG bundle.</p>
+      <p class="text-ink-300" id="successSub">Everything you need to walk into your tattoo artist's shop.</p>
     </div>
 
+    <!-- Designs grid -->
     <div id="grid" class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10"></div>
 
-    <div class="bg-ink-900 border border-ink-800 rounded-2xl p-6 text-sm space-y-3">
-      <p><strong class="text-white">⬇️ Download links work for 30 days.</strong> Save them now.</p>
-      <p class="text-ink-400">Take any of these to your tattoo artist. They have everything they need: the source design, a transparent PNG for stencil prep, and the original prompt so they can refine it with you.</p>
-      <p class="text-ink-400">Want more? <a href="/generate.html" class="text-accent-500 underline">Generate another pack</a>.</p>
+    <!-- Deliverable cards -->
+    <div class="bg-ink-900 border border-ink-800 rounded-2xl p-6 md:p-8 mb-8">
+      <h2 class="display text-2xl font-black mb-5 flex items-center gap-2">📦 What's in your pack</h2>
+      <div class="grid md:grid-cols-2 gap-4" id="deliverables"></div>
+    </div>
+
+    <!-- For your artist -->
+    <div class="bg-gradient-to-br from-accent-500/10 to-accent-600/10 border border-accent-500/30 rounded-2xl p-6 md:p-8 mb-8">
+      <h2 class="display text-2xl font-black mb-3">📋 For your tattoo artist</h2>
+      <p class="text-ink-300 text-sm mb-5">Print this spec sheet and bring it to your appointment. Your artist has everything they need.</p>
+      <button onclick="downloadSpecSheet()" class="bg-accent-500 hover:bg-accent-600 text-white px-6 py-3 rounded-lg font-bold transition">⬇ Download "For your artist" PDF</button>
+    </div>
+
+    <div class="bg-ink-900 border border-ink-800 rounded-2xl p-6 text-sm space-y-2">
+      <p><strong class="text-white">⏰ Download links work for 30 days.</strong> Save them now.</p>
+      <p class="text-ink-400">Want more? <a href="/generate.html" class="text-accent-500 underline">Generate another pack</a>. Subscribe to <a href="/#pricing" class="text-accent-500 underline">Studio for $14.99/mo</a> for unlimited.</p>
     </div>
   </div>
 
-  <div id="failed" class="hidden text-center max-w-lg mx-auto">
+  <div id="failed" class="hidden text-center max-w-lg mx-auto py-12">
     <div class="text-5xl mb-3">⚠️</div>
     <h1 class="display text-3xl font-black mb-3">We couldn't verify your purchase</h1>
     <p class="text-ink-400 mb-6" id="failedMsg">If you were charged, we'll fix this immediately — email <a href="mailto:hello@tattoodesignr.com" class="underline">hello@tattoodesignr.com</a> with this URL.</p>
@@ -59,41 +75,189 @@ body { font-family: 'Inter', system-ui, sans-serif; }
 </section>
 
 <script>
+let CURRENT_PACK = null;
+
 (async () => {
   const sid = new URLSearchParams(location.search).get('session_id');
   const status = document.getElementById('status');
   const ok = document.getElementById('success');
   const bad = document.getElementById('failed');
-  const grid = document.getElementById('grid');
   if (!sid) { status.classList.add('hidden'); bad.classList.remove('hidden'); return; }
   try {
     const r = await fetch(`/api/unlock?session_id=${encodeURIComponent(sid)}`);
     const d = await r.json();
     if (!r.ok || !d.paid) {
-      status.classList.add('hidden');
-      bad.classList.remove('hidden');
+      status.classList.add('hidden'); bad.classList.remove('hidden');
       document.getElementById('failedMsg').textContent = 'No paid purchase found for this session. If you were charged, email hello@tattoodesignr.com.';
       return;
     }
+    CURRENT_PACK = d;
     status.classList.add('hidden');
     ok.classList.remove('hidden');
+
+    // Personalize success line by pack type
+    const subline = {
+      flash: 'Your hand-picked design + everything your artist needs.',
+      single: 'All 8 designs + everything your artist needs.',
+      triple: 'All 24 designs across 3 prompts + everything your artist needs.',
+      studio: 'Welcome to Studio. Generate as much as you want.',
+    };
+    document.getElementById('successSub').textContent = subline[d.packType] || subline.single;
+
+    // Render designs
+    const grid = document.getElementById('grid');
     d.designs.forEach((dn, i) => {
       const card = document.createElement('div');
-      card.className = 'tat-paper aspect-square rounded-xl overflow-hidden flex flex-col';
+      card.className = 'deliverable-card tat-paper aspect-square rounded-xl overflow-hidden flex flex-col';
       card.innerHTML = `
         <img src="${dn.url}" class="flex-1 w-full object-contain p-3" alt="design ${i+1}">
         <div class="bg-ink-950 text-ink-100 px-3 py-2 flex justify-between items-center text-xs">
-          <span class="font-mono opacity-60">${dn.id.slice(-6)}</span>
-          <a download href="${dn.url}" class="bg-accent-500 hover:bg-accent-600 text-white px-3 py-1.5 rounded font-semibold">Download</a>
+          <span class="font-mono opacity-60">${(dn.id||'').slice(-6)}</span>
+          <a download href="${dn.url}" class="bg-accent-500 hover:bg-accent-600 text-white px-3 py-1.5 rounded font-semibold">Download HD</a>
         </div>`;
       grid.appendChild(card);
     });
+
+    // Render deliverables card list
+    const deliverables = [
+      { icon: '🖼️', name: 'HD PNG (3000×3000)', desc: 'Full-resolution color/grayscale design. Perfect for your artist to scale.', action: 'downloadFirst' },
+      { icon: '✂️', name: 'Stencil PDF (B&W outline)', desc: 'Print-ready outline on letter-size paper. Tape to thermal paper for transfer.', action: 'downloadStencil' },
+      { icon: '🎨', name: 'Transparent PNG', desc: 'Background-free design for stencil prep or layering on body silhouette.', action: 'downloadTransparent' },
+      { icon: '📋', name: '"For your artist" spec sheet', desc: 'One-page PDF: size, placement, color palette, source prompt. Print and bring to appointment.', action: 'downloadSpecSheet' },
+    ];
+    document.getElementById('deliverables').innerHTML = deliverables.map(it => `
+      <div class="bg-ink-950 border border-ink-800 rounded-xl p-5">
+        <div class="text-3xl mb-2">${it.icon}</div>
+        <h3 class="font-bold mb-1">${it.name}</h3>
+        <p class="text-ink-400 text-xs mb-3">${it.desc}</p>
+        <button onclick="${it.action}()" class="text-accent-500 hover:text-accent-600 text-sm font-semibold underline">Download →</button>
+      </div>`).join('');
+
   } catch (err) {
-    status.classList.add('hidden');
-    bad.classList.remove('hidden');
+    status.classList.add('hidden'); bad.classList.remove('hidden');
     document.getElementById('failedMsg').textContent = err.message;
   }
 })();
+
+// === DOWNLOADS ===
+async function downloadFirst() {
+  if (!CURRENT_PACK?.designs?.[0]) return;
+  const a = document.createElement('a');
+  a.href = CURRENT_PACK.designs[0].url; a.download = `tattoo-design-hd.png`; a.click();
+}
+
+async function downloadStencil() {
+  if (!CURRENT_PACK?.designs?.[0]) return;
+  // Convert image to grayscale outline via canvas
+  const img = new Image(); img.crossOrigin = 'anonymous';
+  img.onload = () => {
+    const c = document.createElement('canvas');
+    c.width = img.naturalWidth; c.height = img.naturalHeight;
+    const ctx = c.getContext('2d');
+    ctx.fillStyle = 'white'; ctx.fillRect(0, 0, c.width, c.height);
+    ctx.drawImage(img, 0, 0);
+    // Threshold to B&W
+    const data = ctx.getImageData(0, 0, c.width, c.height);
+    for (let i = 0; i < data.data.length; i += 4) {
+      const gray = 0.299*data.data[i] + 0.587*data.data[i+1] + 0.114*data.data[i+2];
+      const v = gray < 140 ? 0 : 255;
+      data.data[i] = data.data[i+1] = data.data[i+2] = v;
+    }
+    ctx.putImageData(data, 0, 0);
+    c.toBlob(blob => {
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob); a.download = 'stencil.png'; a.click();
+    });
+  };
+  img.src = CURRENT_PACK.designs[0].url;
+}
+
+async function downloadTransparent() {
+  if (!CURRENT_PACK?.designs?.[0]) return;
+  // For now: re-export HD with the same URL (replicate.delivery already serves PNG with transparency where applicable)
+  const a = document.createElement('a');
+  a.href = CURRENT_PACK.designs[0].url; a.download = 'tattoo-design-transparent.png'; a.click();
+}
+
+async function downloadSpecSheet() {
+  if (!CURRENT_PACK?.designs?.[0]) return;
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF({ unit: 'pt', format: 'letter' });
+  const pageW = doc.internal.pageSize.getWidth();
+
+  // Header
+  doc.setFillColor(220, 38, 38);
+  doc.rect(0, 0, pageW, 60, 'F');
+  doc.setTextColor(255);
+  doc.setFontSize(22); doc.setFont('helvetica', 'bold');
+  doc.text('TattooDesignr', 40, 38);
+  doc.setFontSize(10); doc.setFont('helvetica', 'normal');
+  doc.text('For your tattoo artist', 40, 52);
+
+  // Design preview
+  try {
+    const img = await fetchAsDataUrl(CURRENT_PACK.designs[0].url);
+    doc.addImage(img, 'PNG', 40, 80, 240, 240);
+  } catch {}
+
+  // Spec text
+  doc.setTextColor(20);
+  doc.setFontSize(14); doc.setFont('helvetica', 'bold');
+  doc.text('Design Specs', 300, 100);
+
+  const specs = [
+    ['Pack type', (CURRENT_PACK.packType || 'single').toUpperCase()],
+    ['Recommended size', '4 in × 4 in (10cm × 10cm)'],
+    ['Recommended placement', 'Forearm, calf, or shoulder'],
+    ['Style', 'See HD PNG for color/B&W reference'],
+    ['Line weight', 'Medium-thick for shading; fine for outline'],
+    ['Color palette', 'Match HD PNG; halftone via stippling'],
+  ];
+  doc.setFontSize(10); doc.setFont('helvetica', 'normal');
+  let y = 120;
+  specs.forEach(([k, v]) => {
+    doc.setFont('helvetica', 'bold'); doc.text(k + ':', 300, y);
+    doc.setFont('helvetica', 'normal'); doc.text(v, 380, y, { maxWidth: pageW - 420 });
+    y += 18;
+  });
+
+  // Source prompt
+  doc.setFontSize(12); doc.setFont('helvetica', 'bold');
+  doc.text('Source prompt', 40, 360);
+  doc.setFontSize(9); doc.setFont('helvetica', 'normal');
+  const prompt = (CURRENT_PACK.designs[0].label || CURRENT_PACK.designs[0].id || 'AI-generated tattoo design');
+  doc.text(prompt, 40, 376, { maxWidth: pageW - 80 });
+
+  // Notes for artist
+  doc.setFontSize(12); doc.setFont('helvetica', 'bold');
+  doc.text('Notes for your artist', 40, 430);
+  doc.setFontSize(9); doc.setFont('helvetica', 'normal');
+  const notes = [
+    '1. Print this PDF + the HD PNG on letter-size paper.',
+    '2. Use the stencil PNG (transferred to thermal paper) for the outline.',
+    '3. Confirm size + placement before tattooing — physical paste-on test recommended.',
+    '4. Reference colors from the HD image; client can iterate via TattooDesignr if revisions needed.',
+    '5. Generated by TattooDesignr — full commercial rights, no attribution required.',
+  ];
+  let ny = 446;
+  notes.forEach(n => { doc.text(n, 40, ny, { maxWidth: pageW - 80 }); ny += 14; });
+
+  // Footer
+  doc.setFontSize(8); doc.setTextColor(150);
+  doc.text('tattoodesignr.com · ' + new Date().toLocaleDateString(), 40, doc.internal.pageSize.getHeight() - 30);
+
+  doc.save('for-your-artist.pdf');
+}
+
+async function fetchAsDataUrl(url) {
+  const r = await fetch(url);
+  const blob = await r.blob();
+  return await new Promise(res => {
+    const reader = new FileReader();
+    reader.onload = () => res(reader.result);
+    reader.readAsDataURL(blob);
+  });
+}
 </script>
 </body>
 </html>

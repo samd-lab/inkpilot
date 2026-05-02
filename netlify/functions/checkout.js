@@ -93,4 +93,15 @@ exports.handler = async (event) => {
   }
   const session = await res.json();
   if (!res.ok) {
-    return { statusCode: 502, body: JSON.stringify({ error: 'strip
+    return { statusCode: 502, body: JSON.stringify({ error: 'stripe error', detail: session && session.error ? session.error.message : 'unknown' }) };
+  }
+  if (!session.url) {
+    return { statusCode: 502, body: JSON.stringify({ error: 'no checkout url returned' }) };
+  }
+
+  return {
+    statusCode: 200,
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ url: session.url, id: session.id }),
+  };
+};

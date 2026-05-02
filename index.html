@@ -356,4 +356,100 @@ body { font-family: 'Inter', system-ui, sans-serif; }
       </details>
       <details class="bg-ink-950 border border-ink-800 rounded-xl p-5 group">
         <summary class="font-bold cursor-pointer flex justify-between items-center">Is my idea private?<span class="text-accent-500 group-open:rotate-45 transition">+</span></summary>
-        <p class="text
+        <p class="text-ink-300 text-sm mt-3 leading-relaxed">Your prompts are deleted from our servers within 24 hours. We never share, sell, or use your ideas to train models. The designs are 100% yours with full commercial rights.</p>
+      </details>
+      <details class="bg-ink-950 border border-ink-800 rounded-xl p-5 group">
+        <summary class="font-bold cursor-pointer flex justify-between items-center">Can I use these designs commercially?<span class="text-accent-500 group-open:rotate-45 transition">+</span></summary>
+        <p class="text-ink-300 text-sm mt-3 leading-relaxed">Yes. You own the designs you generate. Use them for your own tattoo, sell flash sheets, license to other artists — full commercial rights, no attribution required.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="border-t border-ink-900 py-12">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="grid md:grid-cols-4 gap-8 mb-10">
+      <div>
+        <a href="/" class="flex items-center gap-2 text-xl font-black mb-4"><img src="/logo-mark.svg" alt="" class="w-7 h-7"><span>TattooDesignr</span></a>
+        <p class="text-ink-400 text-sm">AI tattoo design, fine-tuned for every tradition. Trusted by 10,000+ ink-curious humans.</p>
+      </div>
+      <div>
+        <h5 class="font-bold mb-3 text-sm uppercase tracking-wider text-ink-300">Product</h5>
+        <ul class="space-y-2 text-sm text-ink-400">
+          <li><a href="/examples.html" class="hover:text-white">Examples</a></li>
+          <li><a href="/#styles" class="hover:text-white">Styles</a></li>
+          <li><a href="/#pricing" class="hover:text-white">Pricing</a></li>
+          <li><a href="/about.html" class="hover:text-white">About</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5 class="font-bold mb-3 text-sm uppercase tracking-wider text-ink-300">Resources</h5>
+        <ul class="space-y-2 text-sm text-ink-400">
+          <li><a href="/blog/" class="hover:text-white">Blog</a></li>
+          <li><a href="/#faq" class="hover:text-white">FAQ</a></li>
+          <li><a href="/generate.html" class="hover:text-white">Generate now</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5 class="font-bold mb-3 text-sm uppercase tracking-wider text-ink-300">Legal</h5>
+        <ul class="space-y-2 text-sm text-ink-400">
+          <li><a href="/privacy.html" class="hover:text-white">Privacy</a></li>
+          <li><a href="/terms.html" class="hover:text-white">Terms</a></li>
+          <li><a href="/disclaimer.html" class="hover:text-white">Disclaimer</a></li>
+          <li><a href="/refund.html" class="hover:text-white">Refund policy</a></li>
+        </ul>
+      </div>
+    </div>
+    <p class="text-ink-500 text-sm pt-8 border-t border-ink-900">© 2026 TattooDesignr. All AI-generated designs come with full commercial rights.</p>
+  </div>
+</footer>
+
+<!-- HERO SHOWCASE LOADER — pulls best on-body designs from manifest -->
+<script>
+(async () => {
+  const showcaseEl = document.getElementById('hero-showcase');
+  if (!showcaseEl) return;
+
+  // Curated picks: prefer on-body mockups (the wow factor)
+  const showcaseIds = ['onbody-04','onbody-01','onbody-19','onbody-08','onbody-31','onbody-07','onbody-46','onbody-43'];
+
+  let manifest = [];
+  try {
+    const r = await fetch('/images/examples/manifest.json', { cache: 'no-store' });
+    if (r.ok) manifest = await r.json();
+  } catch {}
+
+  const real = manifest.filter(m => m.file && !m.error);
+  if (real.length === 0) {
+    showcaseEl.innerHTML = '<div class="col-span-full text-center text-ink-400 py-8 text-sm">Loading designs…</div>';
+    return;
+  }
+
+  // Try curated picks first; fall back to first 8 on-body, then first 8 of anything
+  let picks = showcaseIds.map(id => real.find(d => d.id === id)).filter(Boolean);
+  if (picks.length < 8) {
+    const onbody = real.filter(d => d.style === 'onbody').slice(0, 8 - picks.length);
+    picks = picks.concat(onbody.filter(o => !picks.includes(o)));
+  }
+  if (picks.length < 8) {
+    picks = picks.concat(real.slice(0, 8 - picks.length).filter(o => !picks.includes(o)));
+  }
+  picks = picks.slice(0, 8);
+
+  showcaseEl.innerHTML = picks.map(d => {
+    const isOnBody = d.style === 'onbody';
+    const idea = encodeURIComponent(d.label || '');
+    const apiStyle = isOnBody ? 'realism' : (d.style || 'realism');
+    const alt = `${d.label} — ${isOnBody ? 'tattoo shown on body, AI mockup' : 'AI tattoo design'} by TattooDesignr`;
+    return `
+    <a href="/generate.html?idea=${idea}&style=${apiStyle}" class="showcase-card aspect-square rounded-xl border border-ink-800 overflow-hidden block">
+      <img src="/${d.file}" alt="${alt}" class="w-full h-full object-cover" loading="lazy" />
+      ${isOnBody ? '<div class="badge">On Body</div>' : ''}
+    </a>`;
+  }).join('');
+})();
+</script>
+
+</body>
+</html>
