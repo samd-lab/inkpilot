@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<title>Your designs are ready — TattooDesignr</title>
+<meta name="robots" content="noindex">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = { theme: { extend: {
+  fontFamily: { sans: ['Inter','system-ui','sans-serif'], display: ['Playfair Display','serif'] },
+  colors: { ink: { 50:'#f7f7f8', 100:'#eeeeef', 200:'#d9dadc', 300:'#b6b8bc', 400:'#8c8e95', 500:'#6e7178', 600:'#585b62', 700:'#484a50', 800:'#3d3f44', 900:'#1a1b1f', 950:'#0e0f12' }, accent: { 500:'#dc2626', 600:'#b91c1c' } }
+}}};
+</script>
+<style>
+body { font-family: 'Inter', system-ui, sans-serif; }
+.display { font-family: 'Playfair Display', serif; }
+.gradient-text { background: linear-gradient(135deg, #dc2626, #f59e0b); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.tat-paper { background: #f5f3ee; }
+</style>
+</head>
+<body class="bg-ink-950 text-ink-100 antialiased">
+
+<nav class="border-b border-ink-900 py-4 px-6 flex justify-between items-center">
+  <a href="/" class="flex items-center gap-2 text-2xl font-black"><img src="/logo-mark.svg" class="w-7 h-7"><span>TattooDesignr</span></a>
+  <a href="/generate.html" class="text-sm text-ink-300 hover:text-white">Generate another</a>
+</nav>
+
+<section class="max-w-6xl mx-auto px-6 py-12 md:py-16">
+  <div id="status" class="text-center mb-10">
+    <div class="inline-block w-12 h-12 border-4 border-ink-800 border-t-accent-500 rounded-full animate-spin mb-4"></div>
+    <p class="text-ink-400">Verifying your purchase...</p>
+  </div>
+
+  <div id="success" class="hidden">
+    <div class="text-center mb-10">
+      <div class="text-5xl mb-3">🎉</div>
+      <h1 class="display text-3xl md:text-5xl font-black mb-3">Your <span class="gradient-text">tattoo pack</span> is ready</h1>
+      <p class="text-ink-300">Your 8 designs in HD, plus the stencil + transparent PNG bundle.</p>
+    </div>
+
+    <div id="grid" class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10"></div>
+
+    <div class="bg-ink-900 border border-ink-800 rounded-2xl p-6 text-sm space-y-3">
+      <p><strong class="text-white">⬇️ Download links work for 30 days.</strong> Save them now.</p>
+      <p class="text-ink-400">Take any of these to your tattoo artist. They have everything they need: the source design, a transparent PNG for stencil prep, and the original prompt so they can refine it with you.</p>
+      <p class="text-ink-400">Want more? <a href="/generate.html" class="text-accent-500 underline">Generate another pack</a>.</p>
+    </div>
+  </div>
+
+  <div id="failed" class="hidden text-center max-w-lg mx-auto">
+    <div class="text-5xl mb-3">⚠️</div>
+    <h1 class="display text-3xl font-black mb-3">We couldn't verify your purchase</h1>
+    <p class="text-ink-400 mb-6" id="failedMsg">If you were charged, we'll fix this immediately — email <a href="mailto:hello@tattoodesignr.com" class="underline">hello@tattoodesignr.com</a> with this URL.</p>
+    <a href="/generate.html" class="inline-block bg-accent-500 hover:bg-accent-600 text-white px-6 py-3 rounded-xl font-bold">Try again</a>
+  </div>
+</section>
+
+<script>
+(async () => {
+  const sid = new URLSearchParams(location.search).get('session_id');
+  const status = document.getElementById('status');
+  const ok = document.getElementById('success');
+  const bad = document.getElementById('failed');
+  const grid = document.getElementById('grid');
+  if (!sid) { status.classList.add('hidden'); bad.classList.remove('hidden'); return; }
+  try {
+    const r = await fetch(`/api/unlock?session_id=${encodeURIComponent(sid)}`);
+    const d = await r.json();
+    if (!r.ok || !d.paid) {
+      status.classList.add('hidden');
+      bad.classList.remove('hidden');
+      document.getElementById('failedMsg').textContent = 'No paid purchase found for this session. If you were charged, email hello@tattoodesignr.com.';
+      return;
+    }
+    status.classList.add('hidden');
+    ok.classList.remove('hidden');
+    d.designs.forEach((dn, i) => {
+      const card = document.createElement('div');
+      card.className = 'tat-paper aspect-square rounded-xl overflow-hidden flex flex-col';
+      card.innerHTML = `
+        <img src="${dn.url}" class="flex-1 w-full object-contain p-3" alt="design ${i+1}">
+        <div class="bg-ink-950 text-ink-100 px-3 py-2 flex justify-between items-center text-xs">
+          <span class="font-mono opacity-60">${dn.id.slice(-6)}</span>
+          <a download href="${dn.url}" class="bg-accent-500 hover:bg-accent-600 text-white px-3 py-1.5 rounded font-semibold">Download</a>
+        </div>`;
+      grid.appendChild(card);
+    });
+  } catch (err) {
+    status.classList.add('hidden');
+    bad.classList.remove('hidden');
+    document.getElementById('failedMsg').textContent = err.message;
+  }
+})();
+</script>
+</body>
+</html>

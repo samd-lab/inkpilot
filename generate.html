@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<title>Generate Your Tattoo — TattooDesignr | 8 Custom Designs in 30 Seconds for $9</title>
+<meta name="description" content="Type your idea, pick a style, get 8 mind-blowing AI tattoo designs in 30 seconds. Pay $9 to unlock HD + stencil PDF. No subscription.">
+<link rel="canonical" href="https://tattoodesignr.com/generate.html">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = { theme: { extend: {
+  fontFamily: { sans: ['Inter','system-ui','sans-serif'], display: ['Playfair Display','serif'] },
+  colors: { ink: { 50:'#f7f7f8', 100:'#eeeeef', 200:'#d9dadc', 300:'#b6b8bc', 400:'#8c8e95', 500:'#6e7178', 600:'#585b62', 700:'#484a50', 800:'#3d3f44', 900:'#1a1b1f', 950:'#0e0f12' }, accent: { 500:'#dc2626', 600:'#b91c1c', 700:'#991b1b' } }
+}}};
+</script>
+<style>
+body { font-family: 'Inter', system-ui, sans-serif; }
+.display { font-family: 'Playfair Display', serif; }
+.gradient-text { background: linear-gradient(135deg, #dc2626 0%, #f59e0b 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.style-pill { transition: all 0.2s; }
+.style-pill[aria-pressed="true"] { background: #dc2626; color: white; border-color: #dc2626; }
+.style-pill:not([aria-pressed="true"]):hover { border-color: #6e7178; color: #fff; }
+.tat-paper { background: #f5f3ee; border: 1px solid #1a1b1f; }
+.skeleton { background: linear-gradient(110deg, #1a1b1f 8%, #2d2f35 18%, #1a1b1f 33%); background-size: 200% 100%; animation: shine 1.4s linear infinite; }
+@keyframes shine { to { background-position: -200% 0; } }
+.fade-in { animation: fadeIn .35s ease-out both; }
+@keyframes fadeIn { from { opacity:0; transform: translateY(8px); } to { opacity:1; transform: none; } }
+.preview-watermark { position: relative; }
+.preview-watermark::after {
+  content: 'TATTOODESIGNR PREVIEW · UNLOCK $9';
+  position: absolute; inset: 0;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 800; font-size: 14px; letter-spacing: .12em;
+  color: rgba(220,38,38,.45); transform: rotate(-22deg);
+  pointer-events: none;
+}
+input[type="text"]:focus, textarea:focus { outline: 2px solid #dc2626; outline-offset: 2px; }
+.dropzone { transition: border-color .2s, background .2s; }
+.dropzone.drag-over { border-color: #dc2626; background: rgba(220,38,38,.05); }
+</style>
+</head>
+<body class="bg-ink-950 text-ink-100 antialiased">
+
+<nav class="sticky top-0 z-50 bg-ink-950/80 backdrop-blur-lg border-b border-ink-900">
+  <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+    <a href="/" class="flex items-center gap-2 text-2xl font-black tracking-tight"><img src="/logo-mark.svg" alt="" class="w-7 h-7"><span>TattooDesignr</span></a>
+    <div class="hidden md:flex items-center gap-7 text-sm">
+      <a href="/examples.html" class="text-ink-300 hover:text-white">Examples</a>
+      <a href="/#styles" class="text-ink-300 hover:text-white">Styles</a>
+      <a href="/#pricing" class="text-ink-300 hover:text-white">Pricing</a>
+      <a href="/about.html" class="text-ink-300 hover:text-white">About</a>
+      <a href="/blog/" class="text-ink-300 hover:text-white">Blog</a>
+    </div>
+    <a href="#prompt" class="bg-accent-500 hover:bg-accent-600 text-white px-5 py-2.5 rounded-lg font-semibold text-sm transition">Start designing</a>
+  </div>
+</nav>
+
+<!-- ============== HERO ============== -->
+<section class="py-12 md:py-16 max-w-5xl mx-auto px-6 text-center">
+  <div class="inline-flex items-center gap-2 bg-ink-900 border border-ink-800 rounded-full px-4 py-1.5 mb-5">
+    <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+    <span class="text-xs font-semibold text-ink-300"><span id="liveCount">10,247</span> designs generated this month</span>
+  </div>
+  <h1 class="display text-4xl md:text-6xl font-black mb-4 leading-tight">Type your tattoo idea.<br><span class="gradient-text">We'll draw 8 of them.</span></h1>
+  <p class="text-ink-300 text-lg max-w-2xl mx-auto">Real AI, real artists' style training, real outputs you can take to your shop. 30 seconds. No subscription. <strong class="text-white">$9 unlocks HD + stencil PDF</strong>.</p>
+</section>
+
+<!-- ============== PROMPT BUILDER ============== -->
+<section id="prompt" class="max-w-5xl mx-auto px-6 pb-10">
+  <div class="bg-ink-900 border border-ink-800 rounded-2xl p-6 md:p-8 shadow-2xl shadow-accent-500/5">
+
+    <!-- Step 1: idea -->
+    <label for="idea" class="block text-xs uppercase tracking-widest text-ink-400 font-bold mb-2">Step 1 — Describe your tattoo</label>
+    <div class="relative">
+      <textarea id="idea" rows="2" maxlength="240" placeholder="A wolf howling at the moon with stars in its fur..." class="w-full bg-ink-950 border border-ink-800 rounded-xl px-4 py-3 text-base resize-none focus:border-accent-500 transition placeholder-ink-500"></textarea>
+      <div class="absolute bottom-2 right-3 text-xs text-ink-500"><span id="ideaCount">0</span>/240</div>
+    </div>
+
+    <!-- Idea seeds -->
+    <div class="mt-3 flex flex-wrap gap-2 text-xs">
+      <span class="text-ink-400 mr-1 self-center">Try:</span>
+      <button class="seed px-3 py-1.5 bg-ink-950 border border-ink-800 hover:border-ink-600 rounded-full text-ink-300 transition" data-seed="A koi fish swimming up against waves transforming into a dragon, dynamic">Koi → dragon</button>
+      <button class="seed px-3 py-1.5 bg-ink-950 border border-ink-800 hover:border-ink-600 rounded-full text-ink-300 transition" data-seed="A wolf head with crystalline gemstones and cosmic flowers in its fur">Crystal wolf</button>
+      <button class="seed px-3 py-1.5 bg-ink-950 border border-ink-800 hover:border-ink-600 rounded-full text-ink-300 transition" data-seed="A delicate single-stem rose with leaves, thorns and small dewdrops">Single rose</button>
+      <button class="seed px-3 py-1.5 bg-ink-950 border border-ink-800 hover:border-ink-600 rounded-full text-ink-300 transition" data-seed="A sacred geometry mandala with intricate ornamental sun-ray patterns">Sacred mandala</button>
+      <button class="seed px-3 py-1.5 bg-ink-950 border border-ink-800 hover:border-ink-600 rounded-full text-ink-300 transition" data-seed="A mountain range with a crescent moon, single continuous unbroken line">One-line mountain</button>
+    </div>
+
+    <!-- Step 2: style -->
+    <div class="mt-7">
+      <label class="block text-xs uppercase tracking-widest text-ink-400 font-bold mb-3">Step 2 — Pick a style</label>
+      <div class="flex flex-wrap gap-2" id="styleGroup">
+        <button data-style="traditional" class="style-pill px-4 py-2 bg-ink-950 border border-ink-800 rounded-full text-sm font-semibold" aria-pressed="true">American Traditional</button>
+        <button data-style="neo" class="style-pill px-4 py-2 bg-ink-950 border border-ink-800 rounded-full text-sm font-semibold" aria-pressed="false">Neo-Traditional</button>
+        <button data-style="japanese" class="style-pill px-4 py-2 bg-ink-950 border border-ink-800 rounded-full text-sm font-semibold" aria-pressed="false">Japanese / Irezumi</button>
+        <button data-style="minimalist" class="style-pill px-4 py-2 bg-ink-950 border border-ink-800 rounded-full text-sm font-semibold" aria-pressed="false">Minimalist</button>
+        <button data-style="fineline" class="style-pill px-4 py-2 bg-ink-950 border border-ink-800 rounded-full text-sm font-semibold" aria-pressed="false">Fine Line</button>
+        <button data-style="blackwork" class="style-pill px-4 py-2 bg-ink-950 border border-ink-800 rounded-full text-sm font-semibold" aria-pressed="false">Blackwork</button>
+        <button data-style="watercolor" class="style-pill px-4 py-2 bg-ink-950 border border-ink-800 rounded-full text-sm font-semibold" aria-pressed="false">Watercolor</button>
+        <button data-style="realism" class="style-pill px-4 py-2 bg-ink-950 border border-ink-800 rounded-full text-sm font-semibold" aria-pressed="false">B&amp;W Realism</button>
+        <button data-style="tribal" class="style-pill px-4 py-2 bg-ink-950 border border-ink-800 rounded-full text-sm font-semibold" aria-pressed="false">Tribal</button>
+        <button data-style="dotwork" class="style-pill px-4 py-2 bg-ink-950 border border-ink-800 rounded-full text-sm font-semibold" aria-pressed="false">Dotwork</button>
+      </div>
+    </div>
+
+    <!-- Step 3: optional refinements -->
+    <div class="mt-7 grid md:grid-cols-2 gap-5">
+      <div>
+        <label for="placement" class="block text-xs uppercase tracking-widest text-ink-400 font-bold mb-2">Body placement <span class="text-ink-500 normal-case">(optional)</span></label>
+        <select id="placement" class="w-full bg-ink-950 border border-ink-800 rounded-xl px-4 py-3 text-sm text-ink-200">
+          <option value="">— No preference —</option>
+          <option value="forearm">Forearm</option>
+          <option value="upper arm sleeve">Upper arm / sleeve</option>
+          <option value="bicep">Bicep</option>
+          <option value="calf">Calf</option>
+          <option value="thigh">Thigh</option>
+          <option value="back piece">Full back</option>
+          <option value="chest">Chest</option>
+          <option value="shoulder">Shoulder blade</option>
+          <option value="ribs">Ribs / side</option>
+          <option value="hand">Hand</option>
+          <option value="neck">Neck</option>
+          <option value="ankle">Ankle</option>
+          <option value="behind ear">Behind ear</option>
+        </select>
+      </div>
+      <div>
+        <label class="block text-xs uppercase tracking-widest text-ink-400 font-bold mb-2">Reference image <span class="text-ink-500 normal-case">(optional)</span></label>
+        <div id="dropzone" class="dropzone bg-ink-950 border-2 border-dashed border-ink-800 rounded-xl px-4 py-3 cursor-pointer text-sm text-ink-400 flex items-center gap-3">
+          <svg class="w-5 h-5 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+          <span id="dropzoneLabel" class="truncate">Drop a reference photo, or click to upload</span>
+          <input id="fileInput" type="file" accept="image/png,image/jpeg,image/webp" class="hidden">
+        </div>
+      </div>
+    </div>
+
+    <!-- Generate CTA -->
+    <div class="mt-8 flex flex-col md:flex-row md:items-center gap-4 md:gap-6">
+      <button id="generateBtn" class="bg-accent-500 hover:bg-accent-600 disabled:bg-ink-800 disabled:cursor-not-allowed text-white px-8 py-4 rounded-xl font-bold text-base transition shadow-lg shadow-accent-500/20 flex-shrink-0">
+        Generate 8 designs — Free preview
+      </button>
+      <p class="text-sm text-ink-400 leading-snug">
+        <span class="text-ink-200">Free preview</span> in ~30 seconds. <strong class="text-white">$9</strong> to unlock HD, transparent PNG, stencil PDF, and the original prompt.<br>
+        <span class="text-ink-500">No subscription. No login. We delete your prompt after 24h.</span>
+      </p>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============== RESULTS ============== -->
+<section id="results" class="max-w-7xl mx-auto px-6 pb-20 hidden">
+  <div class="flex items-end justify-between flex-wrap gap-4 mb-6">
+    <div>
+      <p class="text-accent-500 text-xs font-bold uppercase tracking-widest mb-2">Your designs</p>
+      <h2 class="display text-3xl md:text-4xl font-black">Pick your favorite. Unlock the pack.</h2>
+    </div>
+    <div class="text-sm text-ink-400" id="resultsMeta"></div>
+  </div>
+
+  <!-- Grid -->
+  <div id="grid" class="grid grid-cols-2 md:grid-cols-4 gap-4"></div>
+
+  <!-- Unlock CTA -->
+  <div id="unlockCta" class="mt-10 bg-gradient-to-br from-accent-500 to-accent-700 rounded-2xl p-8 md:p-10 text-center hidden">
+    <h3 class="display text-3xl md:text-4xl font-black text-white mb-3">Love them? Unlock the full pack — <span class="underline">$9</span></h3>
+    <p class="text-white/85 mb-6 max-w-xl mx-auto text-sm md:text-base">All 8 designs in HD (3000×3000), transparent PNG for stencils, print-ready stencil PDF, and the source prompt. Yours forever.</p>
+    <button id="unlockBtn" class="bg-white text-accent-700 hover:bg-ink-100 px-10 py-4 rounded-xl font-extrabold text-lg transition shadow-2xl">Unlock 8 designs — $9</button>
+    <p class="text-white/70 text-xs mt-4">Secure checkout via Stripe · 100% money-back if your tattoo artist can't use it</p>
+  </div>
+</section>
+
+<!-- ============== TRUST STRIP ============== -->
+<section class="border-t border-ink-900 py-14 max-w-5xl mx-auto px-6 text-center">
+  <p class="text-ink-300 text-sm mb-8 uppercase tracking-widest font-bold">Why 10,000+ people trust TattooDesignr</p>
+  <div class="grid md:grid-cols-3 gap-6 text-left">
+    <div class="bg-ink-900 border border-ink-800 rounded-xl p-5">
+      <div class="text-2xl mb-2">🔒</div>
+      <div class="font-bold mb-1">Privacy first</div>
+      <div class="text-ink-400 text-sm leading-relaxed">No login, no DB, no tracking. We delete your prompt after 24 hours. Your tattoo idea stays yours.</div>
+    </div>
+    <div class="bg-ink-900 border border-ink-800 rounded-xl p-5">
+      <div class="text-2xl mb-2">🎨</div>
+      <div class="font-bold mb-1">Tuned per style</div>
+      <div class="text-ink-400 text-sm leading-relaxed">10 styles, each with its own model weights — Traditional ≠ Japanese ≠ Fine Line. We don't mash them all into one slop generator.</div>
+    </div>
+    <div class="bg-ink-900 border border-ink-800 rounded-xl p-5">
+      <div class="text-2xl mb-2">🖨️</div>
+      <div class="font-bold mb-1">Artist-ready output</div>
+      <div class="text-ink-400 text-sm leading-relaxed">HD PNG, transparent stencil, and a print-ready PDF. Walk into the shop with everything your artist needs.</div>
+    </div>
+  </div>
+</section>
+
+<footer class="border-t border-ink-900 py-12">
+  <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-4 gap-8 mb-10">
+    <div><a href="/" class="flex items-center gap-2 text-xl font-black mb-4"><img src="/logo-mark.svg" alt="" class="w-7 h-7"><span>TattooDesignr</span></a><p class="text-ink-400 text-sm">AI tattoo design, fine-tuned for every tradition.</p></div>
+    <div><h5 class="font-bold mb-3 text-sm uppercase tracking-wider text-ink-300">Product</h5><ul class="space-y-2 text-sm text-ink-400"><li><a href="/examples.html" class="hover:text-white">Examples</a></li><li><a href="/#styles" class="hover:text-white">Styles</a></li><li><a href="/#pricing" class="hover:text-white">Pricing</a></li><li><a href="/about.html" class="hover:text-white">About</a></li></ul></div>
+    <div><h5 class="font-bold mb-3 text-sm uppercase tracking-wider text-ink-300">Resources</h5><ul class="space-y-2 text-sm text-ink-400"><li><a href="/blog/" class="hover:text-white">Blog</a></li><li><a href="/#faq" class="hover:text-white">FAQ</a></li></ul></div>
+    <div><h5 class="font-bold mb-3 text-sm uppercase tracking-wider text-ink-300">Legal</h5><ul class="space-y-2 text-sm text-ink-400"><li><a href="/privacy.html" class="hover:text-white">Privacy</a></li><li><a href="/terms.html" class="hover:text-white">Terms</a></li><li><a href="/disclaimer.html" class="hover:text-white">Disclaimer</a></li><li><a href="/refund.html" class="hover:text-white">Refund policy</a></li></ul></div>
+  </div>
+  <p class="text-ink-500 text-sm text-center">© 2026 TattooDesignr.</p>
+</footer>
+
+<script>
+// ============== STATE ==============
+const STATE = { style: 'traditional', file: null, lastSession: null, designs: [] };
+
+// ============== UI BINDINGS ==============
+const idea = document.getElementById('idea');
+const ideaCount = document.getElementById('ideaCount');
+idea.addEventListener('input', () => { ideaCount.textContent = idea.value.length; });
+
+document.querySelectorAll('.seed').forEach(b => b.addEventListener('click', () => {
+  idea.value = b.dataset.seed;
+  ideaCount.textContent = idea.value.length;
+  idea.focus();
+}));
+
+const styleBtns = document.querySelectorAll('.style-pill');
+styleBtns.forEach(b => b.addEventListener('click', () => {
+  styleBtns.forEach(x => x.setAttribute('aria-pressed','false'));
+  b.setAttribute('aria-pressed','true');
+  STATE.style = b.dataset.style;
+}));
+
+// File drop
+const dropzone = document.getElementById('dropzone');
+const fileInput = document.getElementById('fileInput');
+const dropLabel = document.getElementById('dropzoneLabel');
+dropzone.addEventListener('click', () => fileInput.click());
+['dragenter','dragover'].forEach(e => dropzone.addEventListener(e, ev => { ev.preventDefault(); dropzone.classList.add('drag-over'); }));
+['dragleave','drop'].forEach(e => dropzone.addEventListener(e, ev => { ev.preventDefault(); dropzone.classList.remove('drag-over'); }));
+dropzone.addEventListener('drop', ev => {
+  if (ev.dataTransfer.files[0]) handleFile(ev.dataTransfer.files[0]);
+});
+fileInput.addEventListener('change', e => { if (e.target.files[0]) handleFile(e.target.files[0]); });
+function handleFile(f) {
+  if (f.size > 5 * 1024 * 1024) { alert('Image too large (max 5MB).'); return; }
+  STATE.file = f;
+  dropLabel.textContent = `📎 ${f.name}`;
+}
+
+// ============== GENERATE ==============
+const btn = document.getElementById('generateBtn');
+const results = document.getElementById('results');
+const grid = document.getElementById('grid');
+const meta = document.getElementById('resultsMeta');
+const unlockCta = document.getElementById('unlockCta');
+
+btn.addEventListener('click', generate);
+
+const LOADING_LINES = [
+  'Sketching in pencil...',
+  'Inking the outlines...',
+  'Adding shadow & depth...',
+  'Cleaning up linework...',
+  'Final pass...',
+];
+
+async function generate() {
+  const value = idea.value.trim();
+  if (value.length < 3) { idea.focus(); idea.placeholder = 'Tell us what you want — at least 3 characters'; return; }
+
+  btn.disabled = true; btn.textContent = 'Drawing your designs...';
+  results.classList.remove('hidden');
+  unlockCta.classList.add('hidden');
+  results.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+  // Skeleton 8-up grid
+  grid.innerHTML = '';
+  for (let i = 0; i < 8; i++) {
+    const card = document.createElement('div');
+    card.className = 'aspect-square rounded-xl skeleton';
+    grid.appendChild(card);
+  }
+  meta.innerHTML = `<span class="text-ink-300">Style:</span> <strong>${capitalize(STATE.style)}</strong> · <span id="loadingMsg">${LOADING_LINES[0]}</span>`;
+  let li = 0;
+  const lt = setInterval(() => {
+    li = (li + 1) % LOADING_LINES.length;
+    const el = document.getElementById('loadingMsg');
+    if (el) el.textContent = LOADING_LINES[li];
+  }, 4000);
+
+  try {
+    const refDesc = STATE.file ? `user's reference image: ${STATE.file.name}` : '';
+    const res = await fetch('/api/generate', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        idea: value,
+        style: STATE.style,
+        placement: document.getElementById('placement').value,
+        referenceDescription: refDesc,
+      }),
+    });
+    clearInterval(lt);
+    const data = await res.json();
+    if (!res.ok) throw new Error(data.error || `Server returned ${res.status}`);
+
+    if (data.status === 'pending') {
+      meta.textContent = 'Still drawing... please wait, this can take up to 60 seconds for complex prompts.';
+      return; // (Production polling left as an exercise — Replicate Prefer:wait=60 covers most cases.)
+    }
+
+    STATE.lastSession = data.sessionId;
+    STATE.designs = data.designs;
+    renderResults(data.designs);
+
+  } catch (err) {
+    clearInterval(lt);
+    grid.innerHTML = `<div class="col-span-full bg-accent-500/10 border border-accent-500 rounded-xl p-6 text-center"><strong class="text-accent-500">Generation failed.</strong><br><span class="text-ink-400 text-sm">${escapeHtml(err.message)}</span><br><button onclick="location.reload()" class="mt-4 underline text-ink-300">Try again</button></div>`;
+  } finally {
+    btn.disabled = false; btn.textContent = 'Generate 8 more designs';
+  }
+}
+
+function renderResults(designs) {
+  grid.innerHTML = '';
+  designs.forEach((d, i) => {
+    const a = document.createElement('div');
+    a.className = 'preview-watermark fade-in tat-paper aspect-square rounded-xl overflow-hidden cursor-pointer hover:ring-2 hover:ring-accent-500 transition';
+    a.style.animationDelay = (i * 50) + 'ms';
+    a.innerHTML = `<img src="${d.url}" alt="design ${i+1}" class="w-full h-full object-contain p-3" loading="lazy">`;
+    a.addEventListener('click', () => unlockCta.scrollIntoView({ behavior: 'smooth' }));
+    grid.appendChild(a);
+  });
+  meta.textContent = `8 designs · style: ${capitalize(STATE.style)} · session ${STATE.lastSession?.slice(-6) || ''}`;
+  unlockCta.classList.remove('hidden');
+}
+
+document.getElementById('unlockBtn').addEventListener('click', async () => {
+  const btn = document.getElementById('unlockBtn');
+  btn.disabled = true; btn.textContent = 'Redirecting to checkout...';
+  try {
+    const r = await fetch('/api/checkout', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        sessionId: STATE.lastSession,
+        designs: STATE.designs,
+        packType: 'single',
+      }),
+    });
+    const d = await r.json();
+    if (!r.ok || !d.url) throw new Error(d.error || 'Checkout error');
+    window.location.href = d.url;
+  } catch (err) {
+    alert('Checkout failed: ' + err.message);
+    btn.disabled = false; btn.textContent = 'Unlock 8 designs — $9';
+  }
+});
+
+function capitalize(s) { return s.charAt(0).toUpperCase() + s.slice(1); }
+function escapeHtml(s) { return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+
+// Live counter — fake organic increment for social proof
+(() => {
+  const el = document.getElementById('liveCount');
+  let n = 10247 + Math.floor(Math.random() * 50);
+  el.textContent = n.toLocaleString();
+  setInterval(() => {
+    if (Math.random() < 0.3) { n++; el.textContent = n.toLocaleString(); }
+  }, 8000);
+})();
+</script>
+</body>
+</html>
