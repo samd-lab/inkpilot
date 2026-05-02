@@ -210,31 +210,183 @@
     "file": "images/examples/trib-02.png"
   },
   {
-    "id": "trib-03",
-    "style": "tribal",
-    "label": "Samoan Warrior",
-    "file": null,
-    "error": "Rate limit. Try again in an hour."
+    "id": "onbody-01",
+    "style": "onbody",
+    "label": "Koi dragon · back",
+    "file": "images/examples/onbody-01.png"
   },
   {
-    "id": "dot-01",
-    "style": "dotwork",
-    "label": "Stippled Moon",
-    "file": null,
-    "error": "Rate limit. Try again in an hour."
+    "id": "onbody-02",
+    "style": "onbody",
+    "label": "Mandala · spine",
+    "file": "images/examples/onbody-02.png"
   },
   {
-    "id": "dot-02",
-    "style": "dotwork",
-    "label": "Flower of Life",
-    "file": null,
-    "error": "Rate limit. Try again in an hour."
+    "id": "onbody-03",
+    "style": "onbody",
+    "label": "Snake & moon · forearm",
+    "file": "images/examples/onbody-03.png"
   },
   {
-    "id": "dot-03",
-    "style": "dotwork",
-    "label": "Honeybee Dot",
-    "file": null,
-    "error": "Rate limit. Try again in an hour."
+    "id": "onbody-04",
+    "style": "onbody",
+    "label": "Lion portrait · bicep",
+    "file": "images/examples/onbody-04.png"
+  },
+  {
+    "id": "onbody-05",
+    "style": "onbody",
+    "label": "Botanical · ribcage",
+    "file": "images/examples/onbody-05.png"
+  },
+  {
+    "id": "onbody-06",
+    "style": "onbody",
+    "label": "Wolf head · shoulder",
+    "file": "images/examples/onbody-06.png"
+  },
+  {
+    "id": "onbody-07",
+    "style": "onbody",
+    "label": "Phoenix watercolor · back",
+    "file": "images/examples/onbody-07.png"
+  },
+  {
+    "id": "onbody-08",
+    "style": "onbody",
+    "label": "Tiger leaping · thigh",
+    "file": "images/examples/onbody-08.png"
+  },
+  {
+    "id": "onbody-09",
+    "style": "onbody",
+    "label": "Stag skull · chest",
+    "file": "images/examples/onbody-09.png"
+  },
+  {
+    "id": "onbody-10",
+    "style": "onbody",
+    "label": "Single rose · wrist",
+    "file": "images/examples/onbody-10.png"
+  },
+  {
+    "id": "onbody-11",
+    "style": "onbody",
+    "label": "Hannya mask · calf",
+    "file": "images/examples/onbody-11.png"
+  },
+  {
+    "id": "onbody-12",
+    "style": "onbody",
+    "label": "Polynesian sleeve · arm",
+    "file": "images/examples/onbody-12.png"
+  },
+  {
+    "id": "onbody-13",
+    "style": "onbody",
+    "label": "Anchor & swallow · forearm",
+    "file": "images/examples/onbody-13.png"
+  },
+  {
+    "id": "onbody-14",
+    "style": "onbody",
+    "label": "Geo dragonfly · ankle",
+    "file": "images/examples/onbody-14.png"
+  },
+  {
+    "id": "onbody-15",
+    "style": "onbody",
+    "label": "Sugar skull · shoulder blade",
+    "file": "images/examples/onbody-15.png"
+  },
+  {
+    "id": "onbody-16",
+    "style": "onbody",
+    "label": "Lavender & bee · forearm",
+    "file": "images/examples/onbody-16.png"
+  },
+  {
+    "id": "onbody-17",
+    "style": "onbody",
+    "label": "All seeing eye · chest",
+    "file": "images/examples/onbody-17.png"
+  },
+  {
+    "id": "onbody-18",
+    "style": "onbody",
+    "label": "Mountain & moon · forearm",
+    "file": "images/examples/onbody-18.png"
+  },
+  {
+    "id": "onbody-19",
+    "style": "onbody",
+    "label": "Samurai · back",
+    "file": "images/examples/onbody-19.png"
+  },
+  {
+    "id": "onbody-20",
+    "style": "onbody",
+    "label": "Hummingbird watercolor · shoulder",
+    "file": "images/examples/onbody-20.png"
+  },
+  {
+    "id": "onbody-21",
+    "style": "onbody",
+    "label": "Foo dog · thigh",
+    "file": "images/examples/onbody-21.png"
+  },
+  {
+    "id": "onbody-22",
+    "style": "onbody",
+    "label": "Honeybee dotwork · forearm",
+    "file": "images/examples/onbody-22.png"
+  },
+  {
+    "id": "onbody-23",
+    "style": "onbody",
+    "label": "Raven & moon · upper arm",
+    "file": "images/examples/onbody-23.png"
+  },
+  {
+    "id": "onbody-24",
+    "style": "onbody",
+    "label": "Manta ray maori · shoulder",
+    "file": "images/examples/onbody-24.png"
+  },
+  {
+    "id": "onbody-25",
+    "style": "onbody",
+    "label": "Fox queen · forearm",
+    "file": "images/examples/onbody-25.png"
+  },
+  {
+    "id": "onbody-26",
+    "style": "onbody",
+    "label": "Frozen pocketwatch · forearm",
+    "file": "images/examples/onbody-26.png"
+  },
+  {
+    "id": "onbody-27",
+    "style": "onbody",
+    "label": "Mandala butterfly · sternum",
+    "file": "images/examples/onbody-27.png"
+  },
+  {
+    "id": "onbody-28",
+    "style": "onbody",
+    "label": "Lone wolf howling · ribs",
+    "file": "images/examples/onbody-28.png"
+  },
+  {
+    "id": "onbody-29",
+    "style": "onbody",
+    "label": "Cherry blossom branch · spine",
+    "file": "images/examples/onbody-29.png"
+  },
+  {
+    "id": "onbody-30",
+    "style": "onbody",
+    "label": "Stippled crescent moon · ankle",
+    "file": "images/examples/onbody-30.png"
   }
-]
+    ]
