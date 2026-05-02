@@ -6,6 +6,7 @@
 <title>Populate Gallery — TattooDesignr Admin</title>
 <meta name="robots" content="noindex">
 <script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js"></script>
 <style>
 body { font-family: 'Inter', system-ui, sans-serif; background: #0e0f12; color: #eeeeef; }
 .tat-paper { background: #f5f3ee; }
@@ -17,19 +18,19 @@ body { font-family: 'Inter', system-ui, sans-serif; background: #0e0f12; color: 
 
 <div class="max-w-5xl mx-auto px-6 py-10">
   <div class="mb-8">
-    <p class="text-red-500 font-bold uppercase tracking-widest text-xs mb-2">Admin · One-time gallery populate</p>
+    <p class="text-red-500 font-bold uppercase tracking-widest text-xs mb-2">Admin · Tier-2 mind-blowing gallery</p>
     <h1 class="text-3xl font-black mb-2">Populate Examples Gallery</h1>
     <p class="text-gray-400 text-sm">
-      Generates 40 real tattoo designs via Replicate, stores them in Netlify Blobs, and writes the manifest.
-      <strong class="text-white">Idempotent</strong> — designs that already exist are skipped at zero cost.
-      After this completes, <code class="bg-gray-800 px-1 rounded">/examples.html</code> automatically swaps the SVG icons for real PNGs.
+      Generates 40 mind-blowing tattoo designs via your live <code class="bg-gray-800 px-1 rounded">/api/generate</code> endpoint, packages them as a zip.
+      After download: extract and drag contents into <code class="bg-gray-800 px-1 rounded">images/examples/</code> in GitHub.
     </p>
   </div>
 
   <div class="bg-gray-900 border border-gray-800 rounded-xl p-6 mb-6">
     <div class="flex flex-wrap items-center gap-4 mb-4">
       <button id="run" class="bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-lg font-bold transition">▶ Populate gallery (40 designs)</button>
-      <span class="text-sm text-gray-400">Estimated cost: ~$1.20 first run · $0 on subsequent runs</span>
+      <button id="dl" class="bg-emerald-600 hover:bg-emerald-700 text-white px-6 py-3 rounded-lg font-bold transition hidden" disabled>⬇ Download zip</button>
+      <span class="text-sm text-gray-400">Estimated cost: ~$1.20 · Time: ~12 min</span>
     </div>
     <div class="bg-gray-950 border border-gray-800 rounded-lg p-4 font-mono text-xs text-gray-300 h-40 overflow-y-auto" id="log">Click "Populate gallery" to begin.</div>
     <div class="mt-3">
@@ -44,53 +45,69 @@ body { font-family: 'Inter', system-ui, sans-serif; background: #0e0f12; color: 
   </div>
 
   <div class="grid grid-cols-4 md:grid-cols-8 gap-2" id="grid"></div>
-
-  <p id="finish" class="hidden mt-8 text-center text-emerald-400 font-bold">
-    ✓ Done. Visit <a href="/examples.html" class="underline">/examples.html</a> — your real gallery is live.
-  </p>
 </div>
 
 <script>
+// 40 TIER-2 designs — every prompt designed to produce "wow" output
 const DESIGNS = [
-  { id:'trad-01', style:'traditional', label:'Anchor & Rose' },
-  { id:'trad-02', style:'traditional', label:'Swallow & Banner' },
-  { id:'trad-03', style:'traditional', label:'Black Panther' },
-  { id:'trad-04', style:'traditional', label:'Dagger Heart' },
-  { id:'trad-05', style:'traditional', label:'Eagle of Liberty' },
-  { id:'neo-01', style:'neo', label:'Ornate Fox' },
-  { id:'neo-02', style:'neo', label:'Crystal Wolf' },
-  { id:'neo-03', style:'neo', label:'Stag Skull' },
-  { id:'neo-04', style:'neo', label:'Octopus Compass' },
-  { id:'jp-01', style:'japanese', label:'Koi Dragon' },
-  { id:'jp-02', style:'japanese', label:'Hannya Mask' },
-  { id:'jp-03', style:'japanese', label:'Tiger & Bamboo' },
-  { id:'jp-04', style:'japanese', label:'Samurai' },
-  { id:'jp-05', style:'japanese', label:'Foo Dog' },
-  { id:'min-01', style:'minimalist', label:'Mountain Moon' },
-  { id:'min-02', style:'minimalist', label:'Sunset Wave' },
-  { id:'min-03', style:'minimalist', label:'One Line Heart' },
-  { id:'min-04', style:'minimalist', label:'Geometric Dragonfly' },
-  { id:'fine-01', style:'fineline', label:'Single Rose' },
-  { id:'fine-02', style:'fineline', label:'Snake & Moon' },
-  { id:'fine-03', style:'fineline', label:'Lavender' },
-  { id:'fine-04', style:'fineline', label:'Butterfly' },
-  { id:'bw-01', style:'blackwork', label:'Sacred Mandala' },
-  { id:'bw-02', style:'blackwork', label:'Raven & Moon' },
-  { id:'bw-03', style:'blackwork', label:'All Seeing Eye' },
-  { id:'bw-04', style:'blackwork', label:'Ornate Skull' },
-  { id:'wc-01', style:'watercolor', label:'Phoenix' },
-  { id:'wc-02', style:'watercolor', label:'Hummingbird' },
-  { id:'wc-03', style:'watercolor', label:'Galaxy' },
-  { id:'real-01', style:'realism', label:'Lion King' },
-  { id:'real-02', style:'realism', label:'Frozen Clock' },
-  { id:'real-03', style:'realism', label:'Lone Wolf' },
-  { id:'real-04', style:'realism', label:'The Eye' },
-  { id:'trib-01', style:'tribal', label:'Tribal Shoulder' },
-  { id:'trib-02', style:'tribal', label:'Manta Ray' },
-  { id:'trib-03', style:'tribal', label:'Warrior Emblem' },
-  { id:'dot-01', style:'dotwork', label:'Stippled Moon' },
-  { id:'dot-02', style:'dotwork', label:'Flower of Life' },
-  { id:'dot-03', style:'dotwork', label:'Honeybee' },
+  // American Traditional (5) — bold, iconic, classic flash with action
+  { id:'trad-01', style:'traditional', label:'Panther & Roses', idea:'a snarling black panther with claws extended bursting through a banner reading NO REGRETS surrounded by traditional roses with dewdrops, classic Sailor Jerry composition with bold red and forest green' },
+  { id:'trad-02', style:'traditional', label:'Heart & Dagger', idea:'an anatomical heart pierced by a curved dagger, blood drops falling, wrapped in a banner reading TIL DEATH, surrounded by classic roses and a snake coiled around the dagger handle' },
+  { id:'trad-03', style:'traditional', label:'Anchor & Swallow', idea:'a sailor anchor wrapped in heavy ship rope with a swallow in flight overhead, crashing waves below and a setting sun, classic american traditional flash composition' },
+  { id:'trad-04', style:'traditional', label:'Eagle & Snake', idea:'an american eagle with massive spread wings holding a rattlesnake in its talons, mountain peaks behind and US flag elements, vintage americana flash sheet' },
+  { id:'trad-05', style:'traditional', label:'Hot Rod Skull', idea:'a hot rod skull wearing aviator goggles with flames erupting behind it, playing cards and dice flying around, classic kustom kulture american traditional' },
+
+  // Neo-Traditional (4) — ornate, gemmed, fantastical
+  { id:'neo-01', style:'neo', label:'Crystal Fox Queen', idea:'an ornate art-deco fox queen wearing a crown of crystallized geode flowers and gold filigree, surrounded by ornamental peonies with gem-tipped stamens, painterly neo-traditional with rich teal magenta gold palette' },
+  { id:'neo-02', style:'neo', label:'Shattered Wolf', idea:'a wolf head emerging from a shattered mirror with crystalline shards floating around it, cosmic galaxy details visible inside its fur, ornate art nouveau flowers framing the composition' },
+  { id:'neo-03', style:'neo', label:'Honeyed Stag', idea:'a stag skull with massive ornate antlers blooming with wildflowers wrapped in jeweled vines, dripping golden honey, hovering moths with glowing wings, painterly depth and dimension' },
+  { id:'neo-04', style:'neo', label:'Kraken Compass', idea:'a kraken octopus with intricate jeweled tentacles coiled around a vintage brass nautical compass, pearls and seashells nestled between coils, deep ocean blues and antique gold accents' },
+
+  // Japanese / Irezumi (5) — dynamic, mythological, traditional irezumi
+  { id:'jp-01', style:'japanese', label:'Ryu Dragon', idea:'a massive Ryu dragon coiling around a stormy tornado of stylized clouds, breathing fire, traditional irezumi hand-poked aesthetic Horiyoshi III inspired, full-sleeve flash composition' },
+  { id:'jp-02', style:'japanese', label:'Hannya Mask', idea:'a fierce horned Hannya demon mask emerging from a mountain of skulls, surrounded by falling cherry blossoms and a blood-red crescent moon, classic irezumi' },
+  { id:'jp-03', style:'japanese', label:'Tiger & Storm', idea:'a fierce Bengal tiger leaping through a bamboo grove with thunderclouds and lightning behind, traditional Japanese finger waves and stylized clouds, dramatic tebori dynamic pose' },
+  { id:'jp-04', style:'japanese', label:'Red Samurai', idea:'a samurai warrior in deep red armor mid-strike with raised katana, cherry blossom petals swirling around him, traditional Japanese cloud bars, ukiyo-e woodblock influence' },
+  { id:'jp-05', style:'japanese', label:'Foo Dog Roar', idea:'a foo dog guardian lion roaring with flames bursting from its mane, surrounded by giant peony blooms and finger waves, deep red black and gold palette' },
+
+  // Minimalist (4) — single-line elegance with non-trivial subjects
+  { id:'min-01', style:'minimalist', label:'One-Line Dragon', idea:'a stylized dragon coiled in a circle drawn with one continuous unbroken line, geometric precision, modern minimalism' },
+  { id:'min-02', style:'minimalist', label:'Sun & Wave', idea:'an ocean wave curling under a circular sun with thin radiating rays, single needle line work hand-drawn ink' },
+  { id:'min-03', style:'minimalist', label:'Bird Pair Heart', idea:'a heart formed by two birds in flight meeting beak-to-beak, single continuous unbroken line, elegant simplicity' },
+  { id:'min-04', style:'minimalist', label:'Geo Dragonfly', idea:'a delicate dragonfly composed of geometric triangles with thin curling antennae, modernist minimalism, clean precise lines' },
+
+  // Fine Line (4) — delicate, intricate, single-needle precision
+  { id:'fine-01', style:'fineline', label:'Single Rose', idea:'a delicate single-stem rose with three layers of intricate petals, water dewdrops on petals, thorny stem, leaves with tiny veins, hyper-detailed fine line single needle' },
+  { id:'fine-02', style:'fineline', label:'Cobra & Moons', idea:'a slender cobra coiled around a vertical row of moon phases from full to new with tiny astrological symbols and stars filling the negative space, fine line single needle' },
+  { id:'fine-03', style:'fineline', label:'Lavender & Bee', idea:'a botanical lavender sprig in extreme detail with tiny bees flying around it, dotwork shading on petals, single needle precision, romantic feminine fine line' },
+  { id:'fine-04', style:'fineline', label:'Mandala Butterfly', idea:'a swallowtail butterfly with mandala-style intricate sacred-geometry patterns on its wings, antennae curling with delicate flourishes, fine line precision' },
+
+  // Blackwork (4) — ornate, geometric, heavy contrast
+  { id:'bw-01', style:'blackwork', label:'Sacred Mandala', idea:'an intricate sacred geometry mandala with sun rays radiating outward, ornamental Persian-style filigree, sharp negative space, hypnotic detailed pattern' },
+  { id:'bw-02', style:'blackwork', label:'Raven & Moon', idea:'a raven perched on a crescent moon with wings spread showing intricate feather detail, surrounded by stars and ornate Victorian filigree' },
+  { id:'bw-03', style:'blackwork', label:'All-Seeing Eye', idea:'an all-seeing eye inside a sacred geometry triangle with rays of light, Egyptian ankh and ouroboros snake patterns, ornate ornamental frame' },
+  { id:'bw-04', style:'blackwork', label:'Sugar Skull', idea:'an ornate sugar skull with intricate Day-of-the-Dead patterns, roses in eye sockets, filigree on forehead, decorative pattern bands, blackwork heavy contrast' },
+
+  // Watercolor (3) — vibrant, expressive, painterly
+  { id:'wc-01', style:'watercolor', label:'Rebirth Phoenix', idea:'a phoenix in mid-rebirth bursting from flames with vibrant red orange yellow paint splashes blending into deep burgundy, feathers dissolving into watercolor washes, expressive impressionist' },
+  { id:'wc-02', style:'watercolor', label:'Hummingbird', idea:'a hummingbird drinking from a tropical flower with rainbow paint splash explosions, dripping watercolor textures, expressive impressionist style' },
+  { id:'wc-03', style:'watercolor', label:'Galaxy Bloom', idea:'an abstract galaxy with nebulas planets spiral arms and shooting stars, cosmic colors blending in fluid watercolor washes with paint drips' },
+
+  // B&W Realism (4) — hyperrealistic, dramatic shading
+  { id:'real-01', style:'realism', label:'Lion Portrait', idea:'a hyperrealistic male lion portrait with windblown mane, scarred eye, intense yellow gaze, photorealistic black and grey single-pin shading, dramatic chiaroscuro' },
+  { id:'real-02', style:'realism', label:'Frozen Pocketwatch', idea:'a vintage pocket watch frozen at 4:20 with cracked glass, gears visible behind, smoke curling from the mechanism, hyper-detailed black and grey realism' },
+  { id:'real-03', style:'realism', label:'Lone Wolf Howl', idea:'a lone wolf howling at a full moon, hyperrealistic fur shading, mountain silhouette behind, atmospheric depth, hyperdetailed realism' },
+  { id:'real-04', style:'realism', label:'Forest Eye', idea:'a hyperrealistic human eye with detailed iris reflecting a forest, eyelash detail, single tear running down, micro-realism precision' },
+
+  // Tribal (3) — bold solid black geometric
+  { id:'trib-01', style:'tribal', label:'Polynesian Sun', idea:'a polynesian shoulder armor pattern with sun ocean wave shark-tooth and turtle motifs, deep solid black ink, traditional Marquesan composition' },
+  { id:'trib-02', style:'tribal', label:'Maori Manta Ray', idea:'a maori manta ray covered in intricate kirituhi spiral patterns and shark teeth border bands, traditional pe-a-style composition' },
+  { id:'trib-03', style:'tribal', label:'Samoan Warrior', idea:'a samoan warrior tribal emblem with crossed spears and tribal rosettes, ornamental shark motifs, sharp angular precision, deep solid black' },
+
+  // Dotwork (3) — pure stippling, sacred geometry
+  { id:'dot-01', style:'dotwork', label:'Stippled Moon', idea:'a stippled crescent moon with detailed lunar surface craters, tiny stars in pure pointillism, sacred geometry frame, dotwork only' },
+  { id:'dot-02', style:'dotwork', label:'Flower of Life', idea:'a sacred geometry flower of life pattern in pure dotwork stippling, intricate sun rays radiating outward, ritual ornamental design' },
+  { id:'dot-03', style:'dotwork', label:'Honeybee Dot', idea:'a stippled honeybee with hexagonal honeycomb background, ornate filigree wings, ritual sacred geometry composition, pure dotwork stippling' },
 ];
 
 const logEl = document.getElementById('log');
@@ -99,15 +116,16 @@ const statusEl = document.getElementById('status');
 const counterEl = document.getElementById('counter');
 const gridEl = document.getElementById('grid');
 const runBtn = document.getElementById('run');
-const finishEl = document.getElementById('finish');
+const dlBtn = document.getElementById('dl');
 
+let zip = new JSZip();
+let manifest = [];
 let done = 0;
 
 function log(msg) {
   logEl.innerHTML += '\n' + new Date().toLocaleTimeString() + '  ' + msg;
   logEl.scrollTop = logEl.scrollHeight;
 }
-
 function updateProgress() {
   const pct = Math.round((done / DESIGNS.length) * 100);
   barEl.style.width = pct + '%';
@@ -122,20 +140,35 @@ DESIGNS.forEach(d => {
   gridEl.appendChild(c);
 });
 
-async function buildOne(d) {
+async function generateOne(d) {
   const card = document.getElementById(`card-${d.id}`);
   card.className = 'aspect-square rounded-lg skeleton';
-  log(`[gen]   ${d.id} — ${d.label} (${d.style})`);
+  log(`[gen]   ${d.id} — ${d.label}`);
   try {
-    const r = await fetch(`/api/gallery-build?id=${encodeURIComponent(d.id)}`);
+    const r = await fetch('/api/generate', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ idea: d.idea, style: d.style, count: 1 }),
+    });
     const json = await r.json();
     if (!r.ok) throw new Error(json.error || `HTTP ${r.status}`);
-    log(`[${json.status}]  ${d.id}${json.bytes ? ` (${(json.bytes/1024).toFixed(0)}kb)` : ''}`);
-    // Show the generated image
+    const url = json.designs?.[0]?.url;
+    if (!url) throw new Error('no url');
+
+    const img = await fetch(url);
+    if (!img.ok) throw new Error(`image fetch ${img.status}`);
+    const blob = await img.blob();
+    const arrayBuffer = await blob.arrayBuffer();
+    zip.file(`${d.id}.png`, arrayBuffer);
+    manifest.push({ id: d.id, style: d.style, label: d.label, file: `images/examples/${d.id}.png` });
+
+    const objectUrl = URL.createObjectURL(blob);
     card.className = 'tat-paper aspect-square rounded-lg overflow-hidden';
-    card.innerHTML = `<img src="/api/gallery-image?id=${encodeURIComponent(d.id)}&v=${Date.now()}" class="w-full h-full object-contain p-1">`;
+    card.innerHTML = `<img src="${objectUrl}" class="w-full h-full object-contain p-1">`;
+    log(`[ok]    ${d.id} (${(blob.size/1024).toFixed(0)}kb)`);
   } catch (err) {
     log(`[fail]  ${d.id}: ${err.message}`);
+    manifest.push({ id: d.id, style: d.style, label: d.label, file: null, error: err.message });
     card.className = 'aspect-square rounded-lg bg-red-900/40 border border-red-800 flex items-center justify-center text-[10px] text-red-300';
     card.textContent = `${d.id} ✗`;
   }
@@ -145,20 +178,29 @@ async function buildOne(d) {
 
 runBtn.addEventListener('click', async () => {
   runBtn.disabled = true; runBtn.textContent = 'Generating...';
-  done = 0; updateProgress();
-  log('Starting batch generation. ~12 minutes for first run.');
+  zip = new JSZip(); manifest = []; done = 0; updateProgress();
+  log('Starting batch generation. ~12 minutes.');
   statusEl.textContent = 'Generating...';
   const start = Date.now();
-  // Sequential calls — Replicate is fastest one-at-a-time, and this avoids
-  // a thundering-herd on Netlify's cold-starts.
-  for (const d of DESIGNS) {
-    await buildOne(d);
-  }
+  for (const d of DESIGNS) { await generateOne(d); }
   const elapsed = ((Date.now() - start)/1000).toFixed(0);
-  log(`---\nDone in ${elapsed}s.`);
-  statusEl.textContent = 'Done';
+  log(`---\nDone in ${elapsed}s. Building zip...`);
+  zip.file('manifest.json', JSON.stringify(manifest, null, 2));
+  statusEl.textContent = 'Ready to download';
+  dlBtn.classList.remove('hidden'); dlBtn.disabled = false;
   runBtn.textContent = '✓ Generation complete';
-  finishEl.classList.remove('hidden');
+  log('Zip ready. Click "Download zip".');
+});
+
+dlBtn.addEventListener('click', async () => {
+  dlBtn.disabled = true; dlBtn.textContent = 'Building zip...';
+  const blob = await zip.generateAsync({ type: 'blob' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url; a.download = 'tattoodesignr-gallery.zip'; a.click();
+  URL.revokeObjectURL(url);
+  dlBtn.textContent = '⬇ Download zip';
+  dlBtn.disabled = false;
 });
 </script>
 </body>
