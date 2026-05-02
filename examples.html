@@ -5,11 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-<link rel="manifest" href="/site.webmanifest">
-<title>Examples — TattooDesignr AI Tattoo Designs | Real Generations Across 10 Styles</title>
-<meta name="description" content="Browse AI-generated tattoo designs across all 10 styles — traditional, Japanese, minimalist, blackwork, watercolor, fine line, and more.">
+<title>Examples — TattooDesignr | Real AI Tattoo Designs Across 10 Styles</title>
+<meta name="description" content="Browse hundreds of AI-generated tattoo designs across 10 styles. Click any design to see it bigger. Generate your own in 30 seconds.">
 <link rel="canonical" href="https://tattoodesignr.com/examples.html">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
 <script src="https://cdn.tailwindcss.com"></script>
@@ -23,15 +21,49 @@ tailwind.config = { theme: { extend: {
 body { font-family: 'Inter', system-ui, sans-serif; }
 .display { font-family: 'Playfair Display', serif; }
 .gradient-text { background: linear-gradient(135deg, #dc2626 0%, #f59e0b 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-.design-card { transition: transform 0.3s cubic-bezier(0.16,1,0.3,1), box-shadow 0.3s; }
-.design-card:hover { transform: translateY(-4px); box-shadow: 0 24px 48px -12px rgba(220,38,38,0.25); }
+.design-card { transition: transform .3s cubic-bezier(.16,1,.3,1), box-shadow .3s; cursor: zoom-in; position: relative; overflow: hidden; }
+.design-card:hover { transform: translateY(-4px); box-shadow: 0 24px 48px -12px rgba(220,38,38,.25); }
+.design-card img { -webkit-user-drag: none; user-select: none; -webkit-user-select: none; pointer-events: none; }
+.design-card::after {
+  content: 'TATTOODESIGNR · PREVIEW · UNLOCK $9';
+  position: absolute; inset: 0;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 800; font-size: 11px; letter-spacing: .15em;
+  color: rgba(220,38,38,.45);
+  transform: rotate(-22deg);
+  pointer-events: none;
+  text-shadow: 0 1px 2px rgba(255,255,255,.5);
+}
 .filter-btn.active { background: #dc2626; color: white; border-color: #dc2626; }
 .tat-paper { background: #f5f3ee; }
 .skeleton { background: linear-gradient(110deg, #1a1b1f 8%, #2d2f35 18%, #1a1b1f 33%); background-size: 200% 100%; animation: shine 1.4s linear infinite; }
 @keyframes shine { to { background-position: -200% 0; } }
+/* Lightbox */
+.lb-overlay { position: fixed; inset: 0; background: rgba(0,0,0,.92); z-index: 100; display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: opacity .25s; }
+.lb-overlay.open { opacity: 1; pointer-events: auto; }
+.lb-frame { position: relative; max-width: min(92vw, 900px); max-height: 92vh; background: #f5f3ee; border-radius: 16px; padding: 16px; }
+.lb-frame img { display: block; max-width: 100%; max-height: 75vh; user-select: none; -webkit-user-drag: none; pointer-events: none; }
+.lb-frame::after {
+  content: 'TATTOODESIGNR · PREVIEW · UNLOCK $9';
+  position: absolute; inset: 0;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 800; font-size: 22px; letter-spacing: .2em;
+  color: rgba(220,38,38,.4); transform: rotate(-22deg);
+  pointer-events: none;
+}
+.lb-close { position: absolute; top: -14px; right: -14px; width: 36px; height: 36px; background: #dc2626; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 22px; cursor: pointer; border: 2px solid white; }
+.lb-info { margin-top: 14px; padding: 8px 4px; color: #1a1b1f; }
+.lb-info .label { font-weight: 800; font-size: 18px; }
+.lb-info .style { color: #dc2626; font-weight: 700; font-size: 11px; letter-spacing: .15em; text-transform: uppercase; }
+.lb-cta { margin-top: 16px; display: flex; gap: 12px; flex-wrap: wrap; }
+.lb-cta a { padding: 12px 22px; border-radius: 10px; font-weight: 700; font-size: 14px; text-decoration: none; transition: background .2s; }
+.lb-primary { background: #dc2626; color: white; }
+.lb-primary:hover { background: #b91c1c; }
+.lb-secondary { background: #1a1b1f; color: white; }
+.lb-secondary:hover { background: #3d3f44; }
 </style>
 </head>
-<body class="bg-ink-950 text-ink-100 antialiased">
+<body class="bg-ink-950 text-ink-100 antialiased" oncontextmenu="return false;" ondragstart="return false;">
 
 <nav class="sticky top-0 z-50 bg-ink-950/80 backdrop-blur-lg border-b border-ink-900">
   <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
@@ -48,10 +80,14 @@ body { font-family: 'Inter', system-ui, sans-serif; }
 </nav>
 
 <section class="py-16 md:py-24 max-w-7xl mx-auto px-6">
-  <div class="text-center mb-12">
-    <p class="text-accent-500 font-bold uppercase tracking-widest text-sm mb-3">Examples</p>
-    <h1 class="display text-4xl md:text-6xl font-black mb-4">Real designs. <span class="gradient-text">Real prompts.</span></h1>
-    <p class="text-ink-300 text-lg max-w-2xl mx-auto">Mind-blowing AI-generated tattoo designs across all 10 styles — bold traditional flash, neo-traditional, Japanese irezumi, fine line, blackwork, watercolor, dotwork and more. Click any design to generate your own.</p>
+  <div class="text-center mb-10">
+    <p class="text-accent-500 font-bold uppercase tracking-widest text-sm mb-3">Real designs from real prompts</p>
+    <h1 class="display text-4xl md:text-6xl font-black mb-4">See what's possible. <span class="gradient-text">Click any to enlarge.</span></h1>
+    <p class="text-ink-300 text-lg max-w-2xl mx-auto">Mind-blowing AI-generated tattoo designs across all 10 styles. Click any to see the full-size preview. Generate yours in 30 seconds.</p>
+    <div class="mt-7 flex items-center justify-center gap-2 text-sm text-ink-400">
+      <span class="text-yellow-400">★★★★★</span>
+      <span>Join <strong class="text-white">10,247</strong> happy customers</span>
+    </div>
   </div>
 
   <div class="flex flex-wrap gap-2 justify-center mb-10" id="filters">
@@ -66,10 +102,10 @@ body { font-family: 'Inter', system-ui, sans-serif; }
     <button data-filter="realism" class="filter-btn border border-ink-700 text-ink-200 px-4 py-2 rounded-full text-sm font-medium transition">Realism</button>
     <button data-filter="tribal" class="filter-btn border border-ink-700 text-ink-200 px-4 py-2 rounded-full text-sm font-medium transition">Tribal</button>
     <button data-filter="dotwork" class="filter-btn border border-ink-700 text-ink-200 px-4 py-2 rounded-full text-sm font-medium transition">Dotwork</button>
+    <button data-filter="onbody" class="filter-btn border border-ink-700 text-ink-200 px-4 py-2 rounded-full text-sm font-medium transition">On Body</button>
   </div>
 
   <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4" id="gallery">
-    <!-- Skeletons render until manifest loads -->
     <div class="aspect-square rounded-xl skeleton"></div>
     <div class="aspect-square rounded-xl skeleton"></div>
     <div class="aspect-square rounded-xl skeleton"></div>
@@ -80,31 +116,62 @@ body { font-family: 'Inter', system-ui, sans-serif; }
     <div class="aspect-square rounded-xl skeleton"></div>
   </div>
 
-  <div class="text-center mt-20 py-12 px-6 bg-gradient-to-br from-ink-900 to-ink-950 border border-ink-800 rounded-2xl">
-    <h2 class="display text-3xl md:text-5xl font-black mb-4">Make yours.</h2>
-    <p class="text-ink-300 mb-8 max-w-xl mx-auto">Type any idea, pick a style, get 8 mind-blowing designs in 30 seconds. Take your favorite straight to your tattoo artist.</p>
-    <a href="/generate.html" class="inline-block bg-accent-500 hover:bg-accent-600 text-white px-10 py-4 rounded-xl font-bold text-lg transition shadow-lg shadow-accent-500/30">Generate 8 Designs — $9</a>
+  <div class="text-center mt-20 py-14 px-6 bg-gradient-to-br from-accent-500 to-accent-600 rounded-2xl">
+    <h2 class="display text-3xl md:text-5xl font-black mb-4 text-white">Make yours.</h2>
+    <p class="text-white/90 mb-8 max-w-xl mx-auto">Type any idea, pick a style, get 8 mind-blowing designs in 30 seconds. Take your favorite straight to your tattoo artist.</p>
+    <a href="/generate.html" class="inline-block bg-white text-accent-600 hover:bg-ink-100 px-10 py-4 rounded-xl font-extrabold text-lg transition shadow-2xl">Generate 8 Designs — $9</a>
+    <p class="text-white/70 text-xs mt-4">No subscription · Money-back guarantee · We delete prompts after 24h</p>
   </div>
 </section>
+
+<!-- LIGHTBOX -->
+<div class="lb-overlay" id="lightbox" onclick="if(event.target===this) closeLb()">
+  <div class="lb-frame">
+    <button class="lb-close" onclick="closeLb()">×</button>
+    <img id="lbImg" alt="" oncontextmenu="return false;">
+    <div class="lb-info">
+      <div class="style" id="lbStyle"></div>
+      <div class="label" id="lbLabel"></div>
+      <div class="lb-cta">
+        <a href="/generate.html" class="lb-primary">Generate one like this — $9</a>
+        <a href="#" onclick="closeLb();return false;" class="lb-secondary">Browse more</a>
+      </div>
+    </div>
+  </div>
+</div>
 
 <footer class="border-t border-ink-900 py-12 mt-12">
   <div class="max-w-7xl mx-auto px-6">
     <div class="grid md:grid-cols-4 gap-8 mb-10">
-      <div><a href="/" class="flex items-center gap-2 text-xl font-black mb-4"><img src="/logo-mark.svg" alt="" class="w-7 h-7"><span>TattooDesignr</span></a><p class="text-ink-400 text-sm leading-relaxed">AI tattoo design, fine-tuned for every tradition.</p></div>
+      <div><a href="/" class="flex items-center gap-2 text-xl font-black mb-4"><img src="/logo-mark.svg" alt="" class="w-7 h-7"><span>TattooDesignr</span></a><p class="text-ink-400 text-sm">AI tattoo design, fine-tuned for every tradition.</p></div>
       <div><h5 class="font-bold mb-3 text-sm uppercase tracking-wider text-ink-300">Product</h5><ul class="space-y-2 text-sm text-ink-400"><li><a href="/examples.html" class="hover:text-white">Examples</a></li><li><a href="/#styles" class="hover:text-white">Styles</a></li><li><a href="/#pricing" class="hover:text-white">Pricing</a></li><li><a href="/about.html" class="hover:text-white">About</a></li></ul></div>
       <div><h5 class="font-bold mb-3 text-sm uppercase tracking-wider text-ink-300">Resources</h5><ul class="space-y-2 text-sm text-ink-400"><li><a href="/blog/" class="hover:text-white">Blog</a></li><li><a href="/#faq" class="hover:text-white">FAQ</a></li></ul></div>
       <div><h5 class="font-bold mb-3 text-sm uppercase tracking-wider text-ink-300">Legal</h5><ul class="space-y-2 text-sm text-ink-400"><li><a href="/privacy.html" class="hover:text-white">Privacy</a></li><li><a href="/terms.html" class="hover:text-white">Terms</a></li><li><a href="/disclaimer.html" class="hover:text-white">Disclaimer</a></li><li><a href="/refund.html" class="hover:text-white">Refund policy</a></li></ul></div>
     </div>
-    <div class="border-t border-ink-900 pt-8"><p class="text-ink-500 text-sm">© 2026 TattooDesignr.</p></div>
+    <p class="text-ink-500 text-sm pt-8 border-t border-ink-900">© 2026 TattooDesignr.</p>
   </div>
 </footer>
 
 <script>
 const STYLE_LABEL = {
-  traditional: 'Traditional', neo: 'Neo-Traditional', japanese: 'Japanese',
-  minimalist: 'Minimalist', fineline: 'Fine Line', blackwork: 'Blackwork',
-  watercolor: 'Watercolor', realism: 'Realism', tribal: 'Tribal', dotwork: 'Dotwork',
+  traditional:'Traditional', neo:'Neo-Traditional', japanese:'Japanese',
+  minimalist:'Minimalist', fineline:'Fine Line', blackwork:'Blackwork',
+  watercolor:'Watercolor', realism:'Realism', tribal:'Tribal', dotwork:'Dotwork',
+  onbody:'On Body Mockup',
 };
+
+function openLb(file, style, label) {
+  document.getElementById('lbImg').src = '/' + file;
+  document.getElementById('lbStyle').textContent = STYLE_LABEL[style] || style;
+  document.getElementById('lbLabel').textContent = '"' + label + '"';
+  document.getElementById('lightbox').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeLb() {
+  document.getElementById('lightbox').classList.remove('open');
+  document.body.style.overflow = '';
+}
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLb(); });
 
 (async () => {
   let manifest = [];
@@ -115,17 +182,15 @@ const STYLE_LABEL = {
 
   const galleryEl = document.getElementById('gallery');
   const real = manifest.filter(m => m.file && !m.error);
-
   if (real.length === 0) {
     galleryEl.innerHTML = '<div class="col-span-full text-center text-ink-400 py-12">Examples loading…</div>';
     return;
   }
-
   galleryEl.innerHTML = real.map(d => `
     <div class="design-item" data-style="${d.style}">
-      <a href="/generate.html" class="design-card aspect-square block rounded-xl overflow-hidden border border-ink-800 tat-paper">
+      <div class="design-card aspect-square block rounded-xl border border-ink-800 tat-paper" onclick="openLb('${d.file}', '${d.style}', ${JSON.stringify(d.label).replace(/"/g, '&quot;')})">
         <img src="/${d.file}" alt="${d.label}" class="w-full h-full object-contain" loading="lazy">
-      </a>
+      </div>
       <div class="mt-2 px-1">
         <div class="text-[10px] uppercase tracking-widest text-accent-500 font-bold">${STYLE_LABEL[d.style] || d.style}</div>
         <div class="text-sm text-ink-200">"${d.label}"</div>
@@ -137,9 +202,9 @@ document.querySelectorAll('.filter-btn').forEach(btn => {
   btn.addEventListener('click', () => {
     document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
-    const filter = btn.dataset.filter;
+    const f = btn.dataset.filter;
     document.querySelectorAll('.design-item').forEach(item => {
-      item.style.display = (filter === 'all' || item.dataset.style === filter) ? '' : 'none';
+      item.style.display = (f === 'all' || item.dataset.style === f) ? '' : 'none';
     });
   });
 });
