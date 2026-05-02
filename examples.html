@@ -27,6 +27,8 @@ body { font-family: 'Inter', system-ui, sans-serif; }
 .design-card:hover { transform: translateY(-4px); box-shadow: 0 24px 48px -12px rgba(220,38,38,0.25); }
 .filter-btn.active { background: #dc2626; color: white; border-color: #dc2626; }
 .tat-paper { background: #f5f3ee; }
+.skeleton { background: linear-gradient(110deg, #1a1b1f 8%, #2d2f35 18%, #1a1b1f 33%); background-size: 200% 100%; animation: shine 1.4s linear infinite; }
+@keyframes shine { to { background-position: -200% 0; } }
 </style>
 </head>
 <body class="bg-ink-950 text-ink-100 antialiased">
@@ -49,7 +51,7 @@ body { font-family: 'Inter', system-ui, sans-serif; }
   <div class="text-center mb-12">
     <p class="text-accent-500 font-bold uppercase tracking-widest text-sm mb-3">Examples</p>
     <h1 class="display text-4xl md:text-6xl font-black mb-4">Real designs. <span class="gradient-text">Real prompts.</span></h1>
-    <p class="text-ink-300 text-lg max-w-2xl mx-auto">36 AI-generated tattoo designs across all 10 styles — bold traditional flash, modern minimalist, intricate fine line, watercolor, dotwork and more. Click any design to generate your own.</p>
+    <p class="text-ink-300 text-lg max-w-2xl mx-auto">Mind-blowing AI-generated tattoo designs across all 10 styles — bold traditional flash, neo-traditional, Japanese irezumi, fine line, blackwork, watercolor, dotwork and more. Click any design to generate your own.</p>
   </div>
 
   <div class="flex flex-wrap gap-2 justify-center mb-10" id="filters">
@@ -67,535 +69,20 @@ body { font-family: 'Inter', system-ui, sans-serif; }
   </div>
 
   <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4" id="gallery">
-
-    <!-- 1 Traditional · Heart with banner -->
-    <div class="design-item" data-style="traditional">
-      <a href="/generate.html" class="design-card aspect-square block rounded-xl overflow-hidden border border-ink-800 tat-paper">
-        <svg viewBox="0 0 200 200" class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
-          <g fill="#dc2626" stroke="#0e0f12" stroke-width="3" stroke-linejoin="round"><path d="M100 60 C 75 35, 35 55, 50 95 C 60 120, 100 150, 100 150 C 100 150, 140 120, 150 95 C 165 55, 125 35, 100 60 Z"/></g>
-          <path d="M40 130 Q 100 115, 160 130 L 160 155 Q 100 140, 40 155 Z" fill="#f59e0b" stroke="#0e0f12" stroke-width="3" stroke-linejoin="round"/>
-          <text x="100" y="148" text-anchor="middle" fill="#0e0f12" font-family="Georgia,serif" font-weight="700" font-size="13" letter-spacing="2">FOREVER</text>
-        </svg>
-      </a>
-      <div class="mt-2 px-1"><div class="text-[10px] uppercase tracking-widest text-accent-500 font-bold">Traditional</div><div class="text-sm text-ink-200">"Heart with banner"</div></div>
-    </div>
-
-    <!-- 2 Traditional · Swallow -->
-    <div class="design-item" data-style="traditional">
-      <a href="/generate.html" class="design-card aspect-square block rounded-xl overflow-hidden border border-ink-800 tat-paper">
-        <svg viewBox="0 0 200 200" class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
-          <g fill="#1e3a8a" stroke="#0e0f12" stroke-width="2.5" stroke-linejoin="round">
-            <path d="M30 100 Q 60 60, 100 80 Q 140 60, 170 100 Q 140 95, 100 110 Q 60 95, 30 100 Z"/>
-            <path d="M85 80 Q 100 50, 115 80 Q 100 95, 85 80 Z" fill="#dc2626"/>
-            <path d="M100 110 L 90 130 L 110 130 L 105 145 L 95 145 L 100 130 Z"/>
-          </g>
-          <g fill="#f59e0b" stroke="#0e0f12" stroke-width="1.5"><circle cx="105" cy="83" r="3"/></g>
-        </svg>
-      </a>
-      <div class="mt-2 px-1"><div class="text-[10px] uppercase tracking-widest text-accent-500 font-bold">Traditional</div><div class="text-sm text-ink-200">"Swallow in flight"</div></div>
-    </div>
-
-    <!-- 3 Traditional · Anchor -->
-    <div class="design-item" data-style="traditional">
-      <a href="/generate.html" class="design-card aspect-square block rounded-xl overflow-hidden border border-ink-800 tat-paper">
-        <svg viewBox="0 0 200 200" class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
-          <g fill="none" stroke="#0e0f12" stroke-width="3" stroke-linejoin="round" stroke-linecap="round">
-            <circle cx="100" cy="50" r="14"/><path d="M100 64 L 100 145"/><path d="M70 110 L 100 130 L 130 110"/><path d="M70 110 Q 60 100, 65 88"/><path d="M130 110 Q 140 100, 135 88"/><path d="M85 90 L 115 90"/>
-          </g>
-          <g fill="#dc2626" stroke="#0e0f12" stroke-width="2"><path d="M100 32 L 100 18"/></g>
-        </svg>
-      </a>
-      <div class="mt-2 px-1"><div class="text-[10px] uppercase tracking-widest text-accent-500 font-bold">Traditional</div><div class="text-sm text-ink-200">"Anchor classic"</div></div>
-    </div>
-
-    <!-- 4 Traditional · Dagger heart -->
-    <div class="design-item" data-style="traditional">
-      <a href="/generate.html" class="design-card aspect-square block rounded-xl overflow-hidden border border-ink-800 tat-paper">
-        <svg viewBox="0 0 200 200" class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
-          <g fill="#dc2626" stroke="#0e0f12" stroke-width="2.5" stroke-linejoin="round"><path d="M100 70 C 80 50, 50 60, 60 90 C 65 110, 100 140, 100 140 C 100 140, 135 110, 140 90 C 150 60, 120 50, 100 70 Z"/></g>
-          <g fill="#f5f3ee" stroke="#0e0f12" stroke-width="2"><path d="M100 30 L 105 90 L 95 90 Z"/><rect x="93" y="86" width="14" height="6"/></g>
-          <g fill="#f59e0b"><circle cx="80" cy="100" r="4"/><circle cx="120" cy="100" r="4"/></g>
-        </svg>
-      </a>
-      <div class="mt-2 px-1"><div class="text-[10px] uppercase tracking-widest text-accent-500 font-bold">Traditional</div><div class="text-sm text-ink-200">"Dagger through heart"</div></div>
-    </div>
-
-    <!-- 5 Traditional · Eagle -->
-    <div class="design-item" data-style="traditional">
-      <a href="/generate.html" class="design-card aspect-square block rounded-xl overflow-hidden border border-ink-800 tat-paper">
-        <svg viewBox="0 0 200 200" class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
-          <g fill="#a16207" stroke="#0e0f12" stroke-width="2.5" stroke-linejoin="round"><path d="M100 70 Q 60 65, 35 90 Q 60 95, 80 100 L 95 110 L 100 145 L 105 110 L 120 100 Q 140 95, 165 90 Q 140 65, 100 70 Z"/></g>
-          <g fill="#f5f3ee" stroke="#0e0f12" stroke-width="2"><circle cx="100" cy="65" r="14"/></g>
-          <g fill="#fbbf24"><path d="M95 65 L 105 65 L 100 75 Z"/></g>
-          <g fill="#0e0f12"><circle cx="96" cy="62" r="2"/></g>
-          <g fill="#dc2626"><circle cx="60" cy="35" r="3"/><circle cx="100" cy="30" r="4"/><circle cx="140" cy="35" r="3"/></g>
-        </svg>
-      </a>
-      <div class="mt-2 px-1"><div class="text-[10px] uppercase tracking-widest text-accent-500 font-bold">Traditional</div><div class="text-sm text-ink-200">"Eagle with stars"</div></div>
-    </div>
-
-    <!-- 6 Neo-Traditional · Fox -->
-    <div class="design-item" data-style="neo">
-      <a href="/generate.html" class="design-card aspect-square block rounded-xl overflow-hidden border border-ink-800 tat-paper">
-        <svg viewBox="0 0 200 200" class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
-          <g fill="#ea580c" stroke="#0e0f12" stroke-width="2.5" stroke-linejoin="round"><path d="M70 60 L 80 35 L 90 60 Z"/><path d="M130 60 L 120 35 L 110 60 Z"/><path d="M65 90 Q 75 60, 100 70 Q 125 60, 135 90 L 130 130 L 110 145 L 90 145 L 70 130 Z"/></g>
-          <g fill="#f5f3ee" stroke="#0e0f12" stroke-width="2"><path d="M90 95 Q 100 105, 110 95 L 105 130 L 95 130 Z"/></g>
-          <g fill="#0e0f12"><circle cx="83" cy="90" r="3.5"/><circle cx="117" cy="90" r="3.5"/><path d="M100 110 L 95 116 L 105 116 Z"/></g>
-          <g fill="#dc2626" stroke="#0e0f12" stroke-width="1.5"><circle cx="50" cy="50" r="6"/><circle cx="150" cy="50" r="6"/></g>
-        </svg>
-      </a>
-      <div class="mt-2 px-1"><div class="text-[10px] uppercase tracking-widest text-accent-500 font-bold">Neo-Traditional</div><div class="text-sm text-ink-200">"Fox & flowers"</div></div>
-    </div>
-
-    <!-- 7 Neo-Traditional · Snake -->
-    <div class="design-item" data-style="neo">
-      <a href="/generate.html" class="design-card aspect-square block rounded-xl overflow-hidden border border-ink-800 tat-paper">
-        <svg viewBox="0 0 200 200" class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
-          <g fill="#15803d" stroke="#0e0f12" stroke-width="2.5" stroke-linejoin="round"><path d="M50 160 Q 80 140, 100 150 Q 130 165, 150 140 Q 165 110, 140 80 Q 110 60, 90 80 Q 70 100, 100 110 Q 130 115, 130 95 Q 125 80, 110 85 Q 105 90, 115 95"/></g>
-          <g fill="#0e0f12"><circle cx="113" cy="93" r="2"/></g>
-          <g fill="#dc2626" stroke="#0e0f12" stroke-width="1.5"><circle cx="60" cy="50" r="9"/></g>
-          <g fill="#fbbf24"><circle cx="55" cy="46" r="3"/><circle cx="160" cy="55" r="4"/></g>
-        </svg>
-      </a>
-      <div class="mt-2 px-1"><div class="text-[10px] uppercase tracking-widest text-accent-500 font-bold">Neo-Traditional</div><div class="text-sm text-ink-200">"Snake & rose"</div></div>
-    </div>
-
-    <!-- 8 Neo-Traditional · Skull -->
-    <div class="design-item" data-style="neo">
-      <a href="/generate.html" class="design-card aspect-square block rounded-xl overflow-hidden border border-ink-800 tat-paper">
-        <svg viewBox="0 0 200 200" class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
-          <g fill="#f5f3ee" stroke="#0e0f12" stroke-width="3" stroke-linejoin="round"><path d="M65 70 Q 65 35, 100 35 Q 135 35, 135 70 Q 135 100, 125 115 L 125 145 L 75 145 L 75 115 Q 65 100, 65 70 Z"/></g>
-          <g fill="#0e0f12"><ellipse cx="83" cy="80" rx="9" ry="11"/><ellipse cx="117" cy="80" rx="9" ry="11"/><path d="M93 100 L 100 113 L 107 100 Z"/></g>
-          <g fill="#dc2626" stroke="#0e0f12" stroke-width="1.5"><circle cx="50" cy="60" r="6"/><circle cx="150" cy="60" r="6"/></g>
-          <g fill="none" stroke="#0e0f12" stroke-width="2"><path d="M85 120 L 90 130 L 95 120 L 100 130 L 105 120 L 110 130 L 115 120"/></g>
-        </svg>
-      </a>
-      <div class="mt-2 px-1"><div class="text-[10px] uppercase tracking-widest text-accent-500 font-bold">Neo-Traditional</div><div class="text-sm text-ink-200">"Skull with rose"</div></div>
-    </div>
-
-    <!-- 9 Japanese · Koi -->
-    <div class="design-item" data-style="japanese">
-      <a href="/generate.html" class="design-card aspect-square block rounded-xl overflow-hidden border border-ink-800 tat-paper">
-        <svg viewBox="0 0 200 200" class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
-          <g fill="#dc2626" stroke="#0e0f12" stroke-width="2.5" stroke-linejoin="round"><path d="M100 30 C 70 30, 50 60, 60 100 C 65 120, 80 140, 105 150 C 120 142, 130 130, 130 118 C 145 128, 160 120, 165 105 C 150 92, 145 78, 150 58 C 130 70, 110 65, 100 50 C 95 38, 100 30, 100 30 Z"/></g>
-          <g fill="#0e0f12"><circle cx="125" cy="68" r="4"/></g>
-          <g fill="none" stroke="#0e0f12" stroke-width="2"><path d="M30 165 Q 50 155, 70 165 T 110 165 T 150 165 T 190 165M20 175 Q 40 168, 60 175 T 100 175 T 140 175 T 180 175"/></g>
-        </svg>
-      </a>
-      <div class="mt-2 px-1"><div class="text-[10px] uppercase tracking-widest text-accent-500 font-bold">Japanese</div><div class="text-sm text-ink-200">"Koi & waves"</div></div>
-    </div>
-
-    <!-- 10 Japanese · Dragon -->
-    <div class="design-item" data-style="japanese">
-      <a href="/generate.html" class="design-card aspect-square block rounded-xl overflow-hidden border border-ink-800 tat-paper">
-        <svg viewBox="0 0 200 200" class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
-          <g fill="#1e40af" stroke="#0e0f12" stroke-width="2.5" stroke-linejoin="round"><path d="M30 100 Q 50 70, 80 90 Q 100 110, 130 95 Q 150 80, 170 105 Q 160 120, 140 115 Q 120 130, 100 125 Q 80 140, 60 130 Q 40 120, 30 100 Z"/></g>
-          <g fill="#dc2626"><circle cx="50" cy="95" r="4"/></g>
-          <g fill="#f59e0b" opacity="0.7"><circle cx="50" cy="40" r="3"/><circle cx="100" cy="35" r="2.5"/><circle cx="160" cy="50" r="3"/></g>
-        </svg>
-      </a>
-      <div class="mt-2 px-1"><div class="text-[10px] uppercase tracking-widest text-accent-500 font-bold">Japanese</div><div class="text-sm text-ink-200">"Dragon & clouds"</div></div>
-    </div>
-
-    <!-- 11 Japanese · Tiger -->
-    <div class="design-item" data-style="japanese">
-      <a href="/generate.html" class="design-card aspect-square block rounded-xl overflow-hidden border border-ink-800 tat-paper">
-        <svg viewBox="0 0 200 200" class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
-          <g fill="#f59e0b" stroke="#0e0f12" stroke-width="2.5" stroke-linejoin="round"><ellipse cx="100" cy="110" rx="50" ry="35"/><path d="M65 80 L 70 60 L 80 75 Z M135 80 L 130 60 L 120 75 Z"/></g>
-          <g fill="#0e0f12"><path d="M70 95 L 75 110 M85 90 L 88 108 M100 88 L 100 110 M115 90 L 112 108 M130 95 L 125 110" stroke="#0e0f12" stroke-width="3"/><ellipse cx="85" cy="100" rx="3" ry="4"/><ellipse cx="115" cy="100" rx="3" ry="4"/><path d="M95 120 L 100 128 L 105 120"/></g>
-        </svg>
-      </a>
-      <div class="mt-2 px-1"><div class="text-[10px] uppercase tracking-widest text-accent-500 font-bold">Japanese</div><div class="text-sm text-ink-200">"Tiger face"</div></div>
-    </div>
-
-    <!-- 12 Japanese · Hannya mask -->
-    <div class="design-item" data-style="japanese">
-      <a href="/generate.html" class="design-card aspect-square block rounded-xl overflow-hidden border border-ink-800 tat-paper">
-        <svg viewBox="0 0 200 200" class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
-          <g fill="#dc2626" stroke="#0e0f12" stroke-width="2.5" stroke-linejoin="round"><path d="M65 50 L 75 35 L 85 55 Z"/><path d="M135 50 L 125 35 L 115 55 Z"/><path d="M50 70 Q 60 50, 100 55 Q 140 50, 150 70 Q 155 110, 130 140 L 100 155 L 70 140 Q 45 110, 50 70 Z"/></g>
-          <g fill="#fbbf24" stroke="#0e0f12" stroke-width="1.5"><path d="M70 85 L 90 95 L 75 100 Z"/><path d="M130 85 L 110 95 L 125 100 Z"/></g>
-          <g fill="#0e0f12"><path d="M75 130 L 85 140 L 95 130 L 100 142 L 105 130 L 115 140 L 125 130"/></g>
-        </svg>
-      </a>
-      <div class="mt-2 px-1"><div class="text-[10px] uppercase tracking-widest text-accent-500 font-bold">Japanese</div><div class="text-sm text-ink-200">"Hannya mask"</div></div>
-    </div>
-
-    <!-- 13 Minimalist · Mountain & moon -->
-    <div class="design-item" data-style="minimalist">
-      <a href="/generate.html" class="design-card aspect-square block rounded-xl overflow-hidden border border-ink-800 tat-paper">
-        <svg viewBox="0 0 200 200" class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
-          <g fill="none" stroke="#0e0f12" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M30 130 L 60 90 L 80 110 L 105 70 L 130 100 L 155 80 L 175 130 L 30 130"/></g>
-          <g fill="#0e0f12"><path d="M150 50 a 18 18 0 1 0 0.1 0.1 a 14 14 0 1 1 -0.1 -0.1 z"/></g>
-        </svg>
-      </a>
-      <div class="mt-2 px-1"><div class="text-[10px] uppercase tracking-widest text-accent-500 font-bold">Minimalist</div><div class="text-sm text-ink-200">"Mountain & moon"</div></div>
-    </div>
-
-    <!-- 14 Minimalist · Sun & wave -->
-    <div class="design-item" data-style="minimalist">
-      <a href="/generate.html" class="design-card aspect-square block rounded-xl overflow-hidden border border-ink-800 tat-paper">
-        <svg viewBox="0 0 200 200" class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
-          <g fill="none" stroke="#0e0f12" stroke-width="1.5" stroke-linecap="round">
-            <circle cx="100" cy="80" r="22"/>
-            <path d="M30 130 Q 50 115, 70 130 T 110 130 T 150 130 T 190 130"/>
-            <path d="M30 145 Q 50 130, 70 145 T 110 145 T 150 145 T 190 145"/>
-            <path d="M100 50 L 100 35M100 110 L 100 125M65 80 L 50 80M135 80 L 150 80M75 55 L 65 45M125 55 L 135 45M75 105 L 65 115M125 105 L 135 115"/>
-          </g>
-        </svg>
-      </a>
-      <div class="mt-2 px-1"><div class="text-[10px] uppercase tracking-widest text-accent-500 font-bold">Minimalist</div><div class="text-sm text-ink-200">"Sun over wave"</div></div>
-    </div>
-
-    <!-- 15 Minimalist · Birds -->
-    <div class="design-item" data-style="minimalist">
-      <a href="/generate.html" class="design-card aspect-square block rounded-xl overflow-hidden border border-ink-800 tat-paper">
-        <svg viewBox="0 0 200 200" class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
-          <g fill="none" stroke="#0e0f12" stroke-width="1.5" stroke-linecap="round">
-            <path d="M50 100 Q 70 70, 100 90 Q 130 70, 150 100"/>
-            <path d="M85 130 Q 100 115, 115 130"/>
-            <path d="M120 145 Q 130 138, 140 145"/>
-          </g>
-        </svg>
-      </a>
-      <div class="mt-2 px-1"><div class="text-[10px] uppercase tracking-widest text-accent-500 font-bold">Minimalist</div><div class="text-sm text-ink-200">"Birds in flight"</div></div>
-    </div>
-
-    <!-- 16 Minimalist · Single line heart -->
-    <div class="design-item" data-style="minimalist">
-      <a href="/generate.html" class="design-card aspect-square block rounded-xl overflow-hidden border border-ink-800 tat-paper">
-        <svg viewBox="0 0 200 200" class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
-          <g fill="none" stroke="#0e0f12" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M100 80 C 75 55, 40 75, 55 110 C 65 130, 100 155, 100 155 C 100 155, 135 130, 145 110 C 160 75, 125 55, 100 80 Z"/></g>
-        </svg>
-      </a>
-      <div class="mt-2 px-1"><div class="text-[10px] uppercase tracking-widest text-accent-500 font-bold">Minimalist</div><div class="text-sm text-ink-200">"Continuous line heart"</div></div>
-    </div>
-
-    <!-- 17 Minimalist · Botanical -->
-    <div class="design-item" data-style="minimalist">
-      <a href="/generate.html" class="design-card aspect-square block rounded-xl overflow-hidden border border-ink-800 tat-paper">
-        <svg viewBox="0 0 200 200" class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
-          <g fill="none" stroke="#0e0f12" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M100 170 L 100 50"/>
-            <path d="M100 130 Q 80 125, 65 110 M100 130 Q 120 125, 135 110"/>
-            <path d="M100 100 Q 75 95, 60 75 M100 100 Q 125 95, 140 75"/>
-            <path d="M100 70 Q 85 65, 75 50 M100 70 Q 115 65, 125 50"/>
-          </g>
-        </svg>
-      </a>
-      <div class="mt-2 px-1"><div class="text-[10px] uppercase tracking-widest text-accent-500 font-bold">Minimalist</div><div class="text-sm text-ink-200">"Botanical sprig"</div></div>
-    </div>
-
-    <!-- 18 Fine Line · Floral wreath -->
-    <div class="design-item" data-style="fineline">
-      <a href="/generate.html" class="design-card aspect-square block rounded-xl overflow-hidden border border-ink-800 tat-paper">
-        <svg viewBox="0 0 200 200" class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
-          <g fill="none" stroke="#0e0f12" stroke-width="0.8" stroke-linecap="round">
-            <circle cx="100" cy="100" r="55" stroke-dasharray="2 4"/>
-            <g><path d="M50 100 Q 45 95, 50 90 Q 55 95, 50 100Z M50 100 Q 55 105, 50 110 Q 45 105, 50 100Z"/></g>
-            <g transform="rotate(45 100 100)"><path d="M50 100 Q 45 95, 50 90 Q 55 95, 50 100Z M50 100 Q 55 105, 50 110 Q 45 105, 50 100Z"/></g>
-            <g transform="rotate(90 100 100)"><path d="M50 100 Q 45 95, 50 90 Q 55 95, 50 100Z M50 100 Q 55 105, 50 110 Q 45 105, 50 100Z"/></g>
-            <g transform="rotate(135 100 100)"><path d="M50 100 Q 45 95, 50 90 Q 55 95, 50 100Z M50 100 Q 55 105, 50 110 Q 45 105, 50 100Z"/></g>
-            <g transform="rotate(180 100 100)"><path d="M50 100 Q 45 95, 50 90 Q 55 95, 50 100Z M50 100 Q 55 105, 50 110 Q 45 105, 50 100Z"/></g>
-            <g transform="rotate(225 100 100)"><path d="M50 100 Q 45 95, 50 90 Q 55 95, 50 100Z M50 100 Q 55 105, 50 110 Q 45 105, 50 100Z"/></g>
-            <g transform="rotate(270 100 100)"><path d="M50 100 Q 45 95, 50 90 Q 55 95, 50 100Z M50 100 Q 55 105, 50 110 Q 45 105, 50 100Z"/></g>
-            <g transform="rotate(315 100 100)"><path d="M50 100 Q 45 95, 50 90 Q 55 95, 50 100Z M50 100 Q 55 105, 50 110 Q 45 105, 50 100Z"/></g>
-          </g>
-          <text x="100" y="105" text-anchor="middle" font-family="Georgia,serif" font-style="italic" font-size="14" fill="#0e0f12">amor</text>
-        </svg>
-      </a>
-      <div class="mt-2 px-1"><div class="text-[10px] uppercase tracking-widest text-accent-500 font-bold">Fine Line</div><div class="text-sm text-ink-200">"Floral wreath"</div></div>
-    </div>
-
-    <!-- 19 Fine Line · Snake & moon phases -->
-    <div class="design-item" data-style="fineline">
-      <a href="/generate.html" class="design-card aspect-square block rounded-xl overflow-hidden border border-ink-800 tat-paper">
-        <svg viewBox="0 0 200 200" class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
-          <g fill="none" stroke="#0e0f12" stroke-width="1" stroke-linecap="round">
-            <path d="M50 50 C 80 50, 80 100, 110 100 S 140 150, 170 150"/>
-            <circle cx="170" cy="150" r="2" fill="#0e0f12"/>
-            <circle cx="40" cy="160" r="12"/><circle cx="40" cy="160" r="9"/>
-            <circle cx="160" cy="40" r="12"/><circle cx="160" cy="40" r="9"/>
-          </g>
-        </svg>
-      </a>
-      <div class="mt-2 px-1"><div class="text-[10px] uppercase tracking-widest text-accent-500 font-bold">Fine Line</div><div class="text-sm text-ink-200">"Snake & moon phases"</div></div>
-    </div>
-
-    <!-- 20 Fine Line · Butterfly -->
-    <div class="design-item" data-style="fineline">
-      <a href="/generate.html" class="design-card aspect-square block rounded-xl overflow-hidden border border-ink-800 tat-paper">
-        <svg viewBox="0 0 200 200" class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
-          <g fill="none" stroke="#0e0f12" stroke-width="0.9" stroke-linejoin="round">
-            <path d="M100 80 Q 60 50, 40 80 Q 30 110, 50 130 Q 75 130, 100 110 Q 125 130, 150 130 Q 170 110, 160 80 Q 140 50, 100 80 Z"/>
-            <path d="M100 80 L 100 140"/>
-            <path d="M55 95 Q 70 90, 85 100M120 100 Q 135 90, 150 95M60 115 Q 75 110, 90 120M115 120 Q 130 110, 145 115"/>
-            <path d="M95 60 L 95 75M105 60 L 105 75"/>
-          </g>
-        </svg>
-      </a>
-      <div class="mt-2 px-1"><div class="text-[10px] uppercase tracking-widest text-accent-500 font-bold">Fine Line</div><div class="text-sm text-ink-200">"Butterfly"</div></div>
-    </div>
-
-    <!-- 21 Fine Line · Rose -->
-    <div class="design-item" data-style="fineline">
-      <a href="/generate.html" class="design-card aspect-square block rounded-xl overflow-hidden border border-ink-800 tat-paper">
-        <svg viewBox="0 0 200 200" class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
-          <g fill="none" stroke="#0e0f12" stroke-width="0.9" stroke-linejoin="round">
-            <path d="M100 60 Q 80 70, 75 90 Q 70 110, 85 120 Q 100 125, 115 120 Q 130 110, 125 90 Q 120 70, 100 60 Z"/>
-            <path d="M100 70 Q 88 80, 88 95 Q 88 110, 100 115 Q 112 110, 112 95 Q 112 80, 100 70 Z"/>
-            <path d="M100 80 Q 95 88, 95 100 Q 100 105, 105 100 Q 105 88, 100 80 Z"/>
-            <path d="M100 125 L 100 165M85 145 Q 95 150, 100 145M115 155 Q 105 160, 100 155"/>
-          </g>
-        </svg>
-      </a>
-      <div class="mt-2 px-1"><div class="text-[10px] uppercase tracking-widest text-accent-500 font-bold">Fine Line</div><div class="text-sm text-ink-200">"Single needle rose"</div></div>
-    </div>
-
-    <!-- 22 Fine Line · Crescent moon & stars -->
-    <div class="design-item" data-style="fineline">
-      <a href="/generate.html" class="design-card aspect-square block rounded-xl overflow-hidden border border-ink-800 tat-paper">
-        <svg viewBox="0 0 200 200" class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
-          <g fill="none" stroke="#0e0f12" stroke-width="0.9" stroke-linecap="round">
-            <path d="M120 60 Q 90 70, 80 100 Q 90 130, 120 140 Q 100 125, 95 100 Q 100 75, 120 60 Z"/>
-          </g>
-          <g fill="#0e0f12"><circle cx="60" cy="55" r="0.8"/><circle cx="155" cy="50" r="0.8"/><circle cx="50" cy="120" r="0.6"/><circle cx="160" cy="130" r="0.8"/><circle cx="40" cy="80" r="0.6"/></g>
-        </svg>
-      </a>
-      <div class="mt-2 px-1"><div class="text-[10px] uppercase tracking-widest text-accent-500 font-bold">Fine Line</div><div class="text-sm text-ink-200">"Moon & stars"</div></div>
-    </div>
-
-    <!-- 23 Blackwork · Mandala -->
-    <div class="design-item" data-style="blackwork">
-      <a href="/generate.html" class="design-card aspect-square block rounded-xl overflow-hidden border border-ink-800 tat-paper">
-        <svg viewBox="0 0 200 200" class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
-          <g fill="#0e0f12" stroke="#0e0f12" stroke-width="1">
-            <circle cx="100" cy="100" r="55" fill="none" stroke-width="2"/>
-            <circle cx="100" cy="100" r="40" fill="none" stroke-width="1.5"/>
-            <circle cx="100" cy="100" r="20"/>
-            <g transform="translate(100 100)"><g><path d="M0 -55 L 5 -42 L -5 -42 Z"/><path d="M0 -55 L 5 -42 L -5 -42 Z" transform="rotate(45)"/><path d="M0 -55 L 5 -42 L -5 -42 Z" transform="rotate(90)"/><path d="M0 -55 L 5 -42 L -5 -42 Z" transform="rotate(135)"/><path d="M0 -55 L 5 -42 L -5 -42 Z" transform="rotate(180)"/><path d="M0 -55 L 5 -42 L -5 -42 Z" transform="rotate(225)"/><path d="M0 -55 L 5 -42 L -5 -42 Z" transform="rotate(270)"/><path d="M0 -55 L 5 -42 L -5 -42 Z" transform="rotate(315)"/></g><circle r="8" fill="#dc2626"/></g>
-          </g>
-        </svg>
-      </a>
-      <div class="mt-2 px-1"><div class="text-[10px] uppercase tracking-widest text-accent-500 font-bold">Blackwork</div><div class="text-sm text-ink-200">"Sacred mandala"</div></div>
-    </div>
-
-    <!-- 24 Blackwork · Raven -->
-    <div class="design-item" data-style="blackwork">
-      <a href="/generate.html" class="design-card aspect-square block rounded-xl overflow-hidden border border-ink-800 tat-paper">
-        <svg viewBox="0 0 200 200" class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
-          <g fill="#0e0f12" stroke="#0e0f12" stroke-width="1.5" stroke-linejoin="round">
-            <ellipse cx="100" cy="120" rx="40" ry="22"/>
-            <ellipse cx="80" cy="80" rx="25" ry="35"/>
-            <path d="M55 65 L 35 55 L 60 75 Z"/>
-            <path d="M85 105 L 130 130 L 100 145 Z"/>
-            <circle cx="75" cy="75" r="3" fill="#f5f3ee"/>
-          </g>
-          <g fill="none" stroke="#0e0f12" stroke-width="1"><circle cx="160" cy="60" r="20"/><circle cx="160" cy="60" r="14"/></g>
-        </svg>
-      </a>
-      <div class="mt-2 px-1"><div class="text-[10px] uppercase tracking-widest text-accent-500 font-bold">Blackwork</div><div class="text-sm text-ink-200">"Raven & moon"</div></div>
-    </div>
-
-    <!-- 25 Blackwork · Hexagon -->
-    <div class="design-item" data-style="blackwork">
-      <a href="/generate.html" class="design-card aspect-square block rounded-xl overflow-hidden border border-ink-800 tat-paper">
-        <svg viewBox="0 0 200 200" class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
-          <g fill="#0e0f12">
-            <polygon points="100,30 140,60 140,110 100,140 60,110 60,60"/>
-            <polygon points="100,55 125,75 125,105 100,125 75,105 75,75" fill="#f5f3ee"/>
-            <polygon points="100,75 115,90 115,105 100,115 85,105 85,90"/>
-          </g>
-        </svg>
-      </a>
-      <div class="mt-2 px-1"><div class="text-[10px] uppercase tracking-widest text-accent-500 font-bold">Blackwork</div><div class="text-sm text-ink-200">"Geometric hexagon"</div></div>
-    </div>
-
-    <!-- 26 Watercolor · Phoenix -->
-    <div class="design-item" data-style="watercolor">
-      <a href="/generate.html" class="design-card aspect-square block rounded-xl overflow-hidden border border-ink-800 tat-paper">
-        <svg viewBox="0 0 200 200" class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
-          <g opacity="0.7">
-            <ellipse cx="80" cy="100" rx="50" ry="35" fill="#f59e0b"/>
-            <ellipse cx="120" cy="90" rx="45" ry="30" fill="#dc2626"/>
-            <ellipse cx="100" cy="120" rx="40" ry="25" fill="#ea580c"/>
-          </g>
-          <g fill="none" stroke="#0e0f12" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M100 130 Q 100 100, 80 80 Q 70 70, 80 60 Q 90 70, 100 80 Q 110 70, 120 60 Q 130 70, 120 80 Q 100 100, 100 130 Z"/>
-            <path d="M70 110 Q 60 130, 50 145M130 110 Q 140 130, 150 145M100 130 L 100 155"/>
-          </g>
-        </svg>
-      </a>
-      <div class="mt-2 px-1"><div class="text-[10px] uppercase tracking-widest text-accent-500 font-bold">Watercolor</div><div class="text-sm text-ink-200">"Phoenix splash"</div></div>
-    </div>
-
-    <!-- 27 Watercolor · Hummingbird -->
-    <div class="design-item" data-style="watercolor">
-      <a href="/generate.html" class="design-card aspect-square block rounded-xl overflow-hidden border border-ink-800 tat-paper">
-        <svg viewBox="0 0 200 200" class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
-          <g opacity="0.65">
-            <ellipse cx="100" cy="100" rx="55" ry="20" fill="#10b981" transform="rotate(-15 100 100)"/>
-            <ellipse cx="80" cy="105" rx="35" ry="15" fill="#3b82f6" transform="rotate(-15 80 105)"/>
-            <ellipse cx="130" cy="95" rx="20" ry="10" fill="#a855f7" transform="rotate(-15 130 95)"/>
-          </g>
-          <g fill="none" stroke="#0e0f12" stroke-width="1.5" stroke-linecap="round">
-            <path d="M50 110 Q 70 100, 90 105 Q 110 95, 130 100 L 150 95 L 165 90"/>
-            <path d="M85 95 Q 75 75, 60 70M95 110 Q 90 130, 80 145"/>
-          </g>
-        </svg>
-      </a>
-      <div class="mt-2 px-1"><div class="text-[10px] uppercase tracking-widest text-accent-500 font-bold">Watercolor</div><div class="text-sm text-ink-200">"Hummingbird"</div></div>
-    </div>
-
-    <!-- 28 Watercolor · Mountain landscape -->
-    <div class="design-item" data-style="watercolor">
-      <a href="/generate.html" class="design-card aspect-square block rounded-xl overflow-hidden border border-ink-800 tat-paper">
-        <svg viewBox="0 0 200 200" class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
-          <g opacity="0.6">
-            <ellipse cx="80" cy="110" rx="55" ry="25" fill="#3b82f6"/>
-            <ellipse cx="130" cy="100" rx="45" ry="20" fill="#a855f7"/>
-            <ellipse cx="105" cy="130" rx="35" ry="15" fill="#10b981"/>
-          </g>
-          <g fill="none" stroke="#0e0f12" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M30 130 L 60 90 L 80 110 L 105 70 L 130 100 L 155 80 L 175 130"/>
-            <circle cx="155" cy="55" r="10" fill="#fbbf24" stroke="#0e0f12"/>
-          </g>
-        </svg>
-      </a>
-      <div class="mt-2 px-1"><div class="text-[10px] uppercase tracking-widest text-accent-500 font-bold">Watercolor</div><div class="text-sm text-ink-200">"Mountain landscape"</div></div>
-    </div>
-
-    <!-- 29 Realism · Wolf -->
-    <div class="design-item" data-style="realism">
-      <a href="/generate.html" class="design-card aspect-square block rounded-xl overflow-hidden border border-ink-800 tat-paper">
-        <svg viewBox="0 0 200 200" class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
-          <g fill="#6e7178" stroke="#0e0f12" stroke-width="1.5" stroke-linejoin="round">
-            <path d="M65 60 L 70 35 L 90 55 Z"/>
-            <path d="M135 60 L 130 35 L 110 55 Z"/>
-            <path d="M60 85 Q 70 50, 100 65 Q 130 50, 140 85 L 145 130 L 130 150 L 100 155 L 70 150 L 55 130 Z"/>
-          </g>
-          <g fill="#3d3f44"><path d="M75 95 Q 90 105, 100 95 Q 110 105, 125 95 L 120 130 L 100 140 L 80 130 Z"/></g>
-          <g fill="#f5f3ee" stroke="#0e0f12" stroke-width="1.5"><path d="M85 105 Q 95 110, 100 105 Q 105 110, 115 105 L 110 130 L 100 138 L 90 130 Z"/></g>
-          <g fill="#0e0f12"><circle cx="80" cy="85" r="4"/><circle cx="120" cy="85" r="4"/></g>
-          <path d="M97 115 L 100 125 L 103 115 Z" fill="#0e0f12"/>
-        </svg>
-      </a>
-      <div class="mt-2 px-1"><div class="text-[10px] uppercase tracking-widest text-accent-500 font-bold">Realism</div><div class="text-sm text-ink-200">"Wolf portrait"</div></div>
-    </div>
-
-    <!-- 30 Realism · Rose -->
-    <div class="design-item" data-style="realism">
-      <a href="/generate.html" class="design-card aspect-square block rounded-xl overflow-hidden border border-ink-800 tat-paper">
-        <svg viewBox="0 0 200 200" class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
-          <g fill="#3d3f44"><path d="M100 50 Q 75 65, 70 100 Q 75 130, 100 145 Q 125 130, 130 100 Q 125 65, 100 50 Z"/></g>
-          <g fill="#6e7178"><path d="M100 65 Q 85 75, 82 100 Q 85 120, 100 130 Q 115 120, 118 100 Q 115 75, 100 65 Z"/><path d="M100 75 Q 92 85, 90 100 Q 92 115, 100 122 Q 108 115, 110 100 Q 108 85, 100 75 Z"/></g>
-          <g fill="#8c8e95"><path d="M100 85 Q 95 92, 95 100 Q 97 110, 100 115 Q 103 110, 105 100 Q 105 92, 100 85 Z"/></g>
-        </svg>
-      </a>
-      <div class="mt-2 px-1"><div class="text-[10px] uppercase tracking-widest text-accent-500 font-bold">Realism</div><div class="text-sm text-ink-200">"Black & grey rose"</div></div>
-    </div>
-
-    <!-- 31 Realism · Lion -->
-    <div class="design-item" data-style="realism">
-      <a href="/generate.html" class="design-card aspect-square block rounded-xl overflow-hidden border border-ink-800 tat-paper">
-        <svg viewBox="0 0 200 200" class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
-          <g fill="#a16207" stroke="#0e0f12" stroke-width="2" stroke-linejoin="round">
-            <circle cx="100" cy="105" r="50"/>
-            <g><path d="M55 75 Q 40 65, 45 50 L 60 65 Z M70 60 Q 60 45, 65 35 L 80 55 Z M100 50 Q 100 35, 100 28 L 100 50 Z M130 60 Q 140 45, 135 35 L 120 55 Z M145 75 Q 160 65, 155 50 L 140 65 Z"/></g>
-          </g>
-          <g fill="#fbbf24"><circle cx="100" cy="105" r="35"/></g>
-          <g fill="#0e0f12"><circle cx="85" cy="100" r="3"/><circle cx="115" cy="100" r="3"/><path d="M95 115 L 100 122 L 105 115 Z"/></g>
-        </svg>
-      </a>
-      <div class="mt-2 px-1"><div class="text-[10px] uppercase tracking-widest text-accent-500 font-bold">Realism</div><div class="text-sm text-ink-200">"Lion portrait"</div></div>
-    </div>
-
-    <!-- 32 Tribal · Maori -->
-    <div class="design-item" data-style="tribal">
-      <a href="/generate.html" class="design-card aspect-square block rounded-xl overflow-hidden border border-ink-800 tat-paper">
-        <svg viewBox="0 0 200 200" class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
-          <g fill="#0e0f12" stroke="#0e0f12" stroke-width="2" stroke-linejoin="round">
-            <path d="M30 40 L 170 40 L 170 50 L 30 50 Z"/>
-            <path d="M30 150 L 170 150 L 170 160 L 30 160 Z"/>
-            <path d="M40 60 Q 60 70, 50 90 Q 70 100, 60 120 Q 80 130, 70 140"/>
-            <path d="M160 60 Q 140 70, 150 90 Q 130 100, 140 120 Q 120 130, 130 140"/>
-            <circle cx="100" cy="100" r="20" fill="none" stroke-width="3"/>
-            <circle cx="100" cy="100" r="8"/>
-            <path d="M75 85 Q 100 75, 125 85"/>
-            <path d="M75 115 Q 100 125, 125 115"/>
-          </g>
-        </svg>
-      </a>
-      <div class="mt-2 px-1"><div class="text-[10px] uppercase tracking-widest text-accent-500 font-bold">Tribal</div><div class="text-sm text-ink-200">"Maori band"</div></div>
-    </div>
-
-    <!-- 33 Tribal · Celtic -->
-    <div class="design-item" data-style="tribal">
-      <a href="/generate.html" class="design-card aspect-square block rounded-xl overflow-hidden border border-ink-800 tat-paper">
-        <svg viewBox="0 0 200 200" class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
-          <g fill="none" stroke="#0e0f12" stroke-width="3" stroke-linejoin="round" stroke-linecap="round">
-            <path d="M100 40 Q 130 40, 140 70 Q 150 100, 130 120 Q 100 130, 70 120 Q 50 100, 60 70 Q 70 40, 100 40 Z"/>
-            <path d="M100 60 Q 120 60, 125 80 Q 130 100, 115 110 Q 100 115, 85 110 Q 70 100, 75 80 Q 80 60, 100 60 Z"/>
-            <path d="M70 70 L 130 130 M130 70 L 70 130 M100 50 L 100 150 M50 100 L 150 100"/>
-            <circle cx="100" cy="100" r="10" stroke-width="3"/>
-          </g>
-        </svg>
-      </a>
-      <div class="mt-2 px-1"><div class="text-[10px] uppercase tracking-widest text-accent-500 font-bold">Tribal</div><div class="text-sm text-ink-200">"Celtic knot"</div></div>
-    </div>
-
-    <!-- 34 Tribal · Polynesian band -->
-    <div class="design-item" data-style="tribal">
-      <a href="/generate.html" class="design-card aspect-square block rounded-xl overflow-hidden border border-ink-800 tat-paper">
-        <svg viewBox="0 0 200 200" class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
-          <g fill="#0e0f12">
-            <path d="M30 70 Q 70 50, 100 60 Q 130 70, 170 60 L 170 80 Q 130 90, 100 80 Q 70 70, 30 80 Z"/>
-            <path d="M30 100 Q 70 90, 100 100 Q 130 110, 170 100 L 170 120 Q 130 130, 100 120 Q 70 110, 30 120 Z"/>
-            <path d="M30 140 Q 70 130, 100 140 Q 130 150, 170 140 L 170 160 Q 130 170, 100 160 Q 70 150, 30 160 Z"/>
-            <g><circle cx="60" cy="40" r="3"/><circle cx="100" cy="40" r="4"/><circle cx="140" cy="40" r="3"/></g>
-          </g>
-        </svg>
-      </a>
-      <div class="mt-2 px-1"><div class="text-[10px] uppercase tracking-widest text-accent-500 font-bold">Tribal</div><div class="text-sm text-ink-200">"Polynesian band"</div></div>
-    </div>
-
-    <!-- 35 Dotwork · Mandala -->
-    <div class="design-item" data-style="dotwork">
-      <a href="/generate.html" class="design-card aspect-square block rounded-xl overflow-hidden border border-ink-800 tat-paper">
-        <svg viewBox="0 0 200 200" class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
-          <g fill="#0e0f12">
-            <g><circle cx="100" cy="50" r="2.5"/><circle cx="100" cy="150" r="2.5"/><circle cx="50" cy="100" r="2.5"/><circle cx="150" cy="100" r="2.5"/></g>
-            <g><circle cx="65" cy="65" r="2"/><circle cx="135" cy="65" r="2"/><circle cx="65" cy="135" r="2"/><circle cx="135" cy="135" r="2"/></g>
-            <g><circle cx="100" cy="70" r="1.5"/><circle cx="100" cy="130" r="1.5"/><circle cx="70" cy="100" r="1.5"/><circle cx="130" cy="100" r="1.5"/></g>
-            <g opacity="0.7"><circle cx="80" cy="85" r="1"/><circle cx="120" cy="85" r="1"/><circle cx="85" cy="115" r="1"/><circle cx="115" cy="115" r="1"/><circle cx="90" cy="100" r="1"/><circle cx="110" cy="100" r="1"/><circle cx="100" cy="90" r="1"/><circle cx="100" cy="110" r="1"/></g>
-            <circle cx="100" cy="100" r="6" fill="#dc2626"/>
-            <circle cx="100" cy="100" r="2" fill="#0e0f12"/>
-          </g>
-        </svg>
-      </a>
-      <div class="mt-2 px-1"><div class="text-[10px] uppercase tracking-widest text-accent-500 font-bold">Dotwork</div><div class="text-sm text-ink-200">"Stipple mandala"</div></div>
-    </div>
-
-    <!-- 36 Dotwork · All-seeing eye -->
-    <div class="design-item" data-style="dotwork">
-      <a href="/generate.html" class="design-card aspect-square block rounded-xl overflow-hidden border border-ink-800 tat-paper">
-        <svg viewBox="0 0 200 200" class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
-          <g fill="none" stroke="#0e0f12" stroke-width="1.5" stroke-linejoin="round"><polygon points="100,40 160,140 40,140"/></g>
-          <g fill="none" stroke="#0e0f12" stroke-width="1"><ellipse cx="100" cy="105" rx="22" ry="12"/></g>
-          <g fill="#dc2626"><circle cx="100" cy="105" r="6"/></g>
-          <g fill="#0e0f12">
-            <circle cx="80" cy="105" r="0.8"/><circle cx="120" cy="105" r="0.8"/><circle cx="100" cy="80" r="0.8"/><circle cx="100" cy="130" r="0.8"/>
-            <g opacity="0.7"><circle cx="70" cy="115" r="0.6"/><circle cx="130" cy="115" r="0.6"/><circle cx="90" cy="90" r="0.6"/><circle cx="110" cy="90" r="0.6"/></g>
-          </g>
-        </svg>
-      </a>
-      <div class="mt-2 px-1"><div class="text-[10px] uppercase tracking-widest text-accent-500 font-bold">Dotwork</div><div class="text-sm text-ink-200">"All-seeing eye"</div></div>
-    </div>
-
+    <!-- Skeletons render until manifest loads -->
+    <div class="aspect-square rounded-xl skeleton"></div>
+    <div class="aspect-square rounded-xl skeleton"></div>
+    <div class="aspect-square rounded-xl skeleton"></div>
+    <div class="aspect-square rounded-xl skeleton"></div>
+    <div class="aspect-square rounded-xl skeleton"></div>
+    <div class="aspect-square rounded-xl skeleton"></div>
+    <div class="aspect-square rounded-xl skeleton"></div>
+    <div class="aspect-square rounded-xl skeleton"></div>
   </div>
 
-  <div class="text-center mt-16">
-    <h2 class="display text-3xl md:text-5xl font-black mb-4">Like what you see?</h2>
-    <p class="text-ink-300 text-lg mb-8">Generate 8 designs in your style for $9. No signup. No saved data.</p>
+  <div class="text-center mt-20 py-12 px-6 bg-gradient-to-br from-ink-900 to-ink-950 border border-ink-800 rounded-2xl">
+    <h2 class="display text-3xl md:text-5xl font-black mb-4">Make yours.</h2>
+    <p class="text-ink-300 mb-8 max-w-xl mx-auto">Type any idea, pick a style, get 8 mind-blowing designs in 30 seconds. Take your favorite straight to your tattoo artist.</p>
     <a href="/generate.html" class="inline-block bg-accent-500 hover:bg-accent-600 text-white px-10 py-4 rounded-xl font-bold text-lg transition shadow-lg shadow-accent-500/30">Generate 8 Designs — $9</a>
   </div>
 </section>
@@ -613,48 +100,49 @@ body { font-family: 'Inter', system-ui, sans-serif; }
 </footer>
 
 <script>
-  // Filter buttons
-  document.querySelectorAll('.filter-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      const filter = btn.dataset.filter;
-      document.querySelectorAll('.design-item').forEach(item => {
-        if (filter === 'all' || item.dataset.style === filter) item.style.display = '';
-        else item.style.display = 'none';
-      });
+const STYLE_LABEL = {
+  traditional: 'Traditional', neo: 'Neo-Traditional', japanese: 'Japanese',
+  minimalist: 'Minimalist', fineline: 'Fine Line', blackwork: 'Blackwork',
+  watercolor: 'Watercolor', realism: 'Realism', tribal: 'Tribal', dotwork: 'Dotwork',
+};
+
+(async () => {
+  let manifest = [];
+  try {
+    const r = await fetch('/images/examples/manifest.json', { cache: 'no-store' });
+    if (r.ok) manifest = await r.json();
+  } catch {}
+
+  const galleryEl = document.getElementById('gallery');
+  const real = manifest.filter(m => m.file && !m.error);
+
+  if (real.length === 0) {
+    galleryEl.innerHTML = '<div class="col-span-full text-center text-ink-400 py-12">Examples loading…</div>';
+    return;
+  }
+
+  galleryEl.innerHTML = real.map(d => `
+    <div class="design-item" data-style="${d.style}">
+      <a href="/generate.html" class="design-card aspect-square block rounded-xl overflow-hidden border border-ink-800 tat-paper">
+        <img src="/${d.file}" alt="${d.label}" class="w-full h-full object-contain" loading="lazy">
+      </a>
+      <div class="mt-2 px-1">
+        <div class="text-[10px] uppercase tracking-widest text-accent-500 font-bold">${STYLE_LABEL[d.style] || d.style}</div>
+        <div class="text-sm text-ink-200">"${d.label}"</div>
+      </div>
+    </div>`).join('');
+})();
+
+document.querySelectorAll('.filter-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const filter = btn.dataset.filter;
+    document.querySelectorAll('.design-item').forEach(item => {
+      item.style.display = (filter === 'all' || item.dataset.style === filter) ? '' : 'none';
     });
   });
-
-  // Manifest swap: read from /api/gallery-manifest (Netlify Blobs-backed).
-  // If gallery has been populated, this returns the list of real designs
-  // and we rebuild the gallery from blob-served images. If not, the SVG
-  // placeholders remain so the page is never broken.
-  (async () => {
-    try {
-      const r = await fetch('/api/gallery-manifest', { cache: 'no-store' });
-      if (!r.ok) return;
-      const manifest = await r.json();
-      if (!Array.isArray(manifest) || manifest.length === 0) return;
-      const galleryEl = document.getElementById('gallery');
-      if (!galleryEl) return;
-      const styleLabel = {
-        traditional: 'Traditional', neo: 'Neo-Traditional', japanese: 'Japanese',
-        minimalist: 'Minimalist', fineline: 'Fine Line', blackwork: 'Blackwork',
-        watercolor: 'Watercolor', realism: 'Realism', tribal: 'Tribal', dotwork: 'Dotwork',
-      };
-      galleryEl.innerHTML = manifest.map(d => `
-        <div class="design-item" data-style="${d.style}">
-          <a href="/generate.html" class="design-card aspect-square block rounded-xl overflow-hidden border border-ink-800 tat-paper">
-            <img src="${d.file}" alt="${d.label}" class="w-full h-full object-contain" loading="lazy">
-          </a>
-          <div class="mt-2 px-1">
-            <div class="text-[10px] uppercase tracking-widest text-accent-500 font-bold">${styleLabel[d.style] || d.style}</div>
-            <div class="text-sm text-ink-200">"${d.label}"</div>
-          </div>
-        </div>`).join('');
-    } catch (e) { /* keep SVG fallback */ }
-  })();
+});
 </script>
 </body>
 </html>
