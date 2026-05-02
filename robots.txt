@@ -1,4 +1,7 @@
 User-agent: *
 Allow: /
+Disallow: /admin-populate.html
+Disallow: /api/gallery-build
+Disallow: /unlock.html
 
 Sitemap: https://tattoodesignr.com/sitemap.xml

@@ -626,26 +626,30 @@ body { font-family: 'Inter', system-ui, sans-serif; }
     });
   });
 
-  // Manifest swap: if scripts/generate-gallery.js has been run, the page swaps
-  // SVG icons for real generated tattoo images automatically. Until then, the
-  // SVG placeholders remain so the page is never broken.
+  // Manifest swap: read from /api/gallery-manifest (Netlify Blobs-backed).
+  // If gallery has been populated, this returns the list of real designs
+  // and we rebuild the gallery from blob-served images. If not, the SVG
+  // placeholders remain so the page is never broken.
   (async () => {
     try {
-      const r = await fetch('/images/examples/manifest.json', { cache: 'no-store' });
+      const r = await fetch('/api/gallery-manifest', { cache: 'no-store' });
       if (!r.ok) return;
       const manifest = await r.json();
+      if (!Array.isArray(manifest) || manifest.length === 0) return;
       const galleryEl = document.getElementById('gallery');
       if (!galleryEl) return;
-      // If we have a manifest with successful files, rebuild the gallery from it
-      const real = manifest.filter(m => m.file && !m.error);
-      if (real.length === 0) return;
-      galleryEl.innerHTML = real.map(d => `
+      const styleLabel = {
+        traditional: 'Traditional', neo: 'Neo-Traditional', japanese: 'Japanese',
+        minimalist: 'Minimalist', fineline: 'Fine Line', blackwork: 'Blackwork',
+        watercolor: 'Watercolor', realism: 'Realism', tribal: 'Tribal', dotwork: 'Dotwork',
+      };
+      galleryEl.innerHTML = manifest.map(d => `
         <div class="design-item" data-style="${d.style}">
           <a href="/generate.html" class="design-card aspect-square block rounded-xl overflow-hidden border border-ink-800 tat-paper">
-            <img src="/${d.file}" alt="${d.label}" class="w-full h-full object-contain" loading="lazy">
+            <img src="${d.file}" alt="${d.label}" class="w-full h-full object-contain" loading="lazy">
           </a>
           <div class="mt-2 px-1">
-            <div class="text-[10px] uppercase tracking-widest text-accent-500 font-bold">${d.style.replace(/^./, c => c.toUpperCase())}</div>
+            <div class="text-[10px] uppercase tracking-widest text-accent-500 font-bold">${styleLabel[d.style] || d.style}</div>
             <div class="text-sm text-ink-200">"${d.label}"</div>
           </div>
         </div>`).join('');

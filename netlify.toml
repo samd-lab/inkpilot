@@ -24,6 +24,24 @@
   status = 200
   force = true
 
+[[redirects]]
+  from = "/api/gallery-build"
+  to = "/.netlify/functions/gallery-build"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/api/gallery-image"
+  to = "/.netlify/functions/gallery-image"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/api/gallery-manifest"
+  to = "/.netlify/functions/gallery-manifest"
+  status = 200
+  force = true
+
 [[headers]]
   for = "/*"
   [headers.values]

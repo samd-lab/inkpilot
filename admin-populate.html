@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Populate Gallery — TattooDesignr Admin</title>
+<meta name="robots" content="noindex">
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+body { font-family: 'Inter', system-ui, sans-serif; background: #0e0f12; color: #eeeeef; }
+.tat-paper { background: #f5f3ee; }
+.skeleton { background: linear-gradient(110deg, #1a1b1f 8%, #2d2f35 18%, #1a1b1f 33%); background-size: 200% 100%; animation: shine 1.4s linear infinite; }
+@keyframes shine { to { background-position: -200% 0; } }
+</style>
+</head>
+<body class="antialiased min-h-screen">
+
+<div class="max-w-5xl mx-auto px-6 py-10">
+  <div class="mb-8">
+    <p class="text-red-500 font-bold uppercase tracking-widest text-xs mb-2">Admin · One-time gallery populate</p>
+    <h1 class="text-3xl font-black mb-2">Populate Examples Gallery</h1>
+    <p class="text-gray-400 text-sm">
+      Generates 40 real tattoo designs via Replicate, stores them in Netlify Blobs, and writes the manifest.
+      <strong class="text-white">Idempotent</strong> — designs that already exist are skipped at zero cost.
+      After this completes, <code class="bg-gray-800 px-1 rounded">/examples.html</code> automatically swaps the SVG icons for real PNGs.
+    </p>
+  </div>
+
+  <div class="bg-gray-900 border border-gray-800 rounded-xl p-6 mb-6">
+    <div class="flex flex-wrap items-center gap-4 mb-4">
+      <button id="run" class="bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-lg font-bold transition">▶ Populate gallery (40 designs)</button>
+      <span class="text-sm text-gray-400">Estimated cost: ~$1.20 first run · $0 on subsequent runs</span>
+    </div>
+    <div class="bg-gray-950 border border-gray-800 rounded-lg p-4 font-mono text-xs text-gray-300 h-40 overflow-y-auto" id="log">Click "Populate gallery" to begin.</div>
+    <div class="mt-3">
+      <div class="bg-gray-800 rounded-full h-2 overflow-hidden">
+        <div id="bar" class="bg-red-600 h-full transition-all" style="width:0%"></div>
+      </div>
+      <div class="flex justify-between text-xs text-gray-500 mt-2">
+        <span id="status">Ready</span>
+        <span id="counter">0 / 40</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid grid-cols-4 md:grid-cols-8 gap-2" id="grid"></div>
+
+  <p id="finish" class="hidden mt-8 text-center text-emerald-400 font-bold">
+    ✓ Done. Visit <a href="/examples.html" class="underline">/examples.html</a> — your real gallery is live.
+  </p>
+</div>
+
+<script>
+const DESIGNS = [
+  { id:'trad-01', style:'traditional', label:'Anchor & Rose' },
+  { id:'trad-02', style:'traditional', label:'Swallow & Banner' },
+  { id:'trad-03', style:'traditional', label:'Black Panther' },
+  { id:'trad-04', style:'traditional', label:'Dagger Heart' },
+  { id:'trad-05', style:'traditional', label:'Eagle of Liberty' },
+  { id:'neo-01', style:'neo', label:'Ornate Fox' },
+  { id:'neo-02', style:'neo', label:'Crystal Wolf' },
+  { id:'neo-03', style:'neo', label:'Stag Skull' },
+  { id:'neo-04', style:'neo', label:'Octopus Compass' },
+  { id:'jp-01', style:'japanese', label:'Koi Dragon' },
+  { id:'jp-02', style:'japanese', label:'Hannya Mask' },
+  { id:'jp-03', style:'japanese', label:'Tiger & Bamboo' },
+  { id:'jp-04', style:'japanese', label:'Samurai' },
+  { id:'jp-05', style:'japanese', label:'Foo Dog' },
+  { id:'min-01', style:'minimalist', label:'Mountain Moon' },
+  { id:'min-02', style:'minimalist', label:'Sunset Wave' },
+  { id:'min-03', style:'minimalist', label:'One Line Heart' },
+  { id:'min-04', style:'minimalist', label:'Geometric Dragonfly' },
+  { id:'fine-01', style:'fineline', label:'Single Rose' },
+  { id:'fine-02', style:'fineline', label:'Snake & Moon' },
+  { id:'fine-03', style:'fineline', label:'Lavender' },
+  { id:'fine-04', style:'fineline', label:'Butterfly' },
+  { id:'bw-01', style:'blackwork', label:'Sacred Mandala' },
+  { id:'bw-02', style:'blackwork', label:'Raven & Moon' },
+  { id:'bw-03', style:'blackwork', label:'All Seeing Eye' },
+  { id:'bw-04', style:'blackwork', label:'Ornate Skull' },
+  { id:'wc-01', style:'watercolor', label:'Phoenix' },
+  { id:'wc-02', style:'watercolor', label:'Hummingbird' },
+  { id:'wc-03', style:'watercolor', label:'Galaxy' },
+  { id:'real-01', style:'realism', label:'Lion King' },
+  { id:'real-02', style:'realism', label:'Frozen Clock' },
+  { id:'real-03', style:'realism', label:'Lone Wolf' },
+  { id:'real-04', style:'realism', label:'The Eye' },
+  { id:'trib-01', style:'tribal', label:'Tribal Shoulder' },
+  { id:'trib-02', style:'tribal', label:'Manta Ray' },
+  { id:'trib-03', style:'tribal', label:'Warrior Emblem' },
+  { id:'dot-01', style:'dotwork', label:'Stippled Moon' },
+  { id:'dot-02', style:'dotwork', label:'Flower of Life' },
+  { id:'dot-03', style:'dotwork', label:'Honeybee' },
+];
+
+const logEl = document.getElementById('log');
+const barEl = document.getElementById('bar');
+const statusEl = document.getElementById('status');
+const counterEl = document.getElementById('counter');
+const gridEl = document.getElementById('grid');
+const runBtn = document.getElementById('run');
+const finishEl = document.getElementById('finish');
+
+let done = 0;
+
+function log(msg) {
+  logEl.innerHTML += '\n' + new Date().toLocaleTimeString() + '  ' + msg;
+  logEl.scrollTop = logEl.scrollHeight;
+}
+
+function updateProgress() {
+  const pct = Math.round((done / DESIGNS.length) * 100);
+  barEl.style.width = pct + '%';
+  counterEl.textContent = `${done} / ${DESIGNS.length}`;
+}
+
+DESIGNS.forEach(d => {
+  const c = document.createElement('div');
+  c.id = `card-${d.id}`;
+  c.className = 'tat-paper aspect-square rounded-lg overflow-hidden flex items-center justify-center text-[10px] text-gray-600 font-mono';
+  c.textContent = d.id;
+  gridEl.appendChild(c);
+});
+
+async function buildOne(d) {
+  const card = document.getElementById(`card-${d.id}`);
+  card.className = 'aspect-square rounded-lg skeleton';
+  log(`[gen]   ${d.id} — ${d.label} (${d.style})`);
+  try {
+    const r = await fetch(`/api/gallery-build?id=${encodeURIComponent(d.id)}`);
+    const json = await r.json();
+    if (!r.ok) throw new Error(json.error || `HTTP ${r.status}`);
+    log(`[${json.status}]  ${d.id}${json.bytes ? ` (${(json.bytes/1024).toFixed(0)}kb)` : ''}`);
+    // Show the generated image
+    card.className = 'tat-paper aspect-square rounded-lg overflow-hidden';
+    card.innerHTML = `<img src="/api/gallery-image?id=${encodeURIComponent(d.id)}&v=${Date.now()}" class="w-full h-full object-contain p-1">`;
+  } catch (err) {
+    log(`[fail]  ${d.id}: ${err.message}`);
+    card.className = 'aspect-square rounded-lg bg-red-900/40 border border-red-800 flex items-center justify-center text-[10px] text-red-300';
+    card.textContent = `${d.id} ✗`;
+  }
+  done++;
+  updateProgress();
+}
+
+runBtn.addEventListener('click', async () => {
+  runBtn.disabled = true; runBtn.textContent = 'Generating...';
+  done = 0; updateProgress();
+  log('Starting batch generation. ~12 minutes for first run.');
+  statusEl.textContent = 'Generating...';
+  const start = Date.now();
+  // Sequential calls — Replicate is fastest one-at-a-time, and this avoids
+  // a thundering-herd on Netlify's cold-starts.
+  for (const d of DESIGNS) {
+    await buildOne(d);
+  }
+  const elapsed = ((Date.now() - start)/1000).toFixed(0);
+  log(`---\nDone in ${elapsed}s.`);
+  statusEl.textContent = 'Done';
+  runBtn.textContent = '✓ Generation complete';
+  finishEl.classList.remove('hidden');
+});
+</script>
+</body>
+</html>
