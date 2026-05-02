@@ -2,27 +2,27 @@
  * /api/generate — TattooDesignr generation endpoint
  *
  * Body: { idea: string, style: string, placement?: string, referenceDescription?: string, count?: number }
- * Returns: { sessionId, designs: [{ url, prompt }] } — watermarked previews only.
+ * Returns: { sessionId, designs: [{ id, url, prompt, style }] }
  *
- * Real model: Replicate FLUX.1-dev with style-specific tattoo LoRA.
- * Cost: ~$0.024–$0.072 per 8-design pack. Sells for $9. Margin: 99%.
+ * Model: Replicate's `black-forest-labs/flux-dev` (latest version, resolved at call time).
+ * Cost: ~$0.030 per image. 4 designs/pack = ~$0.12.  Sells for $9.  Margin: ~98%.
+ *
+ * Notes:
+ *  - FLUX.1-dev does NOT accept `negative_prompt` — we fold negatives into the prompt
+ *    as "AVOID: ..." (handled inside lib/prompts.js).
+ *  - FLUX.1-dev caps `num_outputs` at 4 per call. We do 2 parallel calls of 4 to get 8.
  *
  * Env required:
  *   REPLICATE_API_TOKEN  — from https://replicate.com/account/api-tokens
- *   PREVIEW_BUCKET_URL   — public CDN base (e.g. R2 or Netlify Blobs)
- *
- * Rate-limiting (in-memory, swap for Redis when traffic > 1k/day):
- *   8 packs / IP / hour, 50 / IP / day
  */
 
 const { buildPrompt, STYLE_CONFIGS } = require('../../lib/prompts');
 
-const RATE = new Map(); // ip -> { hour, day, hourTs, dayTs }
+const RATE = new Map();
 
-const FLUX_VERSION =
-  // FLUX.1-dev — proven LoRA support, $0.030/image
-  'black-forest-labs/flux-dev:b9c5cdf2d8b0a4e0a8dba6e8f7e5a2cb37f16f31'; // pin exact version on deploy
-const NUM_OUTPUTS_DEFAULT = 8;
+const FLUX_MODEL = 'black-forest-labs/flux-dev';
+const PACK_SIZE  = 8;
+const PER_CALL   = 4; // FLUX-dev cap
 
 function rateOk(ip) {
   const now = Date.now();
@@ -33,6 +33,53 @@ function rateOk(ip) {
   r.hour += 1; r.day += 1;
   RATE.set(ip, r);
   return true;
+}
+
+async function pollUntilDone(token, getUrl, maxMs = 90_000) {
+  const start = Date.now();
+  while (Date.now() - start < maxMs) {
+    const r = await fetch(getUrl, { headers: { 'Authorization': `Token ${token}` } });
+    const j = await r.json();
+    if (j.status === 'succeeded') return j;
+    if (j.status === 'failed' || j.status === 'canceled') {
+      throw new Error(`generation ${j.status}: ${JSON.stringify(j.error || j)}`);
+    }
+    await new Promise(res => setTimeout(res, 2000));
+  }
+  throw new Error('generation timeout');
+}
+
+async function runOnePrediction(token, prompt, count) {
+  const create = await fetch(`https://api.replicate.com/v1/models/${FLUX_MODEL}/predictions`, {
+    method: 'POST',
+    headers: {
+      'Authorization': `Token ${token}`,
+      'Content-Type': 'application/json',
+      'Prefer': 'wait=55',
+    },
+    body: JSON.stringify({
+      input: {
+        prompt,
+        aspect_ratio: '1:1',
+        num_outputs: Math.min(count, PER_CALL),
+        num_inference_steps: 28,
+        guidance: 3.5,
+        output_format: 'png',
+        output_quality: 95,
+        go_fast: true,
+      },
+    }),
+  });
+  const j = await create.json();
+  if (!create.ok) throw new Error(`replicate create: ${JSON.stringify(j)}`);
+
+  if (j.status === 'succeeded') return Array.isArray(j.output) ? j.output : [j.output];
+  if (j.status === 'failed' || j.status === 'canceled') {
+    throw new Error(`generation ${j.status}: ${JSON.stringify(j.error || j)}`);
+  }
+  // Still pending after wait=55 — poll
+  const finished = await pollUntilDone(token, j.urls.get);
+  return Array.isArray(finished.output) ? finished.output : [finished.output];
 }
 
 exports.handler = async (event) => {
@@ -57,78 +104,38 @@ exports.handler = async (event) => {
     return { statusCode: 400, body: JSON.stringify({ error: `unknown style. valid: ${Object.keys(STYLE_CONFIGS).join(', ')}` }) };
   }
 
-  const numOutputs = Math.min(Math.max(parseInt(count) || NUM_OUTPUTS_DEFAULT, 1), 8);
-  const { positive, negative, lora, loraWeight } = buildPrompt({ idea, style, placement, referenceDescription });
-
   const token = process.env.REPLICATE_API_TOKEN;
   if (!token) {
     return { statusCode: 500, body: JSON.stringify({ error: 'REPLICATE_API_TOKEN missing in Netlify env' }) };
   }
 
+  const totalWanted = Math.min(Math.max(parseInt(count) || PACK_SIZE, 1), PACK_SIZE);
+  const { positive } = buildPrompt({ idea, style, placement, referenceDescription });
+
   const sessionId = `sess_${Date.now()}_${Math.random().toString(36).slice(2, 10)}`;
 
-  // Submit prediction to Replicate
-  const input = {
-    prompt: positive,
-    negative_prompt: negative,
-    num_outputs: numOutputs,
-    aspect_ratio: '1:1',
-    output_format: 'png',
-    output_quality: 95,
-    guidance_scale: 3.5,
-    num_inference_steps: 28,
-  };
-  if (lora) {
-    input.hf_lora = lora;
-    input.lora_scale = loraWeight;
+  // Split into parallel batches of 4
+  const batches = [];
+  let remaining = totalWanted;
+  while (remaining > 0) {
+    batches.push(Math.min(remaining, PER_CALL));
+    remaining -= PER_CALL;
   }
 
-  let predictionRes;
+  let allUrls = [];
   try {
-    const r = await fetch('https://api.replicate.com/v1/predictions', {
-      method: 'POST',
-      headers: {
-        'Authorization': `Token ${token}`,
-        'Content-Type': 'application/json',
-        'Prefer': 'wait=60', // wait up to 60s for synchronous return
-      },
-      body: JSON.stringify({
-        version: FLUX_VERSION.split(':')[1],
-        input,
-      }),
-    });
-    predictionRes = await r.json();
-    if (!r.ok) {
-      console.error('Replicate error:', predictionRes);
-      return { statusCode: 502, body: JSON.stringify({ error: 'generator upstream error', detail: predictionRes }) };
-    }
+    const results = await Promise.all(batches.map(n => runOnePrediction(token, positive, n)));
+    allUrls = results.flat().filter(Boolean);
   } catch (err) {
-    console.error('fetch failed:', err);
-    return { statusCode: 502, body: JSON.stringify({ error: 'generator unreachable' }) };
+    console.error('[generate] error:', err);
+    return { statusCode: 502, body: JSON.stringify({ error: 'generation failed', detail: err.message }) };
   }
 
-  // If wait=60 timed out, return polling URL
-  if (predictionRes.status !== 'succeeded' && predictionRes.status !== 'failed') {
-    return {
-      statusCode: 202,
-      body: JSON.stringify({
-        sessionId,
-        status: 'pending',
-        pollUrl: predictionRes.urls?.get,
-        prompt: positive,
-      }),
-    };
+  if (allUrls.length === 0) {
+    return { statusCode: 502, body: JSON.stringify({ error: 'no images returned' }) };
   }
 
-  if (predictionRes.status === 'failed') {
-    return { statusCode: 502, body: JSON.stringify({ error: 'generation failed', detail: predictionRes.error }) };
-  }
-
-  const outputs = Array.isArray(predictionRes.output) ? predictionRes.output : [predictionRes.output];
-
-  // TODO when we wire R2: copy outputs to our CDN with watermark, set 24h expiry.
-  // For MVP, return Replicate's signed URLs directly (24h validity) and watermark client-side via canvas.
-  const designs = outputs.map((url, i) => ({
+  const designs = allUrls.map((url, i) => ({
     id: `${sessionId}_${i}`,
     url,
     prompt: positive,
