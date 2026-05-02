@@ -1,0 +1,240 @@
+[
+  {
+    "id": "trad-01",
+    "style": "traditional",
+    "label": "Panther & Roses",
+    "file": "images/examples/trad-01.png"
+  },
+  {
+    "id": "trad-02",
+    "style": "traditional",
+    "label": "Heart & Dagger",
+    "file": "images/examples/trad-02.png"
+  },
+  {
+    "id": "trad-03",
+    "style": "traditional",
+    "label": "Anchor & Swallow",
+    "file": "images/examples/trad-03.png"
+  },
+  {
+    "id": "trad-04",
+    "style": "traditional",
+    "label": "Eagle & Snake",
+    "file": "images/examples/trad-04.png"
+  },
+  {
+    "id": "trad-05",
+    "style": "traditional",
+    "label": "Hot Rod Skull",
+    "file": "images/examples/trad-05.png"
+  },
+  {
+    "id": "neo-01",
+    "style": "neo",
+    "label": "Crystal Fox Queen",
+    "file": "images/examples/neo-01.png"
+  },
+  {
+    "id": "neo-02",
+    "style": "neo",
+    "label": "Shattered Wolf",
+    "file": "images/examples/neo-02.png"
+  },
+  {
+    "id": "neo-03",
+    "style": "neo",
+    "label": "Honeyed Stag",
+    "file": "images/examples/neo-03.png"
+  },
+  {
+    "id": "neo-04",
+    "style": "neo",
+    "label": "Kraken Compass",
+    "file": "images/examples/neo-04.png"
+  },
+  {
+    "id": "jp-01",
+    "style": "japanese",
+    "label": "Ryu Dragon",
+    "file": "images/examples/jp-01.png"
+  },
+  {
+    "id": "jp-02",
+    "style": "japanese",
+    "label": "Hannya Mask",
+    "file": "images/examples/jp-02.png"
+  },
+  {
+    "id": "jp-03",
+    "style": "japanese",
+    "label": "Tiger & Storm",
+    "file": "images/examples/jp-03.png"
+  },
+  {
+    "id": "jp-04",
+    "style": "japanese",
+    "label": "Red Samurai",
+    "file": "images/examples/jp-04.png"
+  },
+  {
+    "id": "jp-05",
+    "style": "japanese",
+    "label": "Foo Dog Roar",
+    "file": "images/examples/jp-05.png"
+  },
+  {
+    "id": "min-01",
+    "style": "minimalist",
+    "label": "One-Line Dragon",
+    "file": "images/examples/min-01.png"
+  },
+  {
+    "id": "min-02",
+    "style": "minimalist",
+    "label": "Sun & Wave",
+    "file": "images/examples/min-02.png"
+  },
+  {
+    "id": "min-03",
+    "style": "minimalist",
+    "label": "Bird Pair Heart",
+    "file": "images/examples/min-03.png"
+  },
+  {
+    "id": "min-04",
+    "style": "minimalist",
+    "label": "Geo Dragonfly",
+    "file": "images/examples/min-04.png"
+  },
+  {
+    "id": "fine-01",
+    "style": "fineline",
+    "label": "Single Rose",
+    "file": "images/examples/fine-01.png"
+  },
+  {
+    "id": "fine-02",
+    "style": "fineline",
+    "label": "Cobra & Moons",
+    "file": "images/examples/fine-02.png"
+  },
+  {
+    "id": "fine-03",
+    "style": "fineline",
+    "label": "Lavender & Bee",
+    "file": "images/examples/fine-03.png"
+  },
+  {
+    "id": "fine-04",
+    "style": "fineline",
+    "label": "Mandala Butterfly",
+    "file": "images/examples/fine-04.png"
+  },
+  {
+    "id": "bw-01",
+    "style": "blackwork",
+    "label": "Sacred Mandala",
+    "file": "images/examples/bw-01.png"
+  },
+  {
+    "id": "bw-02",
+    "style": "blackwork",
+    "label": "Raven & Moon",
+    "file": "images/examples/bw-02.png"
+  },
+  {
+    "id": "bw-03",
+    "style": "blackwork",
+    "label": "All-Seeing Eye",
+    "file": "images/examples/bw-03.png"
+  },
+  {
+    "id": "bw-04",
+    "style": "blackwork",
+    "label": "Sugar Skull",
+    "file": "images/examples/bw-04.png"
+  },
+  {
+    "id": "wc-01",
+    "style": "watercolor",
+    "label": "Rebirth Phoenix",
+    "file": "images/examples/wc-01.png"
+  },
+  {
+    "id": "wc-02",
+    "style": "watercolor",
+    "label": "Hummingbird",
+    "file": "images/examples/wc-02.png"
+  },
+  {
+    "id": "wc-03",
+    "style": "watercolor",
+    "label": "Galaxy Bloom",
+    "file": "images/examples/wc-03.png"
+  },
+  {
+    "id": "real-01",
+    "style": "realism",
+    "label": "Lion Portrait",
+    "file": "images/examples/real-01.png"
+  },
+  {
+    "id": "real-02",
+    "style": "realism",
+    "label": "Frozen Pocketwatch",
+    "file": "images/examples/real-02.png"
+  },
+  {
+    "id": "real-03",
+    "style": "realism",
+    "label": "Lone Wolf Howl",
+    "file": "images/examples/real-03.png"
+  },
+  {
+    "id": "real-04",
+    "style": "realism",
+    "label": "Forest Eye",
+    "file": "images/examples/real-04.png"
+  },
+  {
+    "id": "trib-01",
+    "style": "tribal",
+    "label": "Polynesian Sun",
+    "file": "images/examples/trib-01.png"
+  },
+  {
+    "id": "trib-02",
+    "style": "tribal",
+    "label": "Maori Manta Ray",
+    "file": "images/examples/trib-02.png"
+  },
+  {
+    "id": "trib-03",
+    "style": "tribal",
+    "label": "Samoan Warrior",
+    "file": null,
+    "error": "Rate limit. Try again in an hour."
+  },
+  {
+    "id": "dot-01",
+    "style": "dotwork",
+    "label": "Stippled Moon",
+    "file": null,
+    "error": "Rate limit. Try again in an hour."
+  },
+  {
+    "id": "dot-02",
+    "style": "dotwork",
+    "label": "Flower of Life",
+    "file": null,
+    "error": "Rate limit. Try again in an hour."
+  },
+  {
+    "id": "dot-03",
+    "style": "dotwork",
+    "label": "Honeybee Dot",
+    "file": null,
+    "error": "Rate limit. Try again in an hour."
+  }
+]
