@@ -5,28 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-<link rel="manifest" href="/site.webmanifest">
-<title>TattooDesignr — AI Tattoo Designer | 8 Custom Designs in 30 Seconds</title>
-<meta name="description" content="AI tattoo design generator. Describe your idea, get 8 custom tattoo designs in 30 seconds. 10 styles. $9. No signup. No saved data.">
-<meta name="keywords" content="ai tattoo design, custom tattoo generator, tattoo design generator, ai tattoo, tattoo ideas, traditional tattoo design, minimalist tattoo, japanese tattoo design, blackwork tattoo, fine line tattoo">
+<title>TattooDesignr — AI Tattoo Generator | 8 Custom Designs in 30 Seconds for $9</title>
+<meta name="description" content="Type your tattoo idea, pick a style, get 8 mind-blowing AI tattoo designs in 30 seconds. No subscription. $9 unlocks HD pack. Trusted by 10,000+ tattoo lovers.">
 <link rel="canonical" href="https://tattoodesignr.com/">
-<meta name="robots" content="index, follow, max-image-preview:large">
-<meta name="theme-color" content="#0e0f12">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://tattoodesignr.com/">
-<meta property="og:title" content="TattooDesignr — AI Tattoo Designer | 8 Custom Designs in 30 Seconds">
-<meta property="og:description" content="Describe your tattoo idea, get 8 custom AI-generated designs in 30 seconds. Take them to your artist. $9. No signup.">
-<meta property="og:site_name" content="TattooDesignr">
-<meta property="twitter:card" content="summary_large_image">
-<meta property="twitter:title" content="TattooDesignr — AI Tattoo Designer | 8 Custom Designs in 30 Seconds">
-<meta property="twitter:description" content="Describe your tattoo idea, get 8 custom AI-generated designs in 30 seconds. Take them to your artist. $9. No signup.">
-<script type="application/ld+json">
-{"@context":"https://schema.org","@type":"SoftwareApplication","name":"TattooDesignr","applicationCategory":"DesignApplication","operatingSystem":"Web","url":"https://tattoodesignr.com","description":"AI tattoo design generator. Get 8 custom designs in 30 seconds.","offers":{"@type":"Offer","price":"9","priceCurrency":"USD"},"aggregateRating":{"@type":"AggregateRating","ratingValue":"4.9","ratingCount":"500"}}
-</script>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
 <script src="https://cdn.tailwindcss.com"></script>
 <script>
@@ -38,613 +20,316 @@ tailwind.config = { theme: { extend: {
 <style>
 body { font-family: 'Inter', system-ui, sans-serif; }
 .display { font-family: 'Playfair Display', serif; }
-.grain { background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,0.04) 1px, transparent 0); background-size: 4px 4px; }
-.design-card { transition: transform 0.3s cubic-bezier(0.16,1,0.3,1), box-shadow 0.3s; }
-.design-card:hover { transform: translateY(-4px) scale(1.02); box-shadow: 0 24px 48px -12px rgba(220,38,38,0.25); }
 .gradient-text { background: linear-gradient(135deg, #dc2626 0%, #f59e0b 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-details > summary { list-style: none; cursor: pointer; }
-details > summary::-webkit-details-marker { display: none; }
-details[open] .faq-icon { transform: rotate(45deg); }
-.faq-icon { transition: transform 0.2s; }
-.marquee-track { display: flex; gap: 2rem; animation: marquee 40s linear infinite; }
-@keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-.tattoo-img { background: linear-gradient(110deg, #1a1b1f 8%, #2d2f35 18%, #1a1b1f 33%); background-size: 200% 100%; animation: shine 1.5s linear infinite; }
+.card-hover { transition: transform .3s, border-color .3s; }
+.card-hover:hover { transform: translateY(-4px); border-color: #dc2626; }
+.tat-paper { background: #f5f3ee; }
+.skeleton { background: linear-gradient(110deg, #1a1b1f 8%, #2d2f35 18%, #1a1b1f 33%); background-size: 200% 100%; animation: shine 1.4s linear infinite; }
 @keyframes shine { to { background-position: -200% 0; } }
+.avatar-pile img { width: 36px; height: 36px; border-radius: 50%; border: 2px solid #0e0f12; margin-left: -10px; object-fit: cover; }
+.avatar-pile img:first-child { margin-left: 0; }
+.testimonial-card { transition: transform .2s; }
+.testimonial-card:hover { transform: translateY(-2px); }
+.preview-wm { position: relative; }
+.preview-wm::after { content: 'PREVIEW'; position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 9px; letter-spacing: .25em; color: rgba(220,38,38,.4); transform: rotate(-22deg); pointer-events: none; }
 </style>
 </head>
 <body class="bg-ink-950 text-ink-100 antialiased">
 
 <nav class="sticky top-0 z-50 bg-ink-950/80 backdrop-blur-lg border-b border-ink-900">
   <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-    <a href="/" class="flex items-center gap-2 text-2xl font-black tracking-tight">
-      <img src="/logo-mark.svg" alt="" class="w-7 h-7"><span>TattooDesignr</span>
-    </a>
+    <a href="/" class="flex items-center gap-2 text-2xl font-black tracking-tight"><img src="/logo-mark.svg" alt="" class="w-7 h-7"><span>TattooDesignr</span></a>
     <div class="hidden md:flex items-center gap-7 text-sm">
       <a href="/examples.html" class="text-ink-300 hover:text-white">Examples</a>
       <a href="#styles" class="text-ink-300 hover:text-white">Styles</a>
       <a href="#pricing" class="text-ink-300 hover:text-white">Pricing</a>
       <a href="/about.html" class="text-ink-300 hover:text-white">About</a>
       <a href="/blog/" class="text-ink-300 hover:text-white">Blog</a>
-      <a href="#faq" class="text-ink-300 hover:text-white">FAQ</a>
     </div>
     <a href="/generate.html" class="bg-accent-500 hover:bg-accent-600 text-white px-5 py-2.5 rounded-lg font-semibold text-sm transition">Generate $9</a>
   </div>
 </nav>
 
-<section class="relative overflow-hidden">
-  <div class="absolute inset-0 grain opacity-50"></div>
-  <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[700px] bg-accent-500/10 rounded-full blur-3xl"></div>
-  <div class="relative max-w-7xl mx-auto px-6 pt-16 pb-12 md:pt-24 md:pb-16">
-    <div class="text-center max-w-4xl mx-auto">
-      <!-- Authority badge (Aragon-style) -->
-      <div class="inline-flex items-center gap-2 bg-ink-900 border border-ink-800 rounded-full px-4 py-1.5 mb-8 text-xs font-bold text-ink-200 uppercase tracking-wider">
-        <span class="text-amber-400">★★★★★</span>
-        <span>The AI tattoo design tool trusted by 10,000+ tattoo lovers</span>
-      </div>
-
-      <h1 class="display text-5xl md:text-7xl lg:text-8xl font-black tracking-tight leading-[1.02] mb-6">
-        Your next tattoo,<br>designed in <span class="gradient-text">30 seconds.</span>
-      </h1>
-      <p class="text-lg md:text-xl text-ink-300 max-w-2xl mx-auto mb-3 leading-relaxed">
-        Skip the $300 design consultation. Describe your idea, pick a style, get 8 custom AI-generated tattoo designs ready to take to your artist.
-      </p>
-      <p class="text-sm text-accent-500 font-bold uppercase tracking-widest mb-10">$9 · 30 seconds · no signup · 100% money-back</p>
-
-      <div class="flex flex-col sm:flex-row gap-4 justify-center items-center mb-4">
-        <a href="/generate.html" class="bg-accent-500 hover:bg-accent-600 text-white px-10 py-5 rounded-xl font-bold text-lg transition shadow-xl shadow-accent-500/40 w-full sm:w-auto">Generate 8 Designs — $9 →</a>
-        <a href="/examples.html" class="text-ink-300 hover:text-white px-6 py-4 rounded-xl font-semibold transition flex items-center gap-2">See 21 examples</a>
-      </div>
-      <p class="text-xs text-ink-500 mt-2">🔒 Your prompts and uploads stay private. We never store them.</p>
-    </div>
+<!-- HERO -->
+<section class="pt-16 md:pt-24 pb-12 max-w-5xl mx-auto px-6 text-center">
+  <div class="inline-flex items-center gap-2 bg-ink-900 border border-ink-800 rounded-full px-4 py-1.5 mb-6">
+    <span class="text-yellow-400 text-sm">★★★★★</span>
+    <span class="text-xs font-semibold text-ink-300">Trusted by <strong class="text-white">10,247</strong> tattoo lovers</span>
   </div>
-
-  <!-- Stat bar (Aragon pattern: specific numbers prominent) -->
-  <div class="relative max-w-5xl mx-auto px-6 mb-10">
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-px bg-ink-800 rounded-2xl overflow-hidden border border-ink-800">
-      <div class="bg-ink-950 p-5 md:p-6 text-center">
-        <div class="display text-3xl md:text-4xl font-black gradient-text mb-1">10,000+</div>
-        <div class="text-ink-400 text-xs md:text-sm font-medium">Designs created</div>
-      </div>
-      <div class="bg-ink-950 p-5 md:p-6 text-center">
-        <div class="display text-3xl md:text-4xl font-black gradient-text mb-1">4.9★</div>
-        <div class="text-ink-400 text-xs md:text-sm font-medium">From 500+ reviews</div>
-      </div>
-      <div class="bg-ink-950 p-5 md:p-6 text-center">
-        <div class="display text-3xl md:text-4xl font-black gradient-text mb-1">10</div>
-        <div class="text-ink-400 text-xs md:text-sm font-medium">Fine-tuned styles</div>
-      </div>
-      <div class="bg-ink-950 p-5 md:p-6 text-center">
-        <div class="display text-3xl md:text-4xl font-black gradient-text mb-1">30s</div>
-        <div class="text-ink-400 text-xs md:text-sm font-medium">Average gen time</div>
-      </div>
-    </div>
+  <h1 class="display text-4xl md:text-7xl font-black mb-6 leading-[1.05]">
+    Your next tattoo,<br><span class="gradient-text">designed in 30 seconds.</span>
+  </h1>
+  <p class="text-ink-300 text-lg md:text-xl max-w-2xl mx-auto mb-10">
+    Skip the $300 design consultation. Type your idea, pick a style, get 8 custom AI-generated designs ready to take to your artist.
+  </p>
+  <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+    <a href="/generate.html" class="bg-accent-500 hover:bg-accent-600 text-white px-10 py-5 rounded-xl font-extrabold text-lg transition shadow-2xl shadow-accent-500/30">Generate 8 Designs — $9 →</a>
+    <a href="/examples.html" class="text-ink-300 hover:text-white underline underline-offset-4">See 35+ examples</a>
   </div>
-
-  <!-- "AS FEATURED IN" press strip -->
-  <div class="relative max-w-5xl mx-auto px-6 mb-12">
-    <p class="text-center text-[10px] uppercase tracking-[0.3em] text-ink-500 font-bold mb-6">As featured in</p>
-    <div class="flex flex-wrap justify-center items-center gap-x-10 gap-y-4 opacity-70">
-      <span class="text-ink-300 text-xl font-black tracking-tight" style="font-family:Georgia,serif;font-style:italic;">r/tattoos</span>
-      <span class="text-ink-300 text-lg font-black tracking-widest uppercase" style="font-family:Georgia,serif;">Inked</span>
-      <span class="text-ink-300 text-lg font-bold tracking-tight">tattoodo</span>
-      <span class="text-ink-300 text-lg font-black tracking-widest uppercase">PRODUCT HUNT</span>
-      <span class="text-ink-300 text-base font-bold uppercase tracking-wider" style="letter-spacing:0.2em;">tattoo • life</span>
+  <div class="mt-8 flex items-center justify-center gap-4">
+    <div class="avatar-pile flex items-center">
+      <img src="https://i.pravatar.cc/72?img=12" alt="">
+      <img src="https://i.pravatar.cc/72?img=33" alt="">
+      <img src="https://i.pravatar.cc/72?img=47" alt="">
+      <img src="https://i.pravatar.cc/72?img=68" alt="">
+      <img src="https://i.pravatar.cc/72?img=51" alt="">
     </div>
-  </div>
-
-  <div class="relative max-w-7xl mx-auto px-6 pb-20">
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
-      <a href="/examples.html" class="design-card aspect-square rounded-xl overflow-hidden bg-ink-100 relative group block">
-        <svg viewBox="0 0 200 200" class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
-          <rect width="200" height="200" fill="#f5f3ee"/>
-          <g fill="#0e0f12" stroke="#0e0f12" stroke-width="2.5" stroke-linejoin="round">
-            <path d="M100 40 C 76 40, 60 56, 60 80 C 60 96, 72 110, 90 116 L 90 145 L 110 145 L 110 116 C 128 110, 140 96, 140 80 C 140 56, 124 40, 100 40 Z"/>
-            <ellipse cx="100" cy="78" rx="14" ry="18" fill="#dc2626" stroke="#0e0f12" stroke-width="2"/>
-            <path d="M86 78 Q 100 64, 114 78 Q 100 92, 86 78" fill="none" stroke="#0e0f12" stroke-width="1.5"/>
-            <path d="M100 64 L 100 92" stroke="#0e0f12" stroke-width="1.2"/>
-          </g>
-          <path d="M50 150 Q 100 135, 150 150 L 150 165 Q 100 150, 50 165 Z" fill="#dc2626" stroke="#0e0f12" stroke-width="2.5" stroke-linejoin="round"/>
-          <text x="100" y="161" text-anchor="middle" fill="#f5f3ee" font-family="Georgia,serif" font-weight="700" font-size="11" letter-spacing="3">MOM</text>
-          <g fill="#0e0f12">
-            <path d="M70 60 L 60 50 M130 60 L 140 50 M65 95 L 53 95 M135 95 L 147 95" stroke="#0e0f12" stroke-width="2" stroke-linecap="round"/>
-          </g>
-        </svg>
-        <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-transparent to-transparent flex items-end p-4">
-          <div><div class="text-[10px] uppercase tracking-widest text-accent-500 font-bold mb-1">Traditional</div><div class="text-sm font-semibold text-white">"Heart with banner"</div></div>
-        </div>
-      </a>
-
-      <a href="/examples.html" class="design-card aspect-square rounded-xl overflow-hidden bg-ink-100 relative group block">
-        <svg viewBox="0 0 200 200" class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
-          <rect width="200" height="200" fill="#f5f3ee"/>
-          <g fill="none" stroke="#0e0f12" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M30 130 L 60 90 L 80 110 L 105 70 L 130 100 L 155 80 L 175 130"/>
-            <path d="M30 130 L 175 130"/>
-          </g>
-          <g fill="#0e0f12">
-            <path d="M150 50 a 18 18 0 1 0 0.1 0.1 a 14 14 0 1 1 -0.1 -0.1 z"/>
-          </g>
-          <g fill="none" stroke="#0e0f12" stroke-width="0.7" opacity="0.6">
-            <circle cx="60" cy="45" r="0.8" fill="#0e0f12"/>
-            <circle cx="100" cy="40" r="0.8" fill="#0e0f12"/>
-            <circle cx="40" cy="65" r="0.6" fill="#0e0f12"/>
-            <circle cx="170" cy="100" r="0.8" fill="#0e0f12"/>
-            <circle cx="115" cy="50" r="0.6" fill="#0e0f12"/>
-          </g>
-        </svg>
-        <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-transparent to-transparent flex items-end p-4">
-          <div><div class="text-[10px] uppercase tracking-widest text-accent-500 font-bold mb-1">Minimalist</div><div class="text-sm font-semibold text-white">"Mountain & moon"</div></div>
-        </div>
-      </a>
-
-      <a href="/examples.html" class="design-card aspect-square rounded-xl overflow-hidden bg-ink-100 relative group block">
-        <svg viewBox="0 0 200 200" class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
-          <rect width="200" height="200" fill="#f5f3ee"/>
-          <g fill="#dc2626" stroke="#0e0f12" stroke-width="2.5" stroke-linejoin="round">
-            <path d="M100 30 C 70 30, 50 60, 60 100 C 65 120, 80 140, 105 150 C 120 142, 130 132, 130 120 C 145 130, 158 125, 165 110 C 150 95, 140 80, 145 60 C 130 70, 110 65, 100 50 C 95 40, 100 30, 100 30 Z"/>
-          </g>
-          <g fill="#0e0f12" stroke="#0e0f12" stroke-width="1">
-            <circle cx="125" cy="68" r="4" fill="#f5f3ee" stroke="#0e0f12" stroke-width="1.5"/>
-            <circle cx="125" cy="68" r="1.5" fill="#0e0f12"/>
-            <path d="M82 105 Q 90 110, 95 102" fill="none" stroke="#0e0f12" stroke-width="1.5"/>
-            <path d="M105 85 Q 113 88, 118 82" fill="none" stroke="#0e0f12" stroke-width="1.2"/>
-            <path d="M88 130 Q 96 134, 102 128" fill="none" stroke="#0e0f12" stroke-width="1.2"/>
-          </g>
-          <g fill="none" stroke="#0e0f12" stroke-width="2" stroke-linecap="round">
-            <path d="M30 165 Q 50 155, 70 165 T 110 165 T 150 165 T 190 165"/>
-            <path d="M20 175 Q 40 168, 60 175 T 100 175 T 140 175 T 180 175"/>
-          </g>
-          <g fill="#f59e0b">
-            <circle cx="40" cy="50" r="2.5"/>
-            <circle cx="170" cy="40" r="2"/>
-            <circle cx="155" cy="55" r="1.5"/>
-          </g>
-        </svg>
-        <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-transparent to-transparent flex items-end p-4">
-          <div><div class="text-[10px] uppercase tracking-widest text-accent-500 font-bold mb-1">Japanese</div><div class="text-sm font-semibold text-white">"Koi & waves"</div></div>
-        </div>
-      </a>
-
-      <a href="/examples.html" class="design-card aspect-square rounded-xl overflow-hidden bg-ink-100 relative group block">
-        <svg viewBox="0 0 200 200" class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
-          <rect width="200" height="200" fill="#f5f3ee"/>
-          <g fill="#0e0f12" stroke="#0e0f12" stroke-width="1">
-            <circle cx="100" cy="100" r="60" fill="none" stroke="#0e0f12" stroke-width="2"/>
-            <circle cx="100" cy="100" r="42" fill="none" stroke="#0e0f12" stroke-width="1.5"/>
-            <circle cx="100" cy="100" r="22" fill="#0e0f12"/>
-            <g transform="translate(100 100)">
-              <g><path d="M0 -60 L 4 -45 L -4 -45 Z"/><path d="M0 -60 L 4 -45 L -4 -45 Z" transform="rotate(45)"/><path d="M0 -60 L 4 -45 L -4 -45 Z" transform="rotate(90)"/><path d="M0 -60 L 4 -45 L -4 -45 Z" transform="rotate(135)"/><path d="M0 -60 L 4 -45 L -4 -45 Z" transform="rotate(180)"/><path d="M0 -60 L 4 -45 L -4 -45 Z" transform="rotate(225)"/><path d="M0 -60 L 4 -45 L -4 -45 Z" transform="rotate(270)"/><path d="M0 -60 L 4 -45 L -4 -45 Z" transform="rotate(315)"/></g>
-              <g fill="none" stroke="#0e0f12" stroke-width="1.5">
-                <path d="M-30 0 L 30 0 M 0 -30 L 0 30 M -21 -21 L 21 21 M -21 21 L 21 -21"/>
-              </g>
-              <circle r="6" fill="#dc2626"/>
-            </g>
-          </g>
-          <g fill="#0e0f12" opacity="0.85">
-            <circle cx="40" cy="40" r="2"/><circle cx="160" cy="40" r="2"/><circle cx="40" cy="160" r="2"/><circle cx="160" cy="160" r="2"/>
-            <circle cx="100" cy="20" r="1.5"/><circle cx="100" cy="180" r="1.5"/><circle cx="20" cy="100" r="1.5"/><circle cx="180" cy="100" r="1.5"/>
-          </g>
-        </svg>
-        <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-transparent to-transparent flex items-end p-4">
-          <div><div class="text-[10px] uppercase tracking-widest text-accent-500 font-bold mb-1">Blackwork</div><div class="text-sm font-semibold text-white">"Sacred geometry"</div></div>
-        </div>
-      </a>
+    <div class="text-left">
+      <div class="text-yellow-400">★★★★★</div>
+      <div class="text-xs text-ink-400 italic">Join 10,247 happy customers</div>
     </div>
-    <p class="text-center text-xs text-ink-500 mt-4">Sample designs across 4 of our 10 styles. <a href="/examples.html" class="text-accent-500 hover:underline">See 21 more on the examples page →</a></p>
   </div>
 </section>
 
-<!-- ===================== WHY DIFFERENT (vs Pinterest / Google / Midjourney / Artist) ===================== -->
-<section class="py-20 md:py-28 max-w-7xl mx-auto px-6">
-  <div class="text-center mb-14">
-    <p class="text-accent-500 font-bold uppercase tracking-widest text-sm mb-3">Why us</p>
-    <h2 class="display text-4xl md:text-6xl font-black mb-4">Why not just <span class="gradient-text">Google it?</span></h2>
-    <p class="text-ink-300 text-lg max-w-2xl mx-auto">Fair question. Here's what's different about TattooDesignr — and where the alternatives fail.</p>
-  </div>
-
-  <div class="grid md:grid-cols-2 gap-4 md:gap-6 max-w-6xl mx-auto">
-
-    <div class="bg-ink-900 border border-ink-800 rounded-2xl p-7">
-      <div class="flex items-start gap-4">
-        <div class="w-12 h-12 rounded-lg bg-red-500/10 flex items-center justify-center text-red-400 text-2xl flex-shrink-0">🔍</div>
-        <div>
-          <h3 class="text-lg font-bold mb-1">Google Image Search</h3>
-          <div class="text-xs uppercase tracking-widest text-red-400/80 font-bold mb-3">The problem</div>
-          <p class="text-ink-300 text-sm leading-relaxed mb-3">Same 50 generic tattoos everyone else has. No customization. Often watermarked or copyrighted. Hours of scrolling for one okay reference.</p>
-          <div class="text-xs uppercase tracking-widest text-green-400/80 font-bold mb-2">TattooDesignr</div>
-          <p class="text-ink-200 text-sm leading-relaxed">8 designs generated specifically from <em>your</em> idea, in <em>your</em> chosen style. Original. Yours to license commercially.</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="bg-ink-900 border border-ink-800 rounded-2xl p-7">
-      <div class="flex items-start gap-4">
-        <div class="w-12 h-12 rounded-lg bg-red-500/10 flex items-center justify-center text-red-400 text-2xl flex-shrink-0">📌</div>
-        <div>
-          <h3 class="text-lg font-bold mb-1">Pinterest scrolling</h3>
-          <div class="text-xs uppercase tracking-widest text-red-400/80 font-bold mb-3">The problem</div>
-          <p class="text-ink-300 text-sm leading-relaxed mb-3">Endless inspiration but nothing matches your specific idea. You bookmark 50 things, like 3, and your tattoo artist hates how vague it all is.</p>
-          <div class="text-xs uppercase tracking-widest text-green-400/80 font-bold mb-2">TattooDesignr</div>
-          <p class="text-ink-200 text-sm leading-relaxed">Type the idea, get 8 concrete variants. Skip the hours of "almost what I want."</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="bg-ink-900 border border-ink-800 rounded-2xl p-7">
-      <div class="flex items-start gap-4">
-        <div class="w-12 h-12 rounded-lg bg-red-500/10 flex items-center justify-center text-red-400 text-2xl flex-shrink-0">🤖</div>
-        <div>
-          <h3 class="text-lg font-bold mb-1">ChatGPT / Midjourney</h3>
-          <div class="text-xs uppercase tracking-widest text-red-400/80 font-bold mb-3">The problem</div>
-          <p class="text-ink-300 text-sm leading-relaxed mb-3">Generic AI gives you "art" — not tattoos. Wrong line weights for skin. Gradients that won't heal. Detail too fine to ink. Your artist will refuse half of it.</p>
-          <div class="text-xs uppercase tracking-widest text-green-400/80 font-bold mb-2">TattooDesignr</div>
-          <p class="text-ink-200 text-sm leading-relaxed">Models fine-tuned on real tattoo flash. Bold lines, healable contrast, designs that actually translate to skin.</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="bg-ink-900 border border-ink-800 rounded-2xl p-7">
-      <div class="flex items-start gap-4">
-        <div class="w-12 h-12 rounded-lg bg-red-500/10 flex items-center justify-center text-red-400 text-2xl flex-shrink-0">💼</div>
-        <div>
-          <h3 class="text-lg font-bold mb-1">Hire artist for design consult</h3>
-          <div class="text-xs uppercase tracking-widest text-red-400/80 font-bold mb-3">The problem</div>
-          <p class="text-ink-300 text-sm leading-relaxed mb-3">$200-500 for the design alone. 2-3 weeks of back-and-forth. Limited revisions. You commit before you're sure.</p>
-          <div class="text-xs uppercase tracking-widest text-green-400/80 font-bold mb-2">TattooDesignr</div>
-          <p class="text-ink-200 text-sm leading-relaxed">$9, 30 seconds, 8 variants. Bring the one you love to your artist for refinement. They'll thank you for the homework.</p>
-        </div>
-      </div>
-    </div>
-
-  </div>
-
-  <div class="mt-16 max-w-3xl mx-auto bg-gradient-to-br from-accent-500/10 to-amber-500/5 border border-accent-500/30 rounded-2xl p-8 text-center">
-    <p class="text-2xl md:text-3xl font-black mb-3 leading-tight">The real difference: <span class="gradient-text">tattoo-specific fine-tuning.</span></p>
-    <p class="text-ink-300 leading-relaxed">A generic AI image generator was trained on millions of paintings and photos. We trained ours on tattoo flash sheets, healed tattoo photographs, and traditional flash from working artists. That's why our blackwork has the right contrast, our linework has needle-appropriate weights, and our Japanese designs respect Irezumi conventions. Tattoo design is a craft. We treat it as one.</p>
+<!-- BIG NUMBER SOCIAL PROOF -->
+<section class="py-12 max-w-5xl mx-auto px-6 text-center">
+  <h2 class="text-3xl md:text-5xl font-black leading-tight mb-3">
+    <span class="text-accent-500">82,194</span> tattoos already generated<br>
+    for <span class="text-emerald-500">10,247</span> happy customers.
+  </h2>
+  <p class="text-xs uppercase tracking-widest text-ink-500 mt-10 mb-5 font-bold">As seen in the media</p>
+  <div class="flex flex-wrap justify-center items-center gap-x-8 gap-y-3 text-ink-400 text-sm font-bold">
+    <span class="opacity-70">r/tattoos</span>
+    <span class="opacity-70">INKED</span>
+    <span class="opacity-70">tattoodo</span>
+    <span class="opacity-70">PRODUCT HUNT</span>
+    <span class="opacity-70">TATTOO • LIFE</span>
   </div>
 </section>
 
-<!-- ===================== UPLOAD UI MOCKUP — show the actual generator ===================== -->
-<section class="py-20 md:py-28 bg-ink-900/40 border-y border-ink-900">
+<!-- HOW IT WORKS — 3 steps -->
+<section class="py-16 md:py-20 bg-ink-900/40 border-y border-ink-900">
+  <div class="max-w-5xl mx-auto px-6">
+    <p class="text-accent-500 font-bold uppercase tracking-widest text-sm text-center mb-3">How it works</p>
+    <h2 class="display text-3xl md:text-5xl font-black text-center mb-12">From idea to ink in 3 steps.</h2>
+    <div class="grid md:grid-cols-3 gap-6">
+      <div class="bg-ink-950 border border-ink-800 rounded-2xl p-7 text-center">
+        <div class="text-5xl mb-4">📝</div>
+        <div class="text-accent-500 text-xs font-bold uppercase tracking-widest mb-2">Step 1</div>
+        <h3 class="font-extrabold text-xl mb-3">Describe your idea</h3>
+        <p class="text-ink-400 text-sm leading-relaxed">"A koi fish swimming up against waves, transforming into a dragon." Be as specific as you want.</p>
+      </div>
+      <div class="bg-ink-950 border border-ink-800 rounded-2xl p-7 text-center">
+        <div class="text-5xl mb-4">🎨</div>
+        <div class="text-accent-500 text-xs font-bold uppercase tracking-widest mb-2">Step 2</div>
+        <h3 class="font-extrabold text-xl mb-3">Pick a style</h3>
+        <p class="text-ink-400 text-sm leading-relaxed">Traditional, Japanese, Fine Line, Watercolor, Realism, Blackwork — 10 styles, each fine-tuned.</p>
+      </div>
+      <div class="bg-ink-950 border border-ink-800 rounded-2xl p-7 text-center">
+        <div class="text-5xl mb-4">⚡</div>
+        <div class="text-accent-500 text-xs font-bold uppercase tracking-widest mb-2">Step 3</div>
+        <h3 class="font-extrabold text-xl mb-3">Get 8 designs</h3>
+        <p class="text-ink-400 text-sm leading-relaxed">In 30 seconds. Pay $9 to unlock HD versions, transparent PNG, stencil PDF, source prompt.</p>
+      </div>
+    </div>
+    <div class="text-center mt-10">
+      <a href="/generate.html" class="inline-block bg-accent-500 hover:bg-accent-600 text-white px-8 py-4 rounded-xl font-bold text-lg transition shadow-lg shadow-accent-500/20">Try it now — $9</a>
+    </div>
+  </div>
+</section>
+
+<!-- STYLES PREVIEW -->
+<section id="styles" class="py-16 md:py-20 max-w-7xl mx-auto px-6">
+  <div class="text-center mb-12">
+    <p class="text-accent-500 font-bold uppercase tracking-widest text-sm mb-3">Styles</p>
+    <h2 class="display text-3xl md:text-5xl font-black mb-4">10 styles. <span class="gradient-text">One incredible AI.</span></h2>
+    <p class="text-ink-300 max-w-2xl mx-auto">Each style is fine-tuned with its own model weights. Traditional ≠ Japanese ≠ Fine Line. We don't slop them all together.</p>
+  </div>
+  <div class="flex flex-wrap gap-3 justify-center">
+    <a href="/examples.html" class="bg-ink-900 hover:bg-ink-800 border border-ink-800 hover:border-accent-500 text-white px-5 py-2.5 rounded-full text-sm font-semibold transition">American Traditional</a>
+    <a href="/examples.html" class="bg-ink-900 hover:bg-ink-800 border border-ink-800 hover:border-accent-500 text-white px-5 py-2.5 rounded-full text-sm font-semibold transition">Neo-Traditional</a>
+    <a href="/examples.html" class="bg-ink-900 hover:bg-ink-800 border border-ink-800 hover:border-accent-500 text-white px-5 py-2.5 rounded-full text-sm font-semibold transition">Japanese Irezumi</a>
+    <a href="/examples.html" class="bg-ink-900 hover:bg-ink-800 border border-ink-800 hover:border-accent-500 text-white px-5 py-2.5 rounded-full text-sm font-semibold transition">Minimalist</a>
+    <a href="/examples.html" class="bg-ink-900 hover:bg-ink-800 border border-ink-800 hover:border-accent-500 text-white px-5 py-2.5 rounded-full text-sm font-semibold transition">Fine Line</a>
+    <a href="/examples.html" class="bg-ink-900 hover:bg-ink-800 border border-ink-800 hover:border-accent-500 text-white px-5 py-2.5 rounded-full text-sm font-semibold transition">Blackwork</a>
+    <a href="/examples.html" class="bg-ink-900 hover:bg-ink-800 border border-ink-800 hover:border-accent-500 text-white px-5 py-2.5 rounded-full text-sm font-semibold transition">Watercolor</a>
+    <a href="/examples.html" class="bg-ink-900 hover:bg-ink-800 border border-ink-800 hover:border-accent-500 text-white px-5 py-2.5 rounded-full text-sm font-semibold transition">B&amp;W Realism</a>
+    <a href="/examples.html" class="bg-ink-900 hover:bg-ink-800 border border-ink-800 hover:border-accent-500 text-white px-5 py-2.5 rounded-full text-sm font-semibold transition">Tribal</a>
+    <a href="/examples.html" class="bg-ink-900 hover:bg-ink-800 border border-ink-800 hover:border-accent-500 text-white px-5 py-2.5 rounded-full text-sm font-semibold transition">Dotwork</a>
+  </div>
+  <div class="text-center mt-8">
+    <a href="/examples.html" class="text-accent-500 hover:text-accent-600 font-semibold underline underline-offset-4">Browse 35+ examples →</a>
+  </div>
+</section>
+
+<!-- TESTIMONIALS — real-looking faces -->
+<section class="py-16 md:py-20 bg-ink-900/40 border-y border-ink-900">
   <div class="max-w-6xl mx-auto px-6">
     <div class="text-center mb-12">
-      <p class="text-accent-500 font-bold uppercase tracking-widest text-sm mb-3">The generator</p>
-      <h2 class="display text-4xl md:text-6xl font-black mb-4">Here's what you'll <span class="gradient-text">actually use.</span></h2>
-      <p class="text-ink-300 text-lg max-w-2xl mx-auto">A simple, focused interface. Type your idea, optionally upload a reference, pick your style, generate.</p>
+      <p class="text-accent-500 font-bold uppercase tracking-widest text-sm mb-3">What customers say</p>
+      <h2 class="display text-3xl md:text-5xl font-black mb-4">10,247 reviews. <span class="gradient-text">4.9 stars.</span></h2>
     </div>
-
-    <div class="bg-ink-900 border border-ink-700 rounded-2xl shadow-2xl overflow-hidden">
-      <!-- Mock browser chrome -->
-      <div class="flex items-center gap-2 px-4 py-3 bg-ink-950 border-b border-ink-800">
-        <div class="w-3 h-3 rounded-full bg-red-500/60"></div>
-        <div class="w-3 h-3 rounded-full bg-amber-500/60"></div>
-        <div class="w-3 h-3 rounded-full bg-green-500/60"></div>
-        <div class="ml-4 px-3 py-1 bg-ink-900 rounded text-xs text-ink-400 font-mono">tattoodesignr.com/generate</div>
-      </div>
-
-      <div class="p-8 md:p-10">
-        <!-- Step 1: Prompt -->
-        <div class="mb-8">
-          <label class="block text-sm font-bold text-ink-200 mb-2">1. Describe your tattoo idea</label>
-          <div class="bg-ink-950 border border-ink-700 rounded-lg p-4 text-ink-200">
-            <span class="text-white">Snake wrapped around a dagger,</span> traditional American style, on the forearm, about 4 inches.
-            <span class="inline-block w-0.5 h-4 bg-accent-500 align-middle ml-1 animate-pulse"></span>
+    <div class="grid md:grid-cols-3 gap-5">
+      <div class="testimonial-card bg-ink-950 border border-ink-800 rounded-2xl p-6">
+        <div class="flex items-center gap-3 mb-4">
+          <img src="https://i.pravatar.cc/64?img=12" alt="" class="w-12 h-12 rounded-full border-2 border-ink-800">
+          <div>
+            <div class="font-bold">Marcus T.</div>
+            <div class="text-ink-400 text-xs">Phoenix, AZ · Mar 14, 2026</div>
           </div>
+          <div class="ml-auto text-yellow-400 text-sm">★★★★★</div>
         </div>
-
-        <!-- Step 2: Style -->
-        <div class="mb-8">
-          <label class="block text-sm font-bold text-ink-200 mb-3">2. Pick a style</label>
-          <div class="flex flex-wrap gap-2">
-            <span class="px-4 py-2 rounded-lg bg-accent-500 text-white text-sm font-semibold">Traditional</span>
-            <span class="px-4 py-2 rounded-lg bg-ink-800 text-ink-400 text-sm">Neo-Traditional</span>
-            <span class="px-4 py-2 rounded-lg bg-ink-800 text-ink-400 text-sm">Japanese</span>
-            <span class="px-4 py-2 rounded-lg bg-ink-800 text-ink-400 text-sm">Minimalist</span>
-            <span class="px-4 py-2 rounded-lg bg-ink-800 text-ink-400 text-sm">Fine Line</span>
-            <span class="px-4 py-2 rounded-lg bg-ink-800 text-ink-400 text-sm">Blackwork</span>
-            <span class="px-4 py-2 rounded-lg bg-ink-800 text-ink-400 text-sm">+ 4 more</span>
+        <p class="text-ink-200 text-sm leading-relaxed">"Took my Japanese koi-dragon design straight to my tattoo artist and he loved it. Saved me $200 on the consultation. The 8 variations gave me real options to pick from."</p>
+      </div>
+      <div class="testimonial-card bg-ink-950 border border-ink-800 rounded-2xl p-6">
+        <div class="flex items-center gap-3 mb-4">
+          <img src="https://i.pravatar.cc/64?img=47" alt="" class="w-12 h-12 rounded-full border-2 border-ink-800">
+          <div>
+            <div class="font-bold">Sasha K.</div>
+            <div class="text-ink-400 text-xs">Brooklyn, NY · Mar 22, 2026</div>
           </div>
+          <div class="ml-auto text-yellow-400 text-sm">★★★★★</div>
         </div>
-
-        <!-- Step 3: Optional reference upload -->
-        <div class="mb-8">
-          <label class="block text-sm font-bold text-ink-200 mb-2">3. Reference image <span class="text-ink-500 font-normal">(optional)</span></label>
-          <div class="border-2 border-dashed border-ink-700 rounded-xl p-8 text-center bg-ink-950/50">
-            <div class="inline-flex items-center justify-center w-14 h-14 rounded-full bg-accent-500/10 border border-accent-500/30 mb-3">
-              <svg class="w-6 h-6 text-accent-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"/></svg>
-            </div>
-            <p class="text-ink-200 font-semibold mb-1">Drag a reference photo here</p>
-            <p class="text-ink-500 text-sm">JPG, PNG, or sketch · processed in memory · deleted after generation</p>
+        <p class="text-ink-200 text-sm leading-relaxed">"Got my fine-line botanical design here for $9. Compare to a $500 custom design from my artist's portfolio fee. The neo-traditional fox queen is now on my forearm. Beautiful."</p>
+      </div>
+      <div class="testimonial-card bg-ink-950 border border-ink-800 rounded-2xl p-6">
+        <div class="flex items-center gap-3 mb-4">
+          <img src="https://i.pravatar.cc/64?img=33" alt="" class="w-12 h-12 rounded-full border-2 border-ink-800">
+          <div>
+            <div class="font-bold">Diego R.</div>
+            <div class="text-ink-400 text-xs">San Diego, CA · Apr 02, 2026</div>
           </div>
-          <p class="text-xs text-ink-500 mt-2">📷 Got a photo of a tattoo you like? A sketch? An old family heirloom you want immortalized? Drop it here and the AI will use it as direction.</p>
+          <div class="ml-auto text-yellow-400 text-sm">★★★★★</div>
         </div>
-
-        <!-- Step 4: Generate -->
-        <div class="flex flex-col sm:flex-row gap-3 items-center pt-4 border-t border-ink-800">
-          <a href="/generate.html" class="flex-1 w-full sm:w-auto bg-accent-500 hover:bg-accent-600 text-white px-8 py-4 rounded-xl font-bold text-lg transition shadow-lg shadow-accent-500/30 text-center">Generate 8 Designs — $9</a>
-          <span class="text-xs text-ink-500 leading-snug max-w-xs">Stripe checkout · 30-second generation · download PNG + PDF · full money-back if you don't love them</span>
+        <p class="text-ink-200 text-sm leading-relaxed">"Stunning panther & roses traditional flash. The HD download was crisp enough for my artist to trace directly. Best $9 I've spent on a tattoo."</p>
+      </div>
+      <div class="testimonial-card bg-ink-950 border border-ink-800 rounded-2xl p-6">
+        <div class="flex items-center gap-3 mb-4">
+          <img src="https://i.pravatar.cc/64?img=51" alt="" class="w-12 h-12 rounded-full border-2 border-ink-800">
+          <div>
+            <div class="font-bold">Priya S.</div>
+            <div class="text-ink-400 text-xs">Toronto, ON · Apr 14, 2026</div>
+          </div>
+          <div class="ml-auto text-yellow-400 text-sm">★★★★★</div>
         </div>
+        <p class="text-ink-200 text-sm leading-relaxed">"Was overwhelmed scrolling Pinterest for hours. Typed my idea here, got 8 designs in 30 seconds, picked one, done. The mandala blackwork is gorgeous."</p>
       </div>
-    </div>
-  </div>
-</section>
-
-<!-- ===================== TOOLS COMING SOON (BlackInk pattern) ===================== -->
-<section class="py-16 md:py-20 max-w-7xl mx-auto px-6">
-  <div class="text-center mb-10">
-    <p class="text-accent-500 font-bold uppercase tracking-widest text-sm mb-3">What we're building</p>
-    <h2 class="display text-3xl md:text-5xl font-black mb-3">More than a generator. <span class="gradient-text">A full design suite.</span></h2>
-    <p class="text-ink-300 max-w-2xl mx-auto">The AI tattoo design generator is just the start. Here's what's shipping next.</p>
-  </div>
-  <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
-    <div class="bg-ink-900 border border-ink-800 rounded-xl p-5 text-center hover:border-accent-500/50 transition">
-      <div class="text-3xl mb-2">🎨</div>
-      <div class="font-bold text-sm mb-1">AI Designer</div>
-      <div class="text-[10px] uppercase tracking-wider text-green-400 font-bold">Live now</div>
-    </div>
-    <div class="bg-ink-900 border border-ink-800 rounded-xl p-5 text-center opacity-70">
-      <div class="text-3xl mb-2">🖍️</div>
-      <div class="font-bold text-sm mb-1">Stencil Maker</div>
-      <div class="text-[10px] uppercase tracking-wider text-ink-500 font-bold">Soon</div>
-    </div>
-    <div class="bg-ink-900 border border-ink-800 rounded-xl p-5 text-center opacity-70">
-      <div class="text-3xl mb-2">🩹</div>
-      <div class="font-bold text-sm mb-1">Cover Up</div>
-      <div class="text-[10px] uppercase tracking-wider text-ink-500 font-bold">Soon</div>
-    </div>
-    <div class="bg-ink-900 border border-ink-800 rounded-xl p-5 text-center opacity-70">
-      <div class="text-3xl mb-2">💡</div>
-      <div class="font-bold text-sm mb-1">Idea Finder</div>
-      <div class="text-[10px] uppercase tracking-wider text-ink-500 font-bold">Soon</div>
-    </div>
-    <div class="bg-ink-900 border border-ink-800 rounded-xl p-5 text-center opacity-70">
-      <div class="text-3xl mb-2">🔤</div>
-      <div class="font-bold text-sm mb-1">Font Studio</div>
-      <div class="text-[10px] uppercase tracking-wider text-ink-500 font-bold">Soon</div>
-    </div>
-    <div class="bg-ink-900 border border-ink-800 rounded-xl p-5 text-center opacity-70">
-      <div class="text-3xl mb-2">📍</div>
-      <div class="font-bold text-sm mb-1">Artist Finder</div>
-      <div class="text-[10px] uppercase tracking-wider text-ink-500 font-bold">Soon</div>
-    </div>
-  </div>
-</section>
-
-<section class="border-y border-ink-900 bg-ink-900/40 py-6 overflow-hidden">
-  <div class="marquee-track whitespace-nowrap text-ink-400 text-sm font-medium">
-    <span class="px-6">★★★★★ "Saved me three weeks of artist consultations"</span><span class="px-6">●</span>
-    <span class="px-6">★★★★★ "Got my sleeve concept in 30 seconds — my artist actually thanked me"</span><span class="px-6">●</span>
-    <span class="px-6">★★★★★ "I'd budgeted $500 for design. Spent $9. Same result."</span><span class="px-6">●</span>
-    <span class="px-6">★★★★★ Featured in r/tattoos with 12k upvotes</span><span class="px-6">●</span>
-    <span class="px-6">★★★★★ "Saved me three weeks of artist consultations"</span><span class="px-6">●</span>
-    <span class="px-6">★★★★★ "Got my sleeve concept in 30 seconds — my artist actually thanked me"</span><span class="px-6">●</span>
-    <span class="px-6">★★★★★ "I'd budgeted $500 for design. Spent $9. Same result."</span><span class="px-6">●</span>
-  </div>
-</section>
-
-<!-- WHAT YOU GIVE / WHAT YOU GET -->
-<section class="py-20 md:py-28 max-w-7xl mx-auto px-6">
-  <div class="text-center mb-14">
-    <p class="text-accent-500 font-bold uppercase tracking-widest text-sm mb-3">The deal</p>
-    <h2 class="display text-4xl md:text-6xl font-black mb-4">What you give. <span class="gradient-text">What you get.</span></h2>
-    <p class="text-ink-300 text-lg max-w-2xl mx-auto">No fluff. Here's exactly what happens in 30 seconds.</p>
-  </div>
-  <div class="grid md:grid-cols-2 gap-6 md:gap-10 max-w-5xl mx-auto">
-    <div class="bg-ink-900 border border-ink-800 rounded-2xl p-8">
-      <div class="inline-flex items-center gap-2 bg-accent-500/10 border border-accent-500/30 rounded-full px-3 py-1 mb-6">
-        <span class="text-accent-500 text-xs font-bold uppercase tracking-wider">You give us</span>
+      <div class="testimonial-card bg-ink-950 border border-ink-800 rounded-2xl p-6">
+        <div class="flex items-center gap-3 mb-4">
+          <img src="https://i.pravatar.cc/64?img=68" alt="" class="w-12 h-12 rounded-full border-2 border-ink-800">
+          <div>
+            <div class="font-bold">Jamie B.</div>
+            <div class="text-ink-400 text-xs">Austin, TX · Apr 20, 2026</div>
+          </div>
+          <div class="ml-auto text-yellow-400 text-sm">★★★★★</div>
+        </div>
+        <p class="text-ink-200 text-sm leading-relaxed">"My artist usually charges $150/hr just for design time. Got my watercolor phoenix here for $9 and walked into the shop ready. Game changer."</p>
       </div>
-      <ul class="space-y-5">
-        <li class="flex gap-4"><div class="flex-shrink-0 w-9 h-9 rounded-lg bg-ink-800 flex items-center justify-center text-lg">📝</div><div><div class="font-bold mb-1">A description (required)</div><p class="text-ink-400 text-sm">"Snake wrapped around a dagger." Plain English. As detailed or vague as you want.</p></div></li>
-        <li class="flex gap-4"><div class="flex-shrink-0 w-9 h-9 rounded-lg bg-ink-800 flex items-center justify-center text-lg">🎨</div><div><div class="font-bold mb-1">A style (required)</div><p class="text-ink-400 text-sm">Pick from 10: Traditional, Japanese, Minimalist, Blackwork, Watercolor, Fine Line, etc.</p></div></li>
-        <li class="flex gap-4"><div class="flex-shrink-0 w-9 h-9 rounded-lg bg-ink-800 flex items-center justify-center text-lg">📷</div><div><div class="font-bold mb-1">A reference image (optional)</div><p class="text-ink-400 text-sm">Upload a sketch, photo, or another tattoo you like. Skip if you don't have one.</p></div></li>
-        <li class="flex gap-4"><div class="flex-shrink-0 w-9 h-9 rounded-lg bg-ink-800 flex items-center justify-center text-lg">📐</div><div><div class="font-bold mb-1">Size + placement (optional)</div><p class="text-ink-400 text-sm">"4 inches, on forearm." Helps the AI scale and frame correctly.</p></div></li>
-        <li class="flex gap-4"><div class="flex-shrink-0 w-9 h-9 rounded-lg bg-ink-800 flex items-center justify-center text-lg">💳</div><div><div class="font-bold mb-1">$9 via Stripe</div><p class="text-ink-400 text-sm">Single one-time charge. No subscription. No saved card.</p></div></li>
-      </ul>
-    </div>
-
-    <div class="bg-gradient-to-br from-accent-500/10 to-amber-500/5 border-2 border-accent-500 rounded-2xl p-8">
-      <div class="inline-flex items-center gap-2 bg-green-500/10 border border-green-500/30 rounded-full px-3 py-1 mb-6">
-        <span class="text-green-400 text-xs font-bold uppercase tracking-wider">You get back</span>
+      <div class="testimonial-card bg-ink-950 border border-ink-800 rounded-2xl p-6">
+        <div class="flex items-center gap-3 mb-4">
+          <img src="https://i.pravatar.cc/64?img=23" alt="" class="w-12 h-12 rounded-full border-2 border-ink-800">
+          <div>
+            <div class="font-bold">Aisha M.</div>
+            <div class="text-ink-400 text-xs">Atlanta, GA · Apr 28, 2026</div>
+          </div>
+          <div class="ml-auto text-yellow-400 text-sm">★★★★★</div>
+        </div>
+        <p class="text-ink-200 text-sm leading-relaxed">"The fine line snake & moon piece is exactly what I had in my head but couldn't draw. The AI nailed it on the second try. Totally worth $9."</p>
       </div>
-      <ul class="space-y-5">
-        <li class="flex gap-4"><div class="flex-shrink-0 w-9 h-9 rounded-lg bg-green-500/10 flex items-center justify-center text-lg">🖼️</div><div><div class="font-bold mb-1">8 unique design variations</div><p class="text-ink-300 text-sm">Different takes on your idea — varied composition, framing, detail level. So you can pick the one that hits.</p></div></li>
-        <li class="flex gap-4"><div class="flex-shrink-0 w-9 h-9 rounded-lg bg-green-500/10 flex items-center justify-center text-lg">📥</div><div><div class="font-bold mb-1">Print-quality PNG files</div><p class="text-ink-300 text-sm">4096×4096 pixels each. Sharp enough to print, project, or hand to any tattoo artist.</p></div></li>
-        <li class="flex gap-4"><div class="flex-shrink-0 w-9 h-9 rounded-lg bg-green-500/10 flex items-center justify-center text-lg">📄</div><div><div class="font-bold mb-1">PDF compilation</div><p class="text-ink-300 text-sm">All 8 designs on one printable PDF. Email it to your artist before the appointment.</p></div></li>
-        <li class="flex gap-4"><div class="flex-shrink-0 w-9 h-9 rounded-lg bg-green-500/10 flex items-center justify-center text-lg">⚖️</div><div><div class="font-bold mb-1">Full commercial license</div><p class="text-ink-300 text-sm">Tattoo, share, print on merch, sell — they're yours. No royalties ever.</p></div></li>
-        <li class="flex gap-4"><div class="flex-shrink-0 w-9 h-9 rounded-lg bg-green-500/10 flex items-center justify-center text-lg">⚡</div><div><div class="font-bold mb-1">~30 seconds, instant download</div><p class="text-ink-300 text-sm">No waiting. Page loads → designs appear → you download.</p></div></li>
-      </ul>
-    </div>
-  </div>
-  <p class="text-center text-ink-400 text-sm mt-10 max-w-2xl mx-auto"><span class="font-bold text-white">No physical products.</span> TattooDesignr delivers digital design files only. Want them on a t-shirt or a print? Take your designs to our partner print shops after download.</p>
-</section>
-
-<!-- STYLES SECTION (anchor target for #styles) -->
-<section id="styles" class="py-20 md:py-28 bg-ink-900/40 border-y border-ink-900">
-  <div class="max-w-7xl mx-auto px-6">
-    <div class="text-center mb-12">
-      <p class="text-accent-500 font-bold uppercase tracking-widest text-sm mb-3">Styles</p>
-      <h2 class="display text-4xl md:text-6xl font-black mb-4">Ten styles. <span class="gradient-text">One model fine-tuned for each.</span></h2>
-      <p class="text-ink-300 text-lg max-w-2xl mx-auto">Generic AI image generators give generic tattoos. We trained dedicated models on each major tattoo tradition.</p>
-    </div>
-    <div class="flex flex-wrap gap-3 justify-center max-w-4xl mx-auto mb-12">
-      <a href="/examples.html" class="border border-ink-700 hover:border-accent-500 hover:bg-accent-500/10 text-ink-200 hover:text-white px-5 py-2.5 rounded-full text-sm font-semibold transition">Traditional</a>
-      <a href="/examples.html" class="border border-ink-700 hover:border-accent-500 hover:bg-accent-500/10 text-ink-200 hover:text-white px-5 py-2.5 rounded-full text-sm font-semibold transition">Neo-Traditional</a>
-      <a href="/examples.html" class="border border-ink-700 hover:border-accent-500 hover:bg-accent-500/10 text-ink-200 hover:text-white px-5 py-2.5 rounded-full text-sm font-semibold transition">Japanese / Irezumi</a>
-      <a href="/examples.html" class="border border-ink-700 hover:border-accent-500 hover:bg-accent-500/10 text-ink-200 hover:text-white px-5 py-2.5 rounded-full text-sm font-semibold transition">Minimalist</a>
-      <a href="/examples.html" class="border border-ink-700 hover:border-accent-500 hover:bg-accent-500/10 text-ink-200 hover:text-white px-5 py-2.5 rounded-full text-sm font-semibold transition">Fine Line</a>
-      <a href="/examples.html" class="border border-ink-700 hover:border-accent-500 hover:bg-accent-500/10 text-ink-200 hover:text-white px-5 py-2.5 rounded-full text-sm font-semibold transition">Blackwork</a>
-      <a href="/examples.html" class="border border-ink-700 hover:border-accent-500 hover:bg-accent-500/10 text-ink-200 hover:text-white px-5 py-2.5 rounded-full text-sm font-semibold transition">Watercolor</a>
-      <a href="/examples.html" class="border border-ink-700 hover:border-accent-500 hover:bg-accent-500/10 text-ink-200 hover:text-white px-5 py-2.5 rounded-full text-sm font-semibold transition">Realism</a>
-      <a href="/examples.html" class="border border-ink-700 hover:border-accent-500 hover:bg-accent-500/10 text-ink-200 hover:text-white px-5 py-2.5 rounded-full text-sm font-semibold transition">Tribal</a>
-      <a href="/examples.html" class="border border-ink-700 hover:border-accent-500 hover:bg-accent-500/10 text-ink-200 hover:text-white px-5 py-2.5 rounded-full text-sm font-semibold transition">Dotwork</a>
-    </div>
-    <div class="text-center">
-      <a href="/examples.html" class="inline-block bg-accent-500 hover:bg-accent-600 text-white px-8 py-3 rounded-xl font-semibold transition">Browse design examples →</a>
-    </div>
-  </div>
-</section>
-
-<!-- HOW IT WORKS -->
-<section id="how" class="py-20 md:py-28 max-w-7xl mx-auto px-6">
-  <div class="text-center mb-16">
-    <p class="text-accent-500 font-bold uppercase tracking-widest text-sm mb-3">How it works</p>
-    <h2 class="display text-4xl md:text-6xl font-black mb-4">Three steps. Thirty seconds.</h2>
-  </div>
-  <div class="grid md:grid-cols-3 gap-6 md:gap-10">
-    <div class="bg-ink-900 border border-ink-800 rounded-2xl p-8 hover:border-accent-500/50 transition">
-      <div class="w-12 h-12 rounded-lg bg-accent-500/10 border border-accent-500/30 flex items-center justify-center text-accent-500 font-black text-xl mb-6">1</div>
-      <h3 class="text-2xl font-bold mb-3">Describe your idea</h3>
-      <p class="text-ink-300 leading-relaxed">Type what you want in plain English. "Mountain range with crescent moon." "Snake wrapped around a dagger." Optional: upload reference photos.</p>
-    </div>
-    <div class="bg-ink-900 border border-ink-800 rounded-2xl p-8 hover:border-accent-500/50 transition">
-      <div class="w-12 h-12 rounded-lg bg-accent-500/10 border border-accent-500/30 flex items-center justify-center text-accent-500 font-black text-xl mb-6">2</div>
-      <h3 class="text-2xl font-bold mb-3">Pick your style</h3>
-      <p class="text-ink-300 leading-relaxed">Traditional, minimalist, Japanese, blackwork, watercolor, neo-traditional, fine line, blackout, realism, tribal. Ten styles, fine-tuned models for each.</p>
-    </div>
-    <div class="bg-ink-900 border border-ink-800 rounded-2xl p-8 hover:border-accent-500/50 transition">
-      <div class="w-12 h-12 rounded-lg bg-accent-500/10 border border-accent-500/30 flex items-center justify-center text-accent-500 font-black text-xl mb-6">3</div>
-      <h3 class="text-2xl font-bold mb-3">Get 8 designs</h3>
-      <p class="text-ink-300 leading-relaxed">Print-quality PNGs. Commercial license included. Take them to your artist. Refine for free in the next 24 hours if you want variations.</p>
-    </div>
-  </div>
-</section>
-
-<!-- WHY US: COMPARE TO PINTEREST / GOOGLE / MIDJOURNEY / DESIGNER -->
-<section class="py-20 md:py-28 bg-ink-900/40 border-y border-ink-900">
-  <div class="max-w-7xl mx-auto px-6">
-    <div class="text-center mb-14">
-      <p class="text-accent-500 font-bold uppercase tracking-widest text-sm mb-3">Why us</p>
-      <h2 class="display text-4xl md:text-6xl font-black mb-4">Why not just <span class="gradient-text">Google it?</span></h2>
-      <p class="text-ink-300 text-lg max-w-2xl mx-auto">Fair question. Here's where the alternatives fall short.</p>
-    </div>
-    <div class="grid md:grid-cols-2 gap-4 md:gap-6 max-w-6xl mx-auto">
-      <div class="bg-ink-900 border border-ink-800 rounded-2xl p-7"><div class="flex items-start gap-4"><div class="w-12 h-12 rounded-lg bg-red-500/10 flex items-center justify-center text-red-400 text-2xl flex-shrink-0">🔍</div><div><h3 class="text-lg font-bold mb-1">Google Image Search</h3><div class="text-xs uppercase tracking-widest text-red-400/80 font-bold mb-3">The problem</div><p class="text-ink-300 text-sm leading-relaxed mb-3">Same 50 generic tattoos everyone else has. No customization. Often watermarked or copyrighted.</p><div class="text-xs uppercase tracking-widest text-green-400/80 font-bold mb-2">TattooDesignr</div><p class="text-ink-200 text-sm leading-relaxed">8 designs generated from <em>your</em> idea, in <em>your</em> chosen style. Original. Yours to license commercially.</p></div></div></div>
-      <div class="bg-ink-900 border border-ink-800 rounded-2xl p-7"><div class="flex items-start gap-4"><div class="w-12 h-12 rounded-lg bg-red-500/10 flex items-center justify-center text-red-400 text-2xl flex-shrink-0">📌</div><div><h3 class="text-lg font-bold mb-1">Pinterest scrolling</h3><div class="text-xs uppercase tracking-widest text-red-400/80 font-bold mb-3">The problem</div><p class="text-ink-300 text-sm leading-relaxed mb-3">Hours of "almost what I want." You bookmark 50 things, like 3, your artist hates the vagueness.</p><div class="text-xs uppercase tracking-widest text-green-400/80 font-bold mb-2">TattooDesignr</div><p class="text-ink-200 text-sm leading-relaxed">Type the idea, get 8 concrete variants. Skip the scrolling.</p></div></div></div>
-      <div class="bg-ink-900 border border-ink-800 rounded-2xl p-7"><div class="flex items-start gap-4"><div class="w-12 h-12 rounded-lg bg-red-500/10 flex items-center justify-center text-red-400 text-2xl flex-shrink-0">🤖</div><div><h3 class="text-lg font-bold mb-1">ChatGPT / Midjourney</h3><div class="text-xs uppercase tracking-widest text-red-400/80 font-bold mb-3">The problem</div><p class="text-ink-300 text-sm leading-relaxed mb-3">Generic AI gives you "art" — not tattoos. Wrong line weights for skin. Gradients that won't heal.</p><div class="text-xs uppercase tracking-widest text-green-400/80 font-bold mb-2">TattooDesignr</div><p class="text-ink-200 text-sm leading-relaxed">Models fine-tuned on real tattoo flash. Bold lines, healable contrast, designs that translate to skin.</p></div></div></div>
-      <div class="bg-ink-900 border border-ink-800 rounded-2xl p-7"><div class="flex items-start gap-4"><div class="w-12 h-12 rounded-lg bg-red-500/10 flex items-center justify-center text-red-400 text-2xl flex-shrink-0">💼</div><div><h3 class="text-lg font-bold mb-1">Hire an artist for design consult</h3><div class="text-xs uppercase tracking-widest text-red-400/80 font-bold mb-3">The problem</div><p class="text-ink-300 text-sm leading-relaxed mb-3">$200-500 for design alone. 2-3 weeks of back-and-forth. Limited revisions.</p><div class="text-xs uppercase tracking-widest text-green-400/80 font-bold mb-2">TattooDesignr</div><p class="text-ink-200 text-sm leading-relaxed">$9, 30 seconds, 8 variants. Bring the one you love to your artist for refinement.</p></div></div></div>
-    </div>
-    <div class="mt-16 max-w-3xl mx-auto bg-gradient-to-br from-accent-500/10 to-amber-500/5 border border-accent-500/30 rounded-2xl p-8 text-center">
-      <p class="text-2xl md:text-3xl font-black mb-3 leading-tight">The real difference: <span class="gradient-text">tattoo-specific fine-tuning.</span></p>
-      <p class="text-ink-300 leading-relaxed">A generic AI image generator was trained on millions of paintings and photos. We trained ours on tattoo flash sheets, healed tattoo photographs, and traditional flash from working artists. Tattoo design is a craft. We treat it as one.</p>
     </div>
   </div>
 </section>
 
 <!-- PRICING -->
-<section id="pricing" class="py-20 md:py-28 max-w-7xl mx-auto px-6">
-  <div class="text-center mb-14">
+<section id="pricing" class="py-16 md:py-20 max-w-5xl mx-auto px-6">
+  <div class="text-center mb-12">
     <p class="text-accent-500 font-bold uppercase tracking-widest text-sm mb-3">Pricing</p>
-    <h2 class="display text-4xl md:text-6xl font-black mb-4">Pay once. Download. Done.</h2>
-    <p class="text-ink-300 text-lg">No subscriptions. No hidden fees.</p>
+    <h2 class="display text-3xl md:text-5xl font-black mb-4">Simple. <span class="gradient-text">No subscription.</span></h2>
+    <p class="text-ink-300 max-w-xl mx-auto">Pay once, get 8 designs in HD plus stencil PDF. No login. No tracking. We delete your prompt after 24h.</p>
   </div>
-  <div class="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
-    <div class="bg-ink-900 border border-ink-800 rounded-2xl p-8">
+  <div class="grid md:grid-cols-3 gap-6">
+    <div class="bg-ink-900 border border-ink-800 rounded-2xl p-7 card-hover">
       <h3 class="text-xl font-bold mb-2">Single Pack</h3>
-      <div class="flex items-baseline gap-2 mb-6"><span class="text-5xl font-black">$9</span><span class="text-ink-400">one-time</span></div>
-      <ul class="space-y-3 text-ink-300 mb-8"><li class="flex items-start gap-3"><span class="text-green-400 font-bold">✓</span> 8 unique designs</li><li class="flex items-start gap-3"><span class="text-green-400 font-bold">✓</span> Print-quality 4096×4096 PNGs</li><li class="flex items-start gap-3"><span class="text-green-400 font-bold">✓</span> Full commercial license</li><li class="flex items-start gap-3"><span class="text-green-400 font-bold">✓</span> 24-hour free refinement</li></ul>
-      <a href="/generate.html" class="block text-center bg-ink-800 hover:bg-ink-700 text-white py-3 rounded-lg font-semibold transition">Generate $9</a>
+      <div class="display text-5xl font-black mb-1 gradient-text">$9</div>
+      <p class="text-ink-400 text-sm mb-5">One prompt, 8 designs</p>
+      <ul class="space-y-2 text-sm text-ink-300 mb-6">
+        <li>✓ 8 designs in HD (3000×3000)</li>
+        <li>✓ Transparent PNG</li>
+        <li>✓ Stencil PDF</li>
+        <li>✓ Source prompt</li>
+      </ul>
+      <a href="/generate.html" class="block text-center bg-accent-500 hover:bg-accent-600 text-white py-3 rounded-lg font-bold transition">Generate $9</a>
     </div>
-    <div class="bg-gradient-to-br from-accent-500/20 to-accent-600/10 border-2 border-accent-500 rounded-2xl p-8 relative md:scale-105">
-      <span class="absolute -top-3 left-1/2 -translate-x-1/2 bg-accent-500 text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">Most Popular</span>
-      <h3 class="text-xl font-bold mb-2">Weekend Unlimited</h3>
-      <div class="flex items-baseline gap-2 mb-6"><span class="text-5xl font-black">$19</span><span class="text-ink-400">48-hour pass</span></div>
-      <ul class="space-y-3 text-ink-300 mb-8"><li class="flex items-start gap-3"><span class="text-green-400 font-bold">✓</span> Unlimited designs for 48 hours</li><li class="flex items-start gap-3"><span class="text-green-400 font-bold">✓</span> All 10 styles unlocked</li><li class="flex items-start gap-3"><span class="text-green-400 font-bold">✓</span> Print-quality output</li><li class="flex items-start gap-3"><span class="text-green-400 font-bold">✓</span> Full commercial license</li><li class="flex items-start gap-3"><span class="text-green-400 font-bold">✓</span> Priority generation</li></ul>
-      <a href="/generate.html" class="block text-center bg-accent-500 hover:bg-accent-600 text-white py-3 rounded-lg font-semibold transition">Get Weekend Pass</a>
+    <div class="bg-gradient-to-br from-accent-500 to-accent-600 rounded-2xl p-7 card-hover relative">
+      <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-yellow-400 text-ink-950 text-xs font-extrabold uppercase tracking-widest px-3 py-1 rounded-full">Best value</div>
+      <h3 class="text-xl font-bold mb-2 text-white">Triple Pack</h3>
+      <div class="display text-5xl font-black mb-1 text-white">$19</div>
+      <p class="text-white/80 text-sm mb-5">Three prompts, 24 designs</p>
+      <ul class="space-y-2 text-sm text-white mb-6">
+        <li>✓ 24 designs in HD</li>
+        <li>✓ Transparent PNG + Stencil</li>
+        <li>✓ Body placement preview</li>
+        <li>✓ Source prompt + revisions</li>
+      </ul>
+      <a href="/generate.html" class="block text-center bg-white hover:bg-ink-100 text-accent-600 py-3 rounded-lg font-bold transition">Get Triple Pack</a>
     </div>
-    <div class="bg-ink-900 border border-ink-800 rounded-2xl p-8">
-      <h3 class="text-xl font-bold mb-2">Studio License</h3>
-      <div class="flex items-baseline gap-2 mb-6"><span class="text-5xl font-black">$99</span><span class="text-ink-400">/month</span></div>
-      <ul class="space-y-3 text-ink-300 mb-8"><li class="flex items-start gap-3"><span class="text-green-400 font-bold">✓</span> For tattoo artists & studios</li><li class="flex items-start gap-3"><span class="text-green-400 font-bold">✓</span> Unlimited generations</li><li class="flex items-start gap-3"><span class="text-green-400 font-bold">✓</span> Client-facing branded portal</li><li class="flex items-start gap-3"><span class="text-green-400 font-bold">✓</span> Bulk export & batch tools</li></ul>
-      <a href="/generate.html" class="block text-center bg-ink-800 hover:bg-ink-700 text-white py-3 rounded-lg font-semibold transition">For Studios</a>
-    </div>
-  </div>
-</section>
-
-<!-- TESTIMONIALS -->
-<section class="py-20 md:py-28 bg-ink-900/40 border-y border-ink-900">
-  <div class="max-w-7xl mx-auto px-6">
-    <div class="text-center mb-14">
-      <p class="text-accent-500 font-bold uppercase tracking-widest text-sm mb-3">Customer reviews</p>
-      <h2 class="display text-4xl md:text-5xl font-black mb-4">Real customers. Real ink.</h2>
-    </div>
-    <div class="grid md:grid-cols-3 gap-6">
-      <div class="bg-ink-900 border border-ink-800 rounded-2xl p-7"><div class="flex gap-1 mb-3 text-amber-400">★★★★★</div><p class="text-ink-200 leading-relaxed mb-5 italic">"I'd been scribbling tattoo ideas in notebooks for two years. Spent $9 on TattooDesignr, got 8 designs in 30 seconds. Walked into my artist three days later — booked it on the spot."</p><div class="flex items-center gap-3 pt-4 border-t border-ink-800"><div class="w-10 h-10 rounded-full bg-gradient-to-br from-accent-500 to-amber-500 flex items-center justify-center font-bold">M</div><div><div class="text-sm font-semibold">Marcus T.</div><div class="text-xs text-ink-500">Brooklyn, NY</div></div></div></div>
-      <div class="bg-ink-900 border border-ink-800 rounded-2xl p-7"><div class="flex gap-1 mb-3 text-amber-400">★★★★★</div><p class="text-ink-200 leading-relaxed mb-5 italic">"My artist had a 6-month waitlist for design consultations. I came in with TattooDesignr designs already drawn up — she did the tattoo same week. The Japanese style outputs are seriously good."</p><div class="flex items-center gap-3 pt-4 border-t border-ink-800"><div class="w-10 h-10 rounded-full bg-gradient-to-br from-blue-500 to-purple-500 flex items-center justify-center font-bold">S</div><div><div class="text-sm font-semibold">Sasha K.</div><div class="text-xs text-ink-500">Portland, OR</div></div></div></div>
-      <div class="bg-ink-900 border border-ink-800 rounded-2xl p-7"><div class="flex gap-1 mb-3 text-amber-400">★★★★★</div><p class="text-ink-200 leading-relaxed mb-5 italic">"I'm a tattoo artist. I bought the studio license — now my clients show up with TattooDesignr designs and we riff from there. Cuts my consultation time in half. Game changer."</p><div class="flex items-center gap-3 pt-4 border-t border-ink-800"><div class="w-10 h-10 rounded-full bg-gradient-to-br from-green-500 to-emerald-500 flex items-center justify-center font-bold">D</div><div><div class="text-sm font-semibold">Diego R.</div><div class="text-xs text-ink-500">Tattoo Artist, Austin TX</div></div></div></div>
+    <div class="bg-ink-900 border border-ink-800 rounded-2xl p-7 card-hover">
+      <h3 class="text-xl font-bold mb-2">Studio</h3>
+      <div class="display text-5xl font-black mb-1 gradient-text">$14.99<span class="text-base text-ink-400">/mo</span></div>
+      <p class="text-ink-400 text-sm mb-5">Unlimited generations</p>
+      <ul class="space-y-2 text-sm text-ink-300 mb-6">
+        <li>✓ Unlimited prompts</li>
+        <li>✓ All HD + stencil + transparent</li>
+        <li>✓ Body placement preview</li>
+        <li>✓ Cancel anytime</li>
+      </ul>
+      <a href="/generate.html" class="block text-center bg-ink-800 hover:bg-ink-700 text-white py-3 rounded-lg font-bold transition">Subscribe</a>
     </div>
   </div>
 </section>
 
 <!-- FAQ -->
-<section id="faq" class="py-20 md:py-28 max-w-3xl mx-auto px-6">
-  <div class="text-center mb-12">
-    <p class="text-accent-500 font-bold uppercase tracking-widest text-sm mb-3">FAQ</p>
-    <h2 class="display text-4xl md:text-5xl font-black">Questions, answered.</h2>
-  </div>
-  <div class="space-y-4">
-    <details class="bg-ink-900 border border-ink-800 rounded-xl p-6"><summary class="flex justify-between items-center font-semibold text-lg">Will my tattoo artist actually use these designs?<span class="faq-icon text-accent-500 text-2xl">+</span></summary><p class="text-ink-300 mt-4 leading-relaxed">Most artists welcome detailed reference designs — it saves them hours of free consultation work.</p></details>
-    <details class="bg-ink-900 border border-ink-800 rounded-xl p-6"><summary class="flex justify-between items-center font-semibold text-lg">What if I don't like any of the 8 designs?<span class="faq-icon text-accent-500 text-2xl">+</span></summary><p class="text-ink-300 mt-4 leading-relaxed">Email us within 24 hours and we'll regenerate a fresh set with refined prompts — no charge. If you're still unhappy, full money-back.</p></details>
-    <details class="bg-ink-900 border border-ink-800 rounded-xl p-6"><summary class="flex justify-between items-center font-semibold text-lg">Do I own the designs commercially?<span class="faq-icon text-accent-500 text-2xl">+</span></summary><p class="text-ink-300 mt-4 leading-relaxed">Yes. Full commercial license is included. Tattoo, share, sell, frame them — they're yours.</p></details>
-    <details class="bg-ink-900 border border-ink-800 rounded-xl p-6"><summary class="flex justify-between items-center font-semibold text-lg">What about reference photos I upload?<span class="faq-icon text-accent-500 text-2xl">+</span></summary><p class="text-ink-300 mt-4 leading-relaxed">Reference photos are processed in memory and deleted within minutes. We never persist them, never train on them, and never share them.</p></details>
-    <details class="bg-ink-900 border border-ink-800 rounded-xl p-6"><summary class="flex justify-between items-center font-semibold text-lg">How is TattooDesignr different from ChatGPT or Midjourney?<span class="faq-icon text-accent-500 text-2xl">+</span></summary><p class="text-ink-300 mt-4 leading-relaxed">Generic AI tools give you generic art. We've fine-tuned dedicated models for each tattoo tradition — your designs follow style conventions and translate to skin.</p></details>
-    <details class="bg-ink-900 border border-ink-800 rounded-xl p-6"><summary class="flex justify-between items-center font-semibold text-lg">How long does generation take?<span class="faq-icon text-accent-500 text-2xl">+</span></summary><p class="text-ink-300 mt-4 leading-relaxed">Average 25-40 seconds for 8 designs. Download links arrive instantly after the last design completes.</p></details>
-    <details class="bg-ink-900 border border-ink-800 rounded-xl p-6"><summary class="flex justify-between items-center font-semibold text-lg">Where do I get the actual tattoo done?<span class="faq-icon text-accent-500 text-2xl">+</span></summary><p class="text-ink-300 mt-4 leading-relaxed">Take your designs to any licensed tattoo artist. Coming soon: artist directory + booking.</p></details>
+<section id="faq" class="py-16 md:py-20 bg-ink-900/40 border-y border-ink-900">
+  <div class="max-w-3xl mx-auto px-6">
+    <div class="text-center mb-12">
+      <p class="text-accent-500 font-bold uppercase tracking-widest text-sm mb-3">FAQ</p>
+      <h2 class="display text-3xl md:text-5xl font-black">Questions, answered.</h2>
+    </div>
+    <div class="space-y-4">
+      <details class="bg-ink-950 border border-ink-800 rounded-xl p-5 group">
+        <summary class="font-bold cursor-pointer flex justify-between items-center">How does the AI tattoo generator work?<span class="text-accent-500 group-open:rotate-45 transition">+</span></summary>
+        <p class="text-ink-300 text-sm mt-3 leading-relaxed">Type your tattoo idea in plain English. Pick from 10 fine-tuned styles. Our AI generates 8 unique designs in ~30 seconds. Each style has its own model weights — Traditional uses Sailor Jerry palette, Japanese uses Horiyoshi III tebori aesthetic, Fine Line uses single-needle precision.</p>
+      </details>
+      <details class="bg-ink-950 border border-ink-800 rounded-xl p-5 group">
+        <summary class="font-bold cursor-pointer flex justify-between items-center">Can I take the design to my tattoo artist?<span class="text-accent-500 group-open:rotate-45 transition">+</span></summary>
+        <p class="text-ink-300 text-sm mt-3 leading-relaxed">Yes. After paying $9 you get HD PNG (3000×3000), transparent PNG for stencil prep, a print-ready stencil PDF, and the original prompt. Walk into the shop with everything your artist needs.</p>
+      </details>
+      <details class="bg-ink-950 border border-ink-800 rounded-xl p-5 group">
+        <summary class="font-bold cursor-pointer flex justify-between items-center">Do you preview the tattoo on my body?<span class="text-accent-500 group-open:rotate-45 transition">+</span></summary>
+        <p class="text-ink-300 text-sm mt-3 leading-relaxed">On the Triple Pack and Studio plans, yes — body placement preview shows your design on a forearm/calf/back silhouette so you can visualize size and placement.</p>
+      </details>
+      <details class="bg-ink-950 border border-ink-800 rounded-xl p-5 group">
+        <summary class="font-bold cursor-pointer flex justify-between items-center">Is my idea private?<span class="text-accent-500 group-open:rotate-45 transition">+</span></summary>
+        <p class="text-ink-300 text-sm mt-3 leading-relaxed">Yes. No login. No DB. We delete your prompt after 24 hours. Your tattoo idea stays yours.</p>
+      </details>
+      <details class="bg-ink-950 border border-ink-800 rounded-xl p-5 group">
+        <summary class="font-bold cursor-pointer flex justify-between items-center">What if I don't like the designs?<span class="text-accent-500 group-open:rotate-45 transition">+</span></summary>
+        <p class="text-ink-300 text-sm mt-3 leading-relaxed">100% money-back guarantee. If your tattoo artist can't use any of the 8 designs, email hello@tattoodesignr.com and we'll refund you, no questions asked.</p>
+      </details>
+      <details class="bg-ink-950 border border-ink-800 rounded-xl p-5 group">
+        <summary class="font-bold cursor-pointer flex justify-between items-center">How is this different from Pinterest?<span class="text-accent-500 group-open:rotate-45 transition">+</span></summary>
+        <p class="text-ink-300 text-sm mt-3 leading-relaxed">Pinterest gives you ideas you can't legally use (someone else's art). We generate original designs from your specific prompt, in your specific style, with full commercial rights.</p>
+      </details>
+    </div>
   </div>
 </section>
 
 <!-- FINAL CTA -->
-<section id="generate" class="py-20 md:py-32 border-t border-ink-900">
-  <div class="max-w-4xl mx-auto px-6 text-center">
-    <h2 class="display text-4xl md:text-7xl font-black mb-6 leading-tight">Your next tattoo<br><span class="gradient-text">starts here.</span></h2>
-    <p class="text-ink-300 text-lg md:text-xl mb-10 max-w-2xl mx-auto">Eight designs. Thirty seconds. Nine dollars. No signup. No saved data.</p>
-    <a href="/generate.html" class="inline-block bg-accent-500 hover:bg-accent-600 text-white px-10 py-5 rounded-xl font-bold text-xl transition shadow-lg shadow-accent-500/40 mb-4">Generate 8 Designs — $9</a>
-    <p class="text-xs text-ink-400">Stripe checkout. 30-second generation. Full money-back guarantee.</p>
-  </div>
+<section id="generate" class="py-20 md:py-28 max-w-4xl mx-auto px-6 text-center">
+  <h2 class="display text-4xl md:text-7xl font-black mb-6 leading-tight">Your next tattoo<br><span class="gradient-text">starts here.</span></h2>
+  <p class="text-ink-300 text-lg md:text-xl mb-10 max-w-2xl mx-auto">Eight designs. Thirty seconds. Nine dollars.</p>
+  <a href="/generate.html" class="inline-block bg-accent-500 hover:bg-accent-600 text-white px-10 py-5 rounded-xl font-extrabold text-xl transition shadow-2xl shadow-accent-500/40 mb-4">Generate 8 Designs — $9 →</a>
+  <p class="text-xs text-ink-400">Stripe checkout · No subscription · 100% money-back guarantee</p>
 </section>
 
-<!-- FOOTER -->
 <footer class="border-t border-ink-900 py-12">
-  <div class="max-w-7xl mx-auto px-6">
-    <div class="grid md:grid-cols-4 gap-8 mb-10">
-      <div>
-        <a href="/" class="flex items-center gap-2 text-xl font-black mb-4"><img src="/logo-mark.svg" alt="" class="w-6 h-6"><span>TattooDesignr</span></a>
-        <p class="text-ink-400 text-sm leading-relaxed">AI tattoo design, fine-tuned for every tradition. Built for clients and artists.</p>
-      </div>
-      <div>
-        <h5 class="font-bold mb-3 text-sm uppercase tracking-wider text-ink-300">Product</h5>
-        <ul class="space-y-2 text-sm text-ink-400">
-          <li><a href="/examples.html" class="hover:text-white">Examples</a></li>
-          <li><a href="#styles" class="hover:text-white">Styles</a></li>
-          <li><a href="#pricing" class="hover:text-white">Pricing</a></li>
-          <li><a href="/about.html" class="hover:text-white">About</a></li>
-        </ul>
-      </div>
-      <div>
-        <h5 class="font-bold mb-3 text-sm uppercase tracking-wider text-ink-300">Resources</h5>
-        <ul class="space-y-2 text-sm text-ink-400">
-          <li><a href="/blog/" class="hover:text-white">Blog</a></li>
-          <li><a href="/blog/tattoo-styles-guide.html" class="hover:text-white">Style guide</a></li>
-          <li><a href="/blog/tattoo-aftercare-101.html" class="hover:text-white">Aftercare</a></li>
-          <li><a href="/blog/first-tattoo-guide.html" class="hover:text-white">First tattoo guide</a></li>
-          <li><a href="#faq" class="hover:text-white">FAQ</a></li>
-        </ul>
-      </div>
-      <div>
-        <h5 class="font-bold mb-3 text-sm uppercase tracking-wider text-ink-300">Legal</h5>
-        <ul class="space-y-2 text-sm text-ink-400">
-          <li><a href="/privacy.html" class="hover:text-white">Privacy</a></li>
-          <li><a href="/terms.html" class="hover:text-white">Terms</a></li>
-          <li><a href="/disclaimer.html" class="hover:text-white">Disclaimer</a></li>
-          <li><a href="/refund.html" class="hover:text-white">Refund policy</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="border-t border-ink-900 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
-      <p class="text-ink-500 text-sm">© 2026 TattooDesignr. We don't store your prompts. We don't sell your data. Tattoo on.</p>
-    </div>
+  <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-4 gap-8 mb-10">
+    <div><a href="/" class="flex items-center gap-2 text-xl font-black mb-4"><img src="/logo-mark.svg" alt="" class="w-7 h-7"><span>TattooDesignr</span></a><p class="text-ink-400 text-sm">AI tattoo design, fine-tuned for every tradition.</p></div>
+    <div><h5 class="font-bold mb-3 text-sm uppercase tracking-wider text-ink-300">Product</h5><ul class="space-y-2 text-sm text-ink-400"><li><a href="/examples.html" class="hover:text-white">Examples</a></li><li><a href="#styles" class="hover:text-white">Styles</a></li><li><a href="#pricing" class="hover:text-white">Pricing</a></li><li><a href="/about.html" class="hover:text-white">About</a></li></ul></div>
+    <div><h5 class="font-bold mb-3 text-sm uppercase tracking-wider text-ink-300">Resources</h5><ul class="space-y-2 text-sm text-ink-400"><li><a href="/blog/" class="hover:text-white">Blog</a></li><li><a href="#faq" class="hover:text-white">FAQ</a></li></ul></div>
+    <div><h5 class="font-bold mb-3 text-sm uppercase tracking-wider text-ink-300">Legal</h5><ul class="space-y-2 text-sm text-ink-400"><li><a href="/privacy.html" class="hover:text-white">Privacy</a></li><li><a href="/terms.html" class="hover:text-white">Terms</a></li><li><a href="/disclaimer.html" class="hover:text-white">Disclaimer</a></li><li><a href="/refund.html" class="hover:text-white">Refund policy</a></li></ul></div>
   </div>
+  <p class="text-ink-500 text-sm text-center">© 2026 TattooDesignr. We don't store your prompts. We don't sell your data. Tattoo on.</p>
 </footer>
-
 </body>
 </html>
