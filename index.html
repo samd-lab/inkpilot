@@ -7,7 +7,10 @@
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <title>TattooDesignr — AI Tattoo Generator | 8 Custom Designs in 30 Seconds for $9</title>
-<meta name="description" content="Type your tattoo idea, pick a style, get 8 mind-blowing AI tattoo designs in 30 seconds. No subscription. $9 unlocks HD pack. Trusted by 10,000+ tattoo lovers.">
+<meta name="description" content="Type your tattoo idea, pick a style, get 8 mind-blowing AI tattoo designs in 30 seconds. Photorealistic on-body mockups + flat HD designs. No subscription. $9 unlocks HD pack.">
+<meta property="og:title" content="TattooDesignr — AI Tattoo Generator">
+<meta property="og:description" content="8 custom AI-generated tattoo designs in 30 seconds. Take them straight to your artist.">
+<meta property="og:type" content="website">
 <link rel="canonical" href="https://tattoodesignr.com/">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
 <script src="https://cdn.tailwindcss.com"></script>
@@ -21,8 +24,6 @@ tailwind.config = { theme: { extend: {
 body { font-family: 'Inter', system-ui, sans-serif; }
 .display { font-family: 'Playfair Display', serif; }
 .gradient-text { background: linear-gradient(135deg, #dc2626 0%, #f59e0b 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-.card-hover { transition: transform .3s, border-color .3s; }
-.card-hover:hover { transform: translateY(-4px); border-color: #dc2626; }
 .tat-paper { background: #f5f3ee; }
 .skeleton { background: linear-gradient(110deg, #1a1b1f 8%, #2d2f35 18%, #1a1b1f 33%); background-size: 200% 100%; animation: shine 1.4s linear infinite; }
 @keyframes shine { to { background-position: -200% 0; } }
@@ -30,11 +31,27 @@ body { font-family: 'Inter', system-ui, sans-serif; }
 .avatar-pile img:first-child { margin-left: 0; }
 .testimonial-card { transition: transform .2s; }
 .testimonial-card:hover { transform: translateY(-2px); }
-.preview-wm { position: relative; }
-.preview-wm::after { content: 'PREVIEW'; position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 9px; letter-spacing: .25em; color: rgba(220,38,38,.4); transform: rotate(-22deg); pointer-events: none; }
+.card-hover { transition: transform .3s, border-color .3s; }
+.card-hover:hover { transform: translateY(-4px); border-color: #dc2626; }
+.showcase-card { position: relative; overflow: hidden; cursor: pointer; transition: transform .3s; }
+.showcase-card:hover { transform: scale(1.03); }
+.showcase-card img { -webkit-user-drag: none; user-select: none; pointer-events: none; }
+.showcase-card::after {
+  content: 'PREVIEW · UNLOCK $9';
+  position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+  font-weight: 800; font-size: 9px; letter-spacing: .2em;
+  color: rgba(220,38,38,.5); transform: rotate(-22deg);
+  pointer-events: none; text-shadow: 0 1px 2px rgba(255,255,255,.4);
+}
+.showcase-card .badge {
+  position: absolute; top: 10px; left: 10px;
+  background: rgba(0,0,0,.85); color: #fff; padding: 4px 10px;
+  border-radius: 999px; font-size: 9px; font-weight: 800;
+  text-transform: uppercase; letter-spacing: .12em;
+}
 </style>
 </head>
-<body class="bg-ink-950 text-ink-100 antialiased">
+<body class="bg-ink-950 text-ink-100 antialiased" oncontextmenu="return false;" ondragstart="return false;">
 
 <nav class="sticky top-0 z-50 bg-ink-950/80 backdrop-blur-lg border-b border-ink-900">
   <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
@@ -51,28 +68,28 @@ body { font-family: 'Inter', system-ui, sans-serif; }
 </nav>
 
 <!-- HERO -->
-<section class="pt-16 md:pt-24 pb-12 max-w-5xl mx-auto px-6 text-center">
-  <div class="inline-flex items-center gap-2 bg-ink-900 border border-ink-800 rounded-full px-4 py-1.5 mb-6">
+<section class="pt-12 md:pt-16 pb-8 max-w-5xl mx-auto px-6 text-center">
+  <div class="inline-flex items-center gap-2 bg-ink-900 border border-ink-800 rounded-full px-4 py-1.5 mb-5">
     <span class="text-yellow-400 text-sm">★★★★★</span>
     <span class="text-xs font-semibold text-ink-300">Trusted by <strong class="text-white">10,247</strong> tattoo lovers</span>
   </div>
-  <h1 class="display text-4xl md:text-7xl font-black mb-6 leading-[1.05]">
+  <h1 class="display text-4xl md:text-7xl font-black mb-5 leading-[1.05]">
     Your next tattoo,<br><span class="gradient-text">designed in 30 seconds.</span>
   </h1>
-  <p class="text-ink-300 text-lg md:text-xl max-w-2xl mx-auto mb-10">
-    Skip the $300 design consultation. Type your idea, pick a style, get 8 custom AI-generated designs ready to take to your artist.
+  <p class="text-ink-300 text-lg md:text-xl max-w-2xl mx-auto mb-8">
+    Type your idea. Pick a style. Get 8 photorealistic on-body previews + HD flat designs ready for your artist. <strong class="text-white">$9.</strong> No subscription.
   </p>
   <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
     <a href="/generate.html" class="bg-accent-500 hover:bg-accent-600 text-white px-10 py-5 rounded-xl font-extrabold text-lg transition shadow-2xl shadow-accent-500/30">Generate 8 Designs — $9 →</a>
-    <a href="/examples.html" class="text-ink-300 hover:text-white underline underline-offset-4">See 35+ examples</a>
+    <a href="/examples.html" class="text-ink-300 hover:text-white underline underline-offset-4">See 95+ examples</a>
   </div>
-  <div class="mt-8 flex items-center justify-center gap-4">
+  <div class="mt-7 flex items-center justify-center gap-4">
     <div class="avatar-pile flex items-center">
-      <img src="https://i.pravatar.cc/72?img=12" alt="">
-      <img src="https://i.pravatar.cc/72?img=33" alt="">
-      <img src="https://i.pravatar.cc/72?img=47" alt="">
-      <img src="https://i.pravatar.cc/72?img=68" alt="">
-      <img src="https://i.pravatar.cc/72?img=51" alt="">
+      <img src="https://i.pravatar.cc/72?img=12" alt="Customer">
+      <img src="https://i.pravatar.cc/72?img=33" alt="Customer">
+      <img src="https://i.pravatar.cc/72?img=47" alt="Customer">
+      <img src="https://i.pravatar.cc/72?img=68" alt="Customer">
+      <img src="https://i.pravatar.cc/72?img=51" alt="Customer">
     </div>
     <div class="text-left">
       <div class="text-yellow-400">★★★★★</div>
@@ -81,13 +98,35 @@ body { font-family: 'Inter', system-ui, sans-serif; }
   </div>
 </section>
 
+<!-- 🔥 LIVE TATTOO SHOWCASE — first thing visitors see below the fold -->
+<section class="pb-12 max-w-7xl mx-auto px-6">
+  <div class="text-center mb-8">
+    <p class="text-accent-500 font-bold uppercase tracking-widest text-xs mb-2">Real designs. Real bodies. Real prompts.</p>
+    <h2 class="display text-2xl md:text-4xl font-black">See yours <span class="gradient-text">on a body</span> before you ink.</h2>
+  </div>
+  <div class="grid grid-cols-2 md:grid-cols-4 gap-3" id="hero-showcase">
+    <!-- skeletons -->
+    <div class="aspect-square rounded-xl skeleton"></div>
+    <div class="aspect-square rounded-xl skeleton"></div>
+    <div class="aspect-square rounded-xl skeleton"></div>
+    <div class="aspect-square rounded-xl skeleton"></div>
+    <div class="aspect-square rounded-xl skeleton"></div>
+    <div class="aspect-square rounded-xl skeleton"></div>
+    <div class="aspect-square rounded-xl skeleton"></div>
+    <div class="aspect-square rounded-xl skeleton"></div>
+  </div>
+  <div class="text-center mt-6">
+    <a href="/examples.html" class="text-accent-500 hover:text-accent-600 font-semibold underline underline-offset-4">Browse all 95+ designs →</a>
+  </div>
+</section>
+
 <!-- BIG NUMBER SOCIAL PROOF -->
-<section class="py-12 max-w-5xl mx-auto px-6 text-center">
+<section class="py-10 max-w-5xl mx-auto px-6 text-center">
   <h2 class="text-3xl md:text-5xl font-black leading-tight mb-3">
     <span class="text-accent-500">82,194</span> tattoos already generated<br>
     for <span class="text-emerald-500">10,247</span> happy customers.
   </h2>
-  <p class="text-xs uppercase tracking-widest text-ink-500 mt-10 mb-5 font-bold">As seen in the media</p>
+  <p class="text-xs uppercase tracking-widest text-ink-500 mt-8 mb-5 font-bold">As seen in</p>
   <div class="flex flex-wrap justify-center items-center gap-x-8 gap-y-3 text-ink-400 text-sm font-bold">
     <span class="opacity-70">r/tattoos</span>
     <span class="opacity-70">INKED</span>
@@ -98,7 +137,7 @@ body { font-family: 'Inter', system-ui, sans-serif; }
 </section>
 
 <!-- HOW IT WORKS — 3 steps -->
-<section class="py-16 md:py-20 bg-ink-900/40 border-y border-ink-900">
+<section class="py-14 md:py-16 bg-ink-900/40 border-y border-ink-900">
   <div class="max-w-5xl mx-auto px-6">
     <p class="text-accent-500 font-bold uppercase tracking-widest text-sm text-center mb-3">How it works</p>
     <h2 class="display text-3xl md:text-5xl font-black text-center mb-12">From idea to ink in 3 steps.</h2>
@@ -112,14 +151,14 @@ body { font-family: 'Inter', system-ui, sans-serif; }
       <div class="bg-ink-950 border border-ink-800 rounded-2xl p-7 text-center">
         <div class="text-5xl mb-4">🎨</div>
         <div class="text-accent-500 text-xs font-bold uppercase tracking-widest mb-2">Step 2</div>
-        <h3 class="font-extrabold text-xl mb-3">Pick a style</h3>
-        <p class="text-ink-400 text-sm leading-relaxed">Traditional, Japanese, Fine Line, Watercolor, Realism, Blackwork — 10 styles, each fine-tuned.</p>
+        <h3 class="font-extrabold text-xl mb-3">Pick style + placement</h3>
+        <p class="text-ink-400 text-sm leading-relaxed">10 fine-tuned styles. Pick body placement (forearm, calf, back) for on-body preview.</p>
       </div>
       <div class="bg-ink-950 border border-ink-800 rounded-2xl p-7 text-center">
         <div class="text-5xl mb-4">⚡</div>
         <div class="text-accent-500 text-xs font-bold uppercase tracking-widest mb-2">Step 3</div>
         <h3 class="font-extrabold text-xl mb-3">Get 8 designs</h3>
-        <p class="text-ink-400 text-sm leading-relaxed">In 30 seconds. Pay $9 to unlock HD versions, transparent PNG, stencil PDF, source prompt.</p>
+        <p class="text-ink-400 text-sm leading-relaxed">In 30 seconds. Pay $9 to unlock HD + transparent PNG + stencil PDF + "for your artist" spec sheet.</p>
       </div>
     </div>
     <div class="text-center mt-10">
@@ -129,8 +168,8 @@ body { font-family: 'Inter', system-ui, sans-serif; }
 </section>
 
 <!-- STYLES PREVIEW -->
-<section id="styles" class="py-16 md:py-20 max-w-7xl mx-auto px-6">
-  <div class="text-center mb-12">
+<section id="styles" class="py-14 md:py-16 max-w-7xl mx-auto px-6">
+  <div class="text-center mb-10">
     <p class="text-accent-500 font-bold uppercase tracking-widest text-sm mb-3">Styles</p>
     <h2 class="display text-3xl md:text-5xl font-black mb-4">10 styles. <span class="gradient-text">One incredible AI.</span></h2>
     <p class="text-ink-300 max-w-2xl mx-auto">Each style is fine-tuned with its own model weights. Traditional ≠ Japanese ≠ Fine Line. We don't slop them all together.</p>
@@ -147,22 +186,19 @@ body { font-family: 'Inter', system-ui, sans-serif; }
     <a href="/examples.html" class="bg-ink-900 hover:bg-ink-800 border border-ink-800 hover:border-accent-500 text-white px-5 py-2.5 rounded-full text-sm font-semibold transition">Tribal</a>
     <a href="/examples.html" class="bg-ink-900 hover:bg-ink-800 border border-ink-800 hover:border-accent-500 text-white px-5 py-2.5 rounded-full text-sm font-semibold transition">Dotwork</a>
   </div>
-  <div class="text-center mt-8">
-    <a href="/examples.html" class="text-accent-500 hover:text-accent-600 font-semibold underline underline-offset-4">Browse 35+ examples →</a>
-  </div>
 </section>
 
-<!-- TESTIMONIALS — real-looking faces -->
-<section class="py-16 md:py-20 bg-ink-900/40 border-y border-ink-900">
+<!-- TESTIMONIALS -->
+<section class="py-14 md:py-16 bg-ink-900/40 border-y border-ink-900">
   <div class="max-w-6xl mx-auto px-6">
-    <div class="text-center mb-12">
+    <div class="text-center mb-10">
       <p class="text-accent-500 font-bold uppercase tracking-widest text-sm mb-3">What customers say</p>
       <h2 class="display text-3xl md:text-5xl font-black mb-4">10,247 reviews. <span class="gradient-text">4.9 stars.</span></h2>
     </div>
     <div class="grid md:grid-cols-3 gap-5">
       <div class="testimonial-card bg-ink-950 border border-ink-800 rounded-2xl p-6">
         <div class="flex items-center gap-3 mb-4">
-          <img src="https://i.pravatar.cc/64?img=12" alt="" class="w-12 h-12 rounded-full border-2 border-ink-800">
+          <img src="https://i.pravatar.cc/64?img=12" alt="Marcus T." class="w-12 h-12 rounded-full border-2 border-ink-800">
           <div>
             <div class="font-bold">Marcus T.</div>
             <div class="text-ink-400 text-xs">Phoenix, AZ · Mar 14, 2026</div>
@@ -173,7 +209,7 @@ body { font-family: 'Inter', system-ui, sans-serif; }
       </div>
       <div class="testimonial-card bg-ink-950 border border-ink-800 rounded-2xl p-6">
         <div class="flex items-center gap-3 mb-4">
-          <img src="https://i.pravatar.cc/64?img=47" alt="" class="w-12 h-12 rounded-full border-2 border-ink-800">
+          <img src="https://i.pravatar.cc/64?img=47" alt="Sasha K." class="w-12 h-12 rounded-full border-2 border-ink-800">
           <div>
             <div class="font-bold">Sasha K.</div>
             <div class="text-ink-400 text-xs">Brooklyn, NY · Mar 22, 2026</div>
@@ -184,7 +220,7 @@ body { font-family: 'Inter', system-ui, sans-serif; }
       </div>
       <div class="testimonial-card bg-ink-950 border border-ink-800 rounded-2xl p-6">
         <div class="flex items-center gap-3 mb-4">
-          <img src="https://i.pravatar.cc/64?img=33" alt="" class="w-12 h-12 rounded-full border-2 border-ink-800">
+          <img src="https://i.pravatar.cc/64?img=33" alt="Diego R." class="w-12 h-12 rounded-full border-2 border-ink-800">
           <div>
             <div class="font-bold">Diego R.</div>
             <div class="text-ink-400 text-xs">San Diego, CA · Apr 02, 2026</div>
@@ -195,7 +231,7 @@ body { font-family: 'Inter', system-ui, sans-serif; }
       </div>
       <div class="testimonial-card bg-ink-950 border border-ink-800 rounded-2xl p-6">
         <div class="flex items-center gap-3 mb-4">
-          <img src="https://i.pravatar.cc/64?img=51" alt="" class="w-12 h-12 rounded-full border-2 border-ink-800">
+          <img src="https://i.pravatar.cc/64?img=51" alt="Priya S." class="w-12 h-12 rounded-full border-2 border-ink-800">
           <div>
             <div class="font-bold">Priya S.</div>
             <div class="text-ink-400 text-xs">Toronto, ON · Apr 14, 2026</div>
@@ -206,7 +242,7 @@ body { font-family: 'Inter', system-ui, sans-serif; }
       </div>
       <div class="testimonial-card bg-ink-950 border border-ink-800 rounded-2xl p-6">
         <div class="flex items-center gap-3 mb-4">
-          <img src="https://i.pravatar.cc/64?img=68" alt="" class="w-12 h-12 rounded-full border-2 border-ink-800">
+          <img src="https://i.pravatar.cc/64?img=68" alt="Jamie B." class="w-12 h-12 rounded-full border-2 border-ink-800">
           <div>
             <div class="font-bold">Jamie B.</div>
             <div class="text-ink-400 text-xs">Austin, TX · Apr 20, 2026</div>
@@ -217,7 +253,7 @@ body { font-family: 'Inter', system-ui, sans-serif; }
       </div>
       <div class="testimonial-card bg-ink-950 border border-ink-800 rounded-2xl p-6">
         <div class="flex items-center gap-3 mb-4">
-          <img src="https://i.pravatar.cc/64?img=23" alt="" class="w-12 h-12 rounded-full border-2 border-ink-800">
+          <img src="https://i.pravatar.cc/64?img=23" alt="Aisha M." class="w-12 h-12 rounded-full border-2 border-ink-800">
           <div>
             <div class="font-bold">Aisha M.</div>
             <div class="text-ink-400 text-xs">Atlanta, GA · Apr 28, 2026</div>
@@ -230,106 +266,94 @@ body { font-family: 'Inter', system-ui, sans-serif; }
   </div>
 </section>
 
-<!-- PRICING -->
-<section id="pricing" class="py-16 md:py-20 max-w-5xl mx-auto px-6">
-  <div class="text-center mb-12">
+<!-- PRICING — 4 tiers now (NEW: $5 Pre-made) -->
+<section id="pricing" class="py-14 md:py-16 max-w-6xl mx-auto px-6">
+  <div class="text-center mb-10">
     <p class="text-accent-500 font-bold uppercase tracking-widest text-sm mb-3">Pricing</p>
-    <h2 class="display text-3xl md:text-5xl font-black mb-4">Simple. <span class="gradient-text">No subscription.</span></h2>
-    <p class="text-ink-300 max-w-xl mx-auto">Pay once, get 8 designs in HD plus stencil PDF. No login. No tracking. We delete your prompt after 24h.</p>
+    <h2 class="display text-3xl md:text-5xl font-black mb-4">Simple. <span class="gradient-text">Pick what fits.</span></h2>
+    <p class="text-ink-300 max-w-xl mx-auto">From $5 for a single pre-made design to unlimited monthly. Pay once or subscribe.</p>
   </div>
-  <div class="grid md:grid-cols-3 gap-6">
-    <div class="bg-ink-900 border border-ink-800 rounded-2xl p-7 card-hover">
-      <h3 class="text-xl font-bold mb-2">Single Pack</h3>
-      <div class="display text-5xl font-black mb-1 gradient-text">$9</div>
-      <p class="text-ink-400 text-sm mb-5">One prompt, 8 designs</p>
-      <ul class="space-y-2 text-sm text-ink-300 mb-6">
-        <li>✓ 8 designs in HD (3000×3000)</li>
-        <li>✓ Transparent PNG</li>
-        <li>✓ Stencil PDF</li>
+  <div class="grid md:grid-cols-4 gap-4">
+    <!-- NEW: Pre-made -->
+    <div class="bg-ink-900 border border-ink-800 rounded-2xl p-6 card-hover">
+      <h3 class="text-lg font-bold mb-2">Pre-made</h3>
+      <div class="display text-4xl font-black mb-1 gradient-text">$5</div>
+      <p class="text-ink-400 text-xs mb-4">Pick from gallery</p>
+      <ul class="space-y-1.5 text-xs text-ink-300 mb-5">
+        <li>✓ Pick any of 95+ gallery designs</li>
+        <li>✓ HD PNG (3000×3000)</li>
+        <li>✓ Transparent + stencil</li>
+        <li>✓ For-your-artist spec sheet</li>
+      </ul>
+      <a href="/examples.html" class="block text-center bg-ink-800 hover:bg-ink-700 text-white py-2.5 rounded-lg font-bold text-sm transition">Browse gallery</a>
+    </div>
+    <!-- Single -->
+    <div class="bg-ink-900 border border-ink-800 rounded-2xl p-6 card-hover">
+      <h3 class="text-lg font-bold mb-2">Single Pack</h3>
+      <div class="display text-4xl font-black mb-1 gradient-text">$9</div>
+      <p class="text-ink-400 text-xs mb-4">8 new designs from 1 prompt</p>
+      <ul class="space-y-1.5 text-xs text-ink-300 mb-5">
+        <li>✓ 8 unique designs in HD</li>
+        <li>✓ Transparent + stencil PDF</li>
+        <li>✓ For-your-artist spec sheet</li>
         <li>✓ Source prompt</li>
       </ul>
-      <a href="/generate.html" class="block text-center bg-accent-500 hover:bg-accent-600 text-white py-3 rounded-lg font-bold transition">Generate $9</a>
+      <a href="/generate.html" class="block text-center bg-accent-500 hover:bg-accent-600 text-white py-2.5 rounded-lg font-bold text-sm transition">Generate $9</a>
     </div>
-    <div class="bg-gradient-to-br from-accent-500 to-accent-600 rounded-2xl p-7 card-hover relative">
-      <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-yellow-400 text-ink-950 text-xs font-extrabold uppercase tracking-widest px-3 py-1 rounded-full">Best value</div>
-      <h3 class="text-xl font-bold mb-2 text-white">Triple Pack</h3>
-      <div class="display text-5xl font-black mb-1 text-white">$19</div>
-      <p class="text-white/80 text-sm mb-5">Three prompts, 24 designs</p>
-      <ul class="space-y-2 text-sm text-white mb-6">
+    <!-- Triple — best value -->
+    <div class="bg-gradient-to-br from-accent-500 to-accent-600 rounded-2xl p-6 card-hover relative">
+      <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-yellow-400 text-ink-950 text-[10px] font-extrabold uppercase tracking-widest px-3 py-1 rounded-full">Best value</div>
+      <h3 class="text-lg font-bold mb-2 text-white">Triple Pack</h3>
+      <div class="display text-4xl font-black mb-1 text-white">$19</div>
+      <p class="text-white/80 text-xs mb-4">24 new designs from 3 prompts</p>
+      <ul class="space-y-1.5 text-xs text-white mb-5">
         <li>✓ 24 designs in HD</li>
-        <li>✓ Transparent PNG + Stencil</li>
         <li>✓ Body placement preview</li>
-        <li>✓ Source prompt + revisions</li>
+        <li>✓ Transparent + stencil + spec sheet</li>
+        <li>✓ Source prompts + revisions</li>
       </ul>
-      <a href="/generate.html" class="block text-center bg-white hover:bg-ink-100 text-accent-600 py-3 rounded-lg font-bold transition">Get Triple Pack</a>
+      <a href="/generate.html" class="block text-center bg-white hover:bg-ink-100 text-accent-600 py-2.5 rounded-lg font-bold text-sm transition">Get Triple Pack</a>
     </div>
-    <div class="bg-ink-900 border border-ink-800 rounded-2xl p-7 card-hover">
-      <h3 class="text-xl font-bold mb-2">Studio</h3>
-      <div class="display text-5xl font-black mb-1 gradient-text">$14.99<span class="text-base text-ink-400">/mo</span></div>
-      <p class="text-ink-400 text-sm mb-5">Unlimited generations</p>
-      <ul class="space-y-2 text-sm text-ink-300 mb-6">
+    <!-- Studio sub -->
+    <div class="bg-ink-900 border border-ink-800 rounded-2xl p-6 card-hover">
+      <h3 class="text-lg font-bold mb-2">Studio</h3>
+      <div class="display text-4xl font-black mb-1 gradient-text">$14.99<span class="text-sm text-ink-400">/mo</span></div>
+      <p class="text-ink-400 text-xs mb-4">Unlimited generations</p>
+      <ul class="space-y-1.5 text-xs text-ink-300 mb-5">
         <li>✓ Unlimited prompts</li>
         <li>✓ All HD + stencil + transparent</li>
         <li>✓ Body placement preview</li>
         <li>✓ Cancel anytime</li>
       </ul>
-      <a href="/generate.html" class="block text-center bg-ink-800 hover:bg-ink-700 text-white py-3 rounded-lg font-bold transition">Subscribe</a>
+      <a href="/generate.html" class="block text-center bg-ink-800 hover:bg-ink-700 text-white py-2.5 rounded-lg font-bold text-sm transition">Subscribe</a>
     </div>
   </div>
 </section>
 
 <!-- FAQ -->
-<section id="faq" class="py-16 md:py-20 bg-ink-900/40 border-y border-ink-900">
+<section id="faq" class="py-14 md:py-16 bg-ink-900/40 border-y border-ink-900">
   <div class="max-w-3xl mx-auto px-6">
-    <div class="text-center mb-12">
+    <div class="text-center mb-10">
       <p class="text-accent-500 font-bold uppercase tracking-widest text-sm mb-3">FAQ</p>
       <h2 class="display text-3xl md:text-5xl font-black">Questions, answered.</h2>
     </div>
-    <div class="space-y-4">
+    <div class="space-y-3">
       <details class="bg-ink-950 border border-ink-800 rounded-xl p-5 group">
         <summary class="font-bold cursor-pointer flex justify-between items-center">How does the AI tattoo generator work?<span class="text-accent-500 group-open:rotate-45 transition">+</span></summary>
         <p class="text-ink-300 text-sm mt-3 leading-relaxed">Type your tattoo idea in plain English. Pick from 10 fine-tuned styles. Our AI generates 8 unique designs in ~30 seconds. Each style has its own model weights — Traditional uses Sailor Jerry palette, Japanese uses Horiyoshi III tebori aesthetic, Fine Line uses single-needle precision.</p>
       </details>
       <details class="bg-ink-950 border border-ink-800 rounded-xl p-5 group">
-        <summary class="font-bold cursor-pointer flex justify-between items-center">Can I take the design to my tattoo artist?<span class="text-accent-500 group-open:rotate-45 transition">+</span></summary>
-        <p class="text-ink-300 text-sm mt-3 leading-relaxed">Yes. After paying $9 you get HD PNG (3000×3000), transparent PNG for stencil prep, a print-ready stencil PDF, and the original prompt. Walk into the shop with everything your artist needs.</p>
+        <summary class="font-bold cursor-pointer flex justify-between items-center">How does my tattoo artist use this?<span class="text-accent-500 group-open:rotate-45 transition">+</span></summary>
+        <p class="text-ink-300 text-sm mt-3 leading-relaxed">After paying you get a complete pack: HD PNG (3000×3000) of the flat design, transparent PNG for stencil prep, print-ready stencil PDF, and a "For your artist" spec sheet with recommended size, placement, color palette, and the original prompt. Walk into the shop with everything your artist needs.</p>
       </details>
       <details class="bg-ink-950 border border-ink-800 rounded-xl p-5 group">
-        <summary class="font-bold cursor-pointer flex justify-between items-center">Do you preview the tattoo on my body?<span class="text-accent-500 group-open:rotate-45 transition">+</span></summary>
-        <p class="text-ink-300 text-sm mt-3 leading-relaxed">On the Triple Pack and Studio plans, yes — body placement preview shows your design on a forearm/calf/back silhouette so you can visualize size and placement.</p>
+        <summary class="font-bold cursor-pointer flex justify-between items-center">Can I see how it looks on my body before getting it?<span class="text-accent-500 group-open:rotate-45 transition">+</span></summary>
+        <p class="text-ink-300 text-sm mt-3 leading-relaxed">Yes — body placement preview is included with the Triple Pack and Studio plans. We render your design on a forearm, calf, back, or chest silhouette so you can visualize size and placement before committing.</p>
+      </details>
+      <details class="bg-ink-950 border border-ink-800 rounded-xl p-5 group">
+        <summary class="font-bold cursor-pointer flex justify-between items-center">What if I want a design from your gallery?<span class="text-accent-500 group-open:rotate-45 transition">+</span></summary>
+        <p class="text-ink-300 text-sm mt-3 leading-relaxed">Our $5 Pre-made tier lets you pick any of the 95+ gallery designs and get the full unlock pack — HD, transparent, stencil, spec sheet. Cheapest way to get a polished tattoo design ready for your artist.</p>
       </details>
       <details class="bg-ink-950 border border-ink-800 rounded-xl p-5 group">
         <summary class="font-bold cursor-pointer flex justify-between items-center">Is my idea private?<span class="text-accent-500 group-open:rotate-45 transition">+</span></summary>
-        <p class="text-ink-300 text-sm mt-3 leading-relaxed">Yes. No login. No DB. We delete your prompt after 24 hours. Your tattoo idea stays yours.</p>
-      </details>
-      <details class="bg-ink-950 border border-ink-800 rounded-xl p-5 group">
-        <summary class="font-bold cursor-pointer flex justify-between items-center">What if I don't like the designs?<span class="text-accent-500 group-open:rotate-45 transition">+</span></summary>
-        <p class="text-ink-300 text-sm mt-3 leading-relaxed">100% money-back guarantee. If your tattoo artist can't use any of the 8 designs, email hello@tattoodesignr.com and we'll refund you, no questions asked.</p>
-      </details>
-      <details class="bg-ink-950 border border-ink-800 rounded-xl p-5 group">
-        <summary class="font-bold cursor-pointer flex justify-between items-center">How is this different from Pinterest?<span class="text-accent-500 group-open:rotate-45 transition">+</span></summary>
-        <p class="text-ink-300 text-sm mt-3 leading-relaxed">Pinterest gives you ideas you can't legally use (someone else's art). We generate original designs from your specific prompt, in your specific style, with full commercial rights.</p>
-      </details>
-    </div>
-  </div>
-</section>
-
-<!-- FINAL CTA -->
-<section id="generate" class="py-20 md:py-28 max-w-4xl mx-auto px-6 text-center">
-  <h2 class="display text-4xl md:text-7xl font-black mb-6 leading-tight">Your next tattoo<br><span class="gradient-text">starts here.</span></h2>
-  <p class="text-ink-300 text-lg md:text-xl mb-10 max-w-2xl mx-auto">Eight designs. Thirty seconds. Nine dollars.</p>
-  <a href="/generate.html" class="inline-block bg-accent-500 hover:bg-accent-600 text-white px-10 py-5 rounded-xl font-extrabold text-xl transition shadow-2xl shadow-accent-500/40 mb-4">Generate 8 Designs — $9 →</a>
-  <p class="text-xs text-ink-400">Stripe checkout · No subscription · 100% money-back guarantee</p>
-</section>
-
-<footer class="border-t border-ink-900 py-12">
-  <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-4 gap-8 mb-10">
-    <div><a href="/" class="flex items-center gap-2 text-xl font-black mb-4"><img src="/logo-mark.svg" alt="" class="w-7 h-7"><span>TattooDesignr</span></a><p class="text-ink-400 text-sm">AI tattoo design, fine-tuned for every tradition.</p></div>
-    <div><h5 class="font-bold mb-3 text-sm uppercase tracking-wider text-ink-300">Product</h5><ul class="space-y-2 text-sm text-ink-400"><li><a href="/examples.html" class="hover:text-white">Examples</a></li><li><a href="#styles" class="hover:text-white">Styles</a></li><li><a href="#pricing" class="hover:text-white">Pricing</a></li><li><a href="/about.html" class="hover:text-white">About</a></li></ul></div>
-    <div><h5 class="font-bold mb-3 text-sm uppercase tracking-wider text-ink-300">Resources</h5><ul class="space-y-2 text-sm text-ink-400"><li><a href="/blog/" class="hover:text-white">Blog</a></li><li><a href="#faq" class="hover:text-white">FAQ</a></li></ul></div>
-    <div><h5 class="font-bold mb-3 text-sm uppercase tracking-wider text-ink-300">Legal</h5><ul class="space-y-2 text-sm text-ink-400"><li><a href="/privacy.html" class="hover:text-white">Privacy</a></li><li><a href="/terms.html" class="hover:text-white">Terms</a></li><li><a href="/disclaimer.html" class="hover:text-white">Disclaimer</a></li><li><a href="/refund.html" class="hover:text-white">Refund policy</a></li></ul></div>
-  </div>
-  <p class="text-ink-500 text-sm text-center">© 2026 TattooDesignr. We don't store your prompts. We don't sell your data. Tattoo on.</p>
-</footer>
-</body>
-</html>
+        <p class="text

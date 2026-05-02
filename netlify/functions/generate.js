@@ -22,7 +22,7 @@ const RATE = new Map();
 
 const FLUX_MODEL = 'black-forest-labs/flux-dev';
 const PACK_SIZE  = 8;
-const PER_CALL   = 4;
+const PER_CALL   = 4; // FLUX-dev cap
 
 function rateOk(ip) {
   const now = Date.now();
@@ -77,6 +77,7 @@ async function runOnePrediction(token, prompt, count) {
   if (j.status === 'failed' || j.status === 'canceled') {
     throw new Error(`generation ${j.status}: ${JSON.stringify(j.error || j)}`);
   }
+  // Still pending after wait=55 — poll
   const finished = await pollUntilDone(token, j.urls.get);
   return Array.isArray(finished.output) ? finished.output : [finished.output];
 }
@@ -113,6 +114,7 @@ exports.handler = async (event) => {
 
   const sessionId = `sess_${Date.now()}_${Math.random().toString(36).slice(2, 10)}`;
 
+  // Split into parallel batches of 4
   const batches = [];
   let remaining = totalWanted;
   while (remaining > 0) {

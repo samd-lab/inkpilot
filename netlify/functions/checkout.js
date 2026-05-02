@@ -26,9 +26,10 @@ exports.handler = async (event) => {
   const stripeKey = process.env.STRIPE_SECRET_KEY;
   const baseUrl  = process.env.PUBLIC_BASE_URL || 'https://tattoodesignr.com';
   const priceMap = {
-    single: process.env.STRIPE_PRICE_SINGLE,
-    triple: process.env.STRIPE_PRICE_TRIPLE,
-    studio: process.env.STRIPE_PRICE_STUDIO,
+    flash:  process.env.STRIPE_PRICE_FLASH,    // NEW: $5 pre-made gallery design
+    single: process.env.STRIPE_PRICE_SINGLE,   // $9 generate 8
+    triple: process.env.STRIPE_PRICE_TRIPLE,   // $19 generate 24
+    studio: process.env.STRIPE_PRICE_STUDIO,   // $14.99/mo unlimited
   };
   if (!stripeKey || !priceMap.single) {
     return { statusCode: 500, body: JSON.stringify({ error: 'Stripe env missing (STRIPE_SECRET_KEY or STRIPE_PRICE_SINGLE)' }) };
@@ -92,11 +93,4 @@ exports.handler = async (event) => {
   }
   const session = await res.json();
   if (!res.ok) {
-    return { statusCode: 502, body: JSON.stringify({ error: 'stripe error', detail: session }) };
-  }
-
-  return {
-    statusCode: 200,
-    body: JSON.stringify({ url: session.url, id: session.id, mode }),
-  };
-};
+    return { statusCode: 502, body: JSON.stringify({ error: 'strip

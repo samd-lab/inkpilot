@@ -24,23 +24,8 @@
   status = 200
   force = true
 
-[[redirects]]
-  from = "/api/gallery-build"
-  to = "/.netlify/functions/gallery-build"
-  status = 200
-  force = true
-
-[[redirects]]
-  from = "/api/gallery-image"
-  to = "/.netlify/functions/gallery-image"
-  status = 200
-  force = true
-
-[[redirects]]
-  from = "/api/gallery-manifest"
-  to = "/.netlify/functions/gallery-manifest"
-  status = 200
-  force = true
+# Note: gallery-* functions are v2 ESM (.mjs) and register their own /api/gallery-* paths
+# via `export const config = { path }`. No redirects needed.
 
 [[headers]]
   for = "/*"

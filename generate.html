@@ -212,6 +212,26 @@ input[type="text"]:focus, textarea:focus { outline: 2px solid #dc2626; outline-o
 // ============== STATE ==============
 const STATE = { style: 'traditional', file: null, lastSession: null, designs: [] };
 
+// ============== URL PARAM PRE-FILL (when arriving from gallery) ==============
+(() => {
+  const params = new URLSearchParams(location.search);
+  const ideaParam = params.get('idea');
+  const styleParam = params.get('style');
+  if (ideaParam) {
+    const ideaEl = document.getElementById('idea');
+    ideaEl.value = ideaParam;
+    document.getElementById('ideaCount').textContent = ideaParam.length;
+  }
+  if (styleParam) {
+    const btn = document.querySelector(`.style-pill[data-style="${styleParam}"]`);
+    if (btn) {
+      document.querySelectorAll('.style-pill').forEach(x => x.setAttribute('aria-pressed', 'false'));
+      btn.setAttribute('aria-pressed', 'true');
+      STATE.style = styleParam;
+    }
+  }
+})();
+
 // ============== UI BINDINGS ==============
 const idea = document.getElementById('idea');
 const ideaCount = document.getElementById('ideaCount');
