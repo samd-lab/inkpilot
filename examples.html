@@ -6,93 +6,158 @@
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-<title>Examples — TattooDesignr | Real AI Tattoo Designs Across 10 Styles</title>
-<meta name="description" content="Browse hundreds of AI-generated tattoo designs across 10 styles. Click any design to see it bigger. Generate your own in 30 seconds.">
+<title>Examples — Real AI Tattoo Designs Across 10 Styles | TattooDesignr</title>
+<meta name="description" content="Browse 95+ AI-generated tattoo designs across 10 styles, with on-body previews. Buy any pre-made design for $5 or generate similar for $9.">
 <link rel="canonical" href="https://tattoodesignr.com/examples.html">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Permanent+Marker&display=swap" rel="stylesheet">
 <script src="https://cdn.tailwindcss.com"></script>
 <script>
 tailwind.config = { theme: { extend: {
-  fontFamily: { sans: ['Inter','system-ui','sans-serif'], display: ['Playfair Display','serif'] },
-  colors: { ink: { 50:'#f7f7f8', 100:'#eeeeef', 200:'#d9dadc', 300:'#b6b8bc', 400:'#8c8e95', 500:'#6e7178', 600:'#585b62', 700:'#484a50', 800:'#3d3f44', 900:'#1a1b1f', 950:'#0e0f12' }, accent: { 500:'#dc2626', 600:'#b91c1c' } }
+  fontFamily: {
+    sans: ['Inter','system-ui','sans-serif'],
+    display: ['"Permanent Marker"','cursive'],
+  },
+  colors: {
+    ink:    { 50:'#fafafa', 100:'#f4f4f5', 200:'#e4e4e7', 300:'#a1a1aa', 400:'#71717a', 500:'#52525b', 600:'#3f3f46', 700:'#27272a', 800:'#18181b', 900:'#0a0a0a', 950:'#050505' },
+    accent: { 400:'#f87171', 500:'#dc2626', 600:'#b91c1c', 700:'#991b1b' },
+    gold:   { 400:'#facc15', 500:'#eab308' },
+  },
 }}};
 </script>
 <style>
-body { font-family: 'Inter', system-ui, sans-serif; }
-.display { font-family: 'Playfair Display', serif; }
-.gradient-text { background: linear-gradient(135deg, #dc2626 0%, #f59e0b 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-.design-card { transition: transform .3s cubic-bezier(.16,1,.3,1), box-shadow .3s; cursor: zoom-in; position: relative; overflow: hidden; }
-.design-card:hover { transform: translateY(-4px); box-shadow: 0 24px 48px -12px rgba(220,38,38,.25); }
-.design-card img { -webkit-user-drag: none; user-select: none; -webkit-user-select: none; pointer-events: none; }
-.design-card::after {
-  content: 'TATTOODESIGNR · PREVIEW · UNLOCK $9';
-  position: absolute; inset: 0;
-  display: flex; align-items: center; justify-content: center;
-  font-weight: 800; font-size: 11px; letter-spacing: .15em;
-  color: rgba(220,38,38,.45);
-  transform: rotate(-22deg);
-  pointer-events: none;
-  text-shadow: 0 1px 2px rgba(255,255,255,.5);
-}
-.filter-btn.active { background: #dc2626; color: white; border-color: #dc2626; }
-.tat-paper { background: #f5f3ee; }
-.skeleton { background: linear-gradient(110deg, #1a1b1f 8%, #2d2f35 18%, #1a1b1f 33%); background-size: 200% 100%; animation: shine 1.4s linear infinite; }
-@keyframes shine { to { background-position: -200% 0; } }
-/* Lightbox */
-.lb-overlay { position: fixed; inset: 0; background: rgba(0,0,0,.92); z-index: 100; display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: opacity .25s; }
-.lb-overlay.open { opacity: 1; pointer-events: auto; }
-.lb-frame { position: relative; max-width: min(92vw, 900px); max-height: 92vh; background: #f5f3ee; border-radius: 16px; padding: 16px; }
-.lb-frame img { display: block; max-width: 100%; max-height: 75vh; user-select: none; -webkit-user-drag: none; pointer-events: none; }
-.lb-frame::after {
-  content: 'TATTOODESIGNR · PREVIEW · UNLOCK $9';
-  position: absolute; inset: 0;
-  display: flex; align-items: center; justify-content: center;
-  font-weight: 800; font-size: 22px; letter-spacing: .2em;
-  color: rgba(220,38,38,.4); transform: rotate(-22deg);
-  pointer-events: none;
-}
-.lb-close { position: absolute; top: -14px; right: -14px; width: 36px; height: 36px; background: #dc2626; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 22px; cursor: pointer; border: 2px solid white; }
-.lb-info { margin-top: 14px; padding: 8px 4px; color: #1a1b1f; }
-.lb-info .label { font-weight: 800; font-size: 18px; }
-.lb-info .style { color: #dc2626; font-weight: 700; font-size: 11px; letter-spacing: .15em; text-transform: uppercase; }
-.lb-cta { margin-top: 16px; display: flex; gap: 12px; flex-wrap: wrap; }
-.lb-cta a { padding: 12px 22px; border-radius: 10px; font-weight: 700; font-size: 14px; text-decoration: none; transition: background .2s; }
-.lb-primary { background: #dc2626; color: white; }
-.lb-primary:hover { background: #b91c1c; }
-.lb-secondary { background: #1a1b1f; color: white; }
-.lb-secondary:hover { background: #3d3f44; }
+  html, body { background: #050505; }
+  body { font-family: 'Inter', system-ui, sans-serif; color: #fafafa; -webkit-font-smoothing: antialiased; }
+  .display { font-family: 'Permanent Marker', cursive; letter-spacing: -.01em; }
+  .grain { background-image: radial-gradient(rgba(255,255,255,.025) 1px, transparent 1px); background-size: 3px 3px; }
+
+  .design-card { transition: transform .3s cubic-bezier(.16,1,.3,1), box-shadow .3s; cursor: zoom-in; position: relative; overflow: hidden; }
+  .design-card:hover { transform: translateY(-4px); box-shadow: 0 24px 48px -12px rgba(220,38,38,.25); }
+  .design-card img { -webkit-user-drag: none; user-select: none; -webkit-user-select: none; pointer-events: none; }
+  .design-card::after {
+    content: 'PREVIEW · UNLOCK $5';
+    position: absolute; inset: 0;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 800; font-size: 11px; letter-spacing: .15em;
+    color: rgba(220,38,38,.45);
+    transform: rotate(-22deg);
+    pointer-events: none;
+    text-shadow: 0 1px 2px rgba(255,255,255,.5);
+  }
+  .filter-btn.active { background: #dc2626; color: white; border-color: #dc2626; }
+  .view-btn { color: #a1a1aa; }
+  .view-btn.active { background: #dc2626; color: white; }
+  /* Favorite heart button */
+  .fav-btn { position: absolute; top: 8px; right: 8px; width: 36px; height: 36px; background: rgba(0,0,0,.6); backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,.15); border-radius: 999px; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all .2s; z-index: 4; pointer-events: auto; }
+  .fav-btn:hover { background: rgba(220,38,38,.85); border-color: #dc2626; transform: scale(1.1); }
+  .fav-btn svg { width: 18px; height: 18px; fill: none; stroke: white; stroke-width: 2; }
+  .fav-btn.active { background: #dc2626; border-color: #dc2626; }
+  .fav-btn.active svg { fill: white; stroke: white; }
+  .fav-count { display: inline-flex; align-items: center; gap: 4px; background: #dc2626; color: white; padding: 2px 8px; border-radius: 999px; font-size: 11px; font-weight: 800; margin-left: 6px; }
+  .tat-paper { background: #f5f3ee; }
+  .skeleton { background: linear-gradient(110deg, #18181b 8%, #27272a 18%, #18181b 33%); background-size: 200% 100%; animation: shine 1.4s linear infinite; }
+  @keyframes shine { to { background-position: -200% 0; } }
+
+  /* Angle tabs (only shown when design has multiple angles) */
+  .angle-tabs { display: flex; gap: 6px; margin-top: 10px; justify-content: center; flex-wrap: wrap; }
+  .angle-tab { padding: 6px 14px; border-radius: 999px; font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: .12em; background: #1a1b1f; color: #a1a1aa; border: 1px solid #27272a; cursor: pointer; transition: all .2s; font-family: inherit; }
+  .angle-tab:hover { color: white; border-color: #52525b; }
+  .angle-tab.active { background: #dc2626; color: white; border-color: #dc2626; }
+  .angle-tab .meta { display: block; font-size: 9px; font-weight: 600; opacity: .8; margin-top: 1px; letter-spacing: 0; text-transform: none; }
+
+  /* Lightbox — scrollable, mobile-safe */
+  .lb-overlay { position: fixed; inset: 0; background: rgba(0,0,0,.92); z-index: 100; display: flex; align-items: flex-start; justify-content: center; opacity: 0; pointer-events: none; transition: opacity .25s; padding: 24px 16px; overflow-y: auto; -webkit-overflow-scrolling: touch; }
+  .lb-overlay.open { opacity: 1; pointer-events: auto; }
+  .lb-frame { position: relative; width: 100%; max-width: 720px; background: #f5f3ee; border-radius: 16px; padding: 16px; margin: auto; }
+  .lb-image-wrap { position: relative; }
+  .lb-image-wrap img { display: block; width: 100%; max-height: 60vh; object-fit: contain; user-select: none; -webkit-user-drag: none; pointer-events: none; }
+  .lb-image-wrap::after {
+    content: 'PREVIEW · UNLOCK $5';
+    position: absolute; inset: 0;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 800; font-size: 22px; letter-spacing: .2em;
+    color: rgba(220,38,38,.4); transform: rotate(-22deg);
+    pointer-events: none;
+  }
+  .lb-close { position: absolute; top: -14px; right: -14px; width: 36px; height: 36px; background: #dc2626; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 22px; cursor: pointer; border: 2px solid white; z-index: 5; }
+  .lb-info { margin-top: 14px; padding: 4px; color: #18181b; }
+  .lb-info .label { font-weight: 800; font-size: 20px; line-height: 1.2; font-family: 'Permanent Marker', cursive; letter-spacing: 0; }
+  .lb-info .style { color: #dc2626; font-weight: 700; font-size: 11px; letter-spacing: .15em; text-transform: uppercase; margin-bottom: 4px; }
+  .lb-pack { background: white; border: 1px solid #e6e2d8; border-radius: 12px; padding: 14px; margin-top: 14px; }
+  .lb-pack h4 { font-weight: 800; font-size: 13px; color: #18181b; margin-bottom: 10px; text-transform: uppercase; letter-spacing: .1em; }
+  .lb-pack ul { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 8px 14px; }
+  .lb-pack li { display: flex; align-items: flex-start; gap: 8px; font-size: 13px; color: #3f3f46; }
+  .lb-pack li b { color: #18181b; font-weight: 700; }
+  .lb-pack .check { color: #16a34a; font-weight: 900; font-size: 14px; flex-shrink: 0; }
+  .lb-pack .why { margin-top: 12px; padding-top: 12px; border-top: 1px solid #e6e2d8; font-size: 12px; color: #52525b; line-height: 1.5; }
+  .lb-cta { margin-top: 14px; display: flex; gap: 10px; flex-wrap: wrap; }
+  .lb-cta > * { flex: 1 1 200px; padding: 14px 22px; border-radius: 999px; font-weight: 800; font-size: 15px; text-decoration: none; transition: background .2s; text-align: center; border: none; cursor: pointer; font-family: inherit; }
+  .lb-primary { background: #dc2626; color: white; }
+  .lb-primary:hover { background: #b91c1c; }
+  .lb-secondary { background: #18181b; color: white; }
+  .lb-secondary:hover { background: #3f3f46; }
+  .lb-trust { margin-top: 10px; text-align: center; font-size: 11px; color: #52525b; }
+  @media (max-width: 540px) {
+    .lb-pack ul { grid-template-columns: 1fr; }
+    .lb-image-wrap img { max-height: 45vh; }
+  }
 </style>
 </head>
-<body class="bg-ink-950 text-ink-100 antialiased" oncontextmenu="return false;" ondragstart="return false;">
+<body class="grain antialiased" oncontextmenu="return false;" ondragstart="return false;">
 
-<nav class="sticky top-0 z-50 bg-ink-950/80 backdrop-blur-lg border-b border-ink-900">
+<!-- NAV (matches index.html) -->
+<nav class="sticky top-0 z-50 bg-ink-950/85 backdrop-blur-xl border-b border-ink-800">
   <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-    <a href="/" class="flex items-center gap-2 text-2xl font-black tracking-tight"><img src="/logo-mark.svg" alt="" class="w-7 h-7"><span>TattooDesignr</span></a>
-    <div class="hidden md:flex items-center gap-7 text-sm">
+    <a href="/" class="flex items-center gap-2 text-2xl font-black tracking-tight">
+      <img src="/logo-mark.svg" alt="" class="w-7 h-7">
+      <span class="text-white">Tattoo<span class="text-accent-500">Designr</span></span>
+    </a>
+    <div class="hidden md:flex items-center gap-6 text-sm font-medium">
       <a href="/examples.html" class="text-white">Examples</a>
-      <a href="/#styles" class="text-ink-300 hover:text-white">Styles</a>
-      <a href="/#pricing" class="text-ink-300 hover:text-white">Pricing</a>
-      <a href="/about.html" class="text-ink-300 hover:text-white">About</a>
-      <a href="/blog/" class="text-ink-300 hover:text-white">Blog</a>
+      <a href="/ideas/" class="text-ink-300 hover:text-white">Ideas</a>
+      <a href="/styles/" class="text-ink-300 hover:text-white">Styles</a>
+      <a href="/shops/" class="text-ink-300 hover:text-white">Shops</a>
+      <a href="/calc.html" class="text-ink-300 hover:text-white">Calculator</a>
     </div>
-    <a href="/generate.html" class="bg-accent-500 hover:bg-accent-600 text-white px-5 py-2.5 rounded-lg font-semibold text-sm transition">Generate $9</a>
+    <a href="/generate.html" class="bg-white text-ink-950 hover:bg-ink-200 px-5 py-2.5 rounded-full font-bold text-sm transition">Generate Tattoo →</a>
   </div>
 </nav>
 
-<section class="py-16 md:py-24 max-w-7xl mx-auto px-6">
-  <div class="text-center mb-10">
-    <p class="text-accent-500 font-bold uppercase tracking-widest text-sm mb-3">Real designs from real prompts</p>
-    <h1 class="display text-4xl md:text-6xl font-black mb-4">See what's possible. <span class="gradient-text">Click any to enlarge.</span></h1>
-    <p class="text-ink-300 text-lg max-w-2xl mx-auto">Mind-blowing AI-generated tattoo designs across all 10 styles. Click any to see the full-size preview. Generate yours in 30 seconds.</p>
-    <div class="mt-7 flex items-center justify-center gap-2 text-sm text-ink-400">
-      <span class="text-yellow-400">★★★★★</span>
-      <span>Join <strong class="text-white">10,247</strong> happy customers</span>
-    </div>
+<!-- HERO -->
+<section class="pt-12 md:pt-16 pb-12 md:pb-16 max-w-5xl mx-auto px-6 text-center">
+  <p class="text-accent-500 font-bold uppercase tracking-widest text-xs mb-4">Real designs · Real bodies · Real prompts</p>
+  <h1 class="display text-5xl md:text-7xl leading-[1.05] mb-5">See what's <span class="text-accent-500">possible.</span></h1>
+  <p class="text-ink-300 text-lg max-w-2xl mx-auto mb-6">95+ AI-generated tattoo designs across 10 styles, with on-body previews. Click any to enlarge — buy it for $5 or generate similar for $9.</p>
+  <div class="flex items-center justify-center gap-2 text-sm text-ink-400">
+    <span class="text-yellow-400">★★★★★</span>
+    <span>Join <strong class="text-white">10,247</strong> happy customers</span>
   </div>
+</section>
 
-  <div class="flex flex-wrap gap-2 justify-center mb-10" id="filters">
-    <button data-filter="all" class="filter-btn active border border-ink-700 text-ink-200 px-4 py-2 rounded-full text-sm font-medium transition">All</button>
-    <button data-filter="onbody" class="filter-btn border border-ink-700 text-ink-200 px-4 py-2 rounded-full text-sm font-medium transition">On Body</button>
+<!-- WHAT YOU GET strip -->
+<section class="max-w-7xl mx-auto px-6">
+  <div class="bg-gradient-to-r from-accent-500/10 via-gold-400/10 to-accent-500/10 border border-accent-500/30 rounded-2xl p-5 mb-10">
+    <p class="text-center text-xs uppercase tracking-widest text-accent-500 font-extrabold mb-3">What you get when you buy</p>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-3 text-center text-xs">
+      <div><div class="text-2xl mb-1">🎨</div><div class="font-bold text-white">HD PNG 3000×3000</div><div class="text-ink-400">Print-ready master file</div></div>
+      <div><div class="text-2xl mb-1">✂️</div><div class="font-bold text-white">Stencil PDF</div><div class="text-ink-400">B&W outline for the artist</div></div>
+      <div><div class="text-2xl mb-1">🖼️</div><div class="font-bold text-white">Transparent PNG</div><div class="text-ink-400">For digital mockups</div></div>
+      <div><div class="text-2xl mb-1">📋</div><div class="font-bold text-white">Spec Sheet PDF</div><div class="text-ink-400">Size + placement + notes</div></div>
+    </div>
+    <p class="text-center text-[11px] text-ink-400 mt-3">Full commercial rights · Instant download · Money-back if you're not happy</p>
+  </div>
+</section>
+
+<!-- FILTERS -->
+<section class="max-w-7xl mx-auto px-6">
+  <!-- Style filter -->
+  <div class="text-center mb-3">
+    <p class="text-xs uppercase tracking-widest text-ink-500 font-bold">Filter by style</p>
+  </div>
+  <div class="flex flex-wrap gap-2 justify-center mb-5" id="filters">
+    <button data-filter="all" class="filter-btn active border border-ink-700 text-ink-200 px-4 py-2 rounded-full text-sm font-medium transition">All Styles</button>
     <button data-filter="traditional" class="filter-btn border border-ink-700 text-ink-200 px-4 py-2 rounded-full text-sm font-medium transition">Traditional</button>
     <button data-filter="neo" class="filter-btn border border-ink-700 text-ink-200 px-4 py-2 rounded-full text-sm font-medium transition">Neo-Traditional</button>
     <button data-filter="japanese" class="filter-btn border border-ink-700 text-ink-200 px-4 py-2 rounded-full text-sm font-medium transition">Japanese</button>
@@ -104,7 +169,21 @@ body { font-family: 'Inter', system-ui, sans-serif; }
     <button data-filter="tribal" class="filter-btn border border-ink-700 text-ink-200 px-4 py-2 rounded-full text-sm font-medium transition">Tribal</button>
     <button data-filter="dotwork" class="filter-btn border border-ink-700 text-ink-200 px-4 py-2 rounded-full text-sm font-medium transition">Dotwork</button>
   </div>
+  <!-- View toggle -->
+  <div class="flex justify-center mb-10 flex-wrap gap-3">
+    <div class="inline-flex bg-ink-900 rounded-full p-1 border border-ink-800" id="view-toggle">
+      <button data-view="both" class="view-btn active px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider transition">All Views</button>
+      <button data-view="flat" class="view-btn px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider transition">Flat Designs</button>
+      <button data-view="onbody" class="view-btn px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider transition">On Body</button>
+    </div>
+    <button id="favViewBtn" class="inline-flex items-center gap-2 bg-ink-900 border border-ink-800 hover:border-accent-500 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider text-ink-200 transition">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+      <span>Saved</span>
+      <span id="favCount" class="fav-count hidden">0</span>
+    </button>
+  </div>
 
+  <!-- Gallery grid -->
   <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4" id="gallery">
     <div class="aspect-square rounded-xl skeleton"></div>
     <div class="aspect-square rounded-xl skeleton"></div>
@@ -116,10 +195,11 @@ body { font-family: 'Inter', system-ui, sans-serif; }
     <div class="aspect-square rounded-xl skeleton"></div>
   </div>
 
-  <div class="text-center mt-20 py-14 px-6 bg-gradient-to-br from-accent-500 to-accent-600 rounded-2xl">
-    <h2 class="display text-3xl md:text-5xl font-black mb-4 text-white">Make yours.</h2>
+  <!-- Big CTA banner -->
+  <div class="text-center mt-20 py-14 px-6 bg-gradient-to-br from-accent-500 to-accent-700 rounded-3xl">
+    <h2 class="display text-4xl md:text-6xl mb-4 text-white">Make yours.</h2>
     <p class="text-white/90 mb-8 max-w-xl mx-auto">Type any idea, pick a style, get 8 mind-blowing designs in 30 seconds. Take your favorite straight to your tattoo artist.</p>
-    <a href="/generate.html" class="inline-block bg-white text-accent-600 hover:bg-ink-100 px-10 py-4 rounded-xl font-extrabold text-lg transition shadow-2xl">Generate 8 Designs — $9</a>
+    <a href="/generate.html" class="inline-block bg-white text-accent-700 hover:bg-ink-100 px-10 py-4 rounded-full font-extrabold text-lg transition shadow-2xl">Generate 8 designs — $9</a>
     <p class="text-white/70 text-xs mt-4">No subscription · Money-back guarantee · We delete prompts after 24h</p>
   </div>
 </section>
@@ -128,28 +208,83 @@ body { font-family: 'Inter', system-ui, sans-serif; }
 <div class="lb-overlay" id="lightbox" onclick="if(event.target===this) closeLb()">
   <div class="lb-frame">
     <button class="lb-close" onclick="closeLb()">×</button>
-    <img id="lbImg" alt="" oncontextmenu="return false;">
+    <div class="lb-image-wrap">
+      <img id="lbImg" alt="" oncontextmenu="return false;">
+    </div>
+    <!-- Angle tabs (auto-shown only if this design has 2+ angles) -->
+    <div class="angle-tabs" id="lbAngles" style="display:none;"></div>
     <div class="lb-info">
       <div class="style" id="lbStyle"></div>
       <div class="label" id="lbLabel"></div>
-      <div class="lb-cta">
-        <button onclick="buyThisDesign()" class="lb-primary" style="border:none;cursor:pointer;font-family:inherit;">Buy this design — $5</button>
-        <a href="/generate.html" class="lb-secondary">Generate similar — $9</a>
+
+      <div class="lb-pack">
+        <h4>For $5 you instantly get:</h4>
+        <ul>
+          <li><span class="check">✓</span><span><b>HD PNG</b> 3000×3000 print master</span></li>
+          <li><span class="check">✓</span><span><b>Stencil PDF</b> B&W outline for the artist</span></li>
+          <li><span class="check">✓</span><span><b>Transparent PNG</b> for digital mockups</span></li>
+          <li><span class="check">✓</span><span><b>Spec sheet PDF</b> size, placement, notes</span></li>
+          <li><span class="check">✓</span><span><b>Full commercial rights</b> no attribution</span></li>
+          <li><span class="check">✓</span><span><b>Money-back</b> if you're not happy</span></li>
+        </ul>
+        <p class="why">Walk into your tattoo shop with a complete pack — your artist gets the stencil, the spec sheet, and the high-res reference. No back-and-forth, no surprises. Done in one visit.</p>
       </div>
-      <p class="text-xs mt-3" style="color:#585b62;">$5 = HD PNG + transparent + stencil PDF + spec sheet · $9 = 8 unique variations of this idea</p>
+
+      <div class="lb-cta">
+        <button onclick="buyThisDesign()" class="lb-primary">Buy this design — $5</button>
+        <a href="/generate.html" class="lb-secondary">Generate 8 similar — $9</a>
+      </div>
+      <p class="lb-trust">Instant download · One-time payment · No subscription · Stripe-secured checkout</p>
     </div>
   </div>
 </div>
 
-<footer class="border-t border-ink-900 py-12 mt-12">
+<!-- FOOTER (matches index.html) -->
+<footer class="bg-ink-950 py-14 mt-12 border-t border-ink-800">
   <div class="max-w-7xl mx-auto px-6">
-    <div class="grid md:grid-cols-4 gap-8 mb-10">
-      <div><a href="/" class="flex items-center gap-2 text-xl font-black mb-4"><img src="/logo-mark.svg" alt="" class="w-7 h-7"><span>TattooDesignr</span></a><p class="text-ink-400 text-sm">AI tattoo design, fine-tuned for every tradition.</p></div>
-      <div><h5 class="font-bold mb-3 text-sm uppercase tracking-wider text-ink-300">Product</h5><ul class="space-y-2 text-sm text-ink-400"><li><a href="/examples.html" class="hover:text-white">Examples</a></li><li><a href="/#styles" class="hover:text-white">Styles</a></li><li><a href="/#pricing" class="hover:text-white">Pricing</a></li><li><a href="/about.html" class="hover:text-white">About</a></li></ul></div>
-      <div><h5 class="font-bold mb-3 text-sm uppercase tracking-wider text-ink-300">Resources</h5><ul class="space-y-2 text-sm text-ink-400"><li><a href="/blog/" class="hover:text-white">Blog</a></li><li><a href="/#faq" class="hover:text-white">FAQ</a></li></ul></div>
-      <div><h5 class="font-bold mb-3 text-sm uppercase tracking-wider text-ink-300">Legal</h5><ul class="space-y-2 text-sm text-ink-400"><li><a href="/privacy.html" class="hover:text-white">Privacy</a></li><li><a href="/terms.html" class="hover:text-white">Terms</a></li><li><a href="/disclaimer.html" class="hover:text-white">Disclaimer</a></li><li><a href="/refund.html" class="hover:text-white">Refund policy</a></li></ul></div>
+    <div class="grid md:grid-cols-5 gap-8 mb-10">
+      <div class="md:col-span-2">
+        <a href="/" class="flex items-center gap-2 text-xl font-black mb-4">
+          <img src="/logo-mark.svg" alt="" class="w-7 h-7">
+          <span class="text-white">Tattoo<span class="text-accent-500">Designr</span></span>
+        </a>
+        <p class="text-ink-400 text-sm max-w-sm">AI tattoo design, fine-tuned for every tradition. Trusted by 10,000+ ink-curious humans.</p>
+      </div>
+      <div>
+        <h5 class="font-bold mb-3 text-xs uppercase tracking-widest text-ink-300">Tattoo Ideas</h5>
+        <ul class="space-y-2 text-sm text-ink-400">
+          <li><a href="/generate.html?idea=dragon" class="hover:text-white">Dragon</a></li>
+          <li><a href="/generate.html?idea=wolf" class="hover:text-white">Wolf</a></li>
+          <li><a href="/generate.html?idea=rose" class="hover:text-white">Rose</a></li>
+          <li><a href="/generate.html?idea=snake" class="hover:text-white">Snake</a></li>
+          <li><a href="/generate.html?idea=compass" class="hover:text-white">Compass</a></li>
+          <li><a href="/generate.html?idea=anchor" class="hover:text-white">Anchor</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5 class="font-bold mb-3 text-xs uppercase tracking-widest text-ink-300">Styles</h5>
+        <ul class="space-y-2 text-sm text-ink-400">
+          <li><a href="/generate.html?style=traditional" class="hover:text-white">Traditional</a></li>
+          <li><a href="/generate.html?style=japanese" class="hover:text-white">Japanese</a></li>
+          <li><a href="/generate.html?style=fineline" class="hover:text-white">Fine Line</a></li>
+          <li><a href="/generate.html?style=realism" class="hover:text-white">Realism</a></li>
+          <li><a href="/generate.html?style=blackwork" class="hover:text-white">Blackwork</a></li>
+          <li><a href="/generate.html?style=watercolor" class="hover:text-white">Watercolor</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5 class="font-bold mb-3 text-xs uppercase tracking-widest text-ink-300">Company</h5>
+        <ul class="space-y-2 text-sm text-ink-400">
+          <li><a href="/examples.html" class="hover:text-white">Examples</a></li>
+          <li><a href="/blog/" class="hover:text-white">Blog</a></li>
+          <li><a href="/about.html" class="hover:text-white">About</a></li>
+          <li><a href="/privacy.html" class="hover:text-white">Privacy</a></li>
+          <li><a href="/terms.html" class="hover:text-white">Terms</a></li>
+          <li><a href="/refund.html" class="hover:text-white">Refund policy</a></li>
+        </ul>
+      </div>
     </div>
-    <p class="text-ink-500 text-sm pt-8 border-t border-ink-900">© 2026 TattooDesignr.</p>
+    <p class="text-ink-500 text-xs pt-8 border-t border-ink-800 text-center">© 2026 TattooDesignr. All AI-generated designs come with full commercial rights.</p>
   </div>
 </footer>
 
@@ -161,18 +296,61 @@ const STYLE_LABEL = {
   onbody:'On Body Mockup',
 };
 
+// Will be populated after manifest loads — maps design_group → array of angle entries
+window._designGroups = {};
 window._currentDesign = null;
-function openLb(file, style, label) {
-  document.getElementById('lbImg').src = '/' + file;
+
+const ANGLE_LABEL = {
+  closeup:  { name: 'Close-up',   meta: 'Macro detail' },
+  midshot:  { name: 'Mid-shot',   meta: 'Lifestyle' },
+  longshot: { name: 'Long shot',  meta: 'Environmental' },
+};
+
+function openLb(file, style, label, designId) {
+  const lbImg     = document.getElementById('lbImg');
+  const lbAngles  = document.getElementById('lbAngles');
+  const id = designId || file.replace('images/examples/', '').replace('.png','');
+  lbImg.src = '/' + file;
   document.getElementById('lbStyle').textContent = STYLE_LABEL[style] || style;
   document.getElementById('lbLabel').textContent = '"' + label + '"';
-  // Track current design for $5 buy
-  window._currentDesign = { id: file.replace('images/examples/', '').replace('.png',''), url: '/' + file, label, style };
-  // Pre-fill /generate.html with the gallery's prompt + style for $9 generate-similar button
-  const apiStyle = style === 'onbody' ? 'realism' : style;
+  window._currentDesign = { id, url: '/' + file, label, style };
+
+  // Find the group this design belongs to (if any) and render angle tabs
+  const entry = window._allDesigns?.find(d => d.id === id) || null;
+  const groupKey = entry?.design_group;
+  const siblings = (groupKey && window._designGroups[groupKey]) || [];
+
+  if (siblings.length >= 2) {
+    lbAngles.style.display = '';
+    lbAngles.innerHTML = siblings.map(s => {
+      const meta = ANGLE_LABEL[s.angle] || { name: s.angle || 'Angle', meta: s.body_part || '' };
+      const isActive = s.id === id;
+      return `<button class="angle-tab ${isActive ? 'active' : ''}" onclick="switchAngle('${s.id}')"><span>${meta.name}</span><span class="meta">${meta.meta}</span></button>`;
+    }).join('');
+  } else {
+    lbAngles.style.display = 'none';
+    lbAngles.innerHTML = '';
+  }
+
+  const apiStyle = style === 'onbody' ? (entry?.substyle || 'realism') : style;
   document.querySelector('.lb-secondary').href = '/generate.html?idea=' + encodeURIComponent(label) + '&style=' + encodeURIComponent(apiStyle);
   document.getElementById('lightbox').classList.add('open');
   document.body.style.overflow = 'hidden';
+}
+
+// Swap the lightbox image when user clicks another angle tab
+function switchAngle(designId) {
+  const target = window._allDesigns?.find(d => d.id === designId);
+  if (!target) return;
+  document.getElementById('lbImg').src = '/' + target.file;
+  // update active tab
+  const buttons = document.querySelectorAll('.angle-tab');
+  buttons.forEach(b => b.classList.remove('active'));
+  // find the just-clicked button by matching its onclick
+  const clicked = [...buttons].find(b => b.getAttribute('onclick')?.includes(designId));
+  if (clicked) clicked.classList.add('active');
+  // update _currentDesign so "buy this" buys this specific angle
+  window._currentDesign = { id: target.id, url: '/' + target.file, label: target.label, style: target.style };
 }
 async function buyThisDesign() {
   const d = window._currentDesign;
@@ -187,10 +365,7 @@ async function buyThisDesign() {
       body: JSON.stringify({
         packType: 'flash',
         sessionId: 'flash_' + Date.now(),
-        designs: [{
-          id: d.id,
-          url: location.origin + d.url,
-        }],
+        designs: [{ id: d.id, url: location.origin + d.url }],
       }),
     });
     const j = await r.json();
@@ -211,6 +386,28 @@ function closeLb() {
 }
 document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLb(); });
 
+// Hardcoded exclude list — bad on-body images. Add IDs as you spot them.
+const DISABLED_IDS = new Set([
+  // 'onbody-12', 'onbody-27', etc.
+]);
+
+// ============== FAVORITES (localStorage) ==============
+const FAV_KEY = 'tdr_favorites_v1';
+function loadFavs() { try { return new Set(JSON.parse(localStorage.getItem(FAV_KEY) || '[]')); } catch { return new Set(); } }
+function saveFavs(s) { localStorage.setItem(FAV_KEY, JSON.stringify([...s])); refreshFavCount(); }
+function refreshFavCount() {
+  const f = loadFavs();
+  const el = document.getElementById('favCount');
+  if (f.size > 0) { el.textContent = f.size; el.classList.remove('hidden'); }
+  else { el.classList.add('hidden'); }
+}
+function toggleFav(id, btn) {
+  const f = loadFavs();
+  if (f.has(id)) { f.delete(id); btn.classList.remove('active'); }
+  else { f.add(id); btn.classList.add('active'); }
+  saveFavs(f);
+}
+
 (async () => {
   let manifest = [];
   try {
@@ -219,40 +416,125 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLb(); }
   } catch {}
 
   const galleryEl = document.getElementById('gallery');
-  const real = manifest.filter(m => m.file && !m.error);
+  const real = manifest.filter(m => m.file && !m.error && !m.disabled && !DISABLED_IDS.has(m.id));
   if (real.length === 0) {
     galleryEl.innerHTML = '<div class="col-span-full text-center text-ink-400 py-12">Examples loading…</div>';
     return;
   }
-  // Sort: on-body first (the wow factor), then realism photos, then everything else
+
+  // Build design_group map for multi-angle on-body sets
+  // Order angles: closeup → midshot → longshot
+  const ANGLE_ORDER = { closeup: 0, midshot: 1, longshot: 2 };
+  window._allDesigns = real;
+  window._designGroups = {};
+  real.forEach(d => {
+    if (d.design_group) {
+      if (!window._designGroups[d.design_group]) window._designGroups[d.design_group] = [];
+      window._designGroups[d.design_group].push(d);
+    }
+  });
+  // Sort each group by angle order
+  Object.values(window._designGroups).forEach(arr =>
+    arr.sort((a, b) => (ANGLE_ORDER[a.angle] ?? 9) - (ANGLE_ORDER[b.angle] ?? 9))
+  );
+
+  // For grid display: collapse multi-angle groups to a single "hero" entry (the closeup, or first available).
+  // This keeps the grid uncluttered — clicking that card opens the lightbox with all 3 angles.
+  const seen = new Set();
+  const collapsed = [];
+  real.forEach(d => {
+    if (d.design_group) {
+      if (seen.has(d.design_group)) return; // already added the hero card
+      seen.add(d.design_group);
+      // Use the first angle (closeup) as the grid hero
+      const hero = window._designGroups[d.design_group][0] || d;
+      collapsed.push(hero);
+    } else {
+      collapsed.push(d);
+    }
+  });
+
+  // Sort: on-body first (wow factor), then realism, then everything else
   const styleOrder = { onbody: 0, realism: 1, japanese: 2, neo: 3, traditional: 4, fineline: 5, watercolor: 6, blackwork: 7, minimalist: 8, tribal: 9, dotwork: 10 };
-  real.sort((a, b) => (styleOrder[a.style] ?? 99) - (styleOrder[b.style] ?? 99));
-  galleryEl.innerHTML = real.map(d => {
+  collapsed.sort((a, b) => (styleOrder[a.style] ?? 99) - (styleOrder[b.style] ?? 99));
+
+  const favs = loadFavs();
+  galleryEl.innerHTML = collapsed.map(d => {
     const styleName = STYLE_LABEL[d.style] || d.style;
     const altText = `${d.label} — ${styleName} tattoo design${d.style === 'onbody' ? ' shown on body for placement preview' : ''}, AI-generated by TattooDesignr`;
     const isOnBody = d.style === 'onbody';
     const safeLabel = (d.label || '').replace(/`/g, '').replace(/'/g, "\\'");
+    const substyle = d.substyle || '';
+    const isFav = favs.has(d.id);
+    const angleCount = (d.design_group && window._designGroups[d.design_group]?.length) || 0;
     return `
-    <div class="design-item relative" data-style="${d.style}">
+    <div class="design-item relative" data-style="${d.style}" data-substyle="${substyle}" data-view="${isOnBody ? 'onbody' : 'flat'}" data-id="${d.id}">
       <div class="design-card aspect-square block rounded-xl border border-ink-800 ${isOnBody ? '' : 'tat-paper'} overflow-hidden"
-           onclick="openLb('${d.file}', '${d.style}', '${safeLabel}')">
+           onclick="openLb('${d.file}', '${d.style}', '${safeLabel}', '${d.id}')">
         <img src="/${d.file}" alt="${altText}" class="w-full h-full object-cover" loading="lazy" />
       </div>
       ${isOnBody ? '<div class="absolute top-2 left-2 bg-accent-500 text-white text-[10px] font-extrabold uppercase tracking-wider px-2 py-1 rounded shadow-lg pointer-events-none">On Body</div>' : ''}
+      ${angleCount >= 2 ? `<div class="absolute top-2 right-12 bg-gold-400 text-ink-950 text-[10px] font-extrabold uppercase tracking-wider px-2 py-1 rounded shadow-lg pointer-events-none">${angleCount} angles</div>` : ''}
+      <button class="fav-btn ${isFav ? 'active' : ''}" data-fav="${d.id}" aria-label="Save design" onclick="event.stopPropagation();">
+        <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+      </button>
       <div class="absolute bottom-2 right-2 bg-ink-950/80 text-white text-[10px] font-bold uppercase tracking-wider px-2 py-1 rounded pointer-events-none">${styleName}</div>
     </div>`;
   }).join('');
 
-  // Filter chips
+  // Wire heart button clicks
+  document.querySelectorAll('.fav-btn').forEach(btn => {
+    btn.addEventListener('click', e => {
+      e.stopPropagation();
+      toggleFav(btn.dataset.fav, btn);
+      // If currently filtered to "saved only", re-apply filter
+      if (favsOnly) applyFilters();
+    });
+  });
+  refreshFavCount();
+
+  // Three-axis filtering: style × view × favorites-only
+  let activeStyle = 'all';
+  let activeView  = 'both';
+  window.favsOnly = false;
+  function applyFilters() {
+    const f = loadFavs();
+    document.querySelectorAll('.design-item').forEach(item => {
+      const itemStyle = item.dataset.style;
+      const itemSubstyle = item.dataset.substyle;
+      const itemView = item.dataset.view;
+      const itemId = item.dataset.id;
+      const styleMatch = activeStyle === 'all' || itemStyle === activeStyle || itemSubstyle === activeStyle;
+      const viewMatch  = activeView === 'both' || itemView === activeView;
+      const favMatch   = !window.favsOnly || f.has(itemId);
+      item.style.display = (styleMatch && viewMatch && favMatch) ? '' : 'none';
+    });
+  }
+  window.applyFilters = applyFilters;
+
   document.querySelectorAll('.filter-btn').forEach(btn => {
     btn.addEventListener('click', () => {
       document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
-      const f = btn.dataset.filter;
-      document.querySelectorAll('.design-item').forEach(item => {
-        item.style.display = (f === 'all' || item.dataset.style === f) ? '' : 'none';
-      });
+      activeStyle = btn.dataset.filter;
+      applyFilters();
     });
+  });
+  document.querySelectorAll('.view-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.view-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      activeView = btn.dataset.view;
+      applyFilters();
+    });
+  });
+  // Saved-only toggle
+  document.getElementById('favViewBtn').addEventListener('click', () => {
+    const btn = document.getElementById('favViewBtn');
+    window.favsOnly = !window.favsOnly;
+    if (window.favsOnly) { btn.classList.add('bg-accent-500','text-white','border-accent-500'); btn.classList.remove('text-ink-200','bg-ink-900'); }
+    else { btn.classList.remove('bg-accent-500','text-white','border-accent-500'); btn.classList.add('text-ink-200','bg-ink-900'); }
+    applyFilters();
   });
 })();
 </script>

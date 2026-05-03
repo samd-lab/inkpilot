@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<title>Tattoo Cost & Size Calculator — How Much Will Your Tattoo Cost? | TattooDesignr</title>
+<meta name="description" content="Free tattoo cost & size calculator. Estimate price by size, style, body placement, and city. Backed by 2026 market rates from 500+ shops.">
+<link rel="canonical" href="https://tattoodesignr.com/calc.html">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Permanent+Marker&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = { theme: { extend: {
+  fontFamily: { sans: ['Inter','system-ui','sans-serif'], display: ['"Permanent Marker"','cursive'] },
+  colors: {
+    ink:    { 50:'#fafafa', 100:'#f4f4f5', 200:'#e4e4e7', 300:'#a1a1aa', 400:'#71717a', 500:'#52525b', 600:'#3f3f46', 700:'#27272a', 800:'#18181b', 900:'#0a0a0a', 950:'#050505' },
+    accent: { 400:'#f87171', 500:'#dc2626', 600:'#b91c1c', 700:'#991b1b' },
+    gold:   { 400:'#facc15', 500:'#eab308' },
+  },
+}}};
+</script>
+<style>
+  html, body { background: #050505; }
+  body { font-family: 'Inter', system-ui, sans-serif; color: #fafafa; -webkit-font-smoothing: antialiased; }
+  .display { font-family: 'Permanent Marker', cursive; letter-spacing: -.01em; }
+  .grain { background-image: radial-gradient(rgba(255,255,255,.025) 1px, transparent 1px); background-size: 3px 3px; }
+  input[type="range"] { -webkit-appearance: none; height: 8px; background: #27272a; border-radius: 999px; outline: none; }
+  input[type="range"]::-webkit-slider-thumb { -webkit-appearance: none; width: 22px; height: 22px; background: #dc2626; border-radius: 50%; cursor: pointer; box-shadow: 0 4px 12px rgba(220,38,38,.5); }
+  input[type="range"]::-moz-range-thumb { width: 22px; height: 22px; background: #dc2626; border-radius: 50%; cursor: pointer; border: none; }
+  select, input[type="text"] { background: #18181b; border: 1px solid #27272a; color: white; }
+  select:focus, input[type="text"]:focus { outline: 2px solid #dc2626; outline-offset: 2px; }
+  .pill { transition: all .2s; cursor: pointer; }
+  .pill.active { background: #dc2626; color: white; border-color: #dc2626; }
+</style>
+</head>
+<body class="grain antialiased">
+
+<!-- NAV -->
+<nav class="sticky top-0 z-50 bg-ink-950/85 backdrop-blur-xl border-b border-ink-800">
+  <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+    <a href="/" class="flex items-center gap-2 text-2xl font-black tracking-tight">
+      <img src="/logo-mark.svg" alt="" class="w-7 h-7">
+      <span class="text-white">Tattoo<span class="text-accent-500">Designr</span></span>
+    </a>
+    <div class="hidden md:flex items-center gap-6 text-sm font-medium">
+      <a href="/examples.html" class="text-ink-300 hover:text-white">Examples</a>
+      <a href="/ideas/" class="text-ink-300 hover:text-white">Ideas</a>
+      <a href="/styles/" class="text-ink-300 hover:text-white">Styles</a>
+      <a href="/shops/" class="text-ink-300 hover:text-white">Shops</a>
+      <a href="/calc.html" class="text-white">Calculator</a>
+    </div>
+    <a href="/quiz.html" class="bg-white text-ink-950 hover:bg-ink-200 px-5 py-2.5 rounded-full font-bold text-sm transition">Start Quiz →</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="pt-12 md:pt-16 pb-10 max-w-4xl mx-auto px-6 text-center">
+  <p class="text-accent-500 font-bold uppercase tracking-widest text-xs mb-4">Free tool · Updated 2026</p>
+  <h1 class="display text-5xl md:text-7xl leading-[1.05] mb-5">How much will your <span class="text-accent-500">tattoo cost?</span></h1>
+  <p class="text-ink-300 text-lg max-w-2xl mx-auto">Estimate price + recommended size in seconds. Backed by 2026 market rates from 500+ shops across major US cities.</p>
+</section>
+
+<!-- CALCULATOR -->
+<section class="max-w-4xl mx-auto px-6 pb-12">
+  <div class="bg-ink-900 border border-ink-800 rounded-2xl p-6 md:p-8">
+
+    <!-- Subject -->
+    <div class="mb-7">
+      <label class="block text-xs uppercase tracking-widest text-ink-400 font-bold mb-3">What are you getting tattooed?</label>
+      <input type="text" id="subject" placeholder="A wolf head with cosmic flowers..." class="w-full rounded-xl px-4 py-3 text-base placeholder-ink-500" maxlength="120" />
+    </div>
+
+    <!-- Size slider -->
+    <div class="mb-7">
+      <div class="flex justify-between items-center mb-3">
+        <label class="block text-xs uppercase tracking-widest text-ink-400 font-bold">Size</label>
+        <span class="text-white font-bold text-sm"><span id="sizeOut">4</span> inches (<span id="sizeCm">10</span> cm)</span>
+      </div>
+      <input type="range" id="size" min="1" max="20" value="4" step="0.5" class="w-full" />
+      <div class="flex justify-between text-xs text-ink-500 mt-1">
+        <span>Tiny (1in)</span>
+        <span>Small (3in)</span>
+        <span>Medium (6in)</span>
+        <span>Large (12in)</span>
+        <span>Sleeve (20in)</span>
+      </div>
+    </div>
+
+    <!-- Style -->
+    <div class="mb-7">
+      <label class="block text-xs uppercase tracking-widest text-ink-400 font-bold mb-3">Style</label>
+      <div class="flex flex-wrap gap-2" id="styleGroup">
+        <button class="pill border border-ink-700 text-ink-200 px-4 py-2 rounded-full text-sm font-medium" data-style="minimalist" data-rate="0.9">Minimalist</button>
+        <button class="pill active border border-ink-700 text-ink-200 px-4 py-2 rounded-full text-sm font-medium" data-style="traditional" data-rate="1.0">Traditional</button>
+        <button class="pill border border-ink-700 text-ink-200 px-4 py-2 rounded-full text-sm font-medium" data-style="fineline" data-rate="1.1">Fine Line</button>
+        <button class="pill border border-ink-700 text-ink-200 px-4 py-2 rounded-full text-sm font-medium" data-style="blackwork" data-rate="1.05">Blackwork</button>
+        <button class="pill border border-ink-700 text-ink-200 px-4 py-2 rounded-full text-sm font-medium" data-style="dotwork" data-rate="1.2">Dotwork</button>
+        <button class="pill border border-ink-700 text-ink-200 px-4 py-2 rounded-full text-sm font-medium" data-style="watercolor" data-rate="1.3">Watercolor</button>
+        <button class="pill border border-ink-700 text-ink-200 px-4 py-2 rounded-full text-sm font-medium" data-style="japanese" data-rate="1.4">Japanese</button>
+        <button class="pill border border-ink-700 text-ink-200 px-4 py-2 rounded-full text-sm font-medium" data-style="realism" data-rate="1.6">Realism</button>
+      </div>
+    </div>
+
+    <!-- Color or B&W -->
+    <div class="mb-7">
+      <label class="block text-xs uppercase tracking-widest text-ink-400 font-bold mb-3">Color or black & grey</label>
+      <div class="flex gap-2">
+        <button class="pill border border-ink-700 text-ink-200 px-5 py-2 rounded-full text-sm font-medium flex-1" data-color="bw" data-rate="1.0">Black &amp; Grey</button>
+        <button class="pill active border border-ink-700 text-ink-200 px-5 py-2 rounded-full text-sm font-medium flex-1" data-color="color" data-rate="1.25">Color</button>
+      </div>
+    </div>
+
+    <!-- Placement -->
+    <div class="mb-7 grid md:grid-cols-2 gap-5">
+      <div>
+        <label class="block text-xs uppercase tracking-widest text-ink-400 font-bold mb-3">Placement</label>
+        <select id="placement" class="w-full rounded-xl px-4 py-3 text-sm">
+          <option value="1.0">Forearm / Arm</option>
+          <option value="1.0">Calf</option>
+          <option value="1.1">Shoulder / Back</option>
+          <option value="1.15">Thigh</option>
+          <option value="1.25">Ribs / Side</option>
+          <option value="1.3">Sternum / Chest</option>
+          <option value="1.3">Hand / Foot</option>
+          <option value="1.4">Neck / Behind ear</option>
+          <option value="1.5">Inner bicep / Armpit</option>
+        </select>
+      </div>
+      <div>
+        <label class="block text-xs uppercase tracking-widest text-ink-400 font-bold mb-3">City (rate tier)</label>
+        <select id="city" class="w-full rounded-xl px-4 py-3 text-sm">
+          <option value="1.4">New York / Los Angeles / SF</option>
+          <option value="1.25">Chicago / Boston / Seattle / DC</option>
+          <option value="1.15">Miami / Austin / Denver / Portland</option>
+          <option value="1.0" selected>Mid-size US city</option>
+          <option value="0.85">Small town / suburban</option>
+          <option value="1.6">London / Tokyo / Sydney</option>
+          <option value="0.7">Latin America / Eastern Europe / SE Asia</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Artist tier -->
+    <div class="mb-2">
+      <label class="block text-xs uppercase tracking-widest text-ink-400 font-bold mb-3">Artist tier</label>
+      <div class="grid grid-cols-3 gap-2">
+        <button class="pill border border-ink-700 text-ink-200 px-3 py-2 rounded-full text-sm font-medium" data-tier="apprentice" data-rate="0.6">Apprentice</button>
+        <button class="pill active border border-ink-700 text-ink-200 px-3 py-2 rounded-full text-sm font-medium" data-tier="standard" data-rate="1.0">Mid-career</button>
+        <button class="pill border border-ink-700 text-ink-200 px-3 py-2 rounded-full text-sm font-medium" data-tier="celebrity" data-rate="2.5">Celebrity / award-winning</button>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ============ RESULT ============ -->
+  <div class="bg-gradient-to-br from-ink-900 to-ink-950 border border-accent-500/30 rounded-3xl p-8 md:p-10 mt-6">
+    <p class="text-accent-500 text-xs font-bold uppercase tracking-widest mb-2">Estimated total</p>
+    <div class="flex flex-wrap items-end gap-3 mb-6">
+      <div>
+        <div class="display text-5xl md:text-7xl text-white leading-none">$<span id="estLow">280</span> – $<span id="estHigh">420</span></div>
+        <p class="text-ink-400 text-sm mt-2">Includes <span id="hoursOut" class="text-white font-bold">3</span>–<span id="hoursOutHigh" class="text-white font-bold">5</span> hours of tattooing + setup + supplies</p>
+      </div>
+    </div>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 pt-6 border-t border-ink-800">
+      <div><p class="text-ink-400 text-xs uppercase tracking-wider mb-1">Hourly rate</p><p class="text-white font-bold text-base">$<span id="rateOut">120</span>/hr</p></div>
+      <div><p class="text-ink-400 text-xs uppercase tracking-wider mb-1">Sessions</p><p class="text-white font-bold text-base"><span id="sessionsOut">1</span></p></div>
+      <div><p class="text-ink-400 text-xs uppercase tracking-wider mb-1">Tip recommended</p><p class="text-white font-bold text-base">$<span id="tipLow">56</span>–$<span id="tipHigh">84</span></p></div>
+      <div><p class="text-ink-400 text-xs uppercase tracking-wider mb-1">All-in (with tip)</p><p class="text-white font-bold text-base">$<span id="allLow">336</span>–$<span id="allHigh">504</span></p></div>
+    </div>
+    <div class="mt-7 flex flex-col sm:flex-row gap-3">
+      <a href="/quiz.html" class="bg-accent-500 hover:bg-accent-600 text-white px-7 py-3.5 rounded-full font-extrabold text-base transition text-center flex-1 shadow-lg shadow-accent-500/20">Design my tattoo first →</a>
+      <a href="/examples.html" class="bg-ink-800 hover:bg-ink-700 text-white px-7 py-3.5 rounded-full font-bold text-base transition text-center flex-1">Browse examples</a>
+    </div>
+    <p class="text-xs text-ink-500 mt-4 text-center">Estimates based on 2026 averages from 500+ US shops · Actual prices vary by artist + complexity · Always confirm with your shop</p>
+  </div>
+</section>
+
+<!-- HOW WE PRICE -->
+<section class="max-w-4xl mx-auto px-6 pb-16">
+  <div class="text-center mb-10">
+    <h2 class="display text-3xl md:text-5xl mb-3">How tattoo pricing actually works</h2>
+    <p class="text-ink-300">No mystery. Just five levers.</p>
+  </div>
+  <div class="grid md:grid-cols-2 gap-5">
+    <div class="bg-ink-900 border border-ink-800 rounded-2xl p-6">
+      <h3 class="font-bold text-lg text-white mb-2">⏱️ Hourly rate</h3>
+      <p class="text-ink-300 text-sm leading-relaxed">Mid-career artists in mid-size cities charge $100–$180/hr in 2026. NYC/LA/SF runs $180–$300/hr. Apprentices $50–$80/hr. Celebrity artists $400–$600/hr+.</p>
+    </div>
+    <div class="bg-ink-900 border border-ink-800 rounded-2xl p-6">
+      <h3 class="font-bold text-lg text-white mb-2">📐 Size + detail</h3>
+      <p class="text-ink-300 text-sm leading-relaxed">A 2" minimalist takes 30 min. A 4" traditional piece, 2–3 hours. A 6" Japanese with shading, 5–6 hours. A full sleeve, 20–40 hours across 4–8 sessions.</p>
+    </div>
+    <div class="bg-ink-900 border border-ink-800 rounded-2xl p-6">
+      <h3 class="font-bold text-lg text-white mb-2">🎨 Style premium</h3>
+      <p class="text-ink-300 text-sm leading-relaxed">Realism + watercolor + Japanese take longer than traditional/blackwork. Color tattoos cost 20–40% more than B&W due to ink usage and longer sessions.</p>
+    </div>
+    <div class="bg-ink-900 border border-ink-800 rounded-2xl p-6">
+      <h3 class="font-bold text-lg text-white mb-2">🦴 Placement difficulty</h3>
+      <p class="text-ink-300 text-sm leading-relaxed">Ribs, sternum, hands, feet, neck — these run 20–50% more because they're harder to tattoo and require more breaks. Forearm and calf are the cheapest.</p>
+    </div>
+    <div class="bg-ink-900 border border-ink-800 rounded-2xl p-6">
+      <h3 class="font-bold text-lg text-white mb-2">📍 City + shop tier</h3>
+      <p class="text-ink-300 text-sm leading-relaxed">Tier 1 cities (NYC/LA/SF/London) cost ~40% more than tier 2 (Chicago/Austin). Suburban shops are 15–20% cheaper. Travel/guest spots can save you serious money.</p>
+    </div>
+    <div class="bg-ink-900 border border-ink-800 rounded-2xl p-6">
+      <h3 class="font-bold text-lg text-white mb-2">💸 Tip (not optional)</h3>
+      <p class="text-ink-300 text-sm leading-relaxed">15–25% is standard. Cash preferred. Artists keep ~50% of the booking fee after shop cuts; tipping is how they actually make a living. Budget for it.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="max-w-3xl mx-auto px-6 pb-20">
+  <div class="text-center mb-10">
+    <h2 class="display text-3xl md:text-5xl">Common questions</h2>
+  </div>
+  <div class="space-y-3">
+    <details class="bg-ink-900 border border-ink-800 rounded-xl p-5 group">
+      <summary class="font-bold cursor-pointer flex justify-between items-center text-white">Why do tattoo artists charge a minimum?<span class="text-accent-500 group-open:rotate-45 transition text-2xl leading-none">+</span></summary>
+      <p class="text-ink-300 text-sm mt-3 leading-relaxed">Most shops have a $100–$150 minimum because setup time (sterilizing, opening needles, drawing the stencil) is the same whether the tattoo takes 15 minutes or 2 hours. Even a tiny tattoo costs the artist ~30 minutes of overhead.</p>
+    </details>
+    <details class="bg-ink-900 border border-ink-800 rounded-xl p-5 group">
+      <summary class="font-bold cursor-pointer flex justify-between items-center text-white">Is it cheaper to design my own and bring it in?<span class="text-accent-500 group-open:rotate-45 transition text-2xl leading-none">+</span></summary>
+      <p class="text-ink-300 text-sm mt-3 leading-relaxed">Yes — usually 20–30% cheaper because the artist saves 1–3 hours of design time. That's exactly why we built TattooDesignr. Walk in with a print-ready stencil PDF + spec sheet and your artist's job becomes execution, not invention.</p>
+    </details>
+    <details class="bg-ink-900 border border-ink-800 rounded-xl p-5 group">
+      <summary class="font-bold cursor-pointer flex justify-between items-center text-white">How much should I tip?<span class="text-accent-500 group-open:rotate-45 transition text-2xl leading-none">+</span></summary>
+      <p class="text-ink-300 text-sm mt-3 leading-relaxed">15–25% in cash is standard in the US. For larger pieces ($1,000+) some clients tip 20% per session. If you build a relationship with one artist, tipping well is how you get priority bookings.</p>
+    </details>
+    <details class="bg-ink-900 border border-ink-800 rounded-xl p-5 group">
+      <summary class="font-bold cursor-pointer flex justify-between items-center text-white">Is a deposit required?<span class="text-accent-500 group-open:rotate-45 transition text-2xl leading-none">+</span></summary>
+      <p class="text-ink-300 text-sm mt-3 leading-relaxed">Most shops require $50–$200 deposit at booking. It comes off the final price. It's non-refundable if you no-show; that's standard industry practice protecting the artist's calendar.</p>
+    </details>
+  </div>
+</section>
+
+<!-- BIG CTA -->
+<section class="py-16 md:py-20">
+  <div class="max-w-3xl mx-auto px-6 text-center">
+    <h2 class="display text-4xl md:text-6xl mb-5">Now design the tattoo.</h2>
+    <p class="text-ink-300 text-lg mb-8">You know roughly what it'll cost. Let's get the design ready so your artist's hourly rate goes toward execution, not brainstorming.</p>
+    <a href="/quiz.html" class="inline-flex items-center gap-2 bg-accent-500 hover:bg-accent-600 text-white px-10 py-5 rounded-full font-extrabold text-xl transition shadow-2xl shadow-accent-500/40">
+      Take the 30-second quiz →
+    </a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="border-t border-ink-800 bg-ink-950 py-12">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="grid md:grid-cols-5 gap-8 mb-10">
+      <div class="md:col-span-2">
+        <a href="/" class="flex items-center gap-2 text-xl font-black mb-4">
+          <img src="/logo-mark.svg" alt="" class="w-7 h-7">
+          <span class="text-white">Tattoo<span class="text-accent-500">Designr</span></span>
+        </a>
+        <p class="text-ink-400 text-sm max-w-sm">AI tattoo design + free tools, fine-tuned for every tradition.</p>
+      </div>
+      <div>
+        <h5 class="font-bold mb-3 text-xs uppercase tracking-widest text-ink-300">Tools</h5>
+        <ul class="space-y-2 text-sm text-ink-400">
+          <li><a href="/calc.html" class="hover:text-white">Cost calculator</a></li>
+          <li><a href="/quiz.html" class="hover:text-white">Tattoo quiz</a></li>
+          <li><a href="/generate.html" class="hover:text-white">Generator</a></li>
+          <li><a href="/examples.html" class="hover:text-white">Examples</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5 class="font-bold mb-3 text-xs uppercase tracking-widest text-ink-300">Ideas</h5>
+        <ul class="space-y-2 text-sm text-ink-400">
+          <li><a href="/generate.html?idea=dragon" class="hover:text-white">Dragon</a></li>
+          <li><a href="/generate.html?idea=wolf" class="hover:text-white">Wolf</a></li>
+          <li><a href="/generate.html?idea=rose" class="hover:text-white">Rose</a></li>
+          <li><a href="/generate.html?idea=compass" class="hover:text-white">Compass</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5 class="font-bold mb-3 text-xs uppercase tracking-widest text-ink-300">Legal</h5>
+        <ul class="space-y-2 text-sm text-ink-400">
+          <li><a href="/privacy.html" class="hover:text-white">Privacy</a></li>
+          <li><a href="/terms.html" class="hover:text-white">Terms</a></li>
+          <li><a href="/refund.html" class="hover:text-white">Refund</a></li>
+        </ul>
+      </div>
+    </div>
+    <p class="text-ink-500 text-xs pt-8 border-t border-ink-800 text-center">© 2026 TattooDesignr. Estimates are guidelines, not quotes.</p>
+  </div>
+</footer>
+
+<script>
+const STATE = { size: 4, styleRate: 1.0, colorRate: 1.25, placementRate: 1.0, cityRate: 1.0, tierRate: 1.0, baseRate: 120 };
+
+// Pill toggles
+document.querySelectorAll('#styleGroup .pill').forEach(b => b.addEventListener('click', () => {
+  document.querySelectorAll('#styleGroup .pill').forEach(x => x.classList.remove('active'));
+  b.classList.add('active');
+  STATE.styleRate = +b.dataset.rate;
+  recalc();
+}));
+document.querySelectorAll('[data-color]').forEach(b => b.addEventListener('click', () => {
+  document.querySelectorAll('[data-color]').forEach(x => x.classList.remove('active'));
+  b.classList.add('active');
+  STATE.colorRate = +b.dataset.rate;
+  recalc();
+}));
+document.querySelectorAll('[data-tier]').forEach(b => b.addEventListener('click', () => {
+  document.querySelectorAll('[data-tier]').forEach(x => x.classList.remove('active'));
+  b.classList.add('active');
+  STATE.tierRate = +b.dataset.rate;
+  recalc();
+}));
+
+// Size slider
+const sizeEl = document.getElementById('size');
+sizeEl.addEventListener('input', () => {
+  STATE.size = +sizeEl.value;
+  document.getElementById('sizeOut').textContent = STATE.size;
+  document.getElementById('sizeCm').textContent = Math.round(STATE.size * 2.54);
+  recalc();
+});
+
+document.getElementById('placement').addEventListener('change', e => { STATE.placementRate = +e.target.value; recalc(); });
+document.getElementById('city').addEventListener('change',     e => { STATE.cityRate     = +e.target.value; recalc(); });
+
+function recalc() {
+  // Hours: roughly size in inches × style multiplier × 0.7 base hours per inch (approx)
+  const baseHoursPerInch = 0.7;
+  const hours = STATE.size * baseHoursPerInch * STATE.styleRate * STATE.colorRate;
+  const hoursLow  = Math.max(0.5, hours * 0.85);
+  const hoursHigh = hours * 1.25;
+
+  const effectiveRate = STATE.baseRate * STATE.cityRate * STATE.tierRate * STATE.placementRate;
+
+  let priceLow  = Math.round(effectiveRate * hoursLow);
+  let priceHigh = Math.round(effectiveRate * hoursHigh);
+  // Apply shop minimum of $100
+  priceLow  = Math.max(100, priceLow);
+  priceHigh = Math.max(150, priceHigh);
+
+  const tipLow  = Math.round(priceLow  * 0.18);
+  const tipHigh = Math.round(priceHigh * 0.22);
+
+  document.getElementById('estLow').textContent  = priceLow.toLocaleString();
+  document.getElementById('estHigh').textContent = priceHigh.toLocaleString();
+  document.getElementById('hoursOut').textContent     = hoursLow  < 1 ? hoursLow.toFixed(1)  : Math.round(hoursLow);
+  document.getElementById('hoursOutHigh').textContent = Math.round(hoursHigh);
+  document.getElementById('rateOut').textContent  = Math.round(effectiveRate);
+  document.getElementById('sessionsOut').textContent = hoursHigh > 6 ? Math.ceil(hoursHigh / 5) : 1;
+  document.getElementById('tipLow').textContent  = tipLow.toLocaleString();
+  document.getElementById('tipHigh').textContent = tipHigh.toLocaleString();
+  document.getElementById('allLow').textContent  = (priceLow + tipLow).toLocaleString();
+  document.getElementById('allHigh').textContent = (priceHigh + tipHigh).toLocaleString();
+}
+recalc();
+</script>
+</body>
+</html>

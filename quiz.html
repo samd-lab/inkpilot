@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<title>Find Your Perfect Tattoo — TattooDesignr Quiz</title>
+<meta name="description" content="Answer 5 quick questions and we'll generate the perfect tattoo for you. Built around your story, your style, your body.">
+<link rel="canonical" href="https://tattoodesignr.com/quiz.html">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Permanent+Marker&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = { theme: { extend: {
+  fontFamily: { sans: ['Inter','system-ui','sans-serif'], display: ['"Permanent Marker"','cursive'] },
+  colors: {
+    ink:    { 50:'#fafafa', 100:'#f4f4f5', 200:'#e4e4e7', 300:'#a1a1aa', 400:'#71717a', 500:'#52525b', 600:'#3f3f46', 700:'#27272a', 800:'#18181b', 900:'#0a0a0a', 950:'#050505' },
+    accent: { 400:'#f87171', 500:'#dc2626', 600:'#b91c1c', 700:'#991b1b' },
+    gold:   { 400:'#facc15', 500:'#eab308' },
+  },
+}}};
+</script>
+<style>
+  html, body { background: #050505; }
+  body { font-family: 'Inter', system-ui, sans-serif; color: #fafafa; -webkit-font-smoothing: antialiased; }
+  .display { font-family: 'Permanent Marker', cursive; letter-spacing: -.01em; }
+  .grain { background-image: radial-gradient(rgba(255,255,255,.025) 1px, transparent 1px); background-size: 3px 3px; }
+
+  .step { display: none; }
+  .step.active { display: block; animation: fadeIn .35s ease-out both; }
+  @keyframes fadeIn { from { opacity:0; transform: translateY(12px); } to { opacity:1; transform: none; } }
+
+  .opt { transition: all .2s; cursor: pointer; user-select: none; }
+  .opt:hover { border-color: #52525b; transform: translateY(-2px); }
+  .opt.selected { border-color: #dc2626; background: rgba(220,38,38,.1); }
+  .opt.selected .check { display: flex; }
+  .check { display: none; width: 24px; height: 24px; border-radius: 50%; background: #dc2626; color: white; font-weight: 900; align-items: center; justify-content: center; font-size: 14px; }
+
+  .progress-fill { transition: width .4s cubic-bezier(.16,1,.3,1); }
+</style>
+</head>
+<body class="grain antialiased">
+
+<!-- NAV -->
+<nav class="sticky top-0 z-50 bg-ink-950/85 backdrop-blur-xl border-b border-ink-800">
+  <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+    <a href="/" class="flex items-center gap-2 text-2xl font-black tracking-tight">
+      <img src="/logo-mark.svg" alt="" class="w-7 h-7">
+      <span class="text-white">Tattoo<span class="text-accent-500">Designr</span></span>
+    </a>
+    <a href="/generate.html" class="text-sm text-ink-300 hover:text-white">Skip quiz →</a>
+  </div>
+</nav>
+
+<!-- QUIZ -->
+<section class="max-w-3xl mx-auto px-6 py-12 md:py-16">
+  <!-- Progress -->
+  <div class="mb-10">
+    <div class="flex justify-between items-center mb-3">
+      <p class="text-xs uppercase tracking-widest text-ink-400 font-bold">Step <span id="curStep">1</span> of 5</p>
+      <p class="text-xs text-ink-500" id="estTime">~30 seconds total</p>
+    </div>
+    <div class="h-2 bg-ink-800 rounded-full overflow-hidden">
+      <div id="progress" class="progress-fill h-full bg-gradient-to-r from-accent-500 to-gold-400" style="width: 20%"></div>
+    </div>
+  </div>
+
+  <!-- ============ STEP 1: First tattoo? ============ -->
+  <div class="step active" data-step="1">
+    <p class="text-accent-500 font-bold uppercase tracking-widest text-xs mb-3">Question 1</p>
+    <h1 class="display text-4xl md:text-5xl mb-3 leading-tight">Is this your first tattoo?</h1>
+    <p class="text-ink-300 mb-8">Helps us calibrate the design — bolder for first-timers, more refined for veterans.</p>
+    <div class="grid sm:grid-cols-2 gap-4">
+      <div class="opt bg-ink-900 border-2 border-ink-800 rounded-2xl p-6" data-value="first">
+        <div class="flex justify-between items-start mb-3">
+          <div class="text-3xl">🎯</div>
+          <div class="check">✓</div>
+        </div>
+        <h3 class="font-bold text-xl text-white mb-2">First one!</h3>
+        <p class="text-ink-400 text-sm">We'll suggest meaningful, classic placements and help you ease in.</p>
+      </div>
+      <div class="opt bg-ink-900 border-2 border-ink-800 rounded-2xl p-6" data-value="experienced">
+        <div class="flex justify-between items-start mb-3">
+          <div class="text-3xl">🔥</div>
+          <div class="check">✓</div>
+        </div>
+        <h3 class="font-bold text-xl text-white mb-2">I've got ink already</h3>
+        <p class="text-ink-400 text-sm">We'll go deeper — complementary styles, fill pieces, sleeve flow.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ STEP 2: Subject ============ -->
+  <div class="step" data-step="2">
+    <p class="text-accent-500 font-bold uppercase tracking-widest text-xs mb-3">Question 2</p>
+    <h1 class="display text-4xl md:text-5xl mb-3 leading-tight">What do you want it to be?</h1>
+    <p class="text-ink-300 mb-8">Pick a starting point — or type your own. We'll refine in the next step.</p>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-6">
+      <div class="opt bg-ink-900 border-2 border-ink-800 rounded-xl p-4 text-center" data-value="dragon"><div class="text-3xl mb-2">🐉</div><div class="font-bold text-sm">Dragon</div></div>
+      <div class="opt bg-ink-900 border-2 border-ink-800 rounded-xl p-4 text-center" data-value="wolf"><div class="text-3xl mb-2">🐺</div><div class="font-bold text-sm">Wolf</div></div>
+      <div class="opt bg-ink-900 border-2 border-ink-800 rounded-xl p-4 text-center" data-value="rose"><div class="text-3xl mb-2">🌹</div><div class="font-bold text-sm">Rose</div></div>
+      <div class="opt bg-ink-900 border-2 border-ink-800 rounded-xl p-4 text-center" data-value="snake"><div class="text-3xl mb-2">🐍</div><div class="font-bold text-sm">Snake</div></div>
+      <div class="opt bg-ink-900 border-2 border-ink-800 rounded-xl p-4 text-center" data-value="lion"><div class="text-3xl mb-2">🦁</div><div class="font-bold text-sm">Lion</div></div>
+      <div class="opt bg-ink-900 border-2 border-ink-800 rounded-xl p-4 text-center" data-value="phoenix"><div class="text-3xl mb-2">🔥</div><div class="font-bold text-sm">Phoenix</div></div>
+      <div class="opt bg-ink-900 border-2 border-ink-800 rounded-xl p-4 text-center" data-value="compass"><div class="text-3xl mb-2">🧭</div><div class="font-bold text-sm">Compass</div></div>
+      <div class="opt bg-ink-900 border-2 border-ink-800 rounded-xl p-4 text-center" data-value="anchor"><div class="text-3xl mb-2">⚓</div><div class="font-bold text-sm">Anchor</div></div>
+      <div class="opt bg-ink-900 border-2 border-ink-800 rounded-xl p-4 text-center" data-value="tree"><div class="text-3xl mb-2">🌳</div><div class="font-bold text-sm">Tree</div></div>
+      <div class="opt bg-ink-900 border-2 border-ink-800 rounded-xl p-4 text-center" data-value="moon"><div class="text-3xl mb-2">🌙</div><div class="font-bold text-sm">Moon</div></div>
+      <div class="opt bg-ink-900 border-2 border-ink-800 rounded-xl p-4 text-center" data-value="butterfly"><div class="text-3xl mb-2">🦋</div><div class="font-bold text-sm">Butterfly</div></div>
+      <div class="opt bg-ink-900 border-2 border-ink-800 rounded-xl p-4 text-center" data-value="skull"><div class="text-3xl mb-2">💀</div><div class="font-bold text-sm">Skull</div></div>
+    </div>
+    <div>
+      <label class="text-xs uppercase tracking-widest text-ink-400 font-bold mb-2 block">Or describe it yourself</label>
+      <input type="text" id="customSubject" placeholder="A koi fish swimming up against waves..." maxlength="160" class="w-full bg-ink-900 border-2 border-ink-800 focus:border-accent-500 rounded-xl px-4 py-3 text-base outline-none transition placeholder-ink-500">
+    </div>
+  </div>
+
+  <!-- ============ STEP 3: Style ============ -->
+  <div class="step" data-step="3">
+    <p class="text-accent-500 font-bold uppercase tracking-widest text-xs mb-3">Question 3</p>
+    <h1 class="display text-4xl md:text-5xl mb-3 leading-tight">What aesthetic are you into?</h1>
+    <p class="text-ink-300 mb-8">10 styles. Each fine-tuned. No mixing and matching slop.</p>
+    <div class="grid grid-cols-2 md:grid-cols-3 gap-3">
+      <div class="opt bg-ink-900 border-2 border-ink-800 rounded-xl p-4" data-value="traditional"><div class="text-3xl mb-1">⚓</div><div class="font-bold text-sm text-white">Traditional</div><div class="text-xs text-ink-400 mt-1">Sailor Jerry, bold lines</div></div>
+      <div class="opt bg-ink-900 border-2 border-ink-800 rounded-xl p-4" data-value="japanese"><div class="text-3xl mb-1">🐉</div><div class="font-bold text-sm text-white">Japanese</div><div class="text-xs text-ink-400 mt-1">Irezumi, tebori flow</div></div>
+      <div class="opt bg-ink-900 border-2 border-ink-800 rounded-xl p-4" data-value="realism"><div class="text-3xl mb-1">🖤</div><div class="font-bold text-sm text-white">Realism</div><div class="text-xs text-ink-400 mt-1">Black & grey, photo-real</div></div>
+      <div class="opt bg-ink-900 border-2 border-ink-800 rounded-xl p-4" data-value="fineline"><div class="text-3xl mb-1">✏️</div><div class="font-bold text-sm text-white">Fine Line</div><div class="text-xs text-ink-400 mt-1">Single-needle, delicate</div></div>
+      <div class="opt bg-ink-900 border-2 border-ink-800 rounded-xl p-4" data-value="minimalist"><div class="text-3xl mb-1">◯</div><div class="font-bold text-sm text-white">Minimalist</div><div class="text-xs text-ink-400 mt-1">One unbroken line</div></div>
+      <div class="opt bg-ink-900 border-2 border-ink-800 rounded-xl p-4" data-value="blackwork"><div class="text-3xl mb-1">⚫</div><div class="font-bold text-sm text-white">Blackwork</div><div class="text-xs text-ink-400 mt-1">Heavy black, geometric</div></div>
+      <div class="opt bg-ink-900 border-2 border-ink-800 rounded-xl p-4" data-value="watercolor"><div class="text-3xl mb-1">🎨</div><div class="font-bold text-sm text-white">Watercolor</div><div class="text-xs text-ink-400 mt-1">Painterly washes</div></div>
+      <div class="opt bg-ink-900 border-2 border-ink-800 rounded-xl p-4" data-value="dotwork"><div class="text-3xl mb-1">⚪</div><div class="font-bold text-sm text-white">Dotwork</div><div class="text-xs text-ink-400 mt-1">Stippled mandalas</div></div>
+      <div class="opt bg-ink-900 border-2 border-ink-800 rounded-xl p-4" data-value="neo"><div class="text-3xl mb-1">🌹</div><div class="font-bold text-sm text-white">Neo-Traditional</div><div class="text-xs text-ink-400 mt-1">Painterly, ornamental</div></div>
+    </div>
+    <div class="mt-5 text-center">
+      <button class="opt-skip text-ink-500 hover:text-white text-sm underline">Not sure — show me everything</button>
+    </div>
+  </div>
+
+  <!-- ============ STEP 4: Placement ============ -->
+  <div class="step" data-step="4">
+    <p class="text-accent-500 font-bold uppercase tracking-widest text-xs mb-3">Question 4</p>
+    <h1 class="display text-4xl md:text-5xl mb-3 leading-tight">Where on your body?</h1>
+    <p class="text-ink-300 mb-8">We'll generate on-body previews so you can see exactly how it'll look.</p>
+    <div class="grid grid-cols-2 md:grid-cols-3 gap-3">
+      <div class="opt bg-ink-900 border-2 border-ink-800 rounded-xl p-4 text-center" data-value="forearm"><div class="text-2xl mb-1">💪</div><div class="font-bold text-sm">Forearm</div><div class="text-xs text-ink-400">Most popular</div></div>
+      <div class="opt bg-ink-900 border-2 border-ink-800 rounded-xl p-4 text-center" data-value="upper arm sleeve"><div class="text-2xl mb-1">🦾</div><div class="font-bold text-sm">Upper arm</div><div class="text-xs text-ink-400">Sleeve start</div></div>
+      <div class="opt bg-ink-900 border-2 border-ink-800 rounded-xl p-4 text-center" data-value="calf"><div class="text-2xl mb-1">🦵</div><div class="font-bold text-sm">Calf</div><div class="text-xs text-ink-400">Bold visibility</div></div>
+      <div class="opt bg-ink-900 border-2 border-ink-800 rounded-xl p-4 text-center" data-value="back piece"><div class="text-2xl mb-1">🌅</div><div class="font-bold text-sm">Back</div><div class="text-xs text-ink-400">Full canvas</div></div>
+      <div class="opt bg-ink-900 border-2 border-ink-800 rounded-xl p-4 text-center" data-value="chest"><div class="text-2xl mb-1">❤️</div><div class="font-bold text-sm">Chest</div><div class="text-xs text-ink-400">Personal</div></div>
+      <div class="opt bg-ink-900 border-2 border-ink-800 rounded-xl p-4 text-center" data-value="shoulder"><div class="text-2xl mb-1">🎯</div><div class="font-bold text-sm">Shoulder</div><div class="text-xs text-ink-400">Cap piece</div></div>
+      <div class="opt bg-ink-900 border-2 border-ink-800 rounded-xl p-4 text-center" data-value="ribs"><div class="text-2xl mb-1">🌊</div><div class="font-bold text-sm">Ribs / side</div><div class="text-xs text-ink-400">Flowing</div></div>
+      <div class="opt bg-ink-900 border-2 border-ink-800 rounded-xl p-4 text-center" data-value="ankle"><div class="text-2xl mb-1">🌿</div><div class="font-bold text-sm">Ankle</div><div class="text-xs text-ink-400">Subtle</div></div>
+      <div class="opt bg-ink-900 border-2 border-ink-800 rounded-xl p-4 text-center" data-value=""><div class="text-2xl mb-1">🤔</div><div class="font-bold text-sm">Not sure yet</div><div class="text-xs text-ink-400">Decide later</div></div>
+    </div>
+  </div>
+
+  <!-- ============ STEP 5: Meaning ============ -->
+  <div class="step" data-step="5">
+    <p class="text-accent-500 font-bold uppercase tracking-widest text-xs mb-3">Question 5 — Last one</p>
+    <h1 class="display text-4xl md:text-5xl mb-3 leading-tight">What does it mean to you?</h1>
+    <p class="text-ink-300 mb-8">A line or two. We'll weave the emotion into the design. Skip if you'd rather just see what comes out.</p>
+    <textarea id="meaning" rows="4" maxlength="280" placeholder="In memory of my grandfather who loved the ocean..." class="w-full bg-ink-900 border-2 border-ink-800 focus:border-accent-500 rounded-xl px-4 py-3 text-base outline-none transition placeholder-ink-500 resize-none"></textarea>
+    <p class="text-xs text-ink-500 mt-2">We delete this after generation. Stays on your device only.</p>
+
+    <!-- Summary card preview -->
+    <div class="mt-8 bg-ink-900 border border-ink-800 rounded-2xl p-6">
+      <p class="text-xs uppercase tracking-widest text-gold-400 font-bold mb-4">Your tattoo brief</p>
+      <div class="space-y-2 text-sm">
+        <div class="flex justify-between"><span class="text-ink-400">Subject</span><span class="text-white font-bold" id="sumSubject">—</span></div>
+        <div class="flex justify-between"><span class="text-ink-400">Style</span><span class="text-white font-bold" id="sumStyle">—</span></div>
+        <div class="flex justify-between"><span class="text-ink-400">Placement</span><span class="text-white font-bold" id="sumPlacement">—</span></div>
+        <div class="flex justify-between"><span class="text-ink-400">Experience</span><span class="text-white font-bold" id="sumExp">—</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- NAV BUTTONS -->
+  <div class="flex justify-between items-center mt-10">
+    <button id="backBtn" class="text-ink-400 hover:text-white text-sm font-semibold disabled:opacity-30 disabled:hover:text-ink-400 transition" disabled>← Back</button>
+    <button id="nextBtn" class="bg-accent-500 hover:bg-accent-600 text-white px-7 py-3 rounded-full font-extrabold text-base transition shadow-lg shadow-accent-500/20 disabled:bg-ink-800 disabled:cursor-not-allowed disabled:shadow-none" disabled>
+      Continue →
+    </button>
+  </div>
+
+</section>
+
+<!-- FOOTER -->
+<footer class="border-t border-ink-800 bg-ink-950 py-8 mt-12">
+  <div class="max-w-7xl mx-auto px-6 text-center">
+    <p class="text-ink-500 text-xs">© 2026 TattooDesignr · <a href="/privacy.html" class="hover:text-white">Privacy</a> · <a href="/terms.html" class="hover:text-white">Terms</a></p>
+  </div>
+</footer>
+
+<script>
+const ANSWERS = { exp: '', subject: '', style: '', placement: '', meaning: '' };
+let currentStep = 1;
+const TOTAL = 5;
+
+const stepEls = document.querySelectorAll('.step');
+const progressEl = document.getElementById('progress');
+const curStepEl = document.getElementById('curStep');
+const nextBtn = document.getElementById('nextBtn');
+const backBtn = document.getElementById('backBtn');
+
+// Click handlers for option cards
+document.querySelectorAll('.step').forEach(stepEl => {
+  const stepNum = +stepEl.dataset.step;
+  stepEl.querySelectorAll('.opt').forEach(opt => {
+    opt.addEventListener('click', () => {
+      // unselect siblings
+      stepEl.querySelectorAll('.opt').forEach(o => o.classList.remove('selected'));
+      opt.classList.add('selected');
+      const v = opt.dataset.value;
+      if (stepNum === 1) ANSWERS.exp = v;
+      if (stepNum === 2) { ANSWERS.subject = v; document.getElementById('customSubject').value = ''; }
+      if (stepNum === 3) ANSWERS.style = v;
+      if (stepNum === 4) ANSWERS.placement = v;
+      validateAndEnable();
+    });
+  });
+});
+// Custom subject text
+document.getElementById('customSubject').addEventListener('input', e => {
+  if (e.target.value.trim()) {
+    document.querySelectorAll('[data-step="2"] .opt').forEach(o => o.classList.remove('selected'));
+    ANSWERS.subject = e.target.value.trim();
+  }
+  validateAndEnable();
+});
+// Skip-style button
+const skip = document.querySelector('.opt-skip');
+if (skip) skip.addEventListener('click', () => {
+  ANSWERS.style = '';
+  document.querySelectorAll('[data-step="3"] .opt').forEach(o => o.classList.remove('selected'));
+  goNext();
+});
+// Meaning textarea — always lets you continue (it's optional)
+document.getElementById('meaning').addEventListener('input', e => {
+  ANSWERS.meaning = e.target.value.trim();
+});
+
+function validateAndEnable() {
+  let valid = false;
+  if (currentStep === 1) valid = !!ANSWERS.exp;
+  if (currentStep === 2) valid = !!ANSWERS.subject;
+  if (currentStep === 3) valid = !!ANSWERS.style; // skip path bypasses validation
+  if (currentStep === 4) valid = ANSWERS.placement !== undefined; // empty string OK
+  if (currentStep === 5) valid = true;
+  nextBtn.disabled = !valid;
+}
+function showStep(n) {
+  stepEls.forEach(s => s.classList.toggle('active', +s.dataset.step === n));
+  progressEl.style.width = (n / TOTAL * 100) + '%';
+  curStepEl.textContent = n;
+  backBtn.disabled = n === 1;
+  nextBtn.textContent = n === TOTAL ? 'Generate my designs →' : 'Continue →';
+  validateAndEnable();
+  if (n === TOTAL) refreshSummary();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+function refreshSummary() {
+  document.getElementById('sumSubject').textContent = ANSWERS.subject || '—';
+  document.getElementById('sumStyle').textContent = ANSWERS.style ? capitalize(ANSWERS.style) : 'Any';
+  document.getElementById('sumPlacement').textContent = ANSWERS.placement || 'No preference';
+  document.getElementById('sumExp').textContent = ANSWERS.exp === 'first' ? 'First tattoo' : ANSWERS.exp === 'experienced' ? 'Experienced' : '—';
+}
+function goNext() {
+  if (currentStep < TOTAL) {
+    currentStep++;
+    showStep(currentStep);
+  } else {
+    finish();
+  }
+}
+function goBack() {
+  if (currentStep > 1) {
+    currentStep--;
+    showStep(currentStep);
+  }
+}
+function finish() {
+  // Build a tattoo idea string from quiz answers
+  let idea = ANSWERS.subject;
+  if (ANSWERS.meaning) idea += `, ${ANSWERS.meaning}`;
+  if (ANSWERS.exp === 'first') idea += ' (first tattoo, classic and meaningful)';
+  // Construct the URL
+  const params = new URLSearchParams();
+  if (idea) params.set('idea', idea);
+  if (ANSWERS.style) params.set('style', ANSWERS.style);
+  if (ANSWERS.placement) params.set('placement', ANSWERS.placement);
+  window.location.href = '/generate.html?' + params.toString();
+}
+function capitalize(s) { return s ? s.charAt(0).toUpperCase() + s.slice(1) : ''; }
+
+nextBtn.addEventListener('click', goNext);
+backBtn.addEventListener('click', goBack);
+</script>
+</body>
+</html>

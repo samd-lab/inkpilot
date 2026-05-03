@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin — Multi-Angle On-Body Generator | TattooDesignr</title>
+<meta name="robots" content="noindex">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+<style>
+  body { background: #0a0a0a; color: #fafafa; font-family: ui-monospace, Menlo, monospace; }
+  .skeleton { background: linear-gradient(110deg, #18181b 8%, #27272a 18%, #18181b 33%); background-size: 200% 100%; animation: shine 1.4s linear infinite; }
+  @keyframes shine { to { background-position: -200% 0; } }
+  .design-cell { transition: all .3s; }
+  .angle-tag { font-size: 9px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; padding: 2px 6px; border-radius: 4px; }
+  .angle-tag.closeup { background: #dc2626; color: white; }
+  .angle-tag.midshot { background: #eab308; color: #0a0a0a; }
+  .angle-tag.longshot { background: #16a34a; color: white; }
+</style>
+</head>
+<body class="p-6 max-w-7xl mx-auto">
+
+<div class="mb-6 flex items-center justify-between flex-wrap gap-3">
+  <div>
+    <h1 class="text-2xl font-bold text-white">🎨 On-Body Multi-Angle Generator</h1>
+    <p class="text-sm text-gray-400 mt-1">For each design: 3 photographic angles (closeup · midshot · longshot) on varied body parts. Outputs grouped manifest entries.</p>
+  </div>
+  <div class="flex gap-2">
+    <button id="run" class="bg-red-600 hover:bg-red-700 text-white px-5 py-2 rounded font-bold">▶ Start batch</button>
+    <button id="dl" class="bg-emerald-600 hover:bg-emerald-700 text-white px-5 py-2 rounded font-bold hidden">⬇ Download zip</button>
+  </div>
+</div>
+
+<div class="bg-gray-900 border border-gray-800 rounded-lg p-4 mb-4">
+  <div class="flex justify-between items-center mb-2 text-xs">
+    <span id="status" class="text-gray-400">Ready · Estimated time: ~25 minutes for full batch</span>
+    <span id="counter" class="font-bold">0 / 0</span>
+  </div>
+  <div class="bg-gray-800 rounded-full h-2 overflow-hidden">
+    <div id="bar" class="bg-gradient-to-r from-red-500 via-yellow-400 to-green-500 h-full transition-all" style="width:0%"></div>
+  </div>
+</div>
+
+<details class="bg-gray-900 border border-gray-800 rounded-lg p-3 mb-4 text-xs">
+  <summary class="cursor-pointer text-gray-300 font-bold">Show generation log</summary>
+  <pre id="log" class="mt-2 text-gray-400 max-h-64 overflow-y-auto whitespace-pre-wrap"></pre>
+</details>
+
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4" id="grid"></div>
+
+<script>
+// ============================================================================
+// DESIGN LIBRARY — each design produces 3 on-body shots (closeup, midshot, longshot)
+// Total = DESIGNS.length * 3 images
+// ============================================================================
+const DESIGNS = [
+  // === Neo-Traditional ===
+  { id:'wolf-cosmic',     substyle:'neo',         body:'forearm',      label:'Cosmic Wolf', desc:'a neo-traditional wolf head with crystalline gemstones and cosmic flowers in its fur, painterly teal and gold' },
+  { id:'fox-art-deco',    substyle:'neo',         body:'inner bicep',  label:'Art Deco Fox', desc:'an art-deco fox with ornate gold filigree and crystallized geode flowers, painterly neo-traditional' },
+  { id:'stag-skull',      substyle:'neo',         body:'shoulder blade', label:'Stag Skull', desc:'a stag skull with massive ornate antlers blooming with wildflowers and amethyst gems, painterly depth' },
+
+  // === Japanese / Irezumi ===
+  { id:'koi-dragon',      substyle:'japanese',    body:'upper arm sleeve', label:'Koi-to-Dragon', desc:'a traditional Japanese irezumi koi fish swimming up against waves transforming into a dragon, deep red and black tebori shading' },
+  { id:'hannya-mask',     substyle:'japanese',    body:'thigh',        label:'Hannya Mask', desc:'a fierce horned Hannya demon mask with cherry blossoms falling, red-and-black traditional irezumi tebori' },
+  { id:'ryu-dragon',      substyle:'japanese',    body:'back piece',   label:'Ryu Dragon', desc:'a massive Ryu dragon coiling around stylized clouds, traditional irezumi full-back composition with finger waves' },
+  { id:'tiger-bamboo',    substyle:'japanese',    body:'calf',         label:'Tiger & Bamboo', desc:'a fierce Bengal tiger leaping through bamboo with traditional Japanese cloud bars, dynamic tebori' },
+
+  // === Realism ===
+  { id:'lion-portrait',   substyle:'realism',     body:'shoulder',     label:'Lion King', desc:'a hyperrealistic black-and-grey lion portrait with windblown mane and intense yellow eyes, photorealistic chiaroscuro shading' },
+  { id:'lone-wolf',       substyle:'realism',     body:'upper arm sleeve', label:'Lone Wolf', desc:'a hyperrealistic lone wolf howling at a full moon, photorealistic black-and-grey fur shading, mountain silhouette' },
+  { id:'eye-realism',     substyle:'realism',     body:'inner forearm', label:'The Eye', desc:'a hyperrealistic black-and-grey human eye with detailed iris and eyelashes, micro-realism precision' },
+
+  // === Fine Line ===
+  { id:'rose-fineline',   substyle:'fineline',    body:'inner forearm', label:'Single Rose', desc:'a delicate fine-line single-stem rose with thin precise unbroken black ink lines, single-needle work, dewdrops on petals' },
+  { id:'snake-moons',     substyle:'fineline',    body:'spine',        label:'Snake & Moons', desc:'a slender fine-line snake coiled around a vertical row of moon phases, delicate single-needle precision' },
+  { id:'lavender-bee',    substyle:'fineline',    body:'ankle',        label:'Lavender & Bee', desc:'a botanical fine-line lavender sprig with tiny dotwork shading and small bee, single-needle delicate work' },
+  { id:'butterfly-line',  substyle:'fineline',    body:'behind ear',   label:'Mandala Butterfly', desc:'a delicate fine-line butterfly with mandala-style intricate sacred-geometry wing patterns' },
+
+  // === Blackwork ===
+  { id:'sacred-mandala',  substyle:'blackwork',   body:'spine',        label:'Sacred Mandala', desc:'a heavy blackwork sacred-geometry mandala with sun rays radiating outward, ornamental Persian-style filigree, sharp negative space' },
+  { id:'raven-moon',      substyle:'blackwork',   body:'forearm',      label:'Raven & Moon', desc:'a heavy blackwork raven on a crescent moon with intricate feather detail and ornate Victorian filigree' },
+  { id:'all-seeing-eye',  substyle:'blackwork',   body:'sternum',      label:'All-Seeing Eye', desc:'a heavy blackwork all-seeing eye inside a sacred-geometry triangle with rays of light and ornamental ankh patterns' },
+
+  // === Traditional ===
+  { id:'panther-roses',   substyle:'traditional', body:'calf',         label:'Panther & Roses', desc:'an American Traditional snarling black panther bursting through a banner with classic red roses, bold Sailor Jerry palette' },
+  { id:'eagle-snake',     substyle:'traditional', body:'chest',        label:'Eagle & Snake', desc:'an American Traditional eagle with spread wings holding a rattlesnake in talons, mountain peaks behind, classic flash sheet' },
+  { id:'heart-dagger',    substyle:'traditional', body:'inner forearm', label:'Heart & Dagger', desc:'an American Traditional anatomical heart pierced by a dagger with TIL DEATH banner, classic Sailor Jerry composition' },
+
+  // === Watercolor ===
+  { id:'watercolor-phoenix', substyle:'watercolor', body:'shoulder blade', label:'Rebirth Phoenix', desc:'a watercolor phoenix in flames with vibrant red orange yellow paint splashes blending into burgundy washes, expressive painterly impressionist' },
+  { id:'watercolor-bird',    substyle:'watercolor', body:'upper back',   label:'Hummingbird', desc:'a watercolor hummingbird drinking from a tropical flower with rainbow paint splash explosions and dripping watercolor textures' },
+
+  // === Minimalist / Dotwork / Tribal samples ===
+  { id:'one-line-dragon', substyle:'minimalist',  body:'forearm',      label:'One-Line Dragon', desc:'a minimalist one-continuous-line dragon coiled in a circle, single thin black line work, no fill' },
+  { id:'flower-of-life',  substyle:'dotwork',     body:'inner forearm', label:'Flower of Life', desc:'a dotwork sacred-geometry flower-of-life pattern in pure pointillism stippling with sun rays radiating outward' },
+  { id:'polynesian-sleeve', substyle:'tribal',    body:'upper arm sleeve', label:'Polynesian Sun', desc:'a Polynesian tribal pattern band with sun ocean wave and shark-tooth motifs, deep solid black, traditional Marquesan composition' },
+];
+
+// ============================================================================
+// ANGLE TEMPLATES — produce dramatically varied photographs of THE SAME design
+// ============================================================================
+const ANGLES = [
+  {
+    id: 'closeup',
+    label: 'Close-up macro',
+    promptFn: (design, body) =>
+      `extreme close-up macro photograph of a fresh tattoo of ${design} on a person's ${body}, ultra-detailed skin texture and pores visible, professional studio lighting from above, shallow depth of field with bokeh background, fresh ink with subtle redness around the lines, realistic skin tone variation, body hair detail, hyperrealistic 8k tattoo close-up photography, sharp focus on the tattoo`,
+  },
+  {
+    id: 'midshot',
+    label: 'Mid-shot lifestyle',
+    promptFn: (design, body) =>
+      `medium shot photograph of a person showing off their ${design} tattoo on the ${body}, three-quarter angle, natural daylight from a window, clean modern interior background, person wearing casual clothing partially in frame, clear placement context with surrounding skin visible, realistic skin tones, hyperrealistic 8k professional tattoo lifestyle photography, candid composition`,
+  },
+  {
+    id: 'longshot',
+    label: 'Wide environmental',
+    promptFn: (design, body) =>
+      `wide-angle environmental lifestyle photograph showing a person with a ${design} tattoo on their ${body}, full limb and partial body visible, atmospheric tattoo studio or sunlit coffee shop background, moody natural side lighting with golden hour warmth, person in candid relaxed pose, realistic candid composition, hyperrealistic 8k photojournalism style`,
+  },
+];
+
+// ============================================================================
+// BUILD WORK QUEUE
+// ============================================================================
+const WORK = [];
+DESIGNS.forEach(d => {
+  ANGLES.forEach(a => {
+    WORK.push({
+      designId:    d.id,
+      designLabel: d.label,
+      substyle:    d.substyle,
+      body:        d.body,
+      angleId:     a.id,
+      angleLabel:  a.label,
+      // Full prompt = angle template + the substyle keyword sprinkle for cohesion
+      idea: a.promptFn(d.desc, d.body),
+    });
+  });
+});
+
+const TOTAL = WORK.length;
+const log = (msg) => {
+  document.getElementById('log').textContent += `[${new Date().toLocaleTimeString()}] ${msg}\n`;
+  document.getElementById('log').scrollTop = 9e9;
+};
+const grid = document.getElementById('grid');
+const statusEl = document.getElementById('status');
+const counterEl = document.getElementById('counter');
+const barEl = document.getElementById('bar');
+
+// Pre-render the design cards (one per design, 3 angle slots inside)
+const cellById = new Map();
+DESIGNS.forEach(d => {
+  const cell = document.createElement('div');
+  cell.className = 'design-cell bg-gray-900 border border-gray-800 rounded-lg p-3';
+  cell.innerHTML = `
+    <div class="flex justify-between items-start mb-2">
+      <div>
+        <h3 class="font-bold text-sm text-white">${d.label}</h3>
+        <p class="text-[10px] text-gray-500">${d.substyle} · ${d.body}</p>
+      </div>
+      <span class="text-[10px] text-gray-600 font-mono">${d.id}</span>
+    </div>
+    <div class="grid grid-cols-3 gap-2">
+      ${ANGLES.map(a => `
+        <div class="aspect-square rounded skeleton flex items-center justify-center text-[8px] text-gray-700" data-cell="${d.id}-${a.id}">
+          <span class="angle-tag ${a.id}">${a.id}</span>
+        </div>
+      `).join('')}
+    </div>`;
+  grid.appendChild(cell);
+  cellById.set(d.id, cell);
+});
+
+counterEl.textContent = `0 / ${TOTAL}`;
+
+// ============================================================================
+// GENERATION LOOP
+// ============================================================================
+let zip = null;
+let manifest = [];
+let done = 0;
+
+async function generateOne(item) {
+  const slotEl = cellById.get(item.designId).querySelector(`[data-cell="${item.designId}-${item.angleId}"]`);
+  log(`gen   ${item.designId}-${item.angleId} (${item.body})`);
+
+  try {
+    const r = await fetch('/api/generate', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        idea: item.idea,
+        style: 'photo',  // <-- the new on-body photographic style (lib/prompts.js)
+        count: 1,
+      }),
+    });
+    const j = await r.json();
+    if (!r.ok) throw new Error(j.error || `HTTP ${r.status}`);
+    const url = j.designs?.[0]?.url;
+    if (!url) throw new Error('no url returned');
+
+    const imgRes = await fetch(url);
+    if (!imgRes.ok) throw new Error(`image fetch ${imgRes.status}`);
+    const blob = await imgRes.blob();
+    const buf = await blob.arrayBuffer();
+
+    const fileName = `onbody-${item.designId}-${item.angleId}.png`;
+    zip.file(fileName, buf);
+
+    manifest.push({
+      id:           `onbody-${item.designId}-${item.angleId}`,
+      design_group: item.designId,
+      angle:        item.angleId,
+      body_part:    item.body,
+      style:        'onbody',
+      substyle:     item.substyle,
+      label:        item.designLabel,
+      file:         `images/examples/${fileName}`,
+    });
+
+    const obj = URL.createObjectURL(blob);
+    slotEl.className = 'aspect-square rounded overflow-hidden bg-black relative';
+    slotEl.innerHTML = `<img src="${obj}" class="w-full h-full object-cover"><span class="angle-tag ${item.angleId} absolute top-1 left-1">${item.angleId}</span>`;
+    log(`ok    ${item.designId}-${item.angleId} (${(blob.size/1024).toFixed(0)}kb)`);
+  } catch (err) {
+    log(`fail  ${item.designId}-${item.angleId}: ${err.message}`);
+    manifest.push({
+      id:           `onbody-${item.designId}-${item.angleId}`,
+      design_group: item.designId,
+      angle:        item.angleId,
+      style:        'onbody',
+      substyle:     item.substyle,
+      label:        item.designLabel,
+      file:         null,
+      error:        err.message,
+    });
+    slotEl.className = 'aspect-square rounded bg-red-900/30 border border-red-900 flex items-center justify-center text-[8px] text-red-300';
+    slotEl.textContent = '✗ ' + item.angleId;
+  }
+
+  done++;
+  counterEl.textContent = `${done} / ${TOTAL}`;
+  barEl.style.width = ((done / TOTAL) * 100) + '%';
+}
+
+async function withRetry(item, attempts = 2) {
+  for (let i = 0; i < attempts; i++) {
+    try { await generateOne(item); return; }
+    catch (err) { log(`retry ${item.designId}-${item.angleId} (${i+1}/${attempts})`); await new Promise(r => setTimeout(r, 5000)); }
+  }
+}
+
+document.getElementById('run').addEventListener('click', async () => {
+  const btn = document.getElementById('run');
+  btn.disabled = true; btn.textContent = '⏳ Generating…';
+  zip = new JSZip(); manifest = []; done = 0;
+  statusEl.textContent = 'Generating…';
+  log(`Starting batch of ${TOTAL} images (${DESIGNS.length} designs × ${ANGLES.length} angles)`);
+  const start = Date.now();
+
+  for (const item of WORK) {
+    await withRetry(item);
+    await new Promise(r => setTimeout(r, 3000)); // soft rate limit
+  }
+
+  const elapsed = ((Date.now() - start) / 1000).toFixed(0);
+  log(`Done in ${elapsed}s. Building zip…`);
+  zip.file('onbody-manifest.json', JSON.stringify(manifest, null, 2));
+  statusEl.textContent = `Done · ${done}/${TOTAL} · zip ready`;
+  document.getElementById('dl').classList.remove('hidden');
+  btn.textContent = '✓ Generation complete';
+  log('Zip ready. Click "Download zip".');
+});
+
+document.getElementById('dl').addEventListener('click', async () => {
+  const btn = document.getElementById('dl');
+  btn.disabled = true; btn.textContent = '⏳ Building zip…';
+  const blob = await zip.generateAsync({ type: 'blob' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url; a.download = 'tattoodesignr-onbody-multi-angle.zip'; a.click();
+  setTimeout(() => URL.revokeObjectURL(url), 5000);
+  btn.disabled = false; btn.textContent = '⬇ Download again';
+});
+</script>
+</body>
+</html>

@@ -6,73 +6,111 @@
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <title>Your designs are ready — TattooDesignr</title>
 <meta name="robots" content="noindex">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Permanent+Marker&display=swap" rel="stylesheet">
 <script src="https://cdn.tailwindcss.com"></script>
 <script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
 <script>
 tailwind.config = { theme: { extend: {
-  fontFamily: { sans: ['Inter','system-ui','sans-serif'], display: ['Playfair Display','serif'] },
-  colors: { ink: { 50:'#f7f7f8', 100:'#eeeeef', 200:'#d9dadc', 300:'#b6b8bc', 400:'#8c8e95', 500:'#6e7178', 600:'#585b62', 700:'#484a50', 800:'#3d3f44', 900:'#1a1b1f', 950:'#0e0f12' }, accent: { 500:'#dc2626', 600:'#b91c1c' } }
+  fontFamily: {
+    sans: ['Inter','system-ui','sans-serif'],
+    display: ['"Permanent Marker"','cursive'],
+  },
+  colors: {
+    ink:    { 50:'#fafafa', 100:'#f4f4f5', 200:'#e4e4e7', 300:'#a1a1aa', 400:'#71717a', 500:'#52525b', 600:'#3f3f46', 700:'#27272a', 800:'#18181b', 900:'#0a0a0a', 950:'#050505' },
+    accent: { 400:'#f87171', 500:'#dc2626', 600:'#b91c1c', 700:'#991b1b' },
+    gold:   { 400:'#facc15', 500:'#eab308' },
+  },
 }}};
 </script>
 <style>
-body { font-family: 'Inter', system-ui, sans-serif; }
-.display { font-family: 'Playfair Display', serif; }
-.gradient-text { background: linear-gradient(135deg, #dc2626, #f59e0b); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-.tat-paper { background: #f5f3ee; }
-.deliverable-card { transition: transform .2s; }
-.deliverable-card:hover { transform: translateY(-2px); }
+  html, body { background: #050505; }
+  body { font-family: 'Inter', system-ui, sans-serif; color: #fafafa; -webkit-font-smoothing: antialiased; }
+  .display { font-family: 'Permanent Marker', cursive; letter-spacing: -.01em; }
+  .grain { background-image: radial-gradient(rgba(255,255,255,.025) 1px, transparent 1px); background-size: 3px 3px; }
+  .tat-paper { background: #f5f3ee; }
+  .deliverable-card { transition: transform .2s, border-color .2s; }
+  .deliverable-card:hover { transform: translateY(-2px); border-color: #dc2626; }
 </style>
 </head>
-<body class="bg-ink-950 text-ink-100 antialiased">
+<body class="grain antialiased">
 
-<nav class="border-b border-ink-900 py-4 px-6 flex justify-between items-center">
-  <a href="/" class="flex items-center gap-2 text-2xl font-black"><img src="/logo-mark.svg" class="w-7 h-7"><span>TattooDesignr</span></a>
-  <a href="/generate.html" class="text-sm text-ink-300 hover:text-white">Generate another</a>
+<!-- NAV (matches index.html, lighter) -->
+<nav class="bg-ink-950/85 backdrop-blur-xl border-b border-ink-800">
+  <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+    <a href="/" class="flex items-center gap-2 text-2xl font-black tracking-tight">
+      <img src="/logo-mark.svg" alt="" class="w-7 h-7">
+      <span class="text-white">Tattoo<span class="text-accent-500">Designr</span></span>
+    </a>
+    <a href="/generate.html" class="text-sm text-ink-300 hover:text-white">Generate another →</a>
+  </div>
 </nav>
 
-<section class="max-w-6xl mx-auto px-6 py-10 md:py-14">
-  <div id="status" class="text-center mb-10">
+<section class="max-w-6xl mx-auto px-6 py-12 md:py-16">
+  <!-- Loading -->
+  <div id="status" class="text-center py-20">
     <div class="inline-block w-12 h-12 border-4 border-ink-800 border-t-accent-500 rounded-full animate-spin mb-4"></div>
-    <p class="text-ink-400">Verifying your purchase...</p>
+    <p class="text-ink-400">Verifying your purchase…</p>
   </div>
 
+  <!-- Success state -->
   <div id="success" class="hidden">
-    <div class="text-center mb-8">
-      <div class="text-5xl mb-3">🎉</div>
-      <h1 class="display text-3xl md:text-5xl font-black mb-3">Your <span class="gradient-text">tattoo pack</span> is ready</h1>
-      <p class="text-ink-300" id="successSub">Everything you need to walk into your tattoo artist's shop.</p>
+    <div class="text-center mb-12">
+      <div class="text-5xl mb-4">🎉</div>
+      <h1 class="display text-5xl md:text-7xl mb-4 leading-[1.05]">Your <span class="text-accent-500">tattoo pack</span> is ready.</h1>
+      <p class="text-ink-300 text-lg max-w-xl mx-auto" id="successSub">Everything you need to walk into your tattoo artist's shop.</p>
     </div>
 
     <!-- Designs grid -->
-    <div id="grid" class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10"></div>
+    <div id="grid" class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12"></div>
 
     <!-- Deliverable cards -->
     <div class="bg-ink-900 border border-ink-800 rounded-2xl p-6 md:p-8 mb-8">
-      <h2 class="display text-2xl font-black mb-5 flex items-center gap-2">📦 What's in your pack</h2>
+      <div class="flex items-center gap-3 mb-6">
+        <span class="display text-3xl text-accent-500">📦</span>
+        <h2 class="display text-3xl md:text-4xl">What's in your pack</h2>
+      </div>
       <div class="grid md:grid-cols-2 gap-4" id="deliverables"></div>
     </div>
 
-    <!-- For your artist -->
-    <div class="bg-gradient-to-br from-accent-500/10 to-accent-600/10 border border-accent-500/30 rounded-2xl p-6 md:p-8 mb-8">
-      <h2 class="display text-2xl font-black mb-3">📋 For your tattoo artist</h2>
-      <p class="text-ink-300 text-sm mb-5">Print this spec sheet and bring it to your appointment. Your artist has everything they need.</p>
-      <button onclick="downloadSpecSheet()" class="bg-accent-500 hover:bg-accent-600 text-white px-6 py-3 rounded-lg font-bold transition">⬇ Download "For your artist" PDF</button>
+    <!-- For your artist (highlight card) -->
+    <div class="relative bg-gradient-to-br from-accent-500 to-accent-700 rounded-3xl p-7 md:p-10 mb-8 overflow-hidden">
+      <div class="relative z-10">
+        <div class="flex items-center gap-3 mb-3">
+          <span class="display text-3xl text-white">📋</span>
+          <h2 class="display text-3xl md:text-4xl text-white">For your tattoo artist</h2>
+        </div>
+        <p class="text-white/90 text-base mb-7 max-w-xl">Print this spec sheet and bring it to your appointment. Recommended size, placement, line weight, color palette, and the source prompt — everything your artist needs.</p>
+        <button onclick="downloadSpecSheet()" class="inline-flex items-center gap-2 bg-white text-accent-700 hover:bg-ink-100 px-7 py-3.5 rounded-full font-extrabold text-base transition shadow-2xl">
+          ⬇ Download "For your artist" PDF
+        </button>
+      </div>
     </div>
 
+    <!-- Footer notice -->
     <div class="bg-ink-900 border border-ink-800 rounded-2xl p-6 text-sm space-y-2">
       <p><strong class="text-white">⏰ Download links work for 30 days.</strong> Save them now.</p>
-      <p class="text-ink-400">Want more? <a href="/generate.html" class="text-accent-500 underline">Generate another pack</a>. Subscribe to <a href="/#pricing" class="text-accent-500 underline">Studio for $14.99/mo</a> for unlimited.</p>
+      <p class="text-ink-400">Want more? <a href="/generate.html" class="text-accent-500 hover:underline font-semibold">Generate another pack</a>. Or upgrade to <a href="/#pricing" class="text-accent-500 hover:underline font-semibold">Studio for $14.99/mo</a> for unlimited.</p>
     </div>
   </div>
 
-  <div id="failed" class="hidden text-center max-w-lg mx-auto py-12">
-    <div class="text-5xl mb-3">⚠️</div>
-    <h1 class="display text-3xl font-black mb-3">We couldn't verify your purchase</h1>
-    <p class="text-ink-400 mb-6" id="failedMsg">If you were charged, we'll fix this immediately — email <a href="mailto:hello@tattoodesignr.com" class="underline">hello@tattoodesignr.com</a> with this URL.</p>
-    <a href="/generate.html" class="inline-block bg-accent-500 hover:bg-accent-600 text-white px-6 py-3 rounded-xl font-bold">Try again</a>
+  <!-- Failed state -->
+  <div id="failed" class="hidden text-center max-w-lg mx-auto py-16">
+    <div class="text-5xl mb-4">⚠️</div>
+    <h1 class="display text-4xl md:text-5xl mb-4">We couldn't verify your purchase</h1>
+    <p class="text-ink-400 mb-7" id="failedMsg">If you were charged, we'll fix this immediately — email <a href="mailto:hello@tattoodesignr.com" class="underline">hello@tattoodesignr.com</a> with this URL.</p>
+    <a href="/generate.html" class="inline-block bg-accent-500 hover:bg-accent-600 text-white px-7 py-3.5 rounded-full font-bold transition">Try again</a>
   </div>
 </section>
+
+<!-- FOOTER (slim) -->
+<footer class="border-t border-ink-800 bg-ink-950 py-8 mt-12">
+  <div class="max-w-7xl mx-auto px-6 text-center">
+    <p class="text-ink-500 text-xs">© 2026 TattooDesignr · <a href="/privacy.html" class="hover:text-white">Privacy</a> · <a href="/terms.html" class="hover:text-white">Terms</a> · <a href="/refund.html" class="hover:text-white">Refund</a></p>
+  </div>
+</footer>
 
 <script>
 let CURRENT_PACK = null;
@@ -95,9 +133,8 @@ let CURRENT_PACK = null;
     status.classList.add('hidden');
     ok.classList.remove('hidden');
 
-    // Personalize success line by pack type
     const subline = {
-      flash: 'Your hand-picked design + everything your artist needs.',
+      flash:  'Your hand-picked design + everything your artist needs.',
       single: 'All 8 designs + everything your artist needs.',
       triple: 'All 24 designs across 3 prompts + everything your artist needs.',
       studio: 'Welcome to Studio. Generate as much as you want.',
@@ -108,17 +145,17 @@ let CURRENT_PACK = null;
     const grid = document.getElementById('grid');
     d.designs.forEach((dn, i) => {
       const card = document.createElement('div');
-      card.className = 'deliverable-card tat-paper aspect-square rounded-xl overflow-hidden flex flex-col';
+      card.className = 'deliverable-card tat-paper aspect-square rounded-xl overflow-hidden flex flex-col border border-ink-800';
       card.innerHTML = `
         <img src="${dn.url}" class="flex-1 w-full object-contain p-3" alt="design ${i+1}">
         <div class="bg-ink-950 text-ink-100 px-3 py-2 flex justify-between items-center text-xs">
           <span class="font-mono opacity-60">${(dn.id||'').slice(-6)}</span>
-          <a download href="${dn.url}" class="bg-accent-500 hover:bg-accent-600 text-white px-3 py-1.5 rounded font-semibold">Download HD</a>
+          <a download href="${dn.url}" class="bg-accent-500 hover:bg-accent-600 text-white px-3 py-1.5 rounded-full font-semibold">Download HD</a>
         </div>`;
       grid.appendChild(card);
     });
 
-    // Render deliverables card list
+    // Render deliverables list
     const deliverables = [
       { icon: '🖼️', name: 'HD PNG (3000×3000)', desc: 'Full-resolution color/grayscale design. Perfect for your artist to scale.', action: 'downloadFirst' },
       { icon: '✂️', name: 'Stencil PDF (B&W outline)', desc: 'Print-ready outline on letter-size paper. Tape to thermal paper for transfer.', action: 'downloadStencil' },
@@ -126,11 +163,11 @@ let CURRENT_PACK = null;
       { icon: '📋', name: '"For your artist" spec sheet', desc: 'One-page PDF: size, placement, color palette, source prompt. Print and bring to appointment.', action: 'downloadSpecSheet' },
     ];
     document.getElementById('deliverables').innerHTML = deliverables.map(it => `
-      <div class="bg-ink-950 border border-ink-800 rounded-xl p-5">
+      <div class="deliverable-card bg-ink-950 border border-ink-800 rounded-xl p-5">
         <div class="text-3xl mb-2">${it.icon}</div>
-        <h3 class="font-bold mb-1">${it.name}</h3>
-        <p class="text-ink-400 text-xs mb-3">${it.desc}</p>
-        <button onclick="${it.action}()" class="text-accent-500 hover:text-accent-600 text-sm font-semibold underline">Download →</button>
+        <h3 class="font-bold mb-1 text-white">${it.name}</h3>
+        <p class="text-ink-400 text-xs mb-4 leading-relaxed">${it.desc}</p>
+        <button onclick="${it.action}()" class="text-accent-500 hover:text-accent-400 text-sm font-bold">Download →</button>
       </div>`).join('');
 
   } catch (err) {
@@ -148,7 +185,6 @@ async function downloadFirst() {
 
 async function downloadStencil() {
   if (!CURRENT_PACK?.designs?.[0]) return;
-  // Convert image to grayscale outline via canvas
   const img = new Image(); img.crossOrigin = 'anonymous';
   img.onload = () => {
     const c = document.createElement('canvas');
@@ -156,7 +192,6 @@ async function downloadStencil() {
     const ctx = c.getContext('2d');
     ctx.fillStyle = 'white'; ctx.fillRect(0, 0, c.width, c.height);
     ctx.drawImage(img, 0, 0);
-    // Threshold to B&W
     const data = ctx.getImageData(0, 0, c.width, c.height);
     for (let i = 0; i < data.data.length; i += 4) {
       const gray = 0.299*data.data[i] + 0.587*data.data[i+1] + 0.114*data.data[i+2];
@@ -174,7 +209,6 @@ async function downloadStencil() {
 
 async function downloadTransparent() {
   if (!CURRENT_PACK?.designs?.[0]) return;
-  // For now: re-export HD with the same URL (replicate.delivery already serves PNG with transparency where applicable)
   const a = document.createElement('a');
   a.href = CURRENT_PACK.designs[0].url; a.download = 'tattoo-design-transparent.png'; a.click();
 }
